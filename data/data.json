@@ -1,0 +1,892 @@
+[
+  {
+    "name": "Apache Software Foundation",
+    "url": "http://www.apache.org/foundation/",
+    "n": 312,
+    "rq1": "Y",
+    "rq2geo": "Y",
+    "rq2cov": "Y",
+    "rq2mis": "Y",
+    "rq3rq4": "Y"
+  },
+  {
+    "name": "Associacao SoftwareLivre.org",
+    "url": "http://associacao.softwarelivre.org/",
+    "n": "",
+    "rq1": "N",
+    "rq2geo": "-",
+    "rq2cov": "-",
+    "rq2mis": "-",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "Benetech",
+    "url": "http://www.benetech.org/",
+    "n": "",
+    "rq1": "N",
+    "rq2geo": "-",
+    "rq2cov": "-",
+    "rq2mis": "-",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "BioBricks Foundation",
+    "url": "http://bbf.openwetware.org/",
+    "n": "",
+    "rq1": "N",
+    "rq2geo": "-",
+    "rq2cov": "-",
+    "rq2mis": "-",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "Blender Foundation",
+    "url": "http://www.blender.org/blenderorg/blender-foundation/",
+    "n": "",
+    "rq1": "Y",
+    "rq2geo": "N",
+    "rq2cov": "Y",
+    "rq2mis": "N",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "BSD Fund",
+    "url": "http://bsdfund.org/",
+    "n": "",
+    "rq1": "Y",
+    "rq2geo": "Y",
+    "rq2cov": "N",
+    "rq2mis": "Y",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "Creative Commons",
+    "url": "http://creativecommons.org/",
+    "n": "",
+    "rq1": "N",
+    "rq2geo": "-",
+    "rq2cov": "-",
+    "rq2mis": "-",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "Django Software Foundation",
+    "url": "http://www.djangoproject.com/foundation/",
+    "n": 1,
+    "rq1": "Y",
+    "rq2geo": "Y",
+    "rq2cov": "Y",
+    "rq2mis": "Y",
+    "rq3rq4": "Y"
+  },
+  {
+    "name": "Document Foundation",
+    "url": "http://www.documentfoundation.org/",
+    "n": 1,
+    "rq1": "Y",
+    "rq2geo": "Y",
+    "rq2cov": "Y",
+    "rq2mis": "Y",
+    "rq3rq4": "Y"
+  },
+  {
+    "name": "Dojo Foundation",
+    "url": "http://dojofoundation.org/",
+    "n": "",
+    "rq1": "Y",
+    "rq2geo": "Y",
+    "rq2cov": "N",
+    "rq2mis": "N",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "Eclipse Foundation",
+    "url": "http://www.eclipse.org/org/foundation/",
+    "n": 216,
+    "rq1": "Y",
+    "rq2geo": "Y",
+    "rq2cov": "Y",
+    "rq2mis": "Y",
+    "rq3rq4": "Y"
+  },
+  {
+    "name": "El Centro de Software Libre",
+    "url": "http://www.csol.org/",
+    "n": "",
+    "rq1": "Y",
+    "rq2geo": "N",
+    "rq2cov": "Y",
+    "rq2mis": "N",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "Electronic Frontier Foundation",
+    "url": "http://www.eff.org/",
+    "n": "",
+    "rq1": "N",
+    "rq2geo": "-",
+    "rq2cov": "-",
+    "rq2mis": "-",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "Free Knowledge Institute",
+    "url": "http://freeknowledge.eu/",
+    "n": "",
+    "rq1": "N",
+    "rq2geo": "-",
+    "rq2cov": "-",
+    "rq2mis": "-",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "Free Software and Open Source Foundation for Africa",
+    "url": "http://www.fossfa.net/",
+    "n": "",
+    "rq1": "N",
+    "rq2geo": "-",
+    "rq2cov": "-",
+    "rq2mis": "-",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "Free Software Foundation",
+    "url": "http://www.fsf.org/",
+    "n": "",
+    "rq1": "N",
+    "rq2geo": "-",
+    "rq2cov": "-",
+    "rq2mis": "-",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "Free Software Foundation Europe",
+    "url": "https://fsfe.org",
+    "n": "",
+    "rq1": "Y",
+    "rq2geo": "N",
+    "rq2cov": "N",
+    "rq2mis": "Y",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "Free Software Foundation India",
+    "url": "http://www.fsf.org.in/",
+    "n": "",
+    "rq1": "Y",
+    "rq2geo": "N",
+    "rq2cov": "N",
+    "rq2mis": "Y",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "Free Software Foundation Latin America",
+    "url": "http://www.fsfla.org/",
+    "n": "",
+    "rq1": "Y",
+    "rq2geo": "N",
+    "rq2cov": "N",
+    "rq2mis": "Y",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "FreeBSD Foundation",
+    "url": "http://freebsdfoundation.org/",
+    "n": "",
+    "rq1": "N",
+    "rq2geo": "-",
+    "rq2cov": "-",
+    "rq2mis": "-",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "Fundacion Via Libre",
+    "url": "http://www.vialibre.org.ar/",
+    "n": "",
+    "rq1": "N",
+    "rq2geo": "-",
+    "rq2cov": "-",
+    "rq2mis": "-",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "Gentoo Foundation",
+    "url": "https://www.gentoo.org/inside-gentoo/foundation/",
+    "n": 1,
+    "rq1": "Y",
+    "rq2geo": "Y",
+    "rq2cov": "Y",
+    "rq2mis": "Y",
+    "rq3rq4": "Y"
+  },
+  {
+    "name": "GNOME Foundation",
+    "url": "http://foundation.gnome.org/",
+    "n": 1,
+    "rq1": "Y",
+    "rq2geo": "Y",
+    "rq2cov": "Y",
+    "rq2mis": "Y",
+    "rq3rq4": "Y"
+  },
+  {
+    "name": "Identity Commons",
+    "url": "http://idcommons.net/",
+    "n": "",
+    "rq1": "Y",
+    "rq2geo": "Y",
+    "rq2cov": "Y",
+    "rq2mis": "N",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "Internet Systems Consortium",
+    "url": "http://www.isc.org/",
+    "n": 9,
+    "rq1": "Y",
+    "rq2geo": "Y",
+    "rq2cov": "Y",
+    "rq2mis": "N",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "ITPUG (Italian PostgreSQL Users' Group)",
+    "url": "http://www.itpug.org/index.en.html",
+    "n": "",
+    "rq1": "Y",
+    "rq2geo": "N",
+    "rq2cov": "Y",
+    "rq2mis": "N",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "JS Foundation",
+    "url": "https://js.foundation",
+    "n": "",
+    "rq1": "Y",
+    "rq2geo": "Y",
+    "rq2cov": "N",
+    "rq2mis": "Y",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "JPUG (Japanese PostgreSQL Users' Group)",
+    "url": "http://postgresql.jp",
+    "n": "",
+    "rq1": "Y",
+    "rq2geo": "N",
+    "rq2cov": "Y",
+    "rq2mis": "Y",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "KDE e.V.",
+    "url": "http://ev.kde.org/",
+    "n": "",
+    "rq1": "Y",
+    "rq2geo": "N",
+    "rq2cov": "Y",
+    "rq2mis": "Y",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "Linux Expo of Southern California",
+    "url": "http://www.socallinuxexpo.org/",
+    "n": "",
+    "rq1": "Y",
+    "rq2geo": "N",
+    "rq2cov": "Y",
+    "rq2mis": "N",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "Linux Foundation",
+    "url": "http://linuxfoundation.org/",
+    "n": 67,
+    "rq1": "Y",
+    "rq2geo": "Y",
+    "rq2cov": "N",
+    "rq2mis": "Y",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "Linux Fund",
+    "url": "http://linuxfoundation.org/",
+    "n": "",
+    "rq1": "Y",
+    "rq2geo": "Y",
+    "rq2cov": "N",
+    "rq2mis": "Y",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "Linux International",
+    "url": "http://www.li.org/",
+    "n": "",
+    "rq1": "Y",
+    "rq2geo": "Y",
+    "rq2cov": "Y",
+    "rq2mis": "N",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "Linux Profesional Institute",
+    "url": "https://www.lpi.org/",
+    "n": "",
+    "rq1": "N",
+    "rq2geo": "-",
+    "rq2cov": "-",
+    "rq2mis": "-",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "LogiLogi Foundation",
+    "url": "http://foundation.logilogi.org/",
+    "n": 1,
+    "rq1": "Y",
+    "rq2geo": "Y",
+    "rq2cov": "Y",
+    "rq2mis": "N",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "Mambo Foundation  Inc.",
+    "url": "http://mambo-foundation.org/",
+    "n": "",
+    "rq1": "Y",
+    "rq2geo": "Y",
+    "rq2cov": "Y",
+    "rq2mis": "N",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "Mozilla Foundation",
+    "url": "http://www.mozilla.org/foundation/",
+    "n": 9,
+    "rq1": "Y",
+    "rq2geo": "Y",
+    "rq2cov": "Y",
+    "rq2mis": "Y",
+    "rq3rq4": "Y"
+  },
+  {
+    "name": "NetBSD Foundation",
+    "url": "http://www.netbsd.org/donations/",
+    "n": 1,
+    "rq1": "Y",
+    "rq2geo": "Y",
+    "rq2cov": "Y",
+    "rq2mis": "Y",
+    "rq3rq4": "Y"
+  },
+  {
+    "name": "NLnet Foundation",
+    "url": "http://www.nlnet.nl/",
+    "n": "",
+    "rq1": "Y",
+    "rq2geo": "N",
+    "rq2cov": "Y",
+    "rq2mis": "Y",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "NLnet Labs Foundation",
+    "url": "http://www.nlnetlabs.nl",
+    "n": "",
+    "rq1": "Y",
+    "rq2geo": "N",
+    "rq2cov": "N",
+    "rq2mis": "Y",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "NumFocus Inc.",
+    "url": "https://www.numfocus.org/",
+    "n": 43,
+    "rq1": "Y",
+    "rq2geo": "Y",
+    "rq2cov": "N",
+    "rq2mis": "Y",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "One Laptop Per Child Association  Inc.",
+    "url": "http://www.laptop.org/",
+    "n": "",
+    "rq1": "N",
+    "rq2geo": "-",
+    "rq2cov": "-",
+    "rq2mis": "-",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "Open Hardware Foundation",
+    "url": "http://www.openhardwarefoundation.org/",
+    "n": "",
+    "rq1": "N",
+    "rq2geo": "-",
+    "rq2cov": "-",
+    "rq2mis": "-",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "Open Health Tools",
+    "url": "http://www.openhealthtools.org/",
+    "n": "",
+    "rq1": "Y",
+    "rq2geo": "Y",
+    "rq2cov": "Y",
+    "rq2mis": "N",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "Open Media Now! Foundation",
+    "url": "http://www.openmedianow.org/",
+    "n": "",
+    "rq1": "Y",
+    "rq2geo": "Y",
+    "rq2cov": "Y",
+    "rq2mis": "N",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "Open Source Applications Foundation",
+    "url": "http://www.osafoundation.org/",
+    "n": "",
+    "rq1": "Y",
+    "rq2geo": "Y",
+    "rq2cov": "Y",
+    "rq2mis": "N",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "Open Source Digital Voting Foundation",
+    "url": "http://www.osdv.org/",
+    "n": 1,
+    "rq1": "Y",
+    "rq2geo": "Y",
+    "rq2cov": "Y",
+    "rq2mis": "N",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "Open Source For America",
+    "url": "http://opensourceforamerica.org/about-osfa/our-mission/",
+    "n": "",
+    "rq1": "N",
+    "rq2geo": "-",
+    "rq2cov": "-",
+    "rq2mis": "-",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "Open Source Geospatial Foundation",
+    "url": "http://www.osgeo.org/content/foundation/about.html",
+    "n": 32,
+    "rq1": "Y",
+    "rq2geo": "Y",
+    "rq2cov": "Y",
+    "rq2mis": "Y",
+    "rq3rq4": "Y"
+  },
+  {
+    "name": "Open Source Initiative",
+    "url": "http://opensource.org/",
+    "n": "",
+    "rq1": "N",
+    "rq2geo": "-",
+    "rq2cov": "-",
+    "rq2mis": "-",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "Open Source Software Institute",
+    "url": "http://www.ossinstitute.org/",
+    "n": "",
+    "rq1": "Y",
+    "rq2geo": "Y",
+    "rq2cov": "Y",
+    "rq2mis": "N",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "OpenBSD Foundation",
+    "url": "http://openbsdfoundation.org/",
+    "n": 7,
+    "rq1": "Y",
+    "rq2geo": "Y",
+    "rq2cov": "Y",
+    "rq2mis": "Y",
+    "rq3rq4": "Y"
+  },
+  {
+    "name": "Open Education Consortium",
+    "url": "http://www.oeconsortium.org/about-oec/",
+    "n": "",
+    "rq1": "N",
+    "rq2geo": "-",
+    "rq2cov": "-",
+    "rq2mis": "-",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "OpenDoc Society",
+    "url": "http://www.opendocsociety.org/",
+    "n": "",
+    "rq1": "N",
+    "rq2geo": "-",
+    "rq2cov": "-",
+    "rq2mis": "-",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "OpenID Foundation",
+    "url": "http://openid.net/foundation/",
+    "n": "",
+    "rq1": "N",
+    "rq2geo": "-",
+    "rq2cov": "-",
+    "rq2mis": "-",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "OpenSourceMatters",
+    "url": "http://www.opensourcematters.org/",
+    "n": 1,
+    "rq1": "Y",
+    "rq2geo": "Y",
+    "rq2cov": "Y",
+    "rq2mis": "Y",
+    "rq3rq4": "Y"
+  },
+  {
+    "name": "Oregon State University Open Source Lab Alliance",
+    "url": "http://osuosl.org/",
+    "n": "",
+    "rq1": "Y",
+    "rq2geo": "Y",
+    "rq2cov": "Y",
+    "rq2mis": "N",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "Parrot Foundation",
+    "url": "http://www.parrot.org/foundation/",
+    "n": 1,
+    "rq1": "Y",
+    "rq2geo": "Y",
+    "rq2cov": "Y",
+    "rq2mis": "Y",
+    "rq3rq4": "Y"
+  },
+  {
+    "name": "Participatory Culture Foundation",
+    "url": "http://pculture.org/",
+    "n": "",
+    "rq1": "N",
+    "rq2geo": "-",
+    "rq2cov": "-",
+    "rq2mis": "-",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "Peer-Directed Projects Center (freenode)",
+    "url": "http://freenode.net/pdpc.shtml",
+    "n": "",
+    "rq1": "N",
+    "rq2geo": "-",
+    "rq2cov": "-",
+    "rq2mis": "-",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "Plone Foundation",
+    "url": "http://plone.org/foundation",
+    "n": 1,
+    "rq1": "Y",
+    "rq2geo": "Y",
+    "rq2cov": "Y",
+    "rq2mis": "Y",
+    "rq3rq4": "Y"
+  },
+  {
+    "name": "PostgreSQL Brasil",
+    "url": "http://postgresql.org.br",
+    "n": "",
+    "rq1": "Y",
+    "rq2geo": "N",
+    "rq2cov": "Y",
+    "rq2mis": "N",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "PostgreSQL Europe",
+    "url": "http://postgresql.eu",
+    "n": "",
+    "rq1": "Y",
+    "rq2geo": "N",
+    "rq2cov": "Y",
+    "rq2mis": "Y",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "PostgreSQL.US",
+    "url": "http://postgresql.us",
+    "n": 1,
+    "rq1": "Y",
+    "rq2geo": "N",
+    "rq2cov": "Y",
+    "rq2mis": "Y",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "PostgreSQLFr.org",
+    "url": "http://asso.postgresql.fr",
+    "n": "",
+    "rq1": "Y",
+    "rq2geo": "N",
+    "rq2cov": "Y",
+    "rq2mis": "Y",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "Public Software Fund",
+    "url": "http://www.pubsoft.org/",
+    "n": 43,
+    "rq1": "Y",
+    "rq2geo": "Y",
+    "rq2cov": "Y",
+    "rq2mis": "N",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "Python Software Foundation",
+    "url": "http://www.python.org/psf/",
+    "n": 1,
+    "rq1": "Y",
+    "rq2geo": "Y",
+    "rq2cov": "Y",
+    "rq2mis": "Y",
+    "rq3rq4": "Y"
+  },
+  {
+    "name": "Shuttleworth Foundation",
+    "url": "http://www.shuttleworthfoundation.org/",
+    "n": "",
+    "rq1": "N",
+    "rq2geo": "-",
+    "rq2cov": "-",
+    "rq2mis": "-",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "Software Freedom Conservancy",
+    "url": "http://sfconservancy.org/",
+    "n": 46,
+    "rq1": "Y",
+    "rq2geo": "Y",
+    "rq2cov": "N",
+    "rq2mis": "N",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "Software Freedom Law Center",
+    "url": "http://www.softwarefreedom.org/",
+    "n": "",
+    "rq1": "N",
+    "rq2geo": "-",
+    "rq2cov": "-",
+    "rq2mis": "-",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "Software in the Public Interest",
+    "url": "http://www.spi-inc.org/",
+    "n": 45,
+    "rq1": "Y",
+    "rq2geo": "Y",
+    "rq2cov": "N",
+    "rq2mis": "Y",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "Software Libre Argentina",
+    "url": "http://www.solar.org.ar/",
+    "n": "",
+    "rq1": "Y",
+    "rq2geo": "N",
+    "rq2cov": "Y",
+    "rq2mis": "Y",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "Software Libre Chile",
+    "url": "http://www.softwarelibre.cl/",
+    "n": "",
+    "rq1": "Y",
+    "rq2geo": "N",
+    "rq2cov": "Y",
+    "rq2mis": "Y",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "Software Livre Brasil",
+    "url": "http://www.softwarelivre.org/",
+    "n": "",
+    "rq1": "Y",
+    "rq2geo": "N",
+    "rq2cov": "Y",
+    "rq2mis": "N",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "Subversion Corporation",
+    "url": "http://subversion.org/",
+    "n": "",
+    "rq1": "Y",
+    "rq2geo": "Y",
+    "rq2cov": "N",
+    "rq2mis": "Y",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "Symphony Software Foundation",
+    "url": "https://symphony.foundation/",
+    "n": 1,
+    "rq1": "Y",
+    "rq2geo": "Y",
+    "rq2cov": "Y",
+    "rq2mis": "Y",
+    "rq3rq4": "Y"
+  },
+  {
+    "name": "TeX Users Group",
+    "url": "http://tug.org/",
+    "n": "",
+    "rq1": "N",
+    "rq2geo": "-",
+    "rq2cov": "-",
+    "rq2mis": "-",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "The Open Planning Project",
+    "url": "http://theopenplanningproject.org/",
+    "n": "",
+    "rq1": "Y",
+    "rq2geo": "Y",
+    "rq2cov": "Y",
+    "rq2mis": "N",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "The Perl Foundation",
+    "url": "http://perlfoundation.org/",
+    "n": 1,
+    "rq1": "Y",
+    "rq2geo": "Y",
+    "rq2cov": "Y",
+    "rq2mis": "Y",
+    "rq3rq4": "Y"
+  },
+  {
+    "name": "The Software Conservancy",
+    "url": "http://www.tsc.org/",
+    "n": "",
+    "rq1": "Y",
+    "rq2geo": "Y",
+    "rq2cov": "Y",
+    "rq2mis": "N",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "Twisted Software Foundation",
+    "url": "http://twistedmatrix.com/trac/wiki/TwistedSoftwareFoundation",
+    "n": "",
+    "rq1": "Y",
+    "rq2geo": "Y",
+    "rq2cov": "N",
+    "rq2mis": "N",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "TYPO3 Association",
+    "url": "http://association.typo3.org/",
+    "n": "",
+    "rq1": "Y",
+    "rq2geo": "Y",
+    "rq2cov": "Y",
+    "rq2mis": "N",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "Wikimedia Foundation",
+    "url": "http://www.wikimediafoundation.org",
+    "n": 1,
+    "rq1": "Y",
+    "rq2geo": "Y",
+    "rq2cov": "Y",
+    "rq2mis": "Y",
+    "rq3rq4": "Y"
+  },
+  {
+    "name": "Wikiotics Foundation",
+    "url": "https://wikiotics.org/en/Wikiotics\\_Foundation",
+    "n": 1,
+    "rq1": "Y",
+    "rq2geo": "Y",
+    "rq2cov": "Y",
+    "rq2mis": "N",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "Wordpress Foundation",
+    "url": "http://wordpressfoundation.org",
+    "n": 1,
+    "rq1": "Y",
+    "rq2geo": "Y",
+    "rq2cov": "Y",
+    "rq2mis": "N",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "X.Org Foundation LLC",
+    "url": "http://www.x.org/wiki/XorgFoundation",
+    "n": 1,
+    "rq1": "Y",
+    "rq2geo": "Y",
+    "rq2cov": "Y",
+    "rq2mis": "Y",
+    "rq3rq4": "Y"
+  },
+  {
+    "name": "Xiph.org",
+    "url": "http://xiph.org/",
+    "n": 23,
+    "rq1": "Y",
+    "rq2geo": "Y",
+    "rq2cov": "Y",
+    "rq2mis": "N",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "XMPP Standards Foundation",
+    "url": "https://xmpp.org/about/xmpp-standards-foundation.html",
+    "n": "",
+    "rq1": "N",
+    "rq2geo": "-",
+    "rq2cov": "-",
+    "rq2mis": "-",
+    "rq3rq4": "-"
+  },
+  {
+    "name": "Zope Foundation",
+    "url": "http://foundation.zope.org/",
+    "n": 1,
+    "rq1": "Y",
+    "rq2geo": "Y",
+    "rq2cov": "Y",
+    "rq2mis": "N",
+    "rq3rq4": "-"
+  }
+]

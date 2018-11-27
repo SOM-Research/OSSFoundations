@@ -1,0 +1,110 @@
+/* http://paletton.com/#uid=33m0o0keCxA5dSU9UIMj6rXnFo5 */ 
+
+.container h1 {
+  margin-top: 0.5em;
+}
+
+.second-half {
+  padding-top: 0.25em;
+  background-color: #5A97A2;
+  color: white !important;
+}
+
+.middle { 
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: white;
+  background-color: #397C89;
+}
+
+.middle a {
+  color: #DFB15A;
+  text-decoration: none;  
+  font-weight: bold;
+}
+
+.middle #info {
+  margin-top: 10px;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.middle #info a  {
+  text-decoration: none;  
+  font-weight: normal;
+}
+
+.middle li, .middle img, .middle p {
+  margin-top: 5px;
+}
+
+.footer {
+  height: 100px;
+  background-color: #397C89;
+  color: white !important;
+  font-size: 14px;
+  padding-top: 10px;
+}
+
+.footer a {
+  color: white;
+  text-decoration: none;  
+  font-weight: bold;
+}
+
+
+#vue-table table {
+  margin-top: 1em;
+}
+  
+#vue-table th a {
+  font-weight: bold;
+  color: white;
+  text-decoration: none;  
+}
+
+#vue-table th a:active {
+  font-weight: bold;
+  color: white;
+  text-decoration: underline;
+}
+
+#vue-table td a {
+  color: white;
+  text-decoration: none;  
+}
+
+.card {
+  background-color: #397C89;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.card.card-body table {
+  background-color: #397C89;
+
+}
+
+.card-item {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+#chart {
+  margin-top: 2em;
+}
+
+.reset-btn {
+  float: right;
+  margin-bottom: 4em;
+}
+
+.form-question {
+  background-color: #397C89;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+
+}
