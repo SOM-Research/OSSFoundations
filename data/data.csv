@@ -1,90 +1,90 @@
-Name,url,n,rq1,rq2geo,rq2cov,rq2mis,rq3rq4                                  
-Apache Software Foundation                          ,http://www.apache.org/foundation/                            ,312 , Y , Y , Y , Y , Y                        
-Associacao SoftwareLivre.org                        ,http://associacao.softwarelivre.org/                         ,    , N , - , - , - , -         
-Benetech                                            ,http://www.benetech.org/                                     ,    , N , - , - , - , -        
-BioBricks Foundation                                ,http://bbf.openwetware.org/                                  ,    , N , - , - , - , -        
-Blender Foundation                                  ,http://www.blender.org/blenderorg/blender-foundation/        ,    , Y , N , Y , N , -        
-BSD Fund                                            ,http://bsdfund.org/                                          ,    , Y , Y , N , Y , -        
-Creative Commons                                    ,http://creativecommons.org/                                  ,    , N , - , - , - , -        
-Django Software Foundation                          ,http://www.djangoproject.com/foundation/                     ,1   , Y , Y , Y , Y , Y                        
-Document Foundation                                 ,http://www.documentfoundation.org/                           ,1   , Y , Y , Y , Y , Y                        
-Dojo Foundation                                     ,http://dojofoundation.org/                                   ,    , Y , Y , N , N , -          
-Eclipse Foundation                                  ,http://www.eclipse.org/org/foundation/                       ,216 , Y , Y , Y , Y , Y                        
-El Centro de Software Libre                         ,http://www.csol.org/                                         ,    , Y , N , Y , N , -       
-Electronic Frontier Foundation                      ,http://www.eff.org/                                          ,    , N , - , - , - , -              
-Free Knowledge Institute                            ,http://freeknowledge.eu/                                     ,    , N , - , - , - , -              
-Free Software and Open Source Foundation for Africa ,http://www.fossfa.net/                                       ,    , N , - , - , - , -              
-Free Software Foundation                            ,http://www.fsf.org/                                          ,    , N , - , - , - , -              
-Free Software Foundation Europe                     ,https://fsfe.org                                             ,    , Y , N , N , Y , -              
-Free Software Foundation India                      ,http://www.fsf.org.in/                                       ,    , Y , N , N , Y , -              
-Free Software Foundation Latin America              ,http://www.fsfla.org/                                        ,    , Y , N , N , Y , -    
-FreeBSD Foundation                                  ,http://freebsdfoundation.org/                                ,    , N , - , - , - , -    
-Fundaci\'on V\'ia Libre                             ,http://www.vialibre.org.ar/                                  ,    , N , - , - , - , -    
-Gentoo Foundation                                   ,https://www.gentoo.org/inside-gentoo/foundation/             ,1   , Y , Y , Y , Y , Y                        
-GNOME Foundation                                    ,http://foundation.gnome.org/                                 ,1   , Y , Y , Y , Y , Y                        
-Identity Commons                                    ,http://idcommons.net/                                        ,    , Y , Y , Y , N , -
-Internet Systems Consortium                         ,http://www.isc.org/                                          ,9   , Y , Y , Y , N , -
-ITPUG (Italian PostgreSQL Users' Group)             ,http://www.itpug.org/index.en.html                           ,    , Y , N , Y , N , -
-JS Foundation                                       ,https://js.foundation                                        ,    , Y , Y , N , Y , -
-JPUG (Japanese PostgreSQL Users' Group)             ,http://postgresql.jp                                         ,    , Y , N , Y , Y , -
-KDE e.V.                                            ,http://ev.kde.org/                                           ,    , Y , N , Y , Y , -
-Linux Expo of Southern California                   ,http://www.socallinuxexpo.org/                               ,    , Y , N , Y , N , -
-Linux Foundation                                    ,http://linuxfoundation.org/                                  ,67  , Y , Y , N , Y , -
-Linux Fund                                          ,http://linuxfoundation.org/                                  ,    , Y , Y , N , Y , -
-Linux International                                 ,http://www.li.org/                                           ,    , Y , Y , Y , N , -
-Linux Profesional Institute                         ,https://www.lpi.org/                                         ,    , N , - , - , - , -
-LogiLogi Foundation                                 ,http://foundation.logilogi.org/                              ,1   , Y , Y , Y , N , -
-Mambo Foundation  Inc.                              ,http://mambo-foundation.org/                                 ,    , Y , Y , Y , N , -
-Mozilla Foundation                                  ,http://www.mozilla.org/foundation/                           ,9   , Y , Y , Y , Y , Y                        
-NetBSD Foundation                                   ,http://www.netbsd.org/donations/                             ,1   , Y , Y , Y , Y , Y                        
-NLnet Foundation                                    ,http://www.nlnet.nl/                                         ,    , Y , N , Y , Y , -      
-NLnet Labs Foundation                               ,http://www.nlnetlabs.nl                                      ,    , Y , N , N , Y , -      
-NumFocus Inc.                                       ,https://www.numfocus.org/                                    ,43  , Y , Y , N , Y , -      
-One Laptop Per Child Association  Inc.              ,http://www.laptop.org/                                       ,    , N , - , - , - , -      
-Open Hardware Foundation                            ,http://www.openhardwarefoundation.org/                       ,    , N , - , - , - , -      
-Open Health Tools                                   ,http://www.openhealthtools.org/                              ,    , Y , Y , Y , N , -      
-Open Media Now! Foundation                          ,http://www.openmedianow.org/                                 ,    , Y , Y , Y , N , -      
-Open Source Applications Foundation                 ,http://www.osafoundation.org/                                ,    , Y , Y , Y , N , -      
-Open Source Digital Voting Foundation               ,http://www.osdv.org/                                         ,1   , Y , Y , Y , N , -      
-Open Source For America                             ,http://opensourceforamerica.org/about-osfa/our-mission/      ,    , N , - , - , - , -      
-Open Source Geospatial Foundation                   ,http://www.osgeo.org/content/foundation/about.html           ,32  , Y , Y , Y , Y , Y                        
-Open Source Initiative                              ,http://opensource.org/                                       ,    , N , - , - , - , -      
-Open Source Software Institute                      ,http://www.ossinstitute.org/                                 ,    , Y , Y , Y , N , -      
-OpenBSD Foundation                                  ,http://openbsdfoundation.org/                                ,7   , Y , Y , Y , Y , Y                        
-Open Education Consortium                           ,http://www.oeconsortium.org/about-oec/                       ,    , N , - , - , - , -            
-OpenDoc Society                                     ,http://www.opendocsociety.org/                               ,    , N , - , - , - , -            
-OpenID Foundation                                   ,http://openid.net/foundation/                                ,    , N , - , - , - , -            
-OpenSourceMatters                                   ,http://www.opensourcematters.org/                            ,1   , Y , Y , Y , Y , Y                        
-Oregon State University Open Source Lab Alliance    ,http://osuosl.org/                                           ,    , Y , Y , Y , N , -          
-Parrot Foundation                                   ,http://www.parrot.org/foundation/                            ,1   , Y , Y , Y , Y , Y                        
-Participatory Culture Foundation                    ,http://pculture.org/                                         ,    , N , - , - , - , -             
-Peer-Directed Projects Center (freenode)            ,http://freenode.net/pdpc.shtml                               ,    , N , - , - , - , -             
-Plone Foundation                                    ,http://plone.org/foundation                                  ,1   , Y , Y , Y , Y , Y                        
-PostgreSQL Brasil                                   ,http://postgresql.org.br                                     ,    , Y , N , Y , N , -    
-PostgreSQL Europe                                   ,http://postgresql.eu                                         ,    , Y , N , Y , Y , -    
-PostgreSQL.US                                       ,http://postgresql.us                                         ,1   , Y , N , Y , Y , -                        
-PostgreSQLFr.org                                    ,http://asso.postgresql.fr                                    ,    , Y , N , Y , Y , -   
-Public Software Fund                                ,http://www.pubsoft.org/                                      ,43  , Y , Y , Y , N , -   
-Python Software Foundation                          ,http://www.python.org/psf/                                   ,1   , Y , Y , Y , Y , Y                        
-Shuttleworth Foundation                             ,http://www.shuttleworthfoundation.org/                       ,    , N , - , - , - , -       
-Software Freedom Conservancy                        ,http://sfconservancy.org/                                    ,46  , Y , Y , N , N , -       
-Software Freedom Law Center                         ,http://www.softwarefreedom.org/                              ,    , N , - , - , - , -       
-Software in the Public Interest                     ,http://www.spi-inc.org/                                      ,45  , Y , Y , N , Y , -       
-Software Libre Argentina                            ,http://www.solar.org.ar/                                     ,    , Y , N , Y , Y , -       
-Software Libre Chile                                ,http://www.softwarelibre.cl/                                 ,    , Y , N , Y , Y , -       
-Software Livre Brasil                               ,http://www.softwarelivre.org/                                ,    , Y , N , Y , N , -       
-Subversion Corporation                              ,http://subversion.org/                                       ,    , Y , Y , N , Y , -       
-Symphony Software Foundation                        ,https://symphony.foundation/                                 ,1   , Y , Y , Y , Y , Y                     
-TeX Users Group                                     ,http://tug.org/                                              ,    , N , - , - , - , -           
-The Open Planning Project                           ,http://theopenplanningproject.org/                           ,    , Y , Y , Y , N , -           
-The Perl Foundation                                 ,http://perlfoundation.org/                                   ,1   , Y , Y , Y , Y , Y                     
-The Software Conservancy                            ,http://www.tsc.org/                                          ,    , Y , Y , Y , N , -       
-Twisted Software Foundation                         ,http://twistedmatrix.com/trac/wiki/TwistedSoftwareFoundation ,    , Y , Y , N , N , -       
-TYPO3 Association                                   ,http://association.typo3.org/                                ,    , Y , Y , Y , N , -       
-Wikimedia Foundation                                ,http://www.wikimediafoundation.org                           ,1   , Y , Y , Y , Y , Y     
-Wikiotics Foundation                                ,https://wikiotics.org/en/Wikiotics\_Foundation               ,1   , Y , Y , Y , N , -       
-Wordpress Foundation                                ,http://wordpressfoundation.org                               ,1   , Y , Y , Y , N , -       
-X.Org Foundation LLC                                ,http://www.x.org/wiki/XorgFoundation                         ,1   , Y , Y , Y , Y , Y                       
-Xiph.org                                            ,http://xiph.org/                                             ,23  , Y , Y , Y , N , -          
-XMPP Standards Foundation                           ,https://xmpp.org/about/xmpp-standards-foundation.html        ,    , N , - , - , - , -          
-Zope Foundation                                     ,http://foundation.zope.org/                                  ,1   , Y , Y , Y , N , -  
+﻿name;url;rq1;rq2geo;rq2cov;rq2mis;rq3rq4;legal
+Apache Software Foundation;http://www.apache.org/foundation/;Y;Y;Y;Y;Y;United States 501(c)(3)
+Associacao SoftwareLivre.org;http://associacao.softwarelivre.org/;N;-;-;-;-;Brazillian NGO
+Benetech;http://www.benetech.org/;N;-;-;-;-;United States 501(c)(3)
+BioBricks Foundation;http://bbf.openwetware.org/;N;-;-;-;-;United States 501(c)(3)
+Blender Foundation;http://www.blender.org/blenderorg/blender-foundation/;Y;N;Y;N;-;Dutch Stichting
+BSD Fund;http://bsdfund.org/;Y;Y;N;Y;-;United States 501(c)(3)
+Creative Commons;http://creativecommons.org/;N;-;-;-;-;United States 501(c)(3)
+Django Software Foundation;http://www.djangoproject.com/foundation/;Y;Y;Y;Y;Y;United States 501(c)(3)
+Document Foundation;http://www.documentfoundation.org/;Y;Y;Y;Y;Y;German e.V
+Dojo Foundation;http://dojofoundation.org/;Y;Y;N;N;-;United States 501(c)(6)
+Eclipse Foundation;http://www.eclipse.org/org/foundation/;Y;Y;Y;Y;Y;United States 501(c)(6)
+El Centro de Software Libre;http://www.csol.org/;Y;N;Y;N;-;Unknown
+Electronic Frontier Foundation;http://www.eff.org/;N;-;-;-;-;United States 501(c)(3)
+Free Knowledge Institute;http://freeknowledge.eu/;N;-;-;-;-;Dutch Stichting
+Free Software and Open Source Foundation for Africa;http://www.fossfa.net/;N;-;-;-;-;Unknown
+Free Software Foundation;http://www.fsf.org/;N;-;-;-;-;United States 501(c)(3)
+Free Software Foundation Europe;https://fsfe.org;Y;N;N;Y;-;German e.V.
+Free Software Foundation India;http://www.fsf.org.in/;Y;N;N;Y;-;Indian Nonprofit
+Free Software Foundation Latin America;http://www.fsfla.org/;Y;N;N;Y;-;Unknown
+FreeBSD Foundation;http://freebsdfoundation.org/;N;-;-;-;-;United States 501(c)(3)
+Fundaci\'on V\'ia Libre;http://www.vialibre.org.ar/;N;-;-;-;-;Argentinian NGO
+Gentoo Foundation;https://www.gentoo.org/inside-gentoo/foundation/;Y;Y;Y;Y;Y;United States 501(c)(6)
+GNOME Foundation;http://foundation.gnome.org/;Y;Y;Y;Y;Y;United States 501(c)(3)
+Identity Commons;http://idcommons.net/;Y;Y;Y;N;-;United States 501(c)(3)
+Internet Systems Consortium;http://www.isc.org/;Y;Y;Y;N;-;United States 501(c)(3)
+ITPUG (Italian PostgreSQL Users' Group);http://www.itpug.org/index.en.html;Y;N;Y;N;-;Italian Non-Profit Association
+JS Foundation;https://js.foundation;Y;Y;N;Y;-;Unknown
+JPUG (Japanese PostgreSQL Users' Group);http://postgresql.jp;Y;N;Y;Y;-;Japanese Non-Profit Corporation
+KDE e.V.;http://ev.kde.org/;Y;N;Y;Y;-;German e.V
+Linux Expo of Southern California;http://www.socallinuxexpo.org/;Y;N;Y;N;-;United States 501(c)(3)
+Linux Foundation;http://linuxfoundation.org/;Y;Y;N;Y;-;United States 501(c)(6)
+Linux Fund;http://linuxfoundation.org/;Y;Y;N;Y;-;United States 501(c)(3)
+Linux International;http://www.li.org/;Y;Y;Y;N;-;United States 501(c)(3)
+Linux Profesional Institute;https://www.lpi.org/;N;-;-;-;-;Unknown
+LogiLogi Foundation;http://foundation.logilogi.org/;Y;Y;Y;N;-;Dutch Stichting
+Mambo Foundation  Inc.;http://mambo-foundation.org/;Y;Y;Y;N;-;Australian Nonprofit
+Mozilla Foundation;http://www.mozilla.org/foundation/;Y;Y;Y;Y;Y;United States 501(c)(3)
+NetBSD Foundation;http://www.netbsd.org/donations/;Y;Y;Y;Y;Y;United States 501(c)(3)
+NLnet Foundation;http://www.nlnet.nl/;Y;N;Y;Y;-;Netherlands ANBI
+NLnet Labs Foundation;http://www.nlnetlabs.nl;Y;N;N;Y;-;Netherlands ANBI
+NumFocus Inc.;https://www.numfocus.org/;Y;Y;N;Y;-;United States 501(c)(3)
+One Laptop Per Child Association  Inc.;http://www.laptop.org/;N;-;-;-;-;United States 501(c)(3)
+Open Hardware Foundation;http://www.openhardwarefoundation.org/;N;-;-;-;-;United States 501(c)(3)
+Open Health Tools;http://www.openhealthtools.org/;Y;Y;Y;N;-;United States 501(c)(6)
+Open Media Now! Foundation;http://www.openmedianow.org/;Y;Y;Y;N;-;United States 501(c)(6)
+Open Source Applications Foundation;http://www.osafoundation.org/;Y;Y;Y;N;-;United States 501(c)(3)
+Open Source Digital Voting Foundation;http://www.osdv.org/;Y;Y;Y;N;-;United States 501(c)(3)
+Open Source For America;http://opensourceforamerica.org/about-osfa/our-mission/;N;-;-;-;-;Unknown
+Open Source Geospatial Foundation;http://www.osgeo.org/content/foundation/about.html;Y;Y;Y;Y;Y;United States 501(c)(3)
+Open Source Initiative;http://opensource.org/;N;-;-;-;-;United States 501(c)(3)
+Open Source Software Institute;http://www.ossinstitute.org/;Y;Y;Y;N;-;United States 501(c)(6)
+OpenBSD Foundation;http://openbsdfoundation.org/;Y;Y;Y;Y;Y;Canadian Nonprofit
+Open Education Consortium;http://www.oeconsortium.org/about-oec/;N;-;-;-;-;Unknown
+OpenDoc Society;http://www.opendocsociety.org/;N;-;-;-;-;Dutch Stichting
+OpenID Foundation;http://openid.net/foundation/;N;-;-;-;-;United States 501(c)(3)
+OpenSourceMatters;http://www.opensourcematters.org/;Y;Y;Y;Y;Y;Unknown
+Oregon State University Open Source Lab Alliance;http://osuosl.org/;Y;Y;Y;N;-;United States 501(c)(3)
+Parrot Foundation;http://www.parrot.org/foundation/;Y;Y;Y;Y;Y;United States 501(c)(3)
+Participatory Culture Foundation;http://pculture.org/;N;-;-;-;-;United States 501(c)(3)
+Peer-Directed Projects Center (freenode);http://freenode.net/pdpc.shtml;N;-;-;-;-;United States 501(c)(3)
+Plone Foundation;http://plone.org/foundation;Y;Y;Y;Y;Y;United States 501(c)(3)
+PostgreSQL Brasil;http://postgresql.org.br;Y;N;Y;N;-;Brazillian Non-Profit
+PostgreSQL Europe;http://postgresql.eu;Y;N;Y;Y;-;French 1901 Non-profit Association
+PostgreSQL.US;http://postgresql.us;Y;N;Y;Y;-;United States 501(c)(3) -- PENDING
+PostgreSQLFr.org;http://asso.postgresql.fr;Y;N;Y;Y;-;French 1901 Non-profit Association
+Public Software Fund;http://www.pubsoft.org/;Y;Y;Y;N;-;United States 501(c)(3)
+Python Software Foundation;http://www.python.org/psf/;Y;Y;Y;Y;Y;United States 501(c)(3)
+Shuttleworth Foundation;http://www.shuttleworthfoundation.org/;N;-;-;-;-;South African Nonprofit
+Software Freedom Conservancy;http://sfconservancy.org/;Y;Y;N;N;-;United States 501(c)(3)
+Software Freedom Law Center;http://www.softwarefreedom.org/;N;-;-;-;-;United States 501(c)(3)
+Software in the Public Interest;http://www.spi-inc.org/;Y;Y;N;Y;-;United States 501(c)(3)
+Software Libre Argentina;http://www.solar.org.ar/;Y;N;Y;Y;-;Unknown
+Software Libre Chile;http://www.softwarelibre.cl/;Y;N;Y;Y;-;Unknown
+Software Livre Brasil;http://www.softwarelivre.org/;Y;N;Y;N;-;Brazillian NGO
+Subversion Corporation;http://subversion.org/;Y;Y;N;Y;-;United States 501(c)(6)
+Symphony Software Foundation;https://symphony.foundation/;Y;Y;Y;Y;Y;Unknown
+TeX Users Group;http://tug.org/;N;-;-;-;-;United States 501(c)(3)
+The Open Planning Project;http://theopenplanningproject.org/;Y;Y;Y;N;-;United States 501(c)(3)
+The Perl Foundation;http://perlfoundation.org/;Y;Y;Y;Y;Y;United States 501(c)(3)
+The Software Conservancy;http://www.tsc.org/;Y;Y;Y;N;-;United States 501(c)(3)
+Twisted Software Foundation;http://twistedmatrix.com/trac/wiki/TwistedSoftwareFoundation;Y;Y;N;N;-;United States 501(c)(3)
+TYPO3 Association;http://association.typo3.org/;Y;Y;Y;N;-;Swiss nonprofit
+Wikimedia Foundation;http://www.wikimediafoundation.org;Y;Y;Y;Y;Y;United States 501(c)(3)
+Wikiotics Foundation;https://wikiotics.org/en/Wikiotics\_Foundation;Y;Y;Y;N;-;United States 501(c)(3)
+Wordpress Foundation;http://wordpressfoundation.org;Y;Y;Y;N;-;United States 501(c)(3)
+X.Org Foundation LLC;http://www.x.org/wiki/XorgFoundation;Y;Y;Y;Y;Y;United States 501(c)(3) applicant
+Xiph.org;http://xiph.org/;Y;Y;Y;N;-;United States 501(c)(3)
+XMPP Standards Foundation;https://xmpp.org/about/xmpp-standards-foundation.html;N;-;-;-;-;United States 501(c)(3)
+Zope Foundation;http://foundation.zope.org/;Y;Y;Y;N;-;United States 501(c)(3)
