@@ -175,15 +175,15 @@
               </label>
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="q2check1" value="geo" v-model="formQ2geo">
-                <label class="form-check-label" for="q2check1">International Scope. Select only those foundations having an international scope</label>
+                <label class="form-check-label" for="q2check1"><abbr title="Select only those foundations having an international scope">International Scope<img src="img/info.png"></abbr></label>
               </div>
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="q2check2" value="cov" v-model="formQ2cov">
-                <label class="form-check-label" for="q2check2">Independent. Select only independent foundations, that is, they provide support directly to software proyects (and they are not foundations of foundations)</label>
+                <label class="form-check-label" for="q2check2"><abbr title="Select only foundations, that provide support to software proyects (they are not foundations of foundations)">Independent<img src="img/info.png"></abbr></label>
               </div>
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="q2check3" value="mis" v-model="formQ2mis">
-                <label class="form-check-label" for="q2check3">Clear mission. Select those foundations clearly stating their mission</label>
+                <label class="form-check-label" for="q2check3"><abbr title="Select those foundations clearly stating their mission">Clear mission<img src="img/info.png"></abbr></label>
               </div>
             </div>
           </div>
@@ -214,10 +214,10 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
 
-    /* DEV 
+    /* DEV  
     gtag('config', 'UA-54150984-5', { 'send_page_view': false });*/
 
-    /* PROD */
+    /* PROD*/
     gtag('config', 'UA-54150984-5');
   </script>
 

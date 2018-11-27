@@ -111,5 +111,13 @@
   border-radius: 5px;
   padding: 10px;
   margin-bottom: 10px;
+}
 
+.form-check img {
+  margin-bottom: 8px;
+  margin-left: 5px;
+}
+
+.form-check abbr {
+  text-decoration: none;  
 }
