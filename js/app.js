@@ -96,9 +96,9 @@ let vm = new Vue({
       bindto: '#chart',
       data: {
         columns: [
-          ['selected', 65, 47, 51, 37, 18],
-          ['not applicable', 0, 24, 24, 24, 80],
-          ['unselected', 24, 18, 14, 28, 0]
+          ['selected', 65, 47, 51, 37],/*, 18],*/
+          ['not applicable', 0, 24, 24, 24],/*, 80],*/
+          ['unselected', 24, 18, 14, 28]/*, 0]*/
         ],
         type: 'bar',
         onclick: function (d, element) { 

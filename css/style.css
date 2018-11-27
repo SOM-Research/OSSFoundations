@@ -5,7 +5,7 @@
 }
 
 .second-half {
-  padding-top: 0.25em;
+  padding-top: 10px;
   background-color: #5A97A2;
   color: white !important;
 }
@@ -72,6 +72,11 @@
 #vue-table td a {
   color: white;
   text-decoration: none;  
+}
+
+#vue-table .btn {
+  background-color: #216976;
+  border-color: #397C89;
 }
 
 .card {
