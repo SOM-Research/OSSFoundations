@@ -740,16 +740,6 @@
     "legal": "Brazillian NGO"
   },
   {
-    "name": "Subversion Corporation",
-    "url": "http://subversion.org/",
-    "rq1": "Y",
-    "rq2geo": "Y",
-    "rq2cov": "N",
-    "rq2mis": "Y",
-    "rq3rq4": "-",
-    "legal": "United States 501(c)(6)"
-  },
-  {
     "name": "Symphony Software Foundation",
     "url": "https://symphony.foundation/",
     "rq1": "Y",
