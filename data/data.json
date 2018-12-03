@@ -283,7 +283,7 @@
     "name": "KDE e.V.",
     "url": "http://ev.kde.org/",
     "rq1": "Y",
-    "rq2geo": "N",
+    "rq2geo": "Y",
     "rq2cov": "Y",
     "rq2mis": "Y",
     "rq3rq4": "-",
