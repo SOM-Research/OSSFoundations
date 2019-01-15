@@ -76,13 +76,12 @@ let vm = new Vue({
       })
 
       // Topic filtering
-      if(self.selectedTopics != "") {
+      if(self.formQ1topics) {
         filtered = filtered.filter(function(foundation) {
-          for(i in self.selectedTopics) {
-            if(foundation.topics.indexOf(self.selectedTopics[i]) == -1) {
+          if(self.selectedTopics.length == 0) return false
+          for(i in self.selectedTopics) 
+            if(foundation.topics.indexOf(self.selectedTopics[i]) == -1)
               return false
-            }
-          }
           return true
         })
       }
@@ -178,7 +177,7 @@ let vm = new Vue({
     resetTopicQuestion: function() {
       var self = this
       self.formQ1topics = false
-      $('.collapse-topics-list').collapse('hide')
+      $('#topics-list').collapse('hide')
       self.resetTopicList()
     },
     resetTopicList: function() {
@@ -233,11 +232,21 @@ let vm = new Vue({
       var self = this
       if(show) {
         self.formQ1topics = true
-        $('.collapse-topics-list').collapse('show')
+        $('#topics-list').collapse('show')
       } else {
         self.formQ1topics = false
-        $('.collapse-topics-list').collapse('hide')
+        $('#topics-list').collapse('hide')
         self.resetTopicQuestion()
+      }
+    },
+    toggleQ1: function(answer) {
+      var self = this
+      if(answer) {
+        self.formQ1 = 'Y'
+        self.resetTopics()
+      } else {
+        self.formQ1 = 'N'
+        $('#topics-question').collapse('show')
       }
     }
   }
