@@ -135,3 +135,18 @@
   color: white;
   font-weight: bold;
 }
+
+#topics-list .btn, #topics-question .btn {
+  background-color: #397C89;
+  border-color: #216976;
+  margin: 2px;
+}
+
+#topics-list .btn.selected, #topics-question .btn.selected {
+  background-color: #216976;
+  border-color: #216976;
+}
+
+#topics-list .btn:focus, #topics-question .btn:focus {
+  box-shadow: none !important;
+}

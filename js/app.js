@@ -18,24 +18,40 @@ let vm = new Vue({
     selectedCategory: -1,      // Category selected in the graph (as index)
     selectedCategoryValue: '', // Value on the category selected
     formQ1: '',                // Answer for Q1 in the form
+    formQ1topics: false,       // Answer for Q1 topics in the form
     formQ2geo: '',             // Answer for Q2GEO in the form
     formQ2cov: '',             // Answer for Q2COV in the form
     formQ2mis: '',             // Answer for Q2MIS in the form
     timer: 0,                  // Last timer created (to dealy the graph update)
     previousList: [],          // Cached result to be used when clicking on the graph consecutively
+    selectedTopics: [],        // Topics selected
 
     // GRAPH
     chart: undefined,          // The C3 graph
 
     // DATA
-    foundations: []            // List of foundations (MAIN DATA)
+    foundations: [],           // List of foundations (MAIN DATA)
+    topics: []                 // List of keywords for non-software foundations
   },
   
   mounted: function() {
     var self = this
     $.getJSON('data/data.json', function(json) {
       self.foundations = json
+
+      self.foundations.map(function(foundation) {
+        foundationTopics = foundation.topics
+        if(foundationTopics != "") {
+          topicArray = foundationTopics.split(",")
+          topicArray.map(function(topic) {
+            if(self.topics.indexOf(topic) == -1) {
+              self.topics.push(topic)
+            } 
+          })          
+        }
+      })
     })  
+
   },
 
   computed: {
@@ -58,6 +74,19 @@ let vm = new Vue({
                (self.formQ2cov ? foundation.rq2cov == 'Y' : true) &&
                (self.formQ2mis ? foundation.rq2mis == 'Y' : true) 
       })
+
+      // Topic filtering
+      if(self.selectedTopics != "") {
+        filtered = filtered.filter(function(foundation) {
+          for(i in self.selectedTopics) {
+            if(foundation.topics.indexOf(self.selectedTopics[i]) == -1) {
+              return false
+            }
+          }
+          return true
+        })
+      }
+
       // Ordering
       var ordered = _.orderBy(filtered, self.sortKey, (self.reverse ? 'desc' : 'asc'))
 
@@ -82,7 +111,7 @@ let vm = new Vue({
 
       self.timer = setTimeout(function(newColumns) {
         self.chart.load({ columns: [selected, nas, unselected], unload: true })
-        $('.collapse').collapse('hide')
+        $('.collapse-foundation').collapse('hide')
       }, 500)
       
       self.previousList = ordered
@@ -136,6 +165,26 @@ let vm = new Vue({
       self.formQ2mis = ''
       self.selectedCategory = -1
       self.selectedCategoryValue = ''
+      $('.collapse-foundation').collapse('hide')
+      self.resetTopics()
+    },
+    resetTopics: function() {
+      var self = this
+      self.formQ1topics = false
+      $('.collapse-topics').collapse('hide')
+      self.resetTopicList()
+      $('.btn-topic').button('dispose')
+    },
+    resetTopicQuestion: function() {
+      var self = this
+      self.formQ1topics = false
+      $('.collapse-topics-list').collapse('hide')
+      self.resetTopicList()
+    },
+    resetTopicList: function() {
+      var self = this
+      self.selectedTopics = []
+      $('.btn-topic').button('dispose')
     },
     getCategoryValue: function(foundation, category) {
       if(category == 0) return foundation.rq1;
@@ -168,6 +217,27 @@ let vm = new Vue({
       else if(category == 3) {
         if(categoryValue == "selected") self.formQ2mis = true
         else if(categoryValue == "unselected") self.formQ2mis = false
+      }
+    },
+    toggleTopic: function(topic) {
+      var self = this
+      if(self.selectedTopics.indexOf(topic) == -1) {
+        self.selectedTopics.push(topic)
+      } else {
+        self.selectedTopics = self.selectedTopics.filter(function(value, index, arr){
+          return value != topic;
+        });
+      }
+    },
+    toggleQ1topics: function(show) {
+      var self = this
+      if(show) {
+        self.formQ1topics = true
+        $('.collapse-topics-list').collapse('show')
+      } else {
+        self.formQ1topics = false
+        $('.collapse-topics-list').collapse('hide')
+        self.resetTopicQuestion()
       }
     }
   }

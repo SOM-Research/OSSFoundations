@@ -103,7 +103,7 @@
                 <a data-toggle="collapse" v-bind:href="'#' + foundation.name.replace(/ /g,'').replace(/\./g,'')" role="button" aria-expanded="false" aria-controls="collapseTable">
                   {{ foundation.name }}
                 </a>
-                <div class="collapse" v-bind:id="foundation.name.replace(/ /g,'').replace(/\./g,'')">
+                <div class="collapse collapse-foundation" v-bind:id="foundation.name.replace(/ /g,'').replace(/\./g,'')">
                   <div class="card card-body">
                     <span class="card-item">Website:</span>
                     <a v-bind:href="foundation.url" target="_blank">{{foundation.url}}</a>
@@ -144,7 +144,7 @@
       </div> <!-- col -->
       <div class="col">
         <a class="btn btn-primary btn-sm reset-btn" href="#" role="button" v-on:click="reset()">Reset</a>
-        <h2>Filter options</h2>
+        <h2>Choose yours</h2>
 
         <form>
           <div class="form-question">
@@ -153,21 +153,41 @@
               <input type="text" v-model="search" class="form-control form-control-sm" id="nameFilter"/>
             </div>
           </div>
+          <!--
+            Q1
+          -->
           <div class="form-question">
             <div class="form-group">
               <label>
                 Should the foundation aim at supporting the development of specific open source projects?
               </label>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="q1radios" id="q1radiosA" value="Y" v-model="formQ1">
+                <input class="form-check-input" type="radio" name="q1radios" id="q1radiosA" value="Y" v-model="formQ1" v-on:click="resetTopics()">
                 <label class="form-check-label" for="q1radiosA">Yes</label>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="q1radios" id="q1radiosB" value="N" v-model="formQ1">
+                <input class="form-check-input" type="radio" name="q1radios" id="q1radiosB" value="N" v-model="formQ1" data-toggle="collapse" data-target="#topics-question">
                 <label class="form-check-label" for="q1radiosB">No</label>
               </div>
             </div>
+            <div class="collapse collapse-topics" id="topics-question">
+              <label>
+                Filter according to the topics addressed by the foundation?
+              </label>
+              <div class="btn-group btn-topics-question" role="group">
+                <button type="button" class="btn btn-sm btn-secondary" data-toggle="collapse" data-target="#topics-list" v-bind:class="{ selected: formQ1topics }" v-on:click="toggleQ1topics(true)">Yes</button>
+                <button type="button" class="btn btn-sm btn-secondary" v-bind:class="{ selected: !formQ1topics }" v-on:click="toggleQ1topics(false)">No</button>
+              </div>
+            </div>
+            <div class="collapse collapse-topics collapse-topics-list" id="topics-list">
+              <p class="text-center">
+                <button v-for="topic in topics" type="button" class="btn btn-primary btn-sm btn-topic" v-bind:class="{ selected: selectedTopics.indexOf(topic) > -1 }" v-on:click="toggleTopic(topic)">{{topic}}</button>
+              </p>
+            </div>
           </div>
+          <!--
+            Q2
+          -->
           <div class="form-question">
             <div class="form-group">
               <label>
