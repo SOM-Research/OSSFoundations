@@ -147,3 +147,7 @@
 .form-btn:focus {
   box-shadow: none !important;
 }
+
+.collapse-topics {
+  margin-top: 10px;
+}
