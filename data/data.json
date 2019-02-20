@@ -163,8 +163,8 @@
     "name": "Free Software Foundation Europe",
     "url": "https://fsfe.org",
     "rq1": "Y",
-    "rq2geo": "N",
-    "rq2cov": "N",
+    "rq2geo": "Y",
+    "rq2cov": "Y",
     "rq2mis": "Y",
     "rq3rq4": "-",
     "legal": "German e.V."
@@ -174,7 +174,7 @@
     "url": "http://www.fsf.org.in/",
     "rq1": "Y",
     "rq2geo": "N",
-    "rq2cov": "N",
+    "rq2cov": "Y",
     "rq2mis": "Y",
     "rq3rq4": "-",
     "legal": "Indian Nonprofit"
@@ -184,7 +184,7 @@
     "url": "http://www.fsfla.org/",
     "rq1": "Y",
     "rq2geo": "N",
-    "rq2cov": "N",
+    "rq2cov": "Y",
     "rq2mis": "Y",
     "rq3rq4": "-",
     "legal": "Unknown"
