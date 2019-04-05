@@ -93,23 +93,19 @@ let vm = new Vue({
       var rq1Y     = ordered.filter(function(f) { return f.rq1 == "Y";}).length
       var rq1N     = ordered.filter(function(f) { return f.rq1 == "N";}).length
       var rq2geoY  = ordered.filter(function(f) { return f.rq2geo == "Y";}).length
-      var rq2geoNA = ordered.filter(function(f) { return f.rq2geo == "-";}).length
       var rq2geoN  = ordered.filter(function(f) { return f.rq2geo == "N";}).length
       var rq2covY  = ordered.filter(function(f) { return f.rq2cov == "Y";}).length
-      var rq2covNA = ordered.filter(function(f) { return f.rq2cov == "-";}).length
       var rq2covN  = ordered.filter(function(f) { return f.rq2cov == "N";}).length
       var rq2misY  = ordered.filter(function(f) { return f.rq2mis == "Y";}).length
-      var rq2misNA = ordered.filter(function(f) { return f.rq2mis == "-";}).length
       var rq2misN  = ordered.filter(function(f) { return f.rq2mis == "N";}).length
       /*var rq3rq4Y  = ordered.filter(function(f) { return f.rq3rq4 == "Y";}).length
       var rq3rq4NA = ordered.filter(function(f) { return f.rq3rq4 == "-";}).length*/
 
       selected   = ["selected", rq1Y, rq2geoY, rq2covY, rq2misY] /*, rq3rq4Y]*/
-      nas        = ["not applicable", 0, rq2geoNA, rq2covNA, rq2misNA] /*, rq3rq4NA]*/
       unselected = ["unselected", rq1N, rq2geoN, rq2covN, rq2misN]/*, 0]*/
 
       self.timer = setTimeout(function(newColumns) {
-        self.chart.load({ columns: [selected, nas, unselected], unload: true })
+        self.chart.load({ columns: [selected, unselected], unload: true })
         $('.collapse-foundation').collapse('hide')
       }, 500)
       
@@ -125,7 +121,6 @@ let vm = new Vue({
       data: {
         columns: [
           ['selected', 65, 47, 51, 37],/*, 18],*/
-          ['not applicable', 0, 24, 24, 24],/*, 80],*/
           ['unselected', 24, 18, 14, 28]/*, 0]*/
         ],
         type: 'bar',
