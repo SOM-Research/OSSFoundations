@@ -2,10 +2,10 @@
  {
    "name": "ADA Initiative",
    "url": "https://adainitiative.org/",
-   "rq1": "N",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "Y",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "Y",
+   "SD": "N",
    "rq3rq4": "N",
    "legal": "United States 501(c)3",
    "topics": "Event-organization,Training,Legal-support,Community-coordination"
@@ -13,10 +13,10 @@
  {
    "name": "Apache Software Foundation",
    "url": "http://www.apache.org/foundation/",
-   "rq1": "Y",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "Y",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "Y",
+   "SD": "Y",
    "rq3rq4": "Y",
    "legal": "United States 501(c)(3)",
    "topics": "Project-sponsoring,Legal-support,Community-coordination,Software-Development"
@@ -24,10 +24,10 @@
  {
    "name": "Associacao SoftwareLivre.org",
    "url": "http://associacao.softwarelivre.org/",
-   "rq1": "N",
-   "rq2geo": "N",
-   "rq2cov": "Y",
-   "rq2mis": "Y",
+   "rq1Inter": "N",
+   "rq1Indep": "Y",
+   "rq1Open": "Y",
+   "SD": "N",
    "rq3rq4": "N",
    "legal": "Brazillian NGO",
    "topics": "OSS-promotion,Event-organization,Training,Government-involvement"
@@ -35,10 +35,10 @@
  {
    "name": "Benetech",
    "url": "http://www.benetech.org/",
-   "rq1": "N",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "N",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "N",
+   "SD": "N",
    "rq3rq4": "N",
    "legal": "United States 501(c)(3)",
    "topics": "Project-sponsoring,Community-coordination"
@@ -46,10 +46,10 @@
  {
    "name": "BioBricks Foundation",
    "url": "https://biobricks.org/",
-   "rq1": "N",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "N",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "N",
+   "SD": "N",
    "rq3rq4": "N",
    "legal": "United States 501(c)(3)",
    "topics": "Event-organization,Project-sponsoring"
@@ -57,10 +57,10 @@
  {
    "name": "Blender Foundation",
    "url": "http://www.blender.org/blenderorg/blender-foundation/",
-   "rq1": "Y",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "N",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "N",
+   "SD": "Y",
    "rq3rq4": "N",
    "legal": "Dutch Stichting",
    "topics": "Project-sponsoring,Community-coordination,Software-Development"
@@ -68,10 +68,10 @@
  {
    "name": "BSD Fund",
    "url": "http://bsdfund.org/",
-   "rq1": "Y",
-   "rq2geo": "Y",
-   "rq2cov": "N",
-   "rq2mis": "Y",
+   "rq1Inter": "Y",
+   "rq1Indep": "N",
+   "rq1Open": "Y",
+   "SD": "Y",
    "rq3rq4": "N",
    "legal": "BSD Fund was program of Linux Fund, a US-based 501(c)(3) organization from 2007 to 2012, but is currently simply a trademark of Gainframe LLC, a US-based business",
    "topics": "Event-organization,Project-sponsoring,Community-coordination,Software-Development"
@@ -79,10 +79,10 @@
  {
    "name": "Cloud Foundry Foundation",
    "url": "https://www.cloudfoundry.org/foundation/",
-   "rq1": "Y",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "Y",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "Y",
+   "SD": "Y",
    "rq3rq4": "Y",
    "legal": "United States 501(c)(6)",
    "topics": "Event-organization,Project-sponsoring,Training,Community-coordination,Software-Development"
@@ -90,10 +90,10 @@
  {
    "name": "Creative Commons",
    "url": "http://creativecommons.org/",
-   "rq1": "N",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "Y",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "Y",
+   "SD": "N",
    "rq3rq4": "N",
    "legal": "United States 501(c)(3)",
    "topics": "Legal-support,Government-involvement,Standard-leaders"
@@ -101,10 +101,10 @@
  {
    "name": "Digital Freedom Foundation",
    "url": "https://www.digitalfreedomfoundation.org/",
-   "rq1": "N",
-   "rq2geo": "Y",
-   "rq2cov": "N",
-   "rq2mis": "N",
+   "rq1Inter": "Y",
+   "rq1Indep": "N",
+   "rq1Open": "N",
+   "SD": "N",
    "rq3rq4": "N",
    "legal": "European NGO",
    "topics": "OSS-promotion,Training,Legal-support"
@@ -112,10 +112,10 @@
  {
    "name": "Digital Freedom Foundation India",
    "url": "http://dff.org.in/",
-   "rq1": "N",
-   "rq2geo": "N",
-   "rq2cov": "Y",
-   "rq2mis": "N",
+   "rq1Inter": "N",
+   "rq1Indep": "Y",
+   "rq1Open": "N",
+   "SD": "N",
    "rq3rq4": "N",
    "legal": "Indian Foundation",
    "topics": "OSS-promotion,Event-organization,Project-sponsoring,Training"
@@ -123,10 +123,10 @@
  {
    "name": "Django Software Foundation",
    "url": "http://www.djangoproject.com/foundation/",
-   "rq1": "Y",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "Y",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "Y",
+   "SD": "Y",
    "rq3rq4": "Y",
    "legal": "United States 501(c)(3)",
    "topics": "Project-sponsoring,Legal-support,Community-coordination,Software-Development"
@@ -134,10 +134,10 @@
  {
    "name": "Document Foundation",
    "url": "http://www.documentfoundation.org/",
-   "rq1": "Y",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "Y",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "Y",
+   "SD": "Y",
    "rq3rq4": "Y",
    "legal": "German e.V",
    "topics": "Project-sponsoring,Training,Community-coordination,Software-Development"
@@ -145,10 +145,10 @@
  {
    "name": "Dojo Foundation",
    "url": "http://dojofoundation.org/",
-   "rq1": "Y",
-   "rq2geo": "Y",
-   "rq2cov": "N",
-   "rq2mis": "N",
+   "rq1Inter": "Y",
+   "rq1Indep": "N",
+   "rq1Open": "N",
+   "SD": "Y",
    "rq3rq4": "N",
    "legal": "United States 501(c)(6)",
    "topics": "Event-organization,Project-sponsoring,Training,Community-coordination,Software-Development"
@@ -156,10 +156,10 @@
  {
    "name": ".NET Foundation",
    "url": "https://dotnetfoundation.org/",
-   "rq1": "Y",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "Y",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "Y",
+   "SD": "Y",
    "rq3rq4": "Y",
    "legal": "United States 501(c)(6)",
    "topics": "OSS-promotion,Event-organization,Project-sponsoring,Legal-support,Community-coordination,Software-Development"
@@ -167,10 +167,10 @@
  {
    "name": "Eclipse Foundation",
    "url": "http://www.eclipse.org/org/foundation/",
-   "rq1": "Y",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "Y",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "Y",
+   "SD": "Y",
    "rq3rq4": "Y",
    "legal": "United States 501(c)(6)",
    "topics": "Event-organization,Project-sponsoring,Community-coordination,Software-Development"
@@ -178,10 +178,10 @@
  {
    "name": "El Centro de Software Libre",
    "url": "http://www.csol.org/",
-   "rq1": "N",
-   "rq2geo": "N",
-   "rq2cov": "Y",
-   "rq2mis": "N",
+   "rq1Inter": "N",
+   "rq1Indep": "Y",
+   "rq1Open": "N",
+   "SD": "N",
    "rq3rq4": "N",
    "legal": "Unknown",
    "topics": "OSS-promotion,Event-organization,Government-involvement,Community-coordination"
@@ -189,10 +189,10 @@
  {
    "name": "Electronic Frontier Foundation",
    "url": "http://www.eff.org/",
-   "rq1": "N",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "N",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "N",
+   "SD": "N",
    "rq3rq4": "N",
    "legal": "United States 501(c)(3)",
    "topics": "Legal-support,Government-involvement"
@@ -200,10 +200,10 @@
  {
    "name": "Free Knowledge Institute",
    "url": "http://freeknowledge.eu/",
-   "rq1": "N",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "N",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "N",
+   "SD": "N",
    "rq3rq4": "N",
    "legal": "Dutch Stichting",
    "topics": "OSS-promotion,Community-coordination"
@@ -211,10 +211,10 @@
  {
    "name": "Free Software and Open Source Foundation for Africa",
    "url": "http://www.fossfa.net/",
-   "rq1": "N",
-   "rq2geo": "N",
-   "rq2cov": "Y",
-   "rq2mis": "Y",
+   "rq1Inter": "N",
+   "rq1Indep": "Y",
+   "rq1Open": "Y",
+   "SD": "N",
    "rq3rq4": "N",
    "legal": "Unknown",
    "topics": "OSS-promotion,Government-involvement,Standard-leaders,Community-coordination"
@@ -222,10 +222,10 @@
  {
    "name": "Free Software Foundation",
    "url": "http://www.fsf.org/",
-   "rq1": "N",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "Y",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "Y",
+   "SD": "N",
    "rq3rq4": "N",
    "legal": "United States 501(c)(3)",
    "topics": "OSS-promotion,Event-organization,Project-sponsoring,Legal-support,Standard-leaders,Community-coordination"
@@ -233,10 +233,10 @@
  {
    "name": "Free Software Foundation Europe",
    "url": "https://fsfe.org",
-   "rq1": "N",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "Y",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "Y",
+   "SD": "N",
    "rq3rq4": "N",
    "legal": "German e.V.",
    "topics": "OSS-promotion,Event-organization,Project-sponsoring,Training,Legal-support,Government-involvement,Standard-leaders,Community-coordination"
@@ -244,10 +244,10 @@
  {
    "name": "Free Software Foundation India",
    "url": "http://fsf.org.in/",
-   "rq1": "N",
-   "rq2geo": "N",
-   "rq2cov": "Y",
-   "rq2mis": "N",
+   "rq1Inter": "N",
+   "rq1Indep": "Y",
+   "rq1Open": "N",
+   "SD": "N",
    "rq3rq4": "N",
    "legal": "Indian Nonprofit",
    "topics": "OSS-promotion,Event-organization,Community-coordination"
@@ -255,10 +255,10 @@
  {
    "name": "Free Software Foundation Latin America",
    "url": "http://www.fsfla.org/",
-   "rq1": "N",
-   "rq2geo": "N",
-   "rq2cov": "Y",
-   "rq2mis": "Y",
+   "rq1Inter": "N",
+   "rq1Indep": "Y",
+   "rq1Open": "Y",
+   "SD": "N",
    "rq3rq4": "N",
    "legal": "Unknown",
    "topics": "OSS-promotion,Training,Legal-support,Government-involvement,Community-coordination"
@@ -266,10 +266,10 @@
  {
    "name": "FreeBSD Foundation",
    "url": "http://freebsdfoundation.org/",
-   "rq1": "Y",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "Y",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "Y",
+   "SD": "Y",
    "rq3rq4": "Y",
    "legal": "United States 501(c)(3)",
    "topics": "Event-organization,Project-sponsoring,Training,Legal-support,Community-coordination,Software-Development"
@@ -277,10 +277,10 @@
  {
    "name": "Fundación Vía Libre",
    "url": "http://www.vialibre.org.ar/",
-   "rq1": "N",
-   "rq2geo": "N",
-   "rq2cov": "Y",
-   "rq2mis": "N",
+   "rq1Inter": "N",
+   "rq1Indep": "Y",
+   "rq1Open": "N",
+   "SD": "N",
    "rq3rq4": "N",
    "legal": "Argentinian NGO",
    "topics": "OSS-promotion,Event-organization"
@@ -288,10 +288,10 @@
  {
    "name": "F# Foundation",
    "url": "http://foundation.fsharp.org/",
-   "rq1": "Y",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "Y",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "Y",
+   "SD": "Y",
    "rq3rq4": "Y",
    "legal": "United States Corporation",
    "topics": "Project-sponsoring,Community-coordination,Software-Development"
@@ -299,10 +299,10 @@
  {
    "name": "Gentoo Foundation",
    "url": "https://www.gentoo.org/inside-gentoo/foundation/",
-   "rq1": "Y",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "Y",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "Y",
+   "SD": "Y",
    "rq3rq4": "Y",
    "legal": "United States 501(c)(6)",
    "topics": "Event-organization,Project-sponsoring,Training,Community-coordination,Software-Development"
@@ -310,10 +310,10 @@
  {
    "name": "GNOME Foundation",
    "url": "http://foundation.gnome.org/",
-   "rq1": "Y",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "Y",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "Y",
+   "SD": "Y",
    "rq3rq4": "Y",
    "legal": "United States 501(c)(3)",
    "topics": "Project-sponsoring,Community-coordination,Software-Development"
@@ -321,10 +321,10 @@
  {
    "name": "GraphQL Foundation",
    "url": "https://foundation.graphql.org/",
-   "rq1": "Y",
-   "rq2geo": "Y",
-   "rq2cov": "N",
-   "rq2mis": "N",
+   "rq1Inter": "Y",
+   "rq1Indep": "N",
+   "rq1Open": "N",
+   "SD": "Y",
    "rq3rq4": "N",
    "legal": "Unknown",
    "topics": "Project-sponsoring,Community-coordination,Software-Development"
@@ -332,10 +332,10 @@
  {
    "name": "Kuali Foundation",
    "url": "https://kuali.org",
-   "rq1": "Y",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "Y",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "Y",
+   "SD": "Y",
    "rq3rq4": "Y",
    "legal": "United States 501(c)(3)",
    "topics": "Event-organization,Project-sponsoring,Community-coordination,Software-Development"
@@ -343,10 +343,10 @@
  {
    "name": "Identity Commons",
    "url": "http://idcommons.net/",
-   "rq1": "N",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "Y",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "Y",
+   "SD": "N",
    "rq3rq4": "N",
    "legal": "United States 501(c)(3)",
    "topics": "Event-organization,Standard-leaders,Community-coordination"
@@ -354,10 +354,10 @@
  {
    "name": "Internet Systems Consortium",
    "url": "http://www.isc.org/",
-   "rq1": "Y",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "N",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "N",
+   "SD": "Y",
    "rq3rq4": "N",
    "legal": "United States 501(c)(3)",
    "topics": "Project-sponsoring,Standard-leaders,Community-coordination,Software-Development"
@@ -365,10 +365,10 @@
  {
    "name": "ITPUG (Italian PostgreSQL Users' Group)",
    "url": "https://www.itpug.org/",
-   "rq1": "Y",
-   "rq2geo": "N",
-   "rq2cov": "Y",
-   "rq2mis": "N",
+   "rq1Inter": "N",
+   "rq1Indep": "Y",
+   "rq1Open": "N",
+   "SD": "Y",
    "rq3rq4": "N",
    "legal": "Italian Non-Profit Association",
    "topics": "Event-organization,Training,Community-coordination,Software-Development"
@@ -376,10 +376,10 @@
  {
    "name": "JS Foundation",
    "url": "https://js.foundation",
-   "rq1": "Y",
-   "rq2geo": "Y",
-   "rq2cov": "N",
-   "rq2mis": "Y",
+   "rq1Inter": "Y",
+   "rq1Indep": "N",
+   "rq1Open": "Y",
+   "SD": "Y",
    "rq3rq4": "N",
    "legal": "Unknown",
    "topics": "Event-organization,Project-sponsoring,Training,Community-coordination,Software-Development"
@@ -387,10 +387,10 @@
  {
    "name": "JPUG (Japanese PostgreSQL Users' Group)",
    "url": "https://www.postgresql.jp/",
-   "rq1": "Y",
-   "rq2geo": "N",
-   "rq2cov": "Y",
-   "rq2mis": "Y",
+   "rq1Inter": "N",
+   "rq1Indep": "Y",
+   "rq1Open": "Y",
+   "SD": "Y",
    "rq3rq4": "N",
    "legal": "Japanese Non-Profit Corporation",
    "topics": "Event-organization,Training,Community-coordination,Software-Development"
@@ -398,10 +398,10 @@
  {
    "name": "KDE e.V.",
    "url": "http://ev.kde.org/",
-   "rq1": "N",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "Y",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "Y",
+   "SD": "N",
    "rq3rq4": "N",
    "legal": "German e.V",
    "topics": "Event-organization,Project-sponsoring,Training,Community-coordination"
@@ -409,10 +409,10 @@
  {
    "name": "Linux Expo of Southern California",
    "url": "http://www.socallinuxexpo.org/",
-   "rq1": "N",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "N",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "N",
+   "SD": "N",
    "rq3rq4": "N",
    "legal": "United States 501(c)(3)",
    "topics": "OSS-promotion,Event-organization,Community-coordination"
@@ -420,10 +420,10 @@
  {
    "name": "Linux Foundation",
    "url": "http://linuxfoundation.org/",
-   "rq1": "Y",
-   "rq2geo": "Y",
-   "rq2cov": "N",
-   "rq2mis": "Y",
+   "rq1Inter": "Y",
+   "rq1Indep": "N",
+   "rq1Open": "Y",
+   "SD": "Y",
    "rq3rq4": "N",
    "legal": "United States 501(c)(6)",
    "topics": "OSS-promotion,Event-organization,Project-sponsoring,Training,Community-coordination,Software-Development"
@@ -431,10 +431,10 @@
  {
    "name": "Linux Fund",
    "url": "http://www.linuxfund.org/",
-   "rq1": "Y",
-   "rq2geo": "Y",
-   "rq2cov": "N",
-   "rq2mis": "Y",
+   "rq1Inter": "Y",
+   "rq1Indep": "N",
+   "rq1Open": "Y",
+   "SD": "Y",
    "rq3rq4": "N",
    "legal": "United States 501(c)(3)",
    "topics": "Project-sponsoring,Community-coordination,Software-Development"
@@ -442,10 +442,10 @@
  {
    "name": "Linux International",
    "url": "http://www.li.org/",
-   "rq1": "Y",
-   "rq2geo": "Y",
-   "rq2cov": "N",
-   "rq2mis": "N",
+   "rq1Inter": "Y",
+   "rq1Indep": "N",
+   "rq1Open": "N",
+   "SD": "Y",
    "rq3rq4": "N",
    "legal": "United States 501(c)(3)",
    "topics": "OSS-promotion,Project-sponsoring,Community-coordination,Software-Development"
@@ -453,10 +453,10 @@
  {
    "name": "Linux Profesional Institute",
    "url": "https://www.lpi.org/",
-   "rq1": "N",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "N",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "N",
+   "SD": "N",
    "rq3rq4": "N",
    "legal": "Unknown",
    "topics": "Training"
@@ -464,10 +464,10 @@
  {
    "name": "LogiLogi Foundation",
    "url": "http://foundation.logilogi.org/",
-   "rq1": "N",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "N",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "N",
+   "SD": "N",
    "rq3rq4": "N",
    "legal": "Dutch Stichting",
    "topics": "OSS-promotion,Community-coordination"
@@ -475,10 +475,10 @@
  {
    "name": "Mambo Foundation  Inc.",
    "url": "http://mambo-foundation.org/",
-   "rq1": "Y",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "N",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "N",
+   "SD": "Y",
    "rq3rq4": "N",
    "legal": "Australian Nonprofit",
    "topics": "Project-sponsoring,Legal-support,Community-coordination,Software-Development"
@@ -486,10 +486,10 @@
  {
    "name": "Mozilla Foundation",
    "url": "http://www.mozilla.org/foundation/",
-   "rq1": "Y",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "Y",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "Y",
+   "SD": "Y",
    "rq3rq4": "Y",
    "legal": "United States 501(c)(3)",
    "topics": "OSS-promotion,Event-organization,Project-sponsoring,Training,Community-coordination,Software-Development"
@@ -497,10 +497,10 @@
  {
    "name": "NetBSD Foundation",
    "url": "https://www.netbsd.org/foundation/",
-   "rq1": "Y",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "Y",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "Y",
+   "SD": "Y",
    "rq3rq4": "Y",
    "legal": "United States 501(c)(3)",
    "topics": "Project-sponsoring,Community-coordination,Software-Development"
@@ -508,10 +508,10 @@
  {
    "name": "NLnet Foundation",
    "url": "http://www.nlnet.nl/",
-   "rq1": "N",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "Y",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "Y",
+   "SD": "N",
    "rq3rq4": "N",
    "legal": "Netherlands ANBI",
    "topics": "Event-organization,Project-sponsoring"
@@ -519,10 +519,10 @@
  {
    "name": "NLnet Labs Foundation",
    "url": "http://www.nlnetlabs.nl",
-   "rq1": "Y",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "Y",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "Y",
+   "SD": "Y",
    "rq3rq4": "Y",
    "legal": "Netherlands ANBI",
    "topics": "Project-sponsoring,Community-coordination,Software-Development"
@@ -530,10 +530,10 @@
  {
    "name": "NumFocus Inc.",
    "url": "https://www.numfocus.org/",
-   "rq1": "N",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "Y",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "Y",
+   "SD": "N",
    "rq3rq4": "N",
    "legal": "United States 501(c)(3)",
    "topics": "OSS-promotion,Training,Legal-support"
@@ -541,10 +541,10 @@
  {
    "name": "One Laptop Per Child Association  Inc.",
    "url": "http://www.laptop.org/",
-   "rq1": "N",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "N",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "N",
+   "SD": "N",
    "rq3rq4": "N",
    "legal": "United States 501(c)(3)",
    "topics": "OSS-promotion,Training"
@@ -552,10 +552,10 @@
  {
    "name": "Open Bioinformatics Foundation",
    "url": "https://www.open-bio.org",
-   "rq1": "Y",
-   "rq2geo": "Y",
-   "rq2cov": "N",
-   "rq2mis": "Y",
+   "rq1Inter": "Y",
+   "rq1Indep": "N",
+   "rq1Open": "Y",
+   "SD": "Y",
    "rq3rq4": "N",
    "legal": "Non-profit",
    "topics": "Event-organization,Project-sponsoring,Training,Community-coordination,Software-Development"
@@ -563,10 +563,10 @@
  {
    "name": "Open Hardware Foundation",
    "url": "http://wiki.p2pfoundation.net/Open_Hardware_Foundation",
-   "rq1": "N",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "N",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "N",
+   "SD": "N",
    "rq3rq4": "N",
    "legal": "United States 501(c)(3)",
    "topics": "OSS-promotion"
@@ -574,10 +574,10 @@
  {
    "name": "Open Health Tools",
    "url": "http://www.openhealthtools.org/",
-   "rq1": "Y",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "N",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "N",
+   "SD": "Y",
    "rq3rq4": "N",
    "legal": "United States 501(c)(6)",
    "topics": "Project-sponsoring,Software-Development"
@@ -585,10 +585,10 @@
  {
    "name": "Open Media Now! Foundation",
    "url": "http://www.openmedianow.org/",
-   "rq1": "N",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "N",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "N",
+   "SD": "N",
    "rq3rq4": "N",
    "legal": "United States 501(c)(6)",
    "topics": "OSS-promotion"
@@ -596,10 +596,10 @@
  {
    "name": "Open Source Applications Foundation",
    "url": "http://www.osafoundation.org/",
-   "rq1": "Y",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "N",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "N",
+   "SD": "Y",
    "rq3rq4": "N",
    "legal": "United States 501(c)(3)",
    "topics": "OSS-promotion,Project-sponsoring,Community-coordination,Software-Development"
@@ -607,10 +607,10 @@
  {
    "name": "OSET Institute's",
    "url": "http://www.osetfoundation.org",
-   "rq1": "Y",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "N",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "N",
+   "SD": "Y",
    "rq3rq4": "N",
    "legal": "United States 501(c)(3)",
    "topics": "Project-sponsoring,Software-Development"
@@ -618,10 +618,10 @@
  {
    "name": "Open Source For America",
    "url": "http://opensourceforamerica.org/about-osfa/our-mission/",
-   "rq1": "N",
-   "rq2geo": "N",
-   "rq2cov": "Y",
-   "rq2mis": "N",
+   "rq1Inter": "N",
+   "rq1Indep": "Y",
+   "rq1Open": "N",
+   "SD": "N",
    "rq3rq4": "N",
    "legal": "Unknown",
    "topics": "OSS-promotion,Government-involvement,Community-coordination"
@@ -629,10 +629,10 @@
  {
    "name": "Open Source Geospatial Foundation",
    "url": "http://www.osgeo.org/content/foundation/about.html",
-   "rq1": "Y",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "Y",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "Y",
+   "SD": "Y",
    "rq3rq4": "Y",
    "legal": "United States 501(c)(4)",
    "topics": "OSS-promotion,Project-sponsoring,Community-coordination,Software-Development"
@@ -640,10 +640,10 @@
  {
    "name": "Open Source Initiative",
    "url": "http://opensource.org/",
-   "rq1": "N",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "Y",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "Y",
+   "SD": "N",
    "rq3rq4": "N",
    "legal": "United States 501(c)(3)",
    "topics": "OSS-promotion,Standard-leaders"
@@ -651,10 +651,10 @@
  {
    "name": "Open Source Software Institute",
    "url": "http://www.ossinstitute.org/",
-   "rq1": "N",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "N",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "N",
+   "SD": "N",
    "rq3rq4": "N",
    "legal": "United States 501(c)(6)",
    "topics": "OSS-promotion,Project-sponsoring"
@@ -662,10 +662,10 @@
  {
    "name": "OpenBSD Foundation",
    "url": "http://openbsdfoundation.org/",
-   "rq1": "Y",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "Y",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "Y",
+   "SD": "Y",
    "rq3rq4": "Y",
    "legal": "Canadian Nonprofit",
    "topics": "Event-organization,Project-sponsoring,Community-coordination,Software-Development"
@@ -673,10 +673,10 @@
  {
    "name": "Open Education Consortium",
    "url": "http://www.oeconsortium.org/about-oec/",
-   "rq1": "N",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "Y",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "Y",
+   "SD": "N",
    "rq3rq4": "N",
    "legal": "Unknown",
    "topics": "Event-organization,Training"
@@ -684,10 +684,10 @@
  {
    "name": "OpenDoc Society",
    "url": "http://www.opendocsociety.org/",
-   "rq1": "N",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "Y",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "Y",
+   "SD": "N",
    "rq3rq4": "N",
    "legal": "Dutch Stichting",
    "topics": "OSS-promotion,Event-organization,Training,Community-coordination"
@@ -695,10 +695,10 @@
  {
    "name": "OpenID Foundation",
    "url": "http://openid.net/foundation/",
-   "rq1": "N",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "N",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "N",
+   "SD": "N",
    "rq3rq4": "N",
    "legal": "United States 501(c)(3)",
    "topics": "Legal-support,Standard-leaders,Community-coordination"
@@ -706,10 +706,10 @@
  {
    "name": "OpenSourceMatters",
    "url": "http://www.opensourcematters.org/",
-   "rq1": "Y",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "Y",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "Y",
+   "SD": "Y",
    "rq3rq4": "Y",
    "legal": "Unknown",
    "topics": "Event-organization,Project-sponsoring,Community-coordination,Software-Development"
@@ -717,10 +717,10 @@
  {
    "name": "OpenStack Foundation",
    "url": "https://www.openstack.org/foundation/",
-   "rq1": "Y",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "Y",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "Y",
+   "SD": "Y",
    "rq3rq4": "Y",
    "legal": "United States 501(c)(6)",
    "topics": "Event-organization,Project-sponsoring,Training,Community-coordination,Software-Development"
@@ -728,10 +728,10 @@
  {
    "name": "OpenStreetMap Foundation",
    "url": "https://wiki.osmfoundation.org/wiki/Main_Page",
-   "rq1": "Y",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "Y",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "Y",
+   "SD": "Y",
    "rq3rq4": "Y",
    "legal": "UK-registered not-for-profit organization",
    "topics": "Project-sponsoring,Legal-support,Community-coordination,Software-Development"
@@ -739,10 +739,10 @@
  {
    "name": "Oregon State University Open Source Lab Alliance",
    "url": "http://osuosl.org/",
-   "rq1": "Y",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "N",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "N",
+   "SD": "Y",
    "rq3rq4": "N",
    "legal": "United States 501(c)(3)",
    "topics": "OSS-promotion,Event-organization,Project-sponsoring,Software-Development"
@@ -750,10 +750,10 @@
  {
    "name": "Parrot Foundation",
    "url": "http://www.parrot.org/foundation/",
-   "rq1": "Y",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "Y",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "Y",
+   "SD": "Y",
    "rq3rq4": "Y",
    "legal": "United States 501(c)(3)",
    "topics": "OSS-promotion,Project-sponsoring,Community-coordination,Software-Development"
@@ -761,10 +761,10 @@
  {
    "name": "Participatory Culture Foundation",
    "url": "http://pculture.org/",
-   "rq1": "N",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "N",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "N",
+   "SD": "N",
    "rq3rq4": "N",
    "legal": "United States 501(c)(3)",
    "topics": "Project-sponsoring,Community-coordination"
@@ -772,10 +772,10 @@
  {
    "name": "Peer-Directed Projects Center (freenode)",
    "url": "https://en.wikipedia.org/wiki/Freenode#Peer-Directed_Projects_Center",
-   "rq1": "N",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "N",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "N",
+   "SD": "N",
    "rq3rq4": "N",
    "legal": "United States 501(c)(3)",
    "topics": "Community-coordination"
@@ -783,10 +783,10 @@
  {
    "name": "Plone Foundation",
    "url": "http://plone.org/foundation",
-   "rq1": "Y",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "Y",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "Y",
+   "SD": "Y",
    "rq3rq4": "Y",
    "legal": "United States 501(c)(3)",
    "topics": "Event-organization,Project-sponsoring,Training,Community-coordination,Software-Development"
@@ -794,10 +794,10 @@
  {
    "name": "PostgreSQL Brasil",
    "url": "http://postgresql.org.br",
-   "rq1": "Y",
-   "rq2geo": "N",
-   "rq2cov": "Y",
-   "rq2mis": "N",
+   "rq1Inter": "N",
+   "rq1Indep": "Y",
+   "rq1Open": "N",
+   "SD": "Y",
    "rq3rq4": "N",
    "legal": "Brazillian Non-Profit",
    "topics": "Event-organization,Project-sponsoring,Community-coordination,Software-Development"
@@ -805,10 +805,10 @@
  {
    "name": "PostgreSQL Europe",
    "url": "http://postgresql.eu",
-   "rq1": "Y",
-   "rq2geo": "N",
-   "rq2cov": "Y",
-   "rq2mis": "Y",
+   "rq1Inter": "N",
+   "rq1Indep": "Y",
+   "rq1Open": "Y",
+   "SD": "Y",
    "rq3rq4": "N",
    "legal": "French 1901 Non-profit Association",
    "topics": "Event-organization,Project-sponsoring,Community-coordination,Software-Development"
@@ -816,10 +816,10 @@
  {
    "name": "PostgreSQL.US",
    "url": "http://postgresql.us",
-   "rq1": "Y",
-   "rq2geo": "N",
-   "rq2cov": "Y",
-   "rq2mis": "Y",
+   "rq1Inter": "N",
+   "rq1Indep": "Y",
+   "rq1Open": "Y",
+   "SD": "Y",
    "rq3rq4": "N",
    "legal": "United States 501(c)(3) -- PENDING",
    "topics": "Event-organization,Project-sponsoring,Community-coordination,Software-Development"
@@ -827,10 +827,10 @@
  {
    "name": "PostgreSQLFr.org",
    "url": "http://asso.postgresql.fr",
-   "rq1": "Y",
-   "rq2geo": "N",
-   "rq2cov": "Y",
-   "rq2mis": "Y",
+   "rq1Inter": "N",
+   "rq1Indep": "Y",
+   "rq1Open": "Y",
+   "SD": "Y",
    "rq3rq4": "N",
    "legal": "French 1901 Non-profit Association",
    "topics": "Event-organization,Project-sponsoring,Community-coordination,Software-Development"
@@ -838,10 +838,10 @@
  {
    "name": "Public Software Fund",
    "url": "http://www.pubsoft.org/",
-   "rq1": "Y",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "N",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "N",
+   "SD": "Y",
    "rq3rq4": "N",
    "legal": "United States 501(c)(3)",
    "topics": "Project-sponsoring,Software-Development"
@@ -849,10 +849,10 @@
  {
    "name": "Python Software Foundation",
    "url": "http://www.python.org/psf/",
-   "rq1": "Y",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "Y",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "Y",
+   "SD": "Y",
    "rq3rq4": "Y",
    "legal": "United States 501(c)(3)",
    "topics": "Event-organization,Project-sponsoring,Community-coordination,Software-Development"
@@ -860,10 +860,10 @@
  {
    "name": "Sahana Foundation",
    "url": "https://sahanafoundation.org/",
-   "rq1": "Y",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "Y",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "Y",
+   "SD": "Y",
    "rq3rq4": "Y",
    "legal": "Unknown",
    "topics": "OSS-promotion,Project-sponsoring,Community-coordination,Software-Development"
@@ -871,10 +871,10 @@
  {
    "name": "Shuttleworth Foundation",
    "url": "http://www.shuttleworthfoundation.org/",
-   "rq1": "N",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "N",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "N",
+   "SD": "N",
    "rq3rq4": "N",
    "legal": "South African Nonprofit",
    "topics": "OSS-promotion,Project-sponsoring"
@@ -882,10 +882,10 @@
  {
    "name": "Software Freedom Conservancy",
    "url": "http://sfconservancy.org/",
-   "rq1": "N",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "Y",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "Y",
+   "SD": "N",
    "rq3rq4": "N",
    "legal": "United States 501(c)(3)",
    "topics": "OSS-promotion,Project-sponsoring,Legal-support"
@@ -893,10 +893,10 @@
  {
    "name": "Software Freedom Law Center",
    "url": "http://www.softwarefreedom.org/",
-   "rq1": "N",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "N",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "N",
+   "SD": "N",
    "rq3rq4": "N",
    "legal": "United States 501(c)(3)",
    "topics": "Training,Legal-support"
@@ -904,10 +904,10 @@
  {
    "name": "Software in the Public Interest",
    "url": "http://www.spi-inc.org/",
-   "rq1": "N",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "Y",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "Y",
+   "SD": "N",
    "rq3rq4": "N",
    "legal": "United States 501(c)(3)",
    "topics": "OSS-promotion,Project-sponsoring"
@@ -915,10 +915,10 @@
  {
    "name": "Software Libre Argentina",
    "url": "http://solarargentina.org/",
-   "rq1": "N",
-   "rq2geo": "N",
-   "rq2cov": "Y",
-   "rq2mis": "Y",
+   "rq1Inter": "N",
+   "rq1Indep": "Y",
+   "rq1Open": "Y",
+   "SD": "N",
    "rq3rq4": "N",
    "legal": "Unknown",
    "topics": "Event-organization,Training"
@@ -926,10 +926,10 @@
  {
    "name": "Software Libre Chile",
    "url": "http://www.softwarelibrechile.cl/",
-   "rq1": "N",
-   "rq2geo": "N",
-   "rq2cov": "Y",
-   "rq2mis": "N",
+   "rq1Inter": "N",
+   "rq1Indep": "Y",
+   "rq1Open": "N",
+   "SD": "N",
    "rq3rq4": "N",
    "legal": "Unknown",
    "topics": "Event-organization,Training"
@@ -937,10 +937,10 @@
  {
    "name": "Software Livre Brasil",
    "url": "http://www.softwarelivre.org/",
-   "rq1": "N",
-   "rq2geo": "N",
-   "rq2cov": "Y",
-   "rq2mis": "N",
+   "rq1Inter": "N",
+   "rq1Indep": "Y",
+   "rq1Open": "N",
+   "SD": "N",
    "rq3rq4": "N",
    "legal": "Brazillian NGO",
    "topics": "Event-organization,Training"
@@ -948,10 +948,10 @@
  {
    "name": "Subversion Corporation",
    "url": "http://subversion.org/",
-   "rq1": "Y",
-   "rq2geo": "Y",
-   "rq2cov": "N",
-   "rq2mis": "Y",
+   "rq1Inter": "Y",
+   "rq1Indep": "N",
+   "rq1Open": "Y",
+   "SD": "Y",
    "rq3rq4": "N",
    "legal": "United States 501(c)(6)",
    "topics": "Project-sponsoring,Community-coordination,Software-Development"
@@ -959,10 +959,10 @@
  {
    "name": "Fintech Open Source Foundation",
    "url": "https://www.finos.org/",
-   "rq1": "Y",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "Y",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "Y",
+   "SD": "Y",
    "rq3rq4": "Y",
    "legal": "Unknown",
    "topics": "Event-organization,Project-sponsoring,Community-coordination,Software-Development"
@@ -970,10 +970,10 @@
  {
    "name": "TeX Users Group",
    "url": "http://tug.org/",
-   "rq1": "N",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "Y",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "Y",
+   "SD": "N",
    "rq3rq4": "N",
    "legal": "United States 501(c)(3)",
    "topics": "Training,Community-coordination"
@@ -981,10 +981,10 @@
  {
    "name": "The Open Planning Project",
    "url": "http://theopenplanningproject.org/",
-   "rq1": "Y",
-   "rq2geo": "Y",
-   "rq2cov": "N",
-   "rq2mis": "N",
+   "rq1Inter": "Y",
+   "rq1Indep": "N",
+   "rq1Open": "N",
+   "SD": "Y",
    "rq3rq4": "N",
    "legal": "United States 501(c)(3)",
    "topics": "Software-Development"
@@ -992,10 +992,10 @@
  {
    "name": "The Perl Foundation",
    "url": "http://perlfoundation.org/",
-   "rq1": "Y",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "Y",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "Y",
+   "SD": "Y",
    "rq3rq4": "Y",
    "legal": "United States 501(c)(3)",
    "topics": "Event-organization,Project-sponsoring,Community-coordination,Software-Development"
@@ -1003,10 +1003,10 @@
  {
    "name": "The Software Conservancy",
    "url": "http://www.tsc.org/",
-   "rq1": "N",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "N",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "N",
+   "SD": "N",
    "rq3rq4": "N",
    "legal": "United States 501(c)(3)",
    "topics": "Event-organization"
@@ -1014,10 +1014,10 @@
  {
    "name": "Twisted Software Foundation",
    "url": "http://twistedmatrix.com/trac/wiki/TwistedSoftwareFoundation",
-   "rq1": "Y",
-   "rq2geo": "Y",
-   "rq2cov": "N",
-   "rq2mis": "N",
+   "rq1Inter": "Y",
+   "rq1Indep": "N",
+   "rq1Open": "N",
+   "SD": "Y",
    "rq3rq4": "N",
    "legal": "United States 501(c)(3)",
    "topics": "Project-sponsoring,Community-coordination,Software-Development"
@@ -1025,10 +1025,10 @@
  {
    "name": "TYPO3 Association",
    "url": "http://association.typo3.org/",
-   "rq1": "Y",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "N",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "N",
+   "SD": "Y",
    "rq3rq4": "N",
    "legal": "Swiss nonprofit",
    "topics": "Project-sponsoring,Community-coordination,Software-Development"
@@ -1036,10 +1036,10 @@
  {
    "name": "Wikimedia Foundation",
    "url": "http://www.wikimediafoundation.org",
-   "rq1": "Y",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "Y",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "Y",
+   "SD": "Y",
    "rq3rq4": "Y",
    "legal": "United States 501(c)(3)",
    "topics": "OSS-promotion,Event-organization,Project-sponsoring,Legal-support,Community-coordination,Software-Development"
@@ -1047,10 +1047,10 @@
  {
    "name": "Wikiotics Foundation",
    "url": "https://wikiotics.org/en/Wikiotics_Foundation",
-   "rq1": "Y",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "N",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "N",
+   "SD": "Y",
    "rq3rq4": "N",
    "legal": "United States 501(c)(3)",
    "topics": "Project-sponsoring,Community-coordination,Software-Development"
@@ -1058,10 +1058,10 @@
  {
    "name": "Wordpress Foundation",
    "url": "http://wordpressfoundation.org",
-   "rq1": "Y",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "N",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "N",
+   "SD": "Y",
    "rq3rq4": "N",
    "legal": "United States 501(c)(3)",
    "topics": "Event-organization,Project-sponsoring,Training,Legal-support,Community-coordination,Software-Development"
@@ -1069,10 +1069,10 @@
  {
    "name": "X.Org Foundation LLC",
    "url": "http://www.x.org/wiki/XorgFoundation",
-   "rq1": "Y",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "Y",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "Y",
+   "SD": "Y",
    "rq3rq4": "Y",
    "legal": "United States 501(c)(3) applicant",
    "topics": "Project-sponsoring,Community-coordination,Software-Development"
@@ -1080,10 +1080,10 @@
  {
    "name": "Xiph.org",
    "url": "http://xiph.org/",
-   "rq1": "Y",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "N",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "N",
+   "SD": "Y",
    "rq3rq4": "N",
    "legal": "United States 501(c)(3)",
    "topics": "OSS-promotion,Project-sponsoring,Community-coordination,Software-Development"
@@ -1091,10 +1091,10 @@
  {
    "name": "XMPP Standards Foundation",
    "url": "https://xmpp.org/about/xmpp-standards-foundation.html",
-   "rq1": "N",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "Y",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "Y",
+   "SD": "N",
    "rq3rq4": "N",
    "legal": "United States 501(c)(3)",
    "topics": "Standard-leaders"
@@ -1102,10 +1102,10 @@
  {
    "name": "Zope Foundation",
    "url": "http://foundation.zope.org/",
-   "rq1": "Y",
-   "rq2geo": "Y",
-   "rq2cov": "Y",
-   "rq2mis": "N",
+   "rq1Inter": "Y",
+   "rq1Indep": "Y",
+   "rq1Open": "N",
+   "SD": "Y",
    "rq3rq4": "N",
    "legal": "United States 501(c)(3)",
    "topics": "Project-sponsoring,Community-coordination,Software-Development"
