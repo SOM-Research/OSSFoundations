@@ -74,11 +74,6 @@
   text-decoration: none;  
 }
 
-#vue-table .btn {
-  background-color: #216976;
-  border-color: #397C89;
-}
-
 .card {
   background-color: #397C89;
   border-radius: 5px;
@@ -104,6 +99,8 @@
 .reset-btn {
   float: right;
   margin-bottom: 4em;
+  background-color: #216976;
+  border-color: #397C89;
 }
 
 .form-question {
@@ -134,4 +131,23 @@
 .feedback a {
   color: white;
   font-weight: bold;
+}
+
+.form-btn {
+  background-color: #397C89;
+  border-color: #216976;
+  margin: 2px;
+}
+
+.form-btn.selected {
+  background-color: #216976;
+  border-color: #216976;
+}
+
+.form-btn:focus {
+  box-shadow: none !important;
+}
+
+.collapse-topics {
+  margin-top: 10px;
 }

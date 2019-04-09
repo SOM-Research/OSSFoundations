@@ -48,28 +48,27 @@
       <div class="row">
         <div class="col-6">
           <li>
-            <span class="font-weight-bold">Software Product Supporter</span>. We check each foundation in our dataset to find out whether its main goal is to support the development of a specific set of software projects. Other goals could include: training, certification or evangelization of open source in general.
-          </li>
-          <li>
             <span class="font-weight-bold">International Scope</span>. This dimension studies the distribution of the foundations from a geographical point of view (i.e., whether the foundation has a international or local character).
           </li>
           <li>
-            <span class="font-weight-bold">Independent</span>. Foundations can either serve a specific project, a set of projects or provide an umbrella for a number of smaller foundations that use it to simplify its own creation, management and legal processes. We focus on independent foundations.
+            <span class="font-weight-bold">Independent</span>. Foundations can either serve a specific project, a set of projects or provide an umbrella for a number of smaller foundations that use it to simplify its own creation, management and legal processes. We focus on independent foundations (i.e., neither umbrella nor subsidiary foundations).
           </li>
           <li>
-            <span class="font-weight-bold">Clear mission</span>. Beyond the development itself, foundations may aim to help the project on several aspects, like nurturing the community or facilitating the creation of new related projects. These goals are normally stated as part of the foundations' mission as mentioned either in the foundation website or in their bylaws. Surprisingly, a significant number of foundations did not provide any explicit information on their mission.
+            <span class="font-weight-bold">Transparent</span>. Beyond the development itself, foundations may aim to help the project on several aspects, like nurturing the community or facilitating the creation of new related projects. These goals are normally stated as part of the foundations' mission as mentioned either in the foundation website or in their bylaws. Surprisingly, a significant number of foundations did not provide any explicit information on their mission and goals.
           </li>
-          <p>Note that the last three dimensions are applied <span class="font-weight-bold">only</span> to those foundations which are software product supporter (i.e., selected in the first dimension). This is the reason to have <span class="font-italic">Not Applicable</span> values in these three dimensions.<p>
+          <li>
+            <span class="font-weight-bold">Software Product Supporter</span>. We check each foundation in our dataset to find out whether its main goal is to support the development of a specific set of software projects. Other goals could include: training, certification or evangelization of open source in general.
+          </li>
         </div> <!-- col-6 -->
         <div class="col-2">
           <img src="img/papercover.jpg" alt="..." class="img-thumbnail">
         </div> <!-- col-2 -->
         <div class="col-4">
           <p>
-            This webpage publishes part of the results of our paper <span class="font-italic">The Role of Foundations in Open Source Projects</span>, published at the <a href="https://www.icse2018.org/track/icse-2018-Software-Engineering-in-Society" target="_blank">Software Engineering in Society track</a> of the <a href="https://www.icse2018.org/" target="_blank">International Conference on Software Engineering</a> in 2018.
+            This webpage presents and extended version of the results of our paper <span class="font-italic">The Role of Foundations in Open Source Projects</span>, published at the <a href="https://www.icse2018.org/track/icse-2018-Software-Engineering-in-Society" target="_blank">Software Engineering in Society track</a> of the <a href="https://www.icse2018.org/" target="_blank">International Conference on Software Engineering</a> in 2018. The work was awarded with the <span class="font-weight-bold">best paper prize</span> of the track.
           </p>
           <p>
-            The work was awarded with the <span class="font-weight-bold">best paper prize</span> of the track.
+            The study presented in the paper has been extended to cover up to <span class="font-weight-bold">101 software foundations</span>. The study regarding the international scope, independent and transparent foundations has been extended to cover <span class="font-weight-bold">all the foundations of the dataset</span>. Additionally, the current results include the <span class="font-weight-bold">main activities</span> targeted by the foundations.
           </p>
           <p>
             More info can be found <a href="https://livablesoftware.com/study-open-source-foundations/" target="_blank">here</a>.
@@ -103,7 +102,7 @@
                 <a data-toggle="collapse" v-bind:href="'#' + foundation.name.replace(/ /g,'').replace(/\./g,'')" role="button" aria-expanded="false" aria-controls="collapseTable">
                   {{ foundation.name }}
                 </a>
-                <div class="collapse" v-bind:id="foundation.name.replace(/ /g,'').replace(/\./g,'')">
+                <div class="collapse collapse-foundation" v-bind:id="foundation.name.replace(/ /g,'').replace(/\./g,'')">
                   <div class="card card-body">
                     <span class="card-item">Website:</span>
                     <a v-bind:href="foundation.url" target="_blank">{{foundation.url}}</a>
@@ -115,25 +114,21 @@
                         <th>Result</th>
                       </tr>
                       <tr>
-                        <td>Does it directly support software products?</td>
-                        <td>{{foundation.rq1}}</td>
-                      </tr>
-                      <tr>
                         <td>Does it have an international scope?</td>
-                        <td>{{foundation.rq2geo}}</td>
+                        <td>{{foundation.rq1Inter}}</td>
                       </tr>
                       <tr>
                         <td>Is it independent?</td>
-                        <td>{{foundation.rq2cov}}</td>
+                        <td>{{foundation.rq1Indep}}</td>
                       </tr>
                       <tr>
-                        <td>Does it define a clear mission?</td>
-                        <td>{{foundation.rq2mis}}</td>
+                        <td>Is it transparent enough?</td>
+                        <td>{{foundation.rq1Open}}</td>
                       </tr>
-                      <!--<tr>
-                        <td>Is it selected?</td>
-                        <td>{{foundation.rq3rq4}}</td>
-                      </tr>-->
+                      <tr>
+                        <td>Does it directly support software products?</td>
+                        <td>{{foundation.SD}}</td>
+                      </tr>
                     </table>
                   </div>
                 </div>
@@ -143,8 +138,8 @@
         </table>
       </div> <!-- col -->
       <div class="col">
-        <a class="btn btn-primary btn-sm reset-btn" href="#" role="button" v-on:click="reset()">Reset</a>
-        <h2>Filter options</h2>
+        <a class="btn btn-secondary btn-sm reset-btn" href="#" role="button" v-on:click="reset()">Reset</a>
+        <h2>Choose yours</h2>
 
         <form>
           <div class="form-question">
@@ -153,37 +148,53 @@
               <input type="text" v-model="search" class="form-control form-control-sm" id="nameFilter"/>
             </div>
           </div>
+          <!--
+            NATURE
+          -->
+          <div class="form-question">
+            <div class="form-group">
+              <label>
+                Regarding the nature, please select the selection criteria which applies:
+              </label>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="natureCheck1" value="Inter" v-model="formNatureInter">
+                <label class="form-check-label" for="natureCheck1"><abbr title="Select only those foundations having an international scope">International Scope<img src="img/info.png"></abbr></label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="natureCheck2" value="Indep" v-model="formNatureIndep">
+                <label class="form-check-label" for="natureCheck2"><abbr title="Select only foundations, that provide support to software proyects (they are not foundations of foundations)">Independent<img src="img/info.png"></abbr></label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="natureCheck3" value="Open" v-model="formNatureOpen">
+                <label class="form-check-label" for="natureCheck3"><abbr title="Select those foundations clearly stating their mission and goals">Transparent<img src="img/info.png"></abbr></label>
+              </div>
+            </div>
+          </div>
+          <!--
+            ACTIVITIES
+          -->
           <div class="form-question">
             <div class="form-group">
               <label>
                 Should the foundation aim at supporting the development of specific open source projects?
               </label>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="q1radios" id="q1radiosA" value="Y" v-model="formQ1">
-                <label class="form-check-label" for="q1radiosA">Yes</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="q1radios" id="q1radiosB" value="N" v-model="formQ1">
-                <label class="form-check-label" for="q1radiosB">No</label>
+              <div class="btn-group" role="group">
+                <button type="button" class="btn btn-sm btn-secondary form-btn" v-bind:class="{ selected: formSD == 'Y' }" v-on:click="toggleSD(true)">Yes</button>
+                <button type="button" class="btn btn-sm btn-secondary form-btn" v-bind:class="{ selected: formSD == 'N'}" v-on:click="toggleSD(false)">No</button>
               </div>
             </div>
-          </div>
-          <div class="form-question">
             <div class="form-group">
               <label>
-                Regarding the scope, please select the selection criteria which applies:
+                Filter according to the activities developed by the foundation?
               </label>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="q2check1" value="geo" v-model="formQ2geo">
-                <label class="form-check-label" for="q2check1"><abbr title="Select only those foundations having an international scope">International Scope<img src="img/info.png"></abbr></label>
+              <div class="btn-group" role="group">
+                <button type="button" class="btn btn-sm btn-secondary form-btn" v-bind:class="{ selected: formTopics }" v-on:click="toggleQ1topics(true)">Yes</button>
+                <button type="button" class="btn btn-sm btn-secondary form-btn" v-bind:class="{ selected: !formTopics }" v-on:click="toggleQ1topics(false)">No</button>
               </div>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="q2check2" value="cov" v-model="formQ2cov">
-                <label class="form-check-label" for="q2check2"><abbr title="Select only foundations, that provide support to software proyects (they are not foundations of foundations)">Independent<img src="img/info.png"></abbr></label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="q2check3" value="mis" v-model="formQ2mis">
-                <label class="form-check-label" for="q2check3"><abbr title="Select those foundations clearly stating their mission">Clear mission<img src="img/info.png"></abbr></label>
+              <div class="collapse collapse-topics" id="topics-list">
+                <p class="text-center">
+                  <button v-for="topic in topics" type="button" class="btn btn-secondary btn-sm form-btn" v-bind:class="{ selected: selectedTopics.indexOf(topic) > -1 }" v-on:click="toggleTopic(topic)">{{topic}}</button>
+                </p>
               </div>
             </div>
           </div>
