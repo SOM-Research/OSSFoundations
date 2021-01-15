@@ -2,6 +2,13 @@
   <div class="container first-half">
     <h1 class="text-center">Analysis of Foundations in Open Source Projects</h1>
     <div id="chart"></div>
+    <apexchart
+      ref="foundationsChart"
+      height="320"
+      type="bar"
+      :options="chartOptions"
+      :series="series"
+    ></apexchart>
   </div>
   <!-- container  first-half -->
 
@@ -324,10 +331,10 @@
                       <!-- EDITED VBIND KEY -->
                       <button
                         v-for="topic in topics"
+                        v-bind:key="topic"
                         type="button"
                         class="btn btn-secondary btn-sm form-btn"
                         v-bind:class="{ selected: selectedTopics.indexOf(topic) > -1 }"
-                        v-bind:key="topic"
                         v-on:click="toggleTopic(topic)"
                       >
                         {{ topic }}
@@ -373,18 +380,17 @@
 
 <script>
 //Import jQuery
-// const $ = require("jquery");
-// window.$ = $; //Declaing jquery globally
-import $ from "jquery"
+import $ from "jquery";
+
 //Import C3
-import c3 from "c3"
+import "d3";
+import c3 from "c3";
 
-import _ from 'lodash'
-
-import 'bootstrap'
+//Import lodash
+import _ from "lodash";
 
 //JSON
-import foundations from "@/data/data.json"
+import foundations from "@/data/data.json";
 
 export default {
   name: "Home",
@@ -410,30 +416,54 @@ export default {
       chart: undefined, // The C3 graph
 
       // DATA
-     // foundations: [], // List of foundations (MAIN DATA)
+      // foundations: [], // List of foundations (MAIN DATA)
       foundations: foundations,
       topics: [], // List of keywords for non-software foundations
 
-      //EDITED 
-      //ADD SELECTED AND UNSELECTED
+      //APEX CHARTS
+      chartOptions: {
+        chart: {
+          id: "vuechart-example",
+        },
+        xaxis: {
+          categories: [
+            "International Scope",
+            "Independent",
+            "Transparent",
+            "Software Product Supporter",
+          ],
+        },
+        colors: ["#5799C7", "#FF9F4A"],
+      },
+      series: [{
+              
+          name: "Selected",
+          data: [0, 0, 0, 0],
+        },
+        {
+          name: "Unselected",
+          data: [0, 0, 0, 0],
+        },
+      ]
+
+
     };
   },
   mounted: function () {
-    // var self = this;
+    var self = this;
     // $.getJSON("data/data.json", function (json) {
     //   self.foundations = json;
-
-    //   self.foundations.map(function (foundation) {
-    //     var foundationTopics = foundation.topics;
-    //     if (foundationTopics != "") {
-    //       var topicArray = foundationTopics.split(",");
-    //       topicArray.map(function (topic) {
-    //         if (self.topics.indexOf(topic) == -1) {
-    //           self.topics.push(topic);
-    //         }
-    //       });
-    //     }
-    //   });
+    self.foundations.map(function (foundation) {
+      var foundationTopics = foundation.topics;
+      if (foundationTopics != "") {
+        var topicArray = foundationTopics.split(",");
+        topicArray.map(function (topic) {
+          if (self.topics.indexOf(topic) == -1) {
+            self.topics.push(topic);
+          }
+        });
+      }
+    });
     // });
   },
 
@@ -471,8 +501,7 @@ export default {
       }
 
       // Ordering
-      var ordered = _.orderBy(filtered, self.sortKey, (self.reverse ? 'desc' : 'asc'))
- //EDITED FROM: var ordered = _.ordered.orderBy
+      var ordered = _.orderBy(filtered, self.sortKey, self.reverse ? "desc" : "asc");
 
       // We build the data to render in the graph
       var rqNatureInterY = ordered.filter(function (f) {
@@ -515,12 +544,26 @@ export default {
         rqSDN,
       ]; /*, 0]*/
 
+      // window.ApexCharts.exec("foundationsChart", "updateSeries", [
+      //   {
+      //     data: [40, 55, 65, 11],
+      //   },
+      // ]);
 
+
+      self.updateChart(rqNatureInterY, rqNatureIndepY, rqNatureOpenY, rqSDY, rqNatureInterN, rqNatureIndepN, rqNatureOpenN, rqSDN)
+      // self.foundationsChart.updateSeries([{
+      //   data: [rqNatureInterY, rqNatureIndepY, rqNatureOpenY, rqSDY],
+      // }])
+      // this.series = [{
+      //   data: [0, 0, 0, 12]
+      // }]
       // self.timer = setTimeout(function (newColumns) {
       //   self.chart.load({ columns: [selected, unselected], unload: true });
       //   $(".collapse-foundation").collapse("hide");
       // }, 500);
- 
+      self.chart.load({ columns: [selected, unselected], unload: true });
+      $(".collapse-foundation").collapse("hide");
 
       ///***/
 
@@ -548,7 +591,7 @@ export default {
           ["unselected", 24, 18, 14, 28],
         ],
         type: "bar",
-        /*onclick: function (d, element) { 
+        /*onclick: function (d, element) {
           self.selectedCategory = d.index;
           self.selectedCategoryValue = d.name;
           self.updateForm(d.index, d.name);
@@ -569,6 +612,28 @@ export default {
   },
 
   methods: {
+    updateChart: function (
+      rqNatureInterY,
+      rqNatureIndepY,
+      rqNatureOpenY,
+      rqSDY,
+      rqNatureInterN,
+      rqNatureIndepN,
+      rqNatureOpenN,
+      rqSDN
+    ) {
+      this.series = [
+        {
+          name: "Selected",
+          data: [rqNatureInterY, rqNatureIndepY, rqNatureOpenY, rqSDY],
+        },
+        {
+          name: "Unselected",
+          data: [rqNatureInterN, rqNatureIndepN, rqNatureOpenN, rqSDN],
+        },
+      ];
+
+    },
     sortBy: function (sortKey) {
       this.reverse = this.sortKey == sortKey ? !this.reverse : false;
       this.sortKey = sortKey;
@@ -641,7 +706,8 @@ export default {
           self.formSD = "Y";
         }
       } else {
-        self.selectedTopics = self.selectedTopics.filter(function (value) { //EDITED - ELIMINATED (value, *index, arr*)
+        self.selectedTopics = self.selectedTopics.filter(function (value) {
+          //EDITED - ELIMINATED (value, *index, arr*)
           return value != topic;
         });
         if (topic == "Software-Development") {
@@ -667,7 +733,8 @@ export default {
         self.selectedTopics.push("Software-Development");
       } else {
         self.formSD = "N";
-        self.selectedTopics = self.selectedTopics.filter(function (value) {  //EDITED - ELIMINATED (value, *index, arr*)
+        self.selectedTopics = self.selectedTopics.filter(function (value) {
+          //EDITED - ELIMINATED (value, *index, arr*)
           return value != "Software-Development";
         });
       }
