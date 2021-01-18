@@ -55,6 +55,7 @@
 
 #vue-table table {
   margin-top: 1em;
+  color: white !important;
 }
   
 #vue-table th a {
@@ -67,6 +68,10 @@
   font-weight: bold;
   color: white;
   text-decoration: underline;
+}
+
+.table-hover tbody tr:hover {
+  color: white;
 }
 
 #vue-table td a {
