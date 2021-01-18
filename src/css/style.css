@@ -144,12 +144,12 @@
   margin: 2px;
 }
 
-.form-btn.selected {
-  background-color: #216976;
-  border-color: #216976;
+.form-btn.selected, .form-btn.active{
+  background-color: #216976 !important;
+  border-color: #216976 !important;
 }
 
-.form-btn:focus {
+.form-btn.focus {
   box-shadow: none !important;
 }
 

@@ -124,7 +124,7 @@
     <div class="container">
       <div id="vue-table">
         <div class="row">
-          <div class="col">
+          <div class="col-6">
             <h2>Selected Foundations</h2>
             <table class="table table-sm table-hover">
               <thead>
@@ -201,12 +201,12 @@
             </table>
           </div>
           <!-- col -->
-          <div class="col">
+          <div class="col-6">
             <a
               class="btn btn-secondary btn-sm reset-btn"
               href="#"
               role="button"
-              v-on:click="reset(), filteredOrderedList()"
+              v-on:click="reset()"
               >Reset</a
             >
             <h2>Choose yours</h2>
@@ -285,62 +285,87 @@
                     Should the foundation aim at supporting the development of specific
                     open source projects?
                   </label>
-                  <div class="btn-group" role="group">
-                    <button
-                      type="button"
-                      class="btn btn-sm btn-secondary form-btn"
-                      v-bind:class="{ selected: formSD == 'Y' }"
-                      v-on:click="toggleSD(true)"
+                  <div
+                    class="btn-group btn-group-toggle"
+                    role="group"
+                    data-toggle="buttons"
+                  >
+                    <label class="btn btn-sm btn-secondary form-btn">
+                      <input
+                        type="radio"
+                        name="toggleSD"
+                        value="true"
+                        v-bind:class="{ selected: formSD == 'Y' }"
+                        v-on:click="toggleSD(true)"
+                      />Yes</label
                     >
-                      Yes
-                    </button>
-                    <button
-                      type="button"
-                      class="btn btn-sm btn-secondary form-btn"
-                      v-bind:class="{ selected: formSD == 'N' }"
-                      v-on:click="toggleSD(false)"
+                    <label class="btn btn-sm btn-secondary form-btn">
+                      <input
+                        type="radio"
+                        name="toggleSD"
+                        v-bind:class="{ selected: formSD == 'N' }"
+                        v-on:click="toggleSD(false)"
+                      />No</label
                     >
-                      No
-                    </button>
                   </div>
                 </div>
                 <div class="form-group">
                   <label>
                     Filter according to the activities developed by the foundation?
                   </label>
-                  <div class="btn-group" role="group">
-                    <button
-                      type="button"
-                      class="btn btn-sm btn-secondary form-btn"
-                      v-bind:class="{ selected: formTopics }"
-                      v-on:click="toggleQ1topics(true)"
+                  <div
+                    class="btn-group btn-group-toggle"
+                    role="group"
+                    data-toggle="buttons"
+                  >
+                    <label class="btn btn-sm btn-secondary form-btn">
+                      <input
+                        type="radio"
+                        name="toggleQ1topics"
+                        value="true"
+                        v-bind:class="{ selected: formTopics }"
+                        v-on:click="toggleQ1topics(true)"
+                      />Yes</label
                     >
-                      Yes
-                    </button>
-                    <button
-                      type="button"
-                      class="btn btn-sm btn-secondary form-btn"
-                      v-bind:class="{ selected: !formTopics }"
-                      v-on:click="toggleQ1topics(false)"
+                    <label class="btn btn-sm btn-secondary form-btn">
+                      <input
+                        type="radio"
+                        name="toggleQ1topics"
+                        v-bind:class="{ selected: !formTopics }"
+                        v-on:click="toggleQ1topics(false)"
+                      />No</label
                     >
-                      No
-                    </button>
                   </div>
-                  <div class="collapse collapse-topics" id="topics-list">
-                    <p class="text-center">
-                      <!-- EDITED VBIND KEY -->
-                      <button
-                        v-for="topic in topics"
-                        v-bind:key="topic"
-                        type="button"
-                        class="btn btn-secondary btn-sm form-btn"
+                </div>
+                <div class="collapse collapse-topics btn-group-toggle text-center" id="topics-list"                     role="group"
+                    data-toggle="buttons">
+
+                    <label
+                      class="btn btn-sm btn-secondary form-btn"
+                      v-for="topic in topics"
+                      v-bind:key="topic"
+                    >
+                      <input
+                        type="checkbox"
+                        name="toggleTopic"
+                        value="{{topic}}"
                         v-bind:class="{ selected: selectedTopics.indexOf(topic) > -1 }"
                         v-on:click="toggleTopic(topic)"
-                      >
-                        {{ topic }}
-                      </button>
-                    </p>
-                  </div>
+                      />{{ topic }}</label
+                    >
+                  <!-- <p class="text-center">
+
+                    <button
+                      v-for="topic in topics"
+                      v-bind:key="topic"
+                      type="button"
+                      class="btn btn-secondary btn-sm form-btn"
+                      v-bind:class="{ selected: selectedTopics.indexOf(topic) > -1 }"
+                      v-on:click="toggleTopic(topic)"
+                    >
+                      {{ topic }}
+                    </button>
+                  </p> -->
                 </div>
               </div>
             </form>
@@ -422,11 +447,10 @@ export default {
       topics: [], // List of keywords for non-software foundations
 
       //APEX CHARTS
-
-      //  rqNatureInterY: 0,
-      //  rqNatureIndepY: 0,
-      //  rqNatureOpenY: 0,
-      //  rqSDY: 0,
+      rqNatureInterY: 0,
+      rqNatureIndepY: 0,
+      rqNatureOpenY: 0,
+      rqSDY: 0,
 
       chartOptions: {
         chart: {
@@ -442,7 +466,8 @@ export default {
         },
         colors: ["#5799C7", "#FF9F4A"],
       },
-      series: [{
+      series: [
+        {
           name: "Selected",
           data: [0, 0, 0, 0],
         },
@@ -450,9 +475,7 @@ export default {
           name: "Unselected",
           data: [0, 0, 0, 0],
         },
-      ]
-
-
+      ],
     };
   },
   mounted: function () {
@@ -473,9 +496,7 @@ export default {
     // });
   },
 
-  computed: {
-   
-  },
+  computed: {},
   //EDITED - TESTING
   // watch: {
   //   //When the chart changes
@@ -517,7 +538,7 @@ export default {
   },
 
   methods: {
-      filteredOrderedList: function () {
+    filteredOrderedList: function () {
       var self = this;
 
       // Click on the graph apply filters consecutively (removed)
@@ -599,8 +620,16 @@ export default {
       //   },
       // ]);
 
-
-      self.updateChart(rqNatureInterY, rqNatureIndepY, rqNatureOpenY, rqSDY, rqNatureInterN, rqNatureIndepN, rqNatureOpenN, rqSDN)
+      self.updateChart(
+        rqNatureInterY,
+        rqNatureIndepY,
+        rqNatureOpenY,
+        rqSDY,
+        rqNatureInterN,
+        rqNatureIndepN,
+        rqNatureOpenN,
+        rqSDN
+      );
       // self.foundationsChart.updateSeries([{
       //   data: [rqNatureInterY, rqNatureIndepY, rqNatureOpenY, rqSDY],
       // }])
@@ -619,7 +648,6 @@ export default {
       //self.previousList = ordered;
       //return ordered;
     },
-
 
     updateChart: function (
       rqNatureInterY,
@@ -641,11 +669,15 @@ export default {
           data: [rqNatureInterN, rqNatureIndepN, rqNatureOpenN, rqSDN],
         },
       ];
-
     },
     sortBy: function (sortKey) {
       this.reverse = this.sortKey == sortKey ? !this.reverse : false;
       this.sortKey = sortKey;
+      this.foundationsFiltered = _.orderBy(
+        this.foundationsFiltered,
+        this.sortKey,
+        this.reverse ? "desc" : "asc"
+      );
     },
     reset: function () {
       var self = this;
