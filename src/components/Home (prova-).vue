@@ -145,7 +145,7 @@
               <tbody>
                 <!-- EDITED VBIND KEY -->
                 <tr
-                  v-for="foundation in foundationsFiltered"
+                  v-for="foundation in filteredOrderedList"
                   v-bind:key="foundation.name"
                 >
                   <td>
@@ -206,12 +206,12 @@
               class="btn btn-secondary btn-sm reset-btn"
               href="#"
               role="button"
-              v-on:click="reset(), filteredOrderedList()"
+              v-on:click="reset()"
               >Reset</a
             >
             <h2>Choose yours</h2>
 
-            <form @submit.prevent v-on:change="filteredOrderedList()">
+            <form>
               <div class="form-question">
                 <div class="form-group">
                   <label for="nameFilter">Name</label>
@@ -423,10 +423,10 @@ export default {
 
       //APEX CHARTS
 
-      //  rqNatureInterY: 0,
-      //  rqNatureIndepY: 0,
-      //  rqNatureOpenY: 0,
-      //  rqSDY: 0,
+       rqNatureInterY: 0,
+       rqNatureIndepY: 0,
+       rqNatureOpenY: 0,
+       rqSDY: 0,
 
       chartOptions: {
         chart: {
@@ -474,50 +474,7 @@ export default {
   },
 
   computed: {
-   
-  },
-  //EDITED - TESTING
-  // watch: {
-  //   //When the chart changes
-  //   chart: function () {
-  //     setTimeout(function (newColumns) {
-  //       this.chart.load({ columns: ["selected", "unselected"], unload: true }); //EDITED - "SELECTED" AND "UNSELECTED" WITH QUOTATION MARKS
-  //       $(".collapse-foundation").collapse("hide");
-  //     }, 500);
-  //   },
-  // },
-  created: function () {
-    //var self = this; //EDITED
-    // this.chart = c3.generate({
-    //   bindto: "#chart",
-    //   data: {
-    //     columns: [
-    //       ["selected", 65, 47, 51, 37],
-    //       ["unselected", 24, 18, 14, 28],
-    //     ],
-    //     type: "bar",
-    //     /*onclick: function (d, element) {
-    //       self.selectedCategory = d.index;
-    //       self.selectedCategoryValue = d.name;
-    //       self.updateForm(d.index, d.name);
-    //     },*/
-    //   },
-    //   axis: {
-    //     x: {
-    //       type: "category",
-    //       categories: [
-    //         "International Scope",
-    //         "Independent",
-    //         "Transparent",
-    //         "Software Product Supporter",
-    //       ],
-    //     },
-    //   },
-    // });
-  },
-
-  methods: {
-      filteredOrderedList: function () {
+    filteredOrderedList: function () {
       var self = this;
 
       // Click on the graph apply filters consecutively (removed)
@@ -615,12 +572,52 @@ export default {
       // $(".collapse-foundation").collapse("hide");
 
       ///***/
-      this.foundationsFiltered = ordered;
-      //self.previousList = ordered;
-      //return ordered;
+
+      self.previousList = ordered;
+      return ordered;
     },
+  },
+  //EDITED - TESTING
+  // watch: {
+  //   //When the chart changes
+  //   chart: function () {
+  //     setTimeout(function (newColumns) {
+  //       this.chart.load({ columns: ["selected", "unselected"], unload: true }); //EDITED - "SELECTED" AND "UNSELECTED" WITH QUOTATION MARKS
+  //       $(".collapse-foundation").collapse("hide");
+  //     }, 500);
+  //   },
+  // },
+  created: function () {
+    //var self = this; //EDITED
+    // this.chart = c3.generate({
+    //   bindto: "#chart",
+    //   data: {
+    //     columns: [
+    //       ["selected", 65, 47, 51, 37],
+    //       ["unselected", 24, 18, 14, 28],
+    //     ],
+    //     type: "bar",
+    //     /*onclick: function (d, element) {
+    //       self.selectedCategory = d.index;
+    //       self.selectedCategoryValue = d.name;
+    //       self.updateForm(d.index, d.name);
+    //     },*/
+    //   },
+    //   axis: {
+    //     x: {
+    //       type: "category",
+    //       categories: [
+    //         "International Scope",
+    //         "Independent",
+    //         "Transparent",
+    //         "Software Product Supporter",
+    //       ],
+    //     },
+    //   },
+    // });
+  },
 
-
+  methods: {
     updateChart: function (
       rqNatureInterY,
       rqNatureIndepY,
