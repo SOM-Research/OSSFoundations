@@ -2,13 +2,8 @@
   <div class="container first-half">
     <h1 class="text-center">Analysis of Foundations in Open Source Projects</h1>
     <div id="chart"></div>
-    <apexchart
-      ref="foundationsChart"
-      height="320"
-      type="bar"
-      :options="chartOptions"
-      :series="series"
-    ></apexchart>
+    <chart :chartData="chartData"/>
+
   </div>
   <!-- container  first-half -->
 
@@ -223,9 +218,7 @@
                   />
                 </div>
               </div>
-              <!--
-            NATURE
-          -->
+              <!--NATURE-->
               <div class="form-question">
                 <div class="form-group">
                   <label>
@@ -276,9 +269,7 @@
                   </div>
                 </div>
               </div>
-              <!--
-            ACTIVITIES
-          -->
+              <!--ACTIVITIES-->
               <div class="form-question">
                 <div class="form-group">
                   <label>
@@ -290,7 +281,11 @@
                     role="group"
                     data-toggle="buttons"
                   >
-                    <label class="btn btn-sm btn-secondary form-btn">
+                    <label
+                      id="toggleSDTrue"
+                      class="btn btn-sm btn-secondary form-btn"
+                      v-bind:class="{ active: formSD == 'Y' }"
+                    >
                       <input
                         type="radio"
                         name="toggleSD"
@@ -299,7 +294,11 @@
                         v-on:click="toggleSD(true)"
                       />Yes</label
                     >
-                    <label class="btn btn-sm btn-secondary form-btn">
+                    <label
+                      id="toggleSDFalse"
+                      class="btn btn-sm btn-secondary form-btn"
+                      v-bind:class="{ active: formSD == 'N' }"
+                    >
                       <input
                         type="radio"
                         name="toggleSD"
@@ -337,22 +336,28 @@
                     >
                   </div>
                 </div>
-                <div class="collapse collapse-topics btn-group-toggle text-center" id="topics-list"                     role="group"
-                    data-toggle="buttons">
-
-                    <label
-                      class="btn btn-sm btn-secondary form-btn"
-                      v-for="topic in topics"
-                      v-bind:key="topic"
-                    >
-                      <input
-                        type="checkbox"
-                        name="toggleTopic"
-                        value="{{topic}}"
-                        v-bind:class="{ selected: selectedTopics.indexOf(topic) > -1 }"
-                        v-on:click="toggleTopic(topic)"
-                      />{{ topic }}</label
-                    >
+                <div
+                  class="collapse collapse-topics btn-group-toggle text-center"
+                  id="topics-list"
+                  role="group"
+                  data-toggle="buttons"
+                >
+                  <label
+                    v-for="topic in topics"
+                    v-bind:key="topic"
+                    
+                    v-bind:class="{ active: selectedTopics.indexOf(topic) > -1}"
+                    class="btn btn-sm btn-secondary form-btn"
+                  >
+                  <!-- class="btn btn-sm btn-secondary form-btn" -->
+                    <input
+                      type="checkbox"
+                      name="toggleTopic"
+                      :value="topic"
+                      v-bind:class="{ selected: selectedTopics.indexOf(topic) > -1 }"
+                      v-on:click="toggleTopic(topic)"
+                    />{{ topic }}</label
+                  >
                   <!-- <p class="text-center">
 
                     <button
@@ -417,71 +422,57 @@ import _ from "lodash";
 //JSON
 import foundations from "@/data/data.json";
 
+import Chart from './Chart.vue';
+
 export default {
+  components: { Chart },
   name: "Home",
   data() {
     return {
-      // TABLE AND FILTERING/ORDERING
+      //TABLE AND FILTERING/ORDERING
       columns: ["name"], // Columns of the table
       sortKey: "", // Order
       reverse: false, // If we have to reverse the order
       search: "", // Keyword to search
       selectedCategory: -1, // Category selected in the graph (as index)
       selectedCategoryValue: "", // Value on the category selected
-      formNatureInter: "", // Answer for Q1Inter in the form
-      formNatureIndep: "", // Answer for Q1Indep in the form
-      formNatureOpen: "", // Answer for Q1Open  in the form
-      formSD: "", // Answer for SD in the form
       formTopics: false, // Answer for topics in the form
       timer: 0, // Last timer created (to dealy the graph update)
       previousList: [], // Cached result to be used when clicking on the graph consecutively
-      selectedTopics: [], // Topics selected
 
-      // GRAPH
-      chart: undefined, // The C3 graph
-
-      // DATA
-      // foundations: [], // List of foundations (MAIN DATA)
+      //MAIN DATA
       foundations: foundations,
       foundationsFiltered: foundations,
+
+      //FILTERS
+      formNatureInter: "", // Answer for Q1Inter "International scope" in the form
+      formNatureIndep: "", // Answer for Q1Indep "Independent" in the form
+      formNatureOpen: "", // Answer for Q1Open "Transparent" in the form
+      formSD: "", // Answer for SD "Software Product Supporter" in the form
       topics: [], // List of keywords for non-software foundations
+      selectedTopics: [], // Topics selected by the user
 
-      //APEX CHARTS
-      rqNatureInterY: 0,
-      rqNatureIndepY: 0,
-      rqNatureOpenY: 0,
-      rqSDY: 0,
-
-      chartOptions: {
-        chart: {
-          id: "vuechart-example",
-        },
-        xaxis: {
-          categories: [
-            "International Scope",
-            "Independent",
-            "Transparent",
-            "Software Product Supporter",
-          ],
-        },
-        colors: ["#5799C7", "#FF9F4A"],
+      //CHART DATA
+      chartData: {
+        //"International scope" data
+        rqNatureInterY: 0,
+        rqNatureInterN: 0,
+        //"Independent" data
+        rqNatureIndepY: 0,
+        rqNatureIndepN: 0,
+        //"Transparent" data
+        rqNatureOpenY: 0,
+        rqNatureOpenN: 0,
+        //"Software Product Supporter" data
+        rqSDY: 0,
+        rqSDN: 0,
       },
-      series: [
-        {
-          name: "Selected",
-          data: [0, 0, 0, 0],
-        },
-        {
-          name: "Unselected",
-          data: [0, 0, 0, 0],
-        },
-      ],
     };
   },
+
   mounted: function () {
     var self = this;
-    // $.getJSON("data/data.json", function (json) {
-    //   self.foundations = json;
+
     self.foundations.map(function (foundation) {
       var foundationTopics = foundation.topics;
       if (foundationTopics != "") {
@@ -493,48 +484,11 @@ export default {
         });
       }
     });
-    // });
   },
 
-  computed: {},
-  //EDITED - TESTING
-  // watch: {
-  //   //When the chart changes
-  //   chart: function () {
-  //     setTimeout(function (newColumns) {
-  //       this.chart.load({ columns: ["selected", "unselected"], unload: true }); //EDITED - "SELECTED" AND "UNSELECTED" WITH QUOTATION MARKS
-  //       $(".collapse-foundation").collapse("hide");
-  //     }, 500);
-  //   },
-  // },
   created: function () {
-    //var self = this; //EDITED
-    // this.chart = c3.generate({
-    //   bindto: "#chart",
-    //   data: {
-    //     columns: [
-    //       ["selected", 65, 47, 51, 37],
-    //       ["unselected", 24, 18, 14, 28],
-    //     ],
-    //     type: "bar",
-    //     /*onclick: function (d, element) {
-    //       self.selectedCategory = d.index;
-    //       self.selectedCategoryValue = d.name;
-    //       self.updateForm(d.index, d.name);
-    //     },*/
-    //   },
-    //   axis: {
-    //     x: {
-    //       type: "category",
-    //       categories: [
-    //         "International Scope",
-    //         "Independent",
-    //         "Transparent",
-    //         "Software Product Supporter",
-    //       ],
-    //     },
-    //   },
-    // });
+    //Call the function to update the chart the first time and refresh variables
+    this.filteredOrderedList();
   },
 
   methods: {
@@ -573,102 +527,38 @@ export default {
       // Ordering
       var ordered = _.orderBy(filtered, self.sortKey, self.reverse ? "desc" : "asc");
 
-      // We build the data to render in the graph
-      var rqNatureInterY = ordered.filter(function (f) {
-        return f.rq1Inter == "Y";
-      }).length;
-      var rqNatureInterN = ordered.filter(function (f) {
-        return f.rq1Inter == "N";
-      }).length;
-      var rqNatureIndepY = ordered.filter(function (f) {
-        return f.rq1Indep == "Y";
-      }).length;
-      var rqNatureIndepN = ordered.filter(function (f) {
-        return f.rq1Indep == "N";
-      }).length;
-      var rqNatureOpenY = ordered.filter(function (f) {
-        return f.rq1Open == "Y";
-      }).length;
-      var rqNatureOpenN = ordered.filter(function (f) {
-        return f.rq1Open == "N";
-      }).length;
-      var rqSDY = ordered.filter(function (f) {
-        return f.SD == "Y";
-      }).length;
-      var rqSDN = ordered.filter(function (f) {
-        return f.SD == "N";
-      }).length;
-
-      // var selected = [
-      //   "selected",
-      //   rqNatureInterY,
-      //   rqNatureIndepY,
-      //   rqNatureOpenY,
-      //   rqSDY,
-      // ]; /*, rq3rq4Y]*/
-      // var unselected = [
-      //   "unselected",
-      //   rqNatureInterN,
-      //   rqNatureIndepN,
-      //   rqNatureOpenN,
-      //   rqSDN,
-      // ]; /*, 0]*/
-
-      // window.ApexCharts.exec("foundationsChart", "updateSeries", [
-      //   {
-      //     data: [40, 55, 65, 11],
-      //   },
-      // ]);
-
-      self.updateChart(
-        rqNatureInterY,
-        rqNatureIndepY,
-        rqNatureOpenY,
-        rqSDY,
-        rqNatureInterN,
-        rqNatureIndepN,
-        rqNatureOpenN,
-        rqSDN
-      );
-      // self.foundationsChart.updateSeries([{
-      //   data: [rqNatureInterY, rqNatureIndepY, rqNatureOpenY, rqSDY],
-      // }])
-      // this.series = [{
-      //   data: [0, 0, 0, 12]
-      // }]
-      // self.timer = setTimeout(function (newColumns) {
-      //   self.chart.load({ columns: [selected, unselected], unload: true });
-      //   $(".collapse-foundation").collapse("hide");
-      // }, 500);
-      // self.chart.load({ columns: [selected, unselected], unload: true });
-      // $(".collapse-foundation").collapse("hide");
-
-      ///***/
       this.foundationsFiltered = ordered;
-      //self.previousList = ordered;
-      //return ordered;
+
+      // We build the data to render in the graph
+
+      self.updateChart();
     },
 
-    updateChart: function (
-      rqNatureInterY,
-      rqNatureIndepY,
-      rqNatureOpenY,
-      rqSDY,
-      rqNatureInterN,
-      rqNatureIndepN,
-      rqNatureOpenN,
-      rqSDN
-    ) {
-      this.series = [
-        {
-          name: "Selected",
-          data: [rqNatureInterY, rqNatureIndepY, rqNatureOpenY, rqSDY],
-        },
-        {
-          name: "Unselected",
-          data: [rqNatureInterN, rqNatureIndepN, rqNatureOpenN, rqSDN],
-        },
-      ];
+    updateChart: function () {
+      this.chartData.rqNatureInterY = this.foundationsFiltered.filter(function (f) {
+        return f.rq1Inter == "Y";
+      }).length;
+      this.chartData.rqNatureInterN = this.foundationsFiltered.filter(function (f) {
+        return f.rq1Inter == "N";
+      }).length;
+      this.chartData.rqNatureIndepY = this.foundationsFiltered.filter(function (f) {
+        return f.rq1Indep == "Y";
+      }).length;
+      this.chartData.rqNatureIndepN = this.foundationsFiltered.filter(function (f) {
+        return f.rq1Indep == "N";
+      }).length;
+      this.chartData.rqNatureOpenY = this.foundationsFiltered.filter(function (f) {
+        return f.rq1Open == "Y";
+      }).length;
+      this.chartData.rqNatureOpenN = this.foundationsFiltered.filter(function (f) {
+        return f.rq1Open == "N";
+      }).length;
+      this.chartData.rqSDY = this.foundationsFiltered.filter(function (f) {
+        return f.SD == "Y";
+      }).length;
+      this.chartData.rqSDN = this.foundationsFiltered.filter(function (f) {
+        return f.SD == "N";
+      }).length;
     },
     sortBy: function (sortKey) {
       this.reverse = this.sortKey == sortKey ? !this.reverse : false;
@@ -743,16 +633,25 @@ export default {
       var self = this;
       if (self.selectedTopics.indexOf(topic) == -1) {
         self.selectedTopics.push(topic);
+
+        //Toggle the topic Software-Development and modifies its class to check/uncheck its button
         if (topic == "Software-Development") {
           self.formSD = "Y";
+
+          // $("#toggleSDTrue").addClass("active");
+          // $("#toggleSDFalse").removeClass("active");
         }
       } else {
         self.selectedTopics = self.selectedTopics.filter(function (value) {
           //EDITED - ELIMINATED (value, *index, arr*)
           return value != topic;
         });
+        //Toggle the topic Software-Development and modifies its class to check/uncheck its button
         if (topic == "Software-Development") {
           self.formSD = "N";
+
+          // $("#toggleSDTrue").removeClass("active");
+          // $("#toggleSDFalse").addClass("active");
         }
       }
     },
@@ -769,11 +668,22 @@ export default {
     },
     toggleSD: function (answer) {
       var self = this;
+
+      //If true
       if (answer) {
         self.formSD = "Y";
         self.selectedTopics.push("Software-Development");
+        //this.toggleTopic("Software-Development");
+        // $("input[name=toggleTopic][value=Software-Development]")
+        //   .parent()
+        //   .addClass("active");
+        //If false
       } else {
+        // $("input[name=toggleTopic][value=Software-Development]")
+        //   .parent()
+        //   .removeClass("active");
         self.formSD = "N";
+        //this.toggleTopic("Software-Development");
         self.selectedTopics = self.selectedTopics.filter(function (value) {
           //EDITED - ELIMINATED (value, *index, arr*)
           return value != "Software-Development";
