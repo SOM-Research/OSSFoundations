@@ -79,27 +79,6 @@ export default {
           },
         ];
       },
-      // console.log("CHARTDATA CHANGED");
-      // this.series = [
-      //   {
-      //     name: "Selected",
-      //     data: [
-      //       this.chartData.rqNatureInterY,
-      //       this.chartData.rqNatureIndepY,
-      //       this.chartData.rqNatureOpenY,
-      //       this.chartData.rqSDY,
-      //     ],
-      //   },
-      //   {
-      //     name: "Unselected",
-      //     data: [
-      //       this.chartData.rqNatureInterN,
-      //       this.chartData.rqNatureIndepN,
-      //       this.chartData.rqNatureOpenN,
-      //       this.chartData.rqSDN,
-      //     ],
-      //   },
-      // ];
     },
   },
 };
