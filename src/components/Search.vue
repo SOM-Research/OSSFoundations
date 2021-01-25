@@ -1,5 +1,6 @@
 <template>
-  <div class="col">
+  <foundations-list :foundationsFiltered="foundationsFiltered" />
+  <div class="col-6">
     <a
       class="btn btn-secondary btn-sm reset-btn"
       href="#"
@@ -8,8 +9,7 @@
       >Reset</a
     >
     <h2>Choose yours</h2>
-
-    <form>
+    <form @submit.prevent v-on:change="filteredOrderedList()">
       <div class="form-question">
         <div class="form-group">
           <label for="nameFilter">Name</label>
@@ -21,9 +21,7 @@
           />
         </div>
       </div>
-      <!--
-            NATURE
-          -->
+      <!--NATURE-->
       <div class="form-question">
         <div class="form-group">
           <label>
@@ -72,73 +70,87 @@
           </div>
         </div>
       </div>
-      <!--
-            ACTIVITIES
-          -->
+      <!--ACTIVITIES-->
       <div class="form-question">
         <div class="form-group">
           <label>
             Should the foundation aim at supporting the development of specific open
             source projects?
           </label>
-          <div class="btn-group" role="group">
-            <button
-              type="button"
+          <div class="btn-group btn-group-toggle" role="group" data-toggle="buttons">
+            <label
+              id="toggleSDTrue"
               class="btn btn-sm btn-secondary form-btn"
-              v-bind:class="{ selected: formSD == 'Y' }"
-              v-on:click="toggleSD(true)"
+              v-bind:class="{ active: formSD == 'Y' }"
             >
-              Yes
-            </button>
-            <button
-              type="button"
+              <input
+                type="radio"
+                name="toggleSD"
+                value="true"
+                v-bind:class="{ selected: formSD == 'Y' }"
+                v-on:click="toggleSD(true)"
+              />Yes</label
+            >
+            <label
+              id="toggleSDFalse"
               class="btn btn-sm btn-secondary form-btn"
-              v-bind:class="{ selected: formSD == 'N' }"
-              v-on:click="toggleSD(false)"
+              v-bind:class="{ active: formSD == 'N' }"
             >
-              No
-            </button>
+              <input
+                type="radio"
+                name="toggleSD"
+                v-bind:class="{ selected: formSD == 'N' }"
+                v-on:click="toggleSD(false)"
+              />No</label
+            >
           </div>
         </div>
         <div class="form-group">
           <label> Filter according to the activities developed by the foundation? </label>
-          <div class="btn-group" role="group">
-            <button
-              type="button"
-              class="btn btn-sm btn-secondary form-btn"
-              v-bind:class="{ selected: formTopics }"
-              v-on:click="toggleQ1topics(true)"
+          <div class="btn-group btn-group-toggle" role="group" data-toggle="buttons">
+            <label class="btn btn-sm btn-secondary form-btn">
+              <input
+                type="radio"
+                name="toggleQ1topics"
+                value="true"
+                :class="{ selected: formTopics }"
+                v-on:click="toggleQ1topics(true)"
+              />Yes</label
             >
-              Yes
-            </button>
-            <button
-              type="button"
-              class="btn btn-sm btn-secondary form-btn"
-              v-bind:class="{ selected: !formTopics }"
-              v-on:click="toggleQ1topics(false)"
+            <label class="btn btn-sm btn-secondary form-btn">
+              <input
+                type="radio"
+                name="toggleQ1topics"
+                :class="{ selected: !formTopics }"
+                v-on:click="toggleQ1topics(false)"
+              />No</label
             >
-              No
-            </button>
           </div>
-          <div class="collapse collapse-topics" id="topics-list">
-            <p class="text-center">
-              <!-- EDITED VBIND KEY -->
-              <button
-                v-for="topic in topics"
-                v-bind:key="topic"
-                type="button"
-                class="btn btn-secondary btn-sm form-btn"
-                v-bind:class="{ selected: selectedTopics.indexOf(topic) > -1 }"
-                v-on:click="toggleTopic(topic)"
-              >
-                {{ topic }}
-              </button>
-            </p>
-          </div>
+        </div>
+        <div
+          class="collapse collapse-topics btn-group-toggle text-center"
+          id="topics-list"
+          role="group"
+          data-toggle="buttons"
+        >
+          <label
+            v-for="topic in topics"
+            v-bind:key="topic"
+           
+            class="btn btn-sm btn-secondary form-btn"
+          >
+           <!-- v-bind:class="{ active: selectedTopics.indexOf(topic) > -1 }" -->
+            <input
+              type="checkbox"
+              name="toggleTopic"
+              :value="topic"
+              v-bind:class="{ selected: selectedTopics.indexOf(topic) > -1 }"
+              v-on:click="toggleTopic(topic)"
+            />{{ topic }}</label
+          >
         </div>
       </div>
     </form>
-
     <div class="feedback">
       <div class="text-center font-weight-bold">Do you have any feedback?</div>
       <div class="text-center">
@@ -150,15 +162,14 @@
     </div>
     <!-- feedback -->
   </div>
+  <teleport to="#chart">
+    <chart :chartData="chartData" />
+  </teleport>
 </template>
 
 <script>
 //Import jQuery
 import $ from "jquery";
-
-//Import C3
-import "d3";
-import c3 from "c3";
 
 //Import lodash
 import _ from "lodash";
@@ -166,36 +177,49 @@ import _ from "lodash";
 //JSON
 import foundations from "@/data/data.json";
 
+import FoundationsList from "./FoundationsList.vue";
+import Chart from "./Chart.vue";
+
 export default {
+  components: { Chart, FoundationsList },
   name: "Search",
   data() {
     return {
-      // TABLE AND FILTERING/ORDERING
-      columns: ["name"], // Columns of the table
-      sortKey: "", // Order
-      reverse: false, // If we have to reverse the order
+      //FILTERING
       search: "", // Keyword to search
-      selectedCategory: -1, // Category selected in the graph (as index)
-      selectedCategoryValue: "", // Value on the category selected
-      formNatureInter: "", // Answer for Q1Inter in the form
-      formNatureIndep: "", // Answer for Q1Indep in the form
-      formNatureOpen: "", // Answer for Q1Open  in the form
-      formSD: "", // Answer for SD in the form
       formTopics: false, // Answer for topics in the form
-      timer: 0, // Last timer created (to dealy the graph update)
-      previousList: [], // Cached result to be used when clicking on the graph consecutively
-      selectedTopics: [], // Topics selected
-
-      // DATA
-      // foundations: [], // List of foundations (MAIN DATA)
-      foundations: foundations,
+      formNatureInter: "", // Answer for Q1Inter "International scope" in the form
+      formNatureIndep: "", // Answer for Q1Indep "Independent" in the form
+      formNatureOpen: "", // Answer for Q1Open "Transparent" in the form
+      formSD: "", // Answer for SD "Software Product Supporter" in the form
       topics: [], // List of keywords for non-software foundations
+      selectedTopics: [], // Topics selected by the user
+
+      //MAIN DATA
+      foundations: foundations,
+      foundationsFiltered: foundations,
+
+      //CHART DATA
+      chartData: {
+        //"International scope" data
+        rqNatureInterY: 0,
+        rqNatureInterN: 0,
+        //"Independent" data
+        rqNatureIndepY: 0,
+        rqNatureIndepN: 0,
+        //"Transparent" data
+        rqNatureOpenY: 0,
+        rqNatureOpenN: 0,
+        //"Software Product Supporter" data
+        rqSDY: 0,
+        rqSDN: 0,
+      },
     };
   },
+
   mounted: function () {
     var self = this;
-    // $.getJSON("data/data.json", function (json) {
-    //   self.foundations = json;
+
     self.foundations.map(function (foundation) {
       var foundationTopics = foundation.topics;
       if (foundationTopics != "") {
@@ -207,20 +231,18 @@ export default {
         });
       }
     });
-    // });
   },
 
-  computed: {
+  created: function () {
+    //Call the function to update the chart the first time and refresh variables
+    this.filteredOrderedList();
+  },
+
+  methods: {
     filteredOrderedList: function () {
       var self = this;
 
-      // Click on the graph apply filters consecutively (removed)
       var prefiltered = self.foundations;
-      /*if(self.selectedCategory > -1) {
-          prefiltered = self.previousList.filter(function(foundation) {
-            return (self.selectedCategory > -1 ? self.mapCategoryValue(foundation, self.selectedCategory) == self.selectedCategoryValue : true)
-          })
-      }*/
 
       // Filtering according to keyword and form
       var filtered = prefiltered.filter(function (foundation) {
@@ -246,84 +268,39 @@ export default {
       // Ordering
       var ordered = _.orderBy(filtered, self.sortKey, self.reverse ? "desc" : "asc");
 
-      // We build the data to render in the graph
-      var rqNatureInterY = ordered.filter(function (f) {
+      this.foundationsFiltered = ordered;
+
+      //Building the data to render in the graph
+      self.updateChart();
+
+    },
+
+    updateChart: function () {
+      this.chartData.rqNatureInterY = this.foundationsFiltered.filter(function (f) {
         return f.rq1Inter == "Y";
       }).length;
-      var rqNatureInterN = ordered.filter(function (f) {
+      this.chartData.rqNatureInterN = this.foundationsFiltered.filter(function (f) {
         return f.rq1Inter == "N";
       }).length;
-      var rqNatureIndepY = ordered.filter(function (f) {
+      this.chartData.rqNatureIndepY = this.foundationsFiltered.filter(function (f) {
         return f.rq1Indep == "Y";
       }).length;
-      var rqNatureIndepN = ordered.filter(function (f) {
+      this.chartData.rqNatureIndepN = this.foundationsFiltered.filter(function (f) {
         return f.rq1Indep == "N";
       }).length;
-      var rqNatureOpenY = ordered.filter(function (f) {
+      this.chartData.rqNatureOpenY = this.foundationsFiltered.filter(function (f) {
         return f.rq1Open == "Y";
       }).length;
-      var rqNatureOpenN = ordered.filter(function (f) {
+      this.chartData.rqNatureOpenN = this.foundationsFiltered.filter(function (f) {
         return f.rq1Open == "N";
       }).length;
-      var rqSDY = ordered.filter(function (f) {
+      this.chartData.rqSDY = this.foundationsFiltered.filter(function (f) {
         return f.SD == "Y";
       }).length;
-      var rqSDN = ordered.filter(function (f) {
+      this.chartData.rqSDN = this.foundationsFiltered.filter(function (f) {
         return f.SD == "N";
       }).length;
-
-      var selected = [
-        "selected",
-        rqNatureInterY,
-        rqNatureIndepY,
-        rqNatureOpenY,
-        rqSDY,
-      ]; /*, rq3rq4Y]*/
-      var unselected = [
-        "unselected",
-        rqNatureInterN,
-        rqNatureIndepN,
-        rqNatureOpenN,
-        rqSDN,
-      ]; /*, 0]*/
-
-      // window.ApexCharts.exec("foundationsChart", "updateSeries", [
-      //   {
-      //     data: [40, 55, 65, 11],
-      //   },
-      // ]);
-
-      self.updateChart(
-        rqNatureInterY,
-        rqNatureIndepY,
-        rqNatureOpenY,
-        rqSDY,
-        rqNatureInterN,
-        rqNatureIndepN,
-        rqNatureOpenN,
-        rqSDN
-      );
-      // self.foundationsChart.updateSeries([{
-      //   data: [rqNatureInterY, rqNatureIndepY, rqNatureOpenY, rqSDY],
-      // }])
-      // this.series = [{
-      //   data: [0, 0, 0, 12]
-      // }]
-      // self.timer = setTimeout(function (newColumns) {
-      //   self.chart.load({ columns: [selected, unselected], unload: true });
-      //   $(".collapse-foundation").collapse("hide");
-      // }, 500);
-      self.chart.load({ columns: [selected, unselected], unload: true });
-      $(".collapse-foundation").collapse("hide");
-
-      ///***/
-
-      self.previousList = ordered;
-      return ordered;
     },
-  },
-
-  methods: {
     reset: function () {
       var self = this;
       self.search = "";
@@ -354,50 +331,22 @@ export default {
       self.selectedTopics = [];
       $(".btn-topic").button("dispose");
     },
-    getCategoryValue: function (foundation, category) {
-      if (category == 0) return foundation.rq1;
-      else if (category == 1) return foundation.rq1Inter;
-      else if (category == 2) return foundation.rq1Indep;
-      else if (category == 3) return foundation.rq1Inter;
-      else if (category == 4) return foundation.rq3rq4;
-    },
-    mapCategoryValue: function (foundation, category) {
-      var self = this;
-      var value = self.getCategoryValue(foundation, category);
-      if (value == "Y") return "selected";
-      else if (value == "N") return "unselected";
-      else if (value == "-") return "not applicable";
-    },
-    updateForm: function (category, categoryValue) {
-      var self = this;
-      if (category == 0) {
-        if (categoryValue == "selected") self.formSD = "Y";
-        else if (categoryValue == "unselected") self.formSD = "N";
-      } else if (category == 1) {
-        if (categoryValue == "selected") self.formNatureInter = true;
-        else if (categoryValue == "unselected") self.formNatureInter = false;
-      } else if (category == 2) {
-        if (categoryValue == "selected") self.formNatureIndep = true;
-        else if (categoryValue == "unselected") self.formNatureIndep = false;
-      } else if (category == 3) {
-        if (categoryValue == "selected") self.formNatureOpen = true;
-        else if (categoryValue == "unselected") self.formNatureOpen = false;
-      }
-    },
     toggleTopic: function (topic) {
       var self = this;
       if (self.selectedTopics.indexOf(topic) == -1) {
         self.selectedTopics.push(topic);
+        //Toggle the topic Software-Development and modifies its class to check/uncheck its button
         if (topic == "Software-Development") {
           self.formSD = "Y";
         }
       } else {
         self.selectedTopics = self.selectedTopics.filter(function (value) {
-          //EDITED - ELIMINATED (value, *index, arr*)
           return value != topic;
         });
+        //Toggle the topic Software-Development and modifies its class to check/uncheck its button
         if (topic == "Software-Development") {
           self.formSD = "N";
+
         }
       }
     },
@@ -414,13 +363,24 @@ export default {
     },
     toggleSD: function (answer) {
       var self = this;
+
+      //If true
       if (answer) {
         self.formSD = "Y";
         self.selectedTopics.push("Software-Development");
+        //Added the class "active" to the topic of Software-Development
+        $("input[name=toggleTopic][value=Software-Development]")
+          .parent()
+          .addClass("active");
+        //If false
       } else {
+         //Removed the class "active" from the topic of Software-Development
+        $("input[name=toggleTopic][value=Software-Development]")
+          .parent()
+          .removeClass("active");
         self.formSD = "N";
+        //Remove the topic
         self.selectedTopics = self.selectedTopics.filter(function (value) {
-          //EDITED - ELIMINATED (value, *index, arr*)
           return value != "Software-Development";
         });
       }
