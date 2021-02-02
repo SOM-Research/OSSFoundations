@@ -1,4 +1,5 @@
 <template>
+  <loading v-if="loading" />
   <foundations-list :foundationsFiltered="foundationsFiltered" />
   <div class="col-6">
     <a
@@ -8,7 +9,7 @@
       v-on:click="reset()"
       >Reset</a
     >
-    <h2>Choose yours {{ loading }}</h2>
+    <h2>Choose yours</h2>
     <form @submit.prevent v-on:change="filteredOrderedList()">
       <div class="form-question">
         <div class="form-group">
@@ -191,9 +192,10 @@ import _ from "lodash";
 
 import FoundationsList from "./FoundationsList.vue";
 import Chart from "./Chart.vue";
+import Loading from './Loading.vue';
 
 export default {
-  components: { Chart, FoundationsList },
+  components: { Chart, FoundationsList, Loading },
   name: "Search",
   data() {
     return {
