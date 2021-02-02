@@ -8,7 +8,7 @@
       v-on:click="reset()"
       >Reset</a
     >
-    <h2>Choose yours</h2>
+    <h2>Choose yours {{ loading }}</h2>
     <form @submit.prevent v-on:change="filteredOrderedList()">
       <div class="form-question">
         <div class="form-group">
@@ -25,7 +25,8 @@
       <div class="form-question">
         <div class="form-group">
           <label>
-            Regarding the nature, please select the selection criteria which applies:
+            Regarding the nature, please select the selection criteria which
+            applies:
           </label>
           <div class="form-check">
             <input
@@ -36,7 +37,8 @@
               v-model="formNatureInter"
             />
             <label class="form-check-label" for="natureCheck1"
-              ><abbr title="Select only those foundations having an international scope"
+              ><abbr
+                title="Select only those foundations having an international scope"
                 >International Scope<img src="@/img/info.png" /></abbr
             ></label>
           </div>
@@ -74,10 +76,14 @@
       <div class="form-question">
         <div class="form-group">
           <label>
-            Should the foundation aim at supporting the development of specific open
-            source projects?
+            Should the foundation aim at supporting the development of specific
+            open source projects?
           </label>
-          <div class="btn-group btn-group-toggle" role="group" data-toggle="buttons">
+          <div
+            class="btn-group btn-group-toggle"
+            role="group"
+            data-toggle="buttons"
+          >
             <label
               id="toggleSDTrue"
               class="btn btn-sm btn-secondary form-btn"
@@ -106,8 +112,14 @@
           </div>
         </div>
         <div class="form-group">
-          <label> Filter according to the activities developed by the foundation? </label>
-          <div class="btn-group btn-group-toggle" role="group" data-toggle="buttons">
+          <label>
+            Filter according to the activities developed by the foundation?
+          </label>
+          <div
+            class="btn-group btn-group-toggle"
+            role="group"
+            data-toggle="buttons"
+          >
             <label class="btn btn-sm btn-secondary form-btn">
               <input
                 type="radio"
@@ -136,10 +148,9 @@
           <label
             v-for="topic in topics"
             v-bind:key="topic"
-           
             class="btn btn-sm btn-secondary form-btn"
           >
-           <!-- v-bind:class="{ active: selectedTopics.indexOf(topic) > -1 }" -->
+            <!-- v-bind:class="{ active: selectedTopics.indexOf(topic) > -1 }" -->
             <input
               type="checkbox"
               name="toggleTopic"
@@ -168,14 +179,15 @@
 </template>
 
 <script>
+//JSON
+//import foundations from "@/data/data.json";
+import API from "@/data/api.js";
+
 //Import jQuery
 import $ from "jquery";
 
 //Import lodash
 import _ from "lodash";
-
-//JSON
-import foundations from "@/data/data.json";
 
 import FoundationsList from "./FoundationsList.vue";
 import Chart from "./Chart.vue";
@@ -196,8 +208,9 @@ export default {
       selectedTopics: [], // Topics selected by the user
 
       //MAIN DATA
-      foundations: foundations,
-      foundationsFiltered: foundations,
+      foundations: "",
+      foundationsFiltered: "",
+      loading: true, //Indicates if foundations data is fetched or still loading
 
       //CHART DATA
       chartData: {
@@ -217,28 +230,61 @@ export default {
     };
   },
 
-  mounted: function () {
-    var self = this;
-
-    self.foundations.map(function (foundation) {
-      var foundationTopics = foundation.topics;
-      if (foundationTopics != "") {
-        var topicArray = foundationTopics.split(",");
-        topicArray.map(function (topic) {
-          if (self.topics.indexOf(topic) == -1) {
-            self.topics.push(topic);
-          }
-        });
-      }
-    });
-  },
+  beforeCreate: function () {},
 
   created: function () {
-    //Call the function to update the chart the first time and refresh variables
-    this.filteredOrderedList();
+    this.loadFoundations();
+  },
+
+  mounted: function () {},
+
+  watch: {
+    //Watches if the foundations data has been changed and updates the value
+    loading: {
+      deep: false,
+      handler() {
+        if (this.loading == false) {
+          this.filteredOrderedList();
+          this.mapFoundations();
+        }
+      },
+    },
   },
 
   methods: {
+    //Gets de foundations data from the API
+    loadFoundations() {
+      return (
+        API.getFoundations()
+          .then(
+            (response) => (
+              (this.foundations = response),
+              (this.foundationsFiltered = response),
+              (this.loading = false)
+            )
+          )
+          //If error
+          .catch((err) => console.log(err))
+      );
+    },
+
+    //Maps the JSON of the foundations data to get the listed topics
+    mapFoundations: function () {
+      var self = this;
+      self.foundations.map(function (foundation) {
+        var foundationTopics = foundation.topics;
+        if (foundationTopics != "") {
+          var topicArray = foundationTopics.split(",");
+          topicArray.map(function (topic) {
+            if (self.topics.indexOf(topic) == -1) {
+              self.topics.push(topic);
+            }
+          });
+        }
+      });
+    },
+
+    //Applies the filters
     filteredOrderedList: function () {
       var self = this;
 
@@ -247,7 +293,8 @@ export default {
       // Filtering according to keyword and form
       var filtered = prefiltered.filter(function (foundation) {
         return (
-          foundation.name.toLowerCase().indexOf(self.search.toLowerCase()) !== -1 &&
+          foundation.name.toLowerCase().indexOf(self.search.toLowerCase()) !==
+            -1 &&
           (self.formSD != "" ? foundation.SD == self.formSD : true) &&
           (self.formNatureInter ? foundation.rq1Inter == "Y" : true) &&
           (self.formNatureIndep ? foundation.rq1Indep == "Y" : true) &&
@@ -260,38 +307,54 @@ export default {
         filtered = filtered.filter(function (foundation) {
           if (self.selectedTopics.length == 0) return false;
           for (let i in self.selectedTopics)
-            if (foundation.topics.indexOf(self.selectedTopics[i]) == -1) return false;
+            if (foundation.topics.indexOf(self.selectedTopics[i]) == -1)
+              return false;
           return true;
         });
       }
 
       // Ordering
-      var ordered = _.orderBy(filtered, self.sortKey, self.reverse ? "desc" : "asc");
+      var ordered = _.orderBy(
+        filtered,
+        self.sortKey,
+        self.reverse ? "desc" : "asc"
+      );
 
       this.foundationsFiltered = ordered;
 
       //Building the data to render in the graph
       self.updateChart();
-
     },
 
     updateChart: function () {
-      this.chartData.rqNatureInterY = this.foundationsFiltered.filter(function (f) {
+      this.chartData.rqNatureInterY = this.foundationsFiltered.filter(function (
+        f
+      ) {
         return f.rq1Inter == "Y";
       }).length;
-      this.chartData.rqNatureInterN = this.foundationsFiltered.filter(function (f) {
+      this.chartData.rqNatureInterN = this.foundationsFiltered.filter(function (
+        f
+      ) {
         return f.rq1Inter == "N";
       }).length;
-      this.chartData.rqNatureIndepY = this.foundationsFiltered.filter(function (f) {
+      this.chartData.rqNatureIndepY = this.foundationsFiltered.filter(function (
+        f
+      ) {
         return f.rq1Indep == "Y";
       }).length;
-      this.chartData.rqNatureIndepN = this.foundationsFiltered.filter(function (f) {
+      this.chartData.rqNatureIndepN = this.foundationsFiltered.filter(function (
+        f
+      ) {
         return f.rq1Indep == "N";
       }).length;
-      this.chartData.rqNatureOpenY = this.foundationsFiltered.filter(function (f) {
+      this.chartData.rqNatureOpenY = this.foundationsFiltered.filter(function (
+        f
+      ) {
         return f.rq1Open == "Y";
       }).length;
-      this.chartData.rqNatureOpenN = this.foundationsFiltered.filter(function (f) {
+      this.chartData.rqNatureOpenN = this.foundationsFiltered.filter(function (
+        f
+      ) {
         return f.rq1Open == "N";
       }).length;
       this.chartData.rqSDY = this.foundationsFiltered.filter(function (f) {
@@ -346,7 +409,6 @@ export default {
         //Toggle the topic Software-Development and modifies its class to check/uncheck its button
         if (topic == "Software-Development") {
           self.formSD = "N";
-
         }
       }
     },
@@ -374,7 +436,7 @@ export default {
           .addClass("active");
         //If false
       } else {
-         //Removed the class "active" from the topic of Software-Development
+        //Removed the class "active" from the topic of Software-Development
         $("input[name=toggleTopic][value=Software-Development]")
           .parent()
           .removeClass("active");

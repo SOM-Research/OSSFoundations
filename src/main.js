@@ -18,22 +18,6 @@ import 'bootstrap/dist/css/bootstrap.css'
 //Styles
 import './css/style.css'
 
-/**
- * D3
- * Generates charts
- */
-import 'd3'
-import 'c3'
-//import c3 from './plugins/c3-0.7.20/c3.min.js'
-
-
-/**
- * Lodash
- * A JavaScript utility library delivering consistency, modularity, performance, & extras.
- */
-// import VueLodash from 'vue-lodash'
-//import lodash from 'lodash'
-
 
 //Create the Vue app
 createApp(App)

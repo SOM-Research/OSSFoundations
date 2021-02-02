@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "apexcharts": "^3.23.1",
+    "axios": "^0.21.1",
     "bootstrap": "^4.5.3",
     "c3": "^0.7.20",
     "core-js": "^3.6.5",
