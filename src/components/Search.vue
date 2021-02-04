@@ -1,12 +1,11 @@
 <template>
   <foundations-list :foundationsFiltered="foundationsFiltered" />
   <div class="col-6">
-    <a
+    <button
       class="btn btn-secondary btn-sm reset-btn"
-      href="#"
       role="button"
       v-on:click="reset()"
-      >Reset</a
+      >Reset</button
     >
     <h2>Choose yours</h2>
     <form @submit.prevent v-on:change="filteredOrderedList()">
@@ -108,7 +107,7 @@
         <div class="form-group">
           <label> Filter according to the activities developed by the foundation? </label>
           <div class="btn-group btn-group-toggle" role="group" data-toggle="buttons">
-            <label class="btn btn-sm btn-secondary form-btn">
+            <label class="btn btn-sm btn-secondary form-btn" :class="{ active: formTopics }">
               <input
                 type="radio"
                 name="toggleQ1topics"
@@ -117,7 +116,7 @@
                 v-on:click="toggleQ1topics(true)"
               />Yes</label
             >
-            <label class="btn btn-sm btn-secondary form-btn">
+            <label class="btn btn-sm btn-secondary form-btn" :class="{ active: !formTopics }">
               <input
                 type="radio"
                 name="toggleQ1topics"
@@ -135,11 +134,9 @@
         >
           <label
             v-for="topic in topics"
-            v-bind:key="topic"
-           
-            class="btn btn-sm btn-secondary form-btn"
+            v-bind:key="topic"  
+            class="btn btn-sm btn-secondary form-btn topic"
           >
-           <!-- v-bind:class="{ active: selectedTopics.indexOf(topic) > -1 }" -->
             <input
               type="checkbox"
               name="toggleTopic"
@@ -312,6 +309,7 @@ export default {
       self.selectedCategoryValue = "";
       $(".collapse-foundation").collapse("hide");
       self.resetTopics();
+      this.filteredOrderedList();
     },
     resetTopics: function () {
       var self = this;
@@ -330,6 +328,7 @@ export default {
       var self = this;
       self.selectedTopics = [];
       $(".btn-topic").button("dispose");
+      $(".topic").removeClass("active");
     },
     toggleTopic: function (topic) {
       var self = this;
