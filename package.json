@@ -1,7 +1,6 @@
 {
   "name": "oss-foundations",
   "version": "2.0.0",
-  "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
