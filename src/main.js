@@ -2,22 +2,15 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 
-/**
- * Apex Charts
- */
+ //Apex Charts
  import VueApexCharts from "vue3-apexcharts"
-// import ApexCharts from 'apexcharts'
 
-/**
- * Bootstrap
- */
+//Bootstrap
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.css'
-// import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 //Styles
 import './css/style.css'
-
 
 //Create the Vue app
 createApp(App)
