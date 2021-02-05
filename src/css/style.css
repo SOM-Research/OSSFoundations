@@ -55,6 +55,7 @@
 
 #vue-table table {
   margin-top: 1em;
+  color: white !important;
 }
   
 #vue-table th a {
@@ -67,6 +68,10 @@
   font-weight: bold;
   color: white;
   text-decoration: underline;
+}
+
+.table-hover tbody tr:hover {
+  color: white;
 }
 
 #vue-table td a {
@@ -139,12 +144,12 @@
   margin: 2px;
 }
 
-.form-btn.selected {
-  background-color: #216976;
-  border-color: #216976;
+.form-btn.selected, .form-btn.active{
+  background-color: #216976 !important;
+  border-color: #216976 !important;
 }
 
-.form-btn:focus {
+.form-btn.focus {
   box-shadow: none !important;
 }
 
