@@ -156,18 +156,6 @@
     "id": "c37c24a928"
   },
   {
-    "name": "Dojo Foundation",
-    "url": "http://dojofoundation.org/",
-    "rq1Inter": "Y",
-    "rq1Indep": "N",
-    "rq1Open": "N",
-    "SD": "Y",
-    "rq3rq4": "N",
-    "legal": "United States 501(c)(6)",
-    "topics": "Event-organization,Project-sponsoring,Training,Community-coordination,Software-Development",
-    "id": "a6a18d4d98"
-  },
-  {
     "name": ".NET Foundation",
     "url": "https://dotnetfoundation.org/",
     "rq1Inter": "Y",
@@ -312,7 +300,7 @@
     "id": "8ed3dfb040"
   },
   {
-    "name": "F# Foundation",
+    "name": "F# Software Foundation",
     "url": "http://foundation.fsharp.org/",
     "rq1Inter": "Y",
     "rq1Indep": "Y",
@@ -408,8 +396,8 @@
     "id": "25ea747509"
   },
   {
-    "name": "JS Foundation",
-    "url": "https://js.foundation",
+    "name": "OpenJS Foundation",
+    "url": "https://openjsf.org/",
     "rq1Inter": "Y",
     "rq1Indep": "N",
     "rq1Open": "Y",
@@ -780,8 +768,8 @@
     "id": "f4ed00f928"
   },
   {
-    "name": "OpenStack Foundation",
-    "url": "https://www.openstack.org/foundation/",
+    "name": "Open Infrastructure Foundation",
+    "url": "https://openinfra.dev/about/",
     "rq1Inter": "Y",
     "rq1Indep": "Y",
     "rq1Open": "Y",
