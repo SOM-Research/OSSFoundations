@@ -1,6 +1,9 @@
 <template>
   <loading v-if="loading" />
-  <foundations-list :foundationsFiltered="foundationsFiltered" />
+  <div class="col-6">
+    <h2>Selected Foundations</h2>
+  <foundations-list :foundationsProp="foundationsFiltered" />
+  </div>
   <div class="col-6">
     <button
       class="btn btn-secondary btn-sm reset-btn"

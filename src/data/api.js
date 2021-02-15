@@ -1,6 +1,10 @@
-//import axios from "axios";
+import axios from "axios";
+
+//DEV
+//var url = "http://localhost:5000"
 
 var url = "https://oss-foundations-api.herokuapp.com"
+
 
 //Gets the foundations data in JSON
 async function getFoundations() {
@@ -9,18 +13,19 @@ async function getFoundations() {
     });
     return await res.json();
 }
-// function sendFoundation(foundation) {
+// function postFoundation(foundation) {
 //     const json = foundation;
 //     axios.post(url + '/post', json)
 //         .then(response => response);
 //     return response;
 // }
 
-// function deleteFoundation(foundationId) {
-//     axios.delete(url + '/foundations')
-//     .then(response => {
-//         this.result.splice(foundationId, 1)
-//     })
-// }
+function deleteFoundation(foundationId) {
+    axios.delete(url + '/foundations', {id: foundationId})
+    .then(response => {
+        //this.result.splice(foundationId, 1)
+        console.log(response);
+    })
+}
 //EXPORTS
-export default { getFoundations, };
+export default { getFoundations, deleteFoundation };

@@ -1,6 +1,4 @@
 <template>
-  <div class="col-6">
-    <h2>Selected Foundations</h2>
     <table class="table table-sm table-hover">
       <thead>
         <tr>
@@ -67,7 +65,6 @@
         </tr>
       </tbody>
     </table>
-  </div>
 </template>
 
 <script>
@@ -77,7 +74,7 @@ import _ from "lodash";
 export default {
   components: {},
   name: "FoundationsList",
-  props: ["foundationsFiltered"],
+  props: ["foundationsProp"],
   data() {
     return {
       ///ORDERING
@@ -86,13 +83,13 @@ export default {
       reverse: false, // If we have to reverse the order
    
       //DATA
-      foundations: this.foundationsFiltered,
+      foundations: this.foundationsProp,
     };
   },
 
   watch: {
     //Watches if the foundations data has been changed and updates the value
-    foundationsFiltered: {
+    foundationsProp: {
       deep: true,
       handler(value) {
         this.foundations = value;

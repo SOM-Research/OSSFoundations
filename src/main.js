@@ -1,6 +1,7 @@
 //Imports
 import { createApp } from 'vue'
 import App from './App.vue'
+import router from './router'
 
  //Apex Charts
  import VueApexCharts from "vue3-apexcharts"
@@ -13,9 +14,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import './css/style.css'
 
 //Create the Vue app
-createApp(App)
-    // .use(ApexCharts)
-     .use(VueApexCharts)
-    //.use(VueLodash, { lodash: lodash })
+createApp(App).use(router)
+    .use(VueApexCharts)
     .mount('#app')
 
