@@ -16,13 +16,13 @@ async function getFoundations() {
 
 //Edits the foundation data that matches with the ID passed as a parameter
 async function editFoundation(foundationId, foundation) {
-    const res = await axios.post(url + `/editfoundation/${foundationId}`, foundation);
+    const res = await axios.post(url + `/foundations/${foundationId}`, foundation);
     return res;
 }
 
 //Adds a new foundation
 async function newFoundation(foundation) {
-    const res = await axios.put(url + '/newfoundation/', foundation)
+    const res = await axios.put(url + '/foundations/', foundation)
     return res;
 }
 

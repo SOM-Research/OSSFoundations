@@ -72,127 +72,135 @@
             <h5 class="modal-title" id="exampleModalLongTitle">{{ textModal }}</h5>
           </div>
           <div class="modal-body">
-            <form>
-              <label for="name">Name</label>
-              <input class="form-control" type="text" v-model="selectedFoundation.name" />
-
-              <label for="url">URL</label>
-              <input class="form-control" type="text" v-model="selectedFoundation.url" />
+            <form v-on:change="topicsToString()">
               <div class="form-group">
-                <label for="rq1Inter">rq1Inter</label>
-                <div class="form-check">
+                <label for="name">Name:</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  v-model="selectedFoundation.name"
+                />
+              </div>
+              <div class="form-group">
+                <label for="url">Website:</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  v-model="selectedFoundation.url"
+                />
+              </div>
+              <div class="form-group">
+                <label for="legal">Status Form:</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  :value="selectedFoundation.legal"
+                />
+              </div>
+              <hr class="mt-2 mb-3" />
+              <label for="topics" class="font-weight-bold">Dimension</label>
+              <div class="form-group">
+                <label for="rq1Inter">Does it have an international scope?</label>
+                <div class="form-group">
                   <input
-                    class="form-check-input"
+                    class="btn-check"
                     type="radio"
                     name="rq1Inter"
                     value="Y"
                     v-model="selectedFoundation.rq1Inter"
+                    id="rq1InterY"
                   />
-                  <label class="form-check-label" for="rq1InterY">Yes</label>
-                </div>
-                <div class="form-check">
+                  <label class="btn btn-secondary button-form" for="rq1InterY">Yes</label>
                   <input
-                    class="form-check-input"
+                    class="btn-check"
                     type="radio"
                     name="rq1Inter"
                     value="N"
                     v-model="selectedFoundation.rq1Inter"
+                    id="rq1InterN"
                   />
-                  <label class="form-check-label" for="rq1InterY">No</label>
+                  <label class="btn btn-secondary button-form" for="rq1InterN">No</label>
                 </div>
               </div>
-              <label for="rq1Indep">rq1Indep</label>
-              <div class="form-check">
+              <label for="rq1Indep">Is it independent?</label>
+              <div class="form-group">
                 <input
-                  class="form-check-input"
+                  class="btn-check"
                   type="radio"
                   name="rq1Indep"
                   value="Y"
                   v-model="selectedFoundation.rq1Indep"
+                  id="rq1IndepY"
                 />
-                <label class="form-check-label" for="rq1InterY">Yes</label>
-              </div>
-              <div class="form-check">
+                <label class="btn btn-secondary button-form" for="rq1IndepY">Yes</label>
                 <input
-                  class="form-check-input"
+                  class="btn-check"
                   type="radio"
                   name="rq1Indep"
                   value="N"
                   v-model="selectedFoundation.rq1Indep"
+                  id="rq1IndepN"
                 />
-                <label class="form-check-label" for="rq1InterY">No</label>
+                <label class="btn btn-secondary button-form" for="rq1IndepN">No</label>
               </div>
-              <label for="rq1Open">rq1Open</label>
-              <div class="form-check">
+              <label for="rq1Open">Is it transparent enough?</label>
+              <div class="form-group">
                 <input
-                  class="form-check-input"
+                  class="btn-check"
                   type="radio"
                   name="rq1Open"
                   value="Y"
                   v-model="selectedFoundation.rq1Open"
+                  id="rq1OpenY"
                 />
-                <label class="form-check-label" for="rq1InterY">Yes</label>
-              </div>
-              <div class="form-check">
+                <label class="btn btn-secondary button-form" for="rq1OpenY">Yes</label>
                 <input
-                  class="form-check-input"
+                  class="btn-check"
                   type="radio"
                   name="rq1Open"
                   value="N"
                   v-model="selectedFoundation.rq1Open"
+                  id="rq1OpenN"
                 />
-                <label class="form-check-label" for="rq1InterY">No</label>
+                <label class="btn btn-secondary button-form" for="rq1OpenN">No</label>
               </div>
-              <label for="SD">SD</label>
-              <div class="form-check">
+              <label for="SD">Does it directly support software products?</label>
+              <div class="form-group">
                 <input
-                  class="form-check-input"
+                  class="btn-check"
                   type="radio"
                   name="SD"
                   value="Y"
                   v-model="selectedFoundation.SD"
+                  id="SDY"
                 />
-                <label class="form-check-label" for="rq1InterY">Yes</label>
-              </div>
-              <div class="form-check">
+                <label class="btn btn-secondary button-form" for="SDY">Yes</label>
                 <input
-                  class="form-check-input"
+                  class="btn-check"
                   type="radio"
                   name="SD"
                   value="N"
                   v-model="selectedFoundation.SD"
+                  id="SDN"
                 />
-                <label class="form-check-label" for="rq1InterY">No</label>
+                <label class="btn btn-secondary button-form" for="SDN">No</label>
               </div>
-              <label for="rq3rq4">rq3rq4</label>
-              <div class="form-check">
+              <hr class="mt-2 mb-3" />
+              <label for="topics" class="font-weight-bold">Topics</label>
+              <div
+                v-for="topic in selectedFoundation.topics"
+                v-bind:key="topic.name"
+                class="form-check"
+              >
                 <input
                   class="form-check-input"
-                  type="radio"
-                  name="rq3rq4"
-                  value="Y"
-                  v-model="selectedFoundation.rq3rq4"
+                  :name="topic.name"
+                  type="checkbox"
+                  v-model="topic.checked"
                 />
-                <label class="form-check-label" for="rq1InterY">Yes</label>
+                <label class="form-check-label" :for="topic.name">{{ topic.name }}</label
+                ><br />
               </div>
-              <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  name="rq3rq4"
-                  value="N"
-                  v-model="selectedFoundation.rq3rq4"
-                />
-                <label class="form-check-label" for="rq1InterY">No</label>
-              </div>
-              <label for="legal">legal</label>
-              <input class="form-control" type="text" :value="selectedFoundation.legal" />
-              <label for="topics">topics</label>
-              <input
-                class="form-control"
-                type="text"
-                :value="selectedFoundation.topics"
-              />
             </form>
           </div>
           <div class="modal-footer">
@@ -232,12 +240,11 @@ import ModalConfirmAction from "../components/ModalConfirmAction.vue";
 export default {
   components: { ModalConfirmAction },
   name: "Admin",
-  created: function () {
-    this.loadFoundations();
-  },
+
   data() {
     return {
       foundations: "",
+      allTopics: [],
       loading: true,
       textModal: "",
       isNewFoundationForm: false,
@@ -251,12 +258,28 @@ export default {
         SD: "",
         rq3rq4: "",
         legal: "",
-        topics: "",
+        topics: [],
+        topicsString: "",
       },
     };
   },
   props: {},
+  created: function () {
+    this.loadFoundations();
+  },
+  watch: {
+    //Watches if the foundations data has been changed and updates the value
+    loading: {
+      deep: false,
+      handler() {
+        if (this.loading == false) {
+          this.mapFoundations();
+        }
+      },
+    },
+  },
   methods: {
+    //Loads the foundation data
     loadFoundations() {
       this.foundations = "";
       this.loading = true;
@@ -267,21 +290,44 @@ export default {
           .catch((err) => console.log(err))
       );
     },
+    //Maps the JSON of the foundations data to get the listed topics
+    mapFoundations: function () {
+      var self = this;
+      self.foundations.map(function (foundation) {
+        var foundationTopics = foundation.topics;
+        if (foundationTopics != "") {
+          var topicArray = foundationTopics.split(",");
+          topicArray.map(function (topic) {
+            if (self.allTopics.indexOf(topic) == -1) {
+              self.allTopics.push(topic);
+            }
+          });
+        }
+      });
+      for (var i = 0; i < self.allTopics.length; i++) {
+        var tempFoundation = { name: this.allTopics[i], selected: false };
+        this.selectedFoundation.topics.push(tempFoundation);
+      }
+    },
+    //Send a request to the server to edit a selected foundation
     editFoundation(id, selectedFoundation) {
       return API.editFoundation(id, selectedFoundation)
         .then(() => this.loadFoundations())
         .catch((err) => console.log(err));
     },
+    //Send a request to the server to create a new foundation
     newFoundation(foundation) {
       return API.newFoundation(foundation)
         .then(() => this.loadFoundations())
         .catch((err) => console.log(err));
     },
+    //Send a request to the server to delete a selected foundation
     deleteFoundation(foundationId) {
       return API.deleteFoundation(foundationId)
         .then(() => this.loadFoundations())
         .catch((err) => console.log(err));
     },
+    //Fills the form with the info of the selected foundation by using its ID
     loadFormData(id) {
       for (var x in this.foundations) {
         if (this.foundations[x].id == id) {
@@ -295,14 +341,39 @@ export default {
           this.selectedFoundation.SD = this.foundations[x].SD;
           this.selectedFoundation.rq3rq4 = this.foundations[x].rq3rq4;
           this.selectedFoundation.legal = this.foundations[x].legal;
-          this.selectedFoundation.topics = this.foundations[x].topics;
+          console.log(this.foundations[x].topics);
+          //Loads the selected topics
+          for (var i = 0; i < this.selectedFoundation.topics.length; i++) {
+            if (
+              this.foundations[x].topics.includes(this.selectedFoundation.topics[i].name)
+            ) {
+              this.selectedFoundation.topics[i].checked = true;
+            } else {
+              this.selectedFoundation.topics[i].checked = false;
+            }
+          }
         }
       }
     },
+    //Empties the data of the form
     emptyFormData() {
       for (var x in this.selectedFoundation) {
         this.selectedFoundation[x] = "";
       }
+    },
+    topicsToString() {
+      this.selectedFoundation.topicsString = "";
+      for (var i = 0; i < this.selectedFoundation.topics.length; i++) {
+        if (this.selectedFoundation.topics[i].checked) {
+          this.selectedFoundation.topicsString += this.selectedFoundation.topics[i].name;
+          this.selectedFoundation.topicsString += ",";
+        }
+      }
+      //Replace the last comma and if it has any white space after it
+      this.selectedFoundation.topicsString = this.selectedFoundation.topicsString.replace(
+        /,\s*$/,
+        ""
+      );
     },
   },
 };
@@ -316,11 +387,30 @@ thead {
 tbody {
   color: #5a97a2;
 }
-tr:hover {
+tbody tr:hover {
   color: grey !important;
 }
 
 .action-form {
   margin-bottom: 10px;
+}
+
+.btn-check {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+  pointer-events: none;
+}
+.button-form {
+  margin-right: 10px;
+}
+
+.btn-check:active + .btn-secondary,
+.btn-check:checked + .btn-secondary,
+.btn-secondary.active,
+.btn-secondary:active,
+.show > .btn-secondary.dropdown-toggle {
+  color: #fff;
+  background-color: #5a97a2;
+  border-color: #3a656d;
 }
 </style>
