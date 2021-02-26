@@ -304,6 +304,8 @@ export default {
           });
         }
       });
+      //Loads the topics name in the selected foundations
+      this.selectedFoundation.topics = [];
       for (var i = 0; i < self.allTopics.length; i++) {
         var tempFoundation = { name: this.allTopics[i], selected: false };
         this.selectedFoundation.topics.push(tempFoundation);
@@ -341,7 +343,6 @@ export default {
           this.selectedFoundation.SD = this.foundations[x].SD;
           this.selectedFoundation.rq3rq4 = this.foundations[x].rq3rq4;
           this.selectedFoundation.legal = this.foundations[x].legal;
-          console.log(this.foundations[x].topics);
           //Loads the selected topics
           for (var i = 0; i < this.selectedFoundation.topics.length; i++) {
             if (
