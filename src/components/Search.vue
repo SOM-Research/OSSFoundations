@@ -2,15 +2,12 @@
   <loading v-if="loading" />
   <div class="col-6">
     <h2>Selected Foundations</h2>
-  <foundations-list :foundationsProp="foundationsFiltered" />
+    <foundations-list :foundationsProp="foundationsFiltered" />
   </div>
   <div class="col-6">
-    <button
-      class="btn btn-secondary btn-sm reset-btn"
-      role="button"
-      v-on:click="reset()"
-      >Reset</button
-    >
+    <button class="btn btn-secondary btn-sm reset-btn" role="button" v-on:click="reset()">
+      Reset
+    </button>
     <h2>Choose yours</h2>
     <form @submit.prevent v-on:change="filteredOrderedList()">
       <div class="form-question">
@@ -28,8 +25,7 @@
       <div class="form-question">
         <div class="form-group">
           <label>
-            Regarding the nature, please select the selection criteria which
-            applies:
+            Regarding the nature, please select the selection criteria which applies:
           </label>
           <div class="form-check">
             <input
@@ -40,8 +36,7 @@
               v-model="formNatureInter"
             />
             <label class="form-check-label" for="natureCheck1"
-              ><abbr
-                title="Select only those foundations having an international scope"
+              ><abbr title="Select only those foundations having an international scope"
                 >International Scope<img src="@/img/info.png" /></abbr
             ></label>
           </div>
@@ -79,14 +74,10 @@
       <div class="form-question">
         <div class="form-group">
           <label>
-            Should the foundation aim at supporting the development of specific
-            open source projects?
+            Should the foundation aim at supporting the development of specific open
+            source projects?
           </label>
-          <div
-            class="btn-group btn-group-toggle"
-            role="group"
-            data-toggle="buttons"
-          >
+          <div class="btn-group btn-group-toggle" role="group" data-toggle="buttons">
             <label
               id="toggleSDTrue"
               class="btn btn-sm btn-secondary form-btn"
@@ -117,7 +108,10 @@
         <div class="form-group">
           <label> Filter according to the activities developed by the foundation? </label>
           <div class="btn-group btn-group-toggle" role="group" data-toggle="buttons">
-            <label class="btn btn-sm btn-secondary form-btn" :class="{ active: formTopics }">
+            <label
+              class="btn btn-sm btn-secondary form-btn"
+              :class="{ active: formTopics }"
+            >
               <input
                 type="radio"
                 name="toggleQ1topics"
@@ -126,7 +120,10 @@
                 v-on:click="toggleQ1topics(true)"
               />Yes</label
             >
-            <label class="btn btn-sm btn-secondary form-btn" :class="{ active: !formTopics }">
+            <label
+              class="btn btn-sm btn-secondary form-btn"
+              :class="{ active: !formTopics }"
+            >
               <input
                 type="radio"
                 name="toggleQ1topics"
@@ -144,7 +141,7 @@
         >
           <label
             v-for="topic in topics"
-            v-bind:key="topic"  
+            v-bind:key="topic"
             class="btn btn-sm btn-secondary form-btn topic"
           >
             <input
@@ -187,7 +184,7 @@ import _ from "lodash";
 
 import FoundationsList from "./FoundationsList.vue";
 import Chart from "./Chart.vue";
-import Loading from './Loading.vue';
+import Loading from "./Loading.vue";
 
 export default {
   components: { Chart, FoundationsList, Loading },
@@ -290,8 +287,7 @@ export default {
       // Filtering according to keyword and form
       var filtered = prefiltered.filter(function (foundation) {
         return (
-          foundation.name.toLowerCase().indexOf(self.search.toLowerCase()) !==
-            -1 &&
+          foundation.name.toLowerCase().indexOf(self.search.toLowerCase()) !== -1 &&
           (self.formSD != "" ? foundation.SD == self.formSD : true) &&
           (self.formNatureInter ? foundation.rq1Inter == "Y" : true) &&
           (self.formNatureIndep ? foundation.rq1Indep == "Y" : true) &&
@@ -304,18 +300,13 @@ export default {
         filtered = filtered.filter(function (foundation) {
           if (self.selectedTopics.length == 0) return false;
           for (let i in self.selectedTopics)
-            if (foundation.topics.indexOf(self.selectedTopics[i]) == -1)
-              return false;
+            if (foundation.topics.indexOf(self.selectedTopics[i]) == -1) return false;
           return true;
         });
       }
 
       // Ordering
-      var ordered = _.orderBy(
-        filtered,
-        self.sortKey,
-        self.reverse ? "desc" : "asc"
-      );
+      var ordered = _.orderBy(filtered, self.sortKey, self.reverse ? "desc" : "asc");
 
       this.foundationsFiltered = ordered;
 
@@ -324,34 +315,22 @@ export default {
     },
 
     updateChart: function () {
-      this.chartData.rqNatureInterY = this.foundationsFiltered.filter(function (
-        f
-      ) {
+      this.chartData.rqNatureInterY = this.foundationsFiltered.filter(function (f) {
         return f.rq1Inter == "Y";
       }).length;
-      this.chartData.rqNatureInterN = this.foundationsFiltered.filter(function (
-        f
-      ) {
+      this.chartData.rqNatureInterN = this.foundationsFiltered.filter(function (f) {
         return f.rq1Inter == "N";
       }).length;
-      this.chartData.rqNatureIndepY = this.foundationsFiltered.filter(function (
-        f
-      ) {
+      this.chartData.rqNatureIndepY = this.foundationsFiltered.filter(function (f) {
         return f.rq1Indep == "Y";
       }).length;
-      this.chartData.rqNatureIndepN = this.foundationsFiltered.filter(function (
-        f
-      ) {
+      this.chartData.rqNatureIndepN = this.foundationsFiltered.filter(function (f) {
         return f.rq1Indep == "N";
       }).length;
-      this.chartData.rqNatureOpenY = this.foundationsFiltered.filter(function (
-        f
-      ) {
+      this.chartData.rqNatureOpenY = this.foundationsFiltered.filter(function (f) {
         return f.rq1Open == "Y";
       }).length;
-      this.chartData.rqNatureOpenN = this.foundationsFiltered.filter(function (
-        f
-      ) {
+      this.chartData.rqNatureOpenN = this.foundationsFiltered.filter(function (f) {
         return f.rq1Open == "N";
       }).length;
       this.chartData.rqSDY = this.foundationsFiltered.filter(function (f) {
@@ -429,13 +408,13 @@ export default {
       if (answer) {
         self.formSD = "Y";
         self.selectedTopics.push("Software-Development");
-        //Added the class "active" to the topic of Software-Development
+        //Add the class "active" to the topic of Software-Development
         $("input[name=toggleTopic][value=Software-Development]")
           .parent()
           .addClass("active");
         //If false
       } else {
-        //Removed the class "active" from the topic of Software-Development
+        //Remove the class "active" from the topic of Software-Development
         $("input[name=toggleTopic][value=Software-Development]")
           .parent()
           .removeClass("active");

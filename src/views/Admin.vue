@@ -1,5 +1,6 @@
 <template>
   <div class="app-container container-xl">
+    {{ selectedFoundation.SD }}
     <div>
       <button
         class="action-form btn btn-info float-right"
@@ -172,6 +173,7 @@
                   name="SD"
                   value="Y"
                   v-model="selectedFoundation.SD"
+                  @click="toggleSD(true)"
                   id="SDY"
                 />
                 <label class="btn btn-secondary button-form" for="SDY">Yes</label>
@@ -180,6 +182,7 @@
                   type="radio"
                   name="SD"
                   value="N"
+                  @click="toggleSD(false)"
                   v-model="selectedFoundation.SD"
                   id="SDN"
                 />
@@ -197,6 +200,7 @@
                   :name="topic.name"
                   type="checkbox"
                   v-model="topic.checked"
+                  @click="toggleSDinCheckform(topic.name)"
                 />
                 <label class="form-check-label" :for="topic.name">{{ topic.name }}</label
                 ><br />
@@ -248,6 +252,7 @@ export default {
       loading: true,
       textModal: "",
       isNewFoundationForm: false,
+      topicSD: false, //Auxiliary variable to bind the selectedFoundation's "SD" and topics.SD;
       selectedFoundation: {
         id: "",
         name: "",
@@ -274,6 +279,24 @@ export default {
       handler() {
         if (this.loading == false) {
           this.mapFoundations();
+        }
+      },
+    },
+    topicSD: {
+      deep: false,
+      handler() {
+        for (var i = 0; i < this.selectedFoundation.topics.length; i++) {
+          if (this.selectedFoundation.topics[i].name == "Software-Development") {
+            break;
+          }
+        }
+        // var index = this.selectedFoundation.topics.indexOf("Software-Development");
+        if (this.topicSD) {
+          this.selectedFoundation.SD = "Y";
+          this.selectedFoundation.topics[i].checked = true;
+        } else {
+          this.selectedFoundation.SD = "N";
+          this.selectedFoundation.topics[i].checked = false;
         }
       },
     },
@@ -341,6 +364,11 @@ export default {
           this.selectedFoundation.rq1Indep = this.foundations[x].rq1Indep;
           this.selectedFoundation.rq1Open = this.foundations[x].rq1Open;
           this.selectedFoundation.SD = this.foundations[x].SD;
+          if (this.selectedFoundation.SD == "Y") {
+            this.topicSD = true;
+          } else {
+            this.topic = false;
+          }
           this.selectedFoundation.rq3rq4 = this.foundations[x].rq3rq4;
           this.selectedFoundation.legal = this.foundations[x].legal;
           //Loads the selected topics
@@ -361,7 +389,9 @@ export default {
       for (var x in this.selectedFoundation) {
         this.selectedFoundation[x] = "";
       }
+      this.mapFoundations();
     },
+    //Convers the checked topics to a string value when submit
     topicsToString() {
       this.selectedFoundation.topicsString = "";
       for (var i = 0; i < this.selectedFoundation.topics.length; i++) {
@@ -375,6 +405,15 @@ export default {
         /,\s*$/,
         ""
       );
+    },
+    //Toggles the topicSD variable to bind the selectedFoundation.SD and selectedFoundation.topics.SD
+    toggleSD(answer) {
+      this.topicSD = answer;
+    },
+    toggleSDinCheckform(name) {
+      if (name == "Software-Development") {
+        this.toggleSD(!this.topicSD);
+      }
     },
   },
 };
