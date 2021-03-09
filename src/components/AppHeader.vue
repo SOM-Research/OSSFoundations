@@ -1,7 +1,7 @@
 <template>
   <header class="row">
-    <h1 class="col-8">Analysis of Foundations in Open Source Projects</h1>
-    <div class="col-4 auth">
+    <h1 class="">Analysis of Foundations in Open Source Projects</h1>
+    <div class="auth">
       <auth />
     </div>
   </header>
@@ -32,6 +32,7 @@ header {
   margin-bottom: 15px;
   margin-left: 0px !important;
   margin-right: 0px !important;
+  justify-content: space-between;
 }
 h1 {
   color: #397c89;
@@ -40,7 +41,6 @@ h1 {
 }
 
 .auth {
-  margin: auto;
   text-align: right;
 }
 </style>

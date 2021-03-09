@@ -3,32 +3,54 @@
     <font-awesome-icon :icon="['fab', 'google']" />
     Sign in with Google
   </button>
-  <div class="user-logged-in" v-if="loggedIn">
+  <div
+    class="user-logged-in"
+    type="button"
+    id="dropdownMenuButton"
+    data-toggle="dropdown"
+    aria-haspopup="true"
+    v-if="loggedIn"
+  >
     <span class="align-middle">{{ user.displayName }}</span>
     <img :src="user.photoURL" :alt="user.displayName + ' picture'" />
-    <p>{{ token }}</p>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <button class="dropdown-item" @click="logout()">Sign off</button>
+    </div>
   </div>
 </template>
 
 <script>
 import firebase from "firebase";
-var provider = new firebase.auth.GoogleAuthProvider();
+import { provider } from "../firebase";
+
 export default {
-  name: "Test",
-  created() {},
+  name: "Auth",
+  created() {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user != null) {
+        this.user = user;
+        this.loggedIn = true;
+        this.token = user.getIdToken();
+      } else {
+        this.loggedIn = false;
+        this.user = "";
+      }
+    });
+  },
   data() {
     return {
       loggedIn: false,
       //Google
       credential: "",
       token: "",
-      user: "",
+      user: "Federica",
       //Errors
       errorCode: "",
       errorMessage: "",
       errorMail: "",
     };
   },
+  async mounted() {},
   props: {},
   methods: {
     signInWithPopup() {
@@ -36,7 +58,6 @@ export default {
         .auth()
         .signInWithPopup(provider)
         .then((result) => {
-          /** @type {firebase.auth.OAuthCredential} */
           this.credential = result.credential;
 
           // This gives you a Google Access Token. You can use it to access the Google API.
@@ -57,6 +78,19 @@ export default {
           // ...
         });
     },
+    logout: function () {
+      firebase
+        .auth()
+        .signOut()
+        .then(
+          //If session ends successfully
+          (this.loggedIn = false),
+          this.$router.push("/", () => {}) //Go to home page
+        )
+        .catch((err) => {
+          this.errorMessage = err.message;
+        });
+    },
   },
 };
 </script>
@@ -64,8 +98,9 @@ export default {
 <style scoped>
 .user-logged-in {
   align-items: center;
-  border-radius: 5%;
+  border-radius: 10%;
   align-items: center;
+  padding: 5px 10px 5px 10px;
 }
 .user-logged-in:hover {
   background-color: #dddddd55;

@@ -13,7 +13,7 @@ const firebaseConfig = {
  const db = app.database();
  //Google auth
  var provider = new firebase.auth.GoogleAuthProvider();
- provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+ //provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
 
 
  //Export

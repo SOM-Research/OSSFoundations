@@ -1,6 +1,5 @@
 <template>
   <div class="app-container container-xl">
-    {{ selectedFoundation.SD }}
     <div>
       <button
         class="action-form btn btn-info float-right"
