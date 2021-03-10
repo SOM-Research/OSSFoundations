@@ -4,7 +4,7 @@
       <button
         class="action-form btn btn-info float-right"
         v-on:click="
-          textModal = 'New foundation';
+          textModalForm = 'New foundation';
           isNewFoundationForm = true;
           emptyFormData();
         "
@@ -31,7 +31,7 @@
                 class="btn btn-primary"
                 @click="
                   isNewFoundationForm = false;
-                  textModal = 'Edit ' + foundation.name;
+                  textModalForm = 'Edit ' + foundation.name;
                   loadFormData(foundation.id);
                 "
                 data-toggle="modal"
@@ -58,6 +58,7 @@
       :foundation="selectedFoundation"
       @confirmed-action="deleteFoundation(selectedFoundation.id)"
     />
+    <modal-response :responseAction="responseAction" />
     <div
       class="modal fade"
       id="newEditFoundationForm"
@@ -69,7 +70,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">{{ textModal }}</h5>
+            <h5 class="modal-title" id="exampleModalLongTitle">{{ textModalForm }}</h5>
           </div>
           <div class="modal-body">
             <form v-on:change="topicsToString()">
@@ -238,10 +239,11 @@
 <script>
 import API from "@/data/api.js";
 import ModalConfirmAction from "../components/ModalConfirmAction.vue";
-//import FoundationsList from "@/components/FoundationsList.vue";
+import ModalResponse from "../components/ModalResponse.vue";
+import $ from "jquery";
 
 export default {
-  components: { ModalConfirmAction },
+  components: { ModalConfirmAction, ModalResponse },
   name: "Admin",
 
   data() {
@@ -249,7 +251,7 @@ export default {
       foundations: "",
       allTopics: [],
       loading: true,
-      textModal: "",
+      textModalForm: "", //Displays "New" or "Edit" depending on the user actions
       isNewFoundationForm: false,
       topicSD: false, //Auxiliary variable to bind the selectedFoundation's "SD" and topics.SD;
       selectedFoundation: {
@@ -265,6 +267,7 @@ export default {
         topics: [],
         topicsString: "",
       },
+      responseAction: "", //Shows the message of an error or success of an action
     };
   },
   props: {},
@@ -336,20 +339,26 @@ export default {
     //Send a request to the server to edit a selected foundation
     editFoundation(id, selectedFoundation) {
       return API.editFoundation(id, selectedFoundation)
-        .then(() => this.loadFoundations())
-        .catch((err) => console.log(err));
+        .then(
+          (res) => (this.loadFoundations(), this.showModalWithResponse(res.data.message))
+        )
+        .catch((err) => (console.log(err), this.showModalWithResponse(err.message)));
     },
     //Send a request to the server to create a new foundation
     newFoundation(foundation) {
       return API.newFoundation(foundation)
-        .then(() => this.loadFoundations())
-        .catch((err) => console.log(err));
+        .then(
+          (res) => (this.loadFoundations(), this.showModalWithResponse(res.data.message))
+        )
+        .catch((err) => (console.log(err), this.showModalWithResponse(err.message)));
     },
     //Send a request to the server to delete a selected foundation
     deleteFoundation(foundationId) {
       return API.deleteFoundation(foundationId)
-        .then(() => this.loadFoundations())
-        .catch((err) => console.log(err));
+        .then(
+          (res) => (this.loadFoundations(), this.showModalWithResponse(res.data.message))
+        )
+        .catch((err) => (console.log(err), this.showModalWithResponse(err.message)));
     },
     //Fills the form with the info of the selected foundation by using its ID
     loadFormData(id) {
@@ -413,6 +422,11 @@ export default {
       if (name == "Software-Development") {
         this.toggleSD(!this.topicSD);
       }
+    },
+    //Shows a modal with a message when user makes any change (success / error)
+    showModalWithResponse(res) {
+      this.responseAction = res; //Save the response in the variable
+      $("#modalResponse").modal("show"); //Triggers the modal "modalResponse"
     },
   },
 };
