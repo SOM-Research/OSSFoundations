@@ -16,7 +16,7 @@
         </button>
       </div>
 
-      <h5>New foundations pending to approval</h5>
+      <h5>New foundations pending to approve</h5>
       <table class="table table-hover table-fixed">
         <thead class="">
           <tr class="">
@@ -36,7 +36,7 @@
                 @click="
                   isNewFoundationForm = false;
                   textModalForm = 'Edit ' + foundation.name;
-                  loadFormData(foundation.id);
+                  loadFormData(foundation.id, foundationsApproval);
                 "
                 data-toggle="modal"
                 data-target="#newEditFoundationForm"
@@ -49,7 +49,10 @@
                 class="btn btn-danger"
                 data-toggle="modal"
                 data-target="#modalConfirmAction"
-                v-on:click="loadFormData(foundation.id)"
+                v-on:click="
+                  loadFormData(foundation.id, foundationsApproval),
+                    (isFoundationsOrApprovalList = false)
+                "
               >
                 Delete
               </button>
@@ -77,7 +80,7 @@
                 @click="
                   isNewFoundationForm = false;
                   textModalForm = 'Edit ' + foundation.name;
-                  loadFormData(foundation.id);
+                  loadFormData(foundation.id, foundations);
                 "
                 data-toggle="modal"
                 data-target="#newEditFoundationForm"
@@ -90,7 +93,10 @@
                 class="btn btn-danger"
                 data-toggle="modal"
                 data-target="#modalConfirmAction"
-                v-on:click="loadFormData(foundation.id)"
+                v-on:click="
+                  loadFormData(foundation.id, foundations),
+                    (isFoundationsOrApprovalList = true)
+                "
               >
                 Delete
               </button>
@@ -101,7 +107,9 @@
     </div>
     <modal-confirm-action
       :foundation="selectedFoundation"
-      @confirmed-action="deleteFoundation(selectedFoundation.id)"
+      @confirmed-action="
+        deleteFoundation(selectedFoundation.id, isFoundationsOrApprovalList)
+      "
     />
     <modal-response :responseAction="responseAction" />
     <div
@@ -170,6 +178,7 @@ export default {
     return {
       foundations: "", //Current foundations in database
       foundationsApproval: "", //Foundations pending to approval
+      isFoundationsOrApprovalList: true, //True if the main foundations database, False if the foundations approval list
       allTopics: [],
       loading: true,
       textModalForm: "", //Displays "New" or "Edit" depending on the user actions
@@ -193,8 +202,7 @@ export default {
   },
   props: {},
   created: function () {
-    this.loadFoundations();
-    this.loadFoundationsApproval();
+    this.loadAllFoundations();
   },
   watch: {
     //Watches if the foundations data has been changed and updates the value
@@ -226,8 +234,14 @@ export default {
     },
   },
   methods: {
+    //Loads all the foundations
+    loadAllFoundations() {
+      this.loadFoundations();
+      this.loadFoundationsApproval();
+    },
     //Loads the foundation data
     loadFoundations() {
+      //Loads the main foundations database
       this.foundations = "";
       this.loading = true;
       return (
@@ -237,7 +251,7 @@ export default {
           .catch((err) => console.log(err))
       );
     },
-    //Loads the foundation data
+    //Loads the approval foundations database
     loadFoundationsApproval() {
       this.foundations = "";
       this.loading = true;
@@ -275,7 +289,9 @@ export default {
     editFoundation(id, selectedFoundation) {
       return API.editFoundation(id, selectedFoundation)
         .then(
-          (res) => (this.loadFoundations(), this.showModalWithResponse(res.data.message))
+          (res) => (
+            this.loadAllFoundations(), this.showModalWithResponse(res.data.message)
+          )
         )
         .catch((err) => (console.log(err), this.showModalWithResponse(err.message)));
     },
@@ -283,41 +299,69 @@ export default {
     newFoundation(foundation) {
       return API.newFoundation(foundation)
         .then(
-          (res) => (this.loadFoundations(), this.showModalWithResponse(res.data.message))
+          (res) => (
+            this.loadAllFoundations(), this.showModalWithResponse(res.data.message)
+          )
         )
         .catch((err) => (console.log(err), this.showModalWithResponse(err.message)));
     },
     //Send a request to the server to delete a selected foundation
-    deleteFoundation(foundationId) {
-      return API.deleteFoundation(foundationId)
+    deleteFoundation(foundationId, isFoundationsOrApprovalList) {
+      //Delete from the main foundations database
+      if (isFoundationsOrApprovalList) {
+        return API.deleteFoundation(foundationId)
+          .then(
+            (res) => (
+              this.loadAllFoundations(), this.showModalWithResponse(res.data.message)
+            )
+          )
+          .catch((err) => (console.log(err), this.showModalWithResponse(err.message)));
+      } else {
+        //Delete from the approval foundations database
+        return API.deleteFoundationApproval(foundationId)
+          .then(
+            (res) => (
+              this.loadAllFoundations(), this.showModalWithResponse(res.data.message)
+            )
+          )
+          .catch((err) => (console.log(err), this.showModalWithResponse(err.message)));
+      }
+    },
+
+    //Send a request to the server to edit a selected foundation to approve
+    editFoundationApproval(id, selectedFoundation) {
+      return API.editFoundationApproval(id, selectedFoundation)
         .then(
-          (res) => (this.loadFoundations(), this.showModalWithResponse(res.data.message))
+          (res) => (
+            this.loadAllFoundations(), this.showModalWithResponse(res.data.message)
+          )
         )
         .catch((err) => (console.log(err), this.showModalWithResponse(err.message)));
     },
+
     //Fills the form with the info of the selected foundation by using its ID
-    loadFormData(id) {
-      for (var x in this.foundations) {
-        if (this.foundations[x].id == id) {
-          this.selectedFoundation.id = this.foundations[x].id;
-          this.selectedFoundation.name = this.foundations[x].name;
-          this.selectedFoundation.id = this.foundations[x].id;
-          this.selectedFoundation.url = this.foundations[x].url;
-          this.selectedFoundation.rq1Inter = this.foundations[x].rq1Inter;
-          this.selectedFoundation.rq1Indep = this.foundations[x].rq1Indep;
-          this.selectedFoundation.rq1Open = this.foundations[x].rq1Open;
-          this.selectedFoundation.SD = this.foundations[x].SD;
+    loadFormData(id, foundationsList) {
+      for (var x in foundationsList) {
+        if (foundationsList[x].id == id) {
+          this.selectedFoundation.id = foundationsList[x].id;
+          this.selectedFoundation.name = foundationsList[x].name;
+          this.selectedFoundation.id = foundationsList[x].id;
+          this.selectedFoundation.url = foundationsList[x].url;
+          this.selectedFoundation.rq1Inter = foundationsList[x].rq1Inter;
+          this.selectedFoundation.rq1Indep = foundationsList[x].rq1Indep;
+          this.selectedFoundation.rq1Open = foundationsList[x].rq1Open;
+          this.selectedFoundation.SD = foundationsList[x].SD;
           if (this.selectedFoundation.SD == "Y") {
             this.topicSD = true;
           } else {
             this.topic = false;
           }
-          this.selectedFoundation.rq3rq4 = this.foundations[x].rq3rq4;
-          this.selectedFoundation.legal = this.foundations[x].legal;
+          this.selectedFoundation.rq3rq4 = foundationsList[x].rq3rq4;
+          this.selectedFoundation.legal = foundationsList[x].legal;
           //Loads the selected topics
           for (var i = 0; i < this.selectedFoundation.topics.length; i++) {
             if (
-              this.foundations[x].topics.includes(this.selectedFoundation.topics[i].name)
+              foundationsList[x].topics.includes(this.selectedFoundation.topics[i].name)
             ) {
               this.selectedFoundation.topics[i].checked = true;
             } else {

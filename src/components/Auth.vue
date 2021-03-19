@@ -12,7 +12,11 @@
     v-if="loggedIn"
   >
     <span class="align-middle">{{ user.displayName }}</span>
-    <img :src="user.photoURL" :alt="user.displayName + ' picture'" />
+    <img
+      v-bind:class="{ 'border-admin': isAdmin }"
+      :src="user.photoURL"
+      :alt="user.displayName + ' picture'"
+    />
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
       <button class="dropdown-item" @click="logout()">Log out</button>
       <button class="dropdown-item" @click="makeUserAdmin(user)">
@@ -39,6 +43,17 @@ export default {
         this.loggedIn = false;
         this.user = "";
       }
+      //Prints if user is admin
+      firebase
+        .auth()
+        .currentUser.getIdTokenResult()
+        .then((idTokenResult) => {
+          if (idTokenResult.claims.admin === true) {
+            this.isAdmin = true;
+          } else {
+            this.isAdmin = false;
+          }
+        });
     });
   },
   data() {
@@ -48,6 +63,7 @@ export default {
       credential: "",
       token: "",
       user: "Federica",
+      isAdmin: false,
       //Errors
       errorCode: "",
       errorMessage: "",
@@ -125,5 +141,8 @@ export default {
   max-width: 50px;
   border-radius: 50%;
   border: 0.5px solid #eeeeee;
+}
+.border-admin {
+  border: 1px solid #af56b3 !important;
 }
 </style>

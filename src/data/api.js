@@ -43,22 +43,47 @@ async function getFoundationsApproval() {
     });
     return await res.json();
 }
-//Adds a new foundation to approve
-async function newFoundationApproval(foundation) {
-    const res = await axios.put(url + '/foundationsToApprove/', foundation)
-    return res;
-}
 
 //Deletes the foundation that matches with the ID passed as a parameter
 async function deleteFoundation(foundationId) {
     const token = await getTokenIfLoggedIn();
-    console.log(token);
     const res = await axios.delete(url + `/foundations/${foundationId}`, {
         headers:
             { authorization: `Bearer ${token}` }
     })
     return res;
 }
+
+//NEW FOUNDATIONS TO APPROVE
+
+//Adds a new foundation to approve
+async function newFoundationApproval(foundation) {
+    const res = await axios.put(url + '/foundationsToApprove/', foundation)
+    return res;
+}
+
+//Edits the foundation data that matches with the ID passed as a parameter
+async function editFoundationApproval(foundationId, foundation) {
+    const token = await getTokenIfLoggedIn();
+    const res = await axios.post(url + `/foundationsToApprove/${foundationId}`, foundation, {
+        headers:
+            { authorization: `Bearer ${token}` }
+    });
+    return res;
+}
+
+//Deletes the foundation that matches with the ID passed as a parameter
+async function deleteFoundationApproval(foundationId) {
+    const token = await getTokenIfLoggedIn();
+    console.log(token);
+    const res = await axios.delete(url + `/foundationsToApprove/${foundationId}`, {
+        headers:
+            { authorization: `Bearer ${token}` }
+    })
+    return res;
+}
+
+//USERS
 
 //Returns if the user has logged in
 function isLoggedIn() {
@@ -82,4 +107,4 @@ async function makeUserAdmin(user) {
     }
 }
 //EXPORTS
-export default { getFoundations, editFoundation, newFoundation, deleteFoundation, newFoundationApproval, getFoundationsApproval, makeUserAdmin };
+export default { getFoundations, editFoundation, newFoundation, deleteFoundation, newFoundationApproval, getFoundationsApproval, editFoundationApproval, deleteFoundationApproval, makeUserAdmin };
