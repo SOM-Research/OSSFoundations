@@ -40,4 +40,8 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+.modal-body p {
+  color: #212529 !important;
+}
+</style>

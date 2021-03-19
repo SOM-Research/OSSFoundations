@@ -147,14 +147,11 @@ export default {
   components: { Search },
   name: "Home",
   data() {
-    return {
-    };
+    return {};
   },
 
-  methods: {
-  }
+  methods: {},
 };
-
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

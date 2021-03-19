@@ -1,68 +1,23 @@
 <template>
   <div class="app-container container-xl">
     <div>
-      <div class="d-flex justify-content-end">
-        <button
-          class="action-form btn btn-info"
-          v-on:click="
-            textModalForm = 'New foundation';
-            isNewFoundationForm = true;
-            emptyFormData();
-          "
-          data-toggle="modal"
-          data-target="#newEditFoundationForm"
-        >
-          New foundation
-        </button>
-      </div>
-
-      <h5>New foundations pending to approval</h5>
-      <table class="table table-hover table-fixed">
-        <thead class="">
-          <tr class="">
-            <th scope="col">ID</th>
-            <th scope="col" class="col-8">Foundation name</th>
-            <th scope="col" class="">Edit</th>
-            <th scope="col" class="">Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="foundation in foundationsApproval" v-bind:key="foundation.id">
-            <th scope="row">{{ foundation.id }}</th>
-            <td>{{ foundation.name }}</td>
-            <td>
-              <button
-                class="btn btn-primary"
-                @click="
-                  isNewFoundationForm = false;
-                  textModalForm = 'Edit ' + foundation.name;
-                  loadFormData(foundation.id);
-                "
-                data-toggle="modal"
-                data-target="#newEditFoundationForm"
-              >
-                Edit
-              </button>
-            </td>
-            <td>
-              <button
-                class="btn btn-danger"
-                data-toggle="modal"
-                data-target="#modalConfirmAction"
-                v-on:click="loadFormData(foundation.id)"
-              >
-                Delete
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <h5>Foundations in the database</h5>
+      <button
+        class="action-form btn btn-info float-right"
+        v-on:click="
+          textModalForm = 'New foundation';
+          isNewFoundationForm = true;
+          emptyFormData();
+        "
+        data-toggle="modal"
+        data-target="#newEditFoundationForm"
+      >
+        New foundation
+      </button>
       <table class="table table-hover">
         <thead class="">
           <tr>
             <th scope="col">ID</th>
-            <th scope="col" class="col-2">Foundation name</th>
+            <th scope="col">Foundation name</th>
             <th scope="col">Edit</th>
             <th scope="col">Delete</th>
           </tr>
@@ -118,10 +73,139 @@
             <h5 class="modal-title" id="exampleModalLongTitle">{{ textModalForm }}</h5>
           </div>
           <div class="modal-body">
-            <new-edit-foundation
-              :selectedFoundation="selectedFoundation"
-              @update-selected-foundation="updateSelectedFoundation"
-            />
+            <form v-on:change="topicsToString()">
+              <div class="form-group">
+                <label for="name">Name:</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  v-model="selectedFoundation.name"
+                />
+              </div>
+              <div class="form-group">
+                <label for="url">Website:</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  v-model="selectedFoundation.url"
+                />
+              </div>
+              <div class="form-group">
+                <label for="legal">Status Form:</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  :value="selectedFoundation.legal"
+                />
+              </div>
+              <hr class="mt-2 mb-3" />
+              <label for="topics" class="font-weight-bold">Dimension</label>
+              <div class="form-group">
+                <label for="rq1Inter">Does it have an international scope?</label>
+                <div class="form-group">
+                  <input
+                    class="btn-check"
+                    type="radio"
+                    name="rq1Inter"
+                    value="Y"
+                    v-model="selectedFoundation.rq1Inter"
+                    id="rq1InterY"
+                  />
+                  <label class="btn btn-secondary button-form" for="rq1InterY">Yes</label>
+                  <input
+                    class="btn-check"
+                    type="radio"
+                    name="rq1Inter"
+                    value="N"
+                    v-model="selectedFoundation.rq1Inter"
+                    id="rq1InterN"
+                  />
+                  <label class="btn btn-secondary button-form" for="rq1InterN">No</label>
+                </div>
+              </div>
+              <label for="rq1Indep">Is it independent?</label>
+              <div class="form-group">
+                <input
+                  class="btn-check"
+                  type="radio"
+                  name="rq1Indep"
+                  value="Y"
+                  v-model="selectedFoundation.rq1Indep"
+                  id="rq1IndepY"
+                />
+                <label class="btn btn-secondary button-form" for="rq1IndepY">Yes</label>
+                <input
+                  class="btn-check"
+                  type="radio"
+                  name="rq1Indep"
+                  value="N"
+                  v-model="selectedFoundation.rq1Indep"
+                  id="rq1IndepN"
+                />
+                <label class="btn btn-secondary button-form" for="rq1IndepN">No</label>
+              </div>
+              <label for="rq1Open">Is it transparent enough?</label>
+              <div class="form-group">
+                <input
+                  class="btn-check"
+                  type="radio"
+                  name="rq1Open"
+                  value="Y"
+                  v-model="selectedFoundation.rq1Open"
+                  id="rq1OpenY"
+                />
+                <label class="btn btn-secondary button-form" for="rq1OpenY">Yes</label>
+                <input
+                  class="btn-check"
+                  type="radio"
+                  name="rq1Open"
+                  value="N"
+                  v-model="selectedFoundation.rq1Open"
+                  id="rq1OpenN"
+                />
+                <label class="btn btn-secondary button-form" for="rq1OpenN">No</label>
+              </div>
+              <label for="SD">Does it directly support software products?</label>
+              <div class="form-group">
+                <input
+                  class="btn-check"
+                  type="radio"
+                  name="SD"
+                  value="Y"
+                  v-model="selectedFoundation.SD"
+                  @click="toggleSD(true)"
+                  id="SDY"
+                />
+                <label class="btn btn-secondary button-form" for="SDY">Yes</label>
+                <input
+                  class="btn-check"
+                  type="radio"
+                  name="SD"
+                  value="N"
+                  @click="toggleSD(false)"
+                  v-model="selectedFoundation.SD"
+                  id="SDN"
+                />
+                <label class="btn btn-secondary button-form" for="SDN">No</label>
+              </div>
+              <hr class="mt-2 mb-3" />
+              <label for="topics" class="font-weight-bold">Topics</label>
+              <div
+                v-for="topic in selectedFoundation.topics"
+                v-bind:key="topic.name"
+                class="form-check"
+              >
+                <input
+                  class="form-check-input"
+                  :name="topic.name"
+                  type="checkbox"
+                  v-model="topic.checked"
+                  @click="toggleSDinCheckform(topic.name)"
+                />
+                <label class="form-check-label" :for="topic.name">{{ topic.name }}</label
+                ><br />
+              </div>
+            </form>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">
@@ -160,16 +244,14 @@ import API from "@/data/api.js";
 import ModalConfirmAction from "../components/ModalConfirmAction.vue";
 import ModalResponse from "../components/ModalResponse.vue";
 import $ from "jquery";
-import NewEditFoundation from "../components/NewEditFoundation.vue";
 
 export default {
-  components: { ModalConfirmAction, ModalResponse, NewEditFoundation },
+  components: { ModalConfirmAction, ModalResponse },
   name: "Admin",
 
   data() {
     return {
-      foundations: "", //Current foundations in database
-      foundationsApproval: "", //Foundations pending to approval
+      foundations: "",
       allTopics: [],
       loading: true,
       textModalForm: "", //Displays "New" or "Edit" depending on the user actions
@@ -194,7 +276,6 @@ export default {
   props: {},
   created: function () {
     this.loadFoundations();
-    this.loadFoundationsApproval();
   },
   watch: {
     //Watches if the foundations data has been changed and updates the value
@@ -233,19 +314,6 @@ export default {
       return (
         API.getFoundations()
           .then((response) => ((this.foundations = response), (this.loading = false)))
-          //If error
-          .catch((err) => console.log(err))
-      );
-    },
-    //Loads the foundation data
-    loadFoundationsApproval() {
-      this.foundations = "";
-      this.loading = true;
-      return (
-        API.getFoundationsApproval()
-          .then(
-            (response) => ((this.foundationsApproval = response), (this.loading = false))
-          )
           //If error
           .catch((err) => console.log(err))
       );
@@ -334,7 +402,7 @@ export default {
       }
       this.mapFoundations();
     },
-    //Converts the checked topics to a string value when submit
+    //Convers the checked topics to a string value when submit
     topicsToString() {
       this.selectedFoundation.topicsString = "";
       for (var i = 0; i < this.selectedFoundation.topics.length; i++) {
@@ -362,10 +430,6 @@ export default {
     showModalWithResponse(res) {
       this.responseAction = res; //Save the response in the variable
       $("#modalResponse").modal("show"); //Triggers the modal "modalResponse"
-    },
-    //Passes the data from the new-edit-foundation component into the parent component
-    updateSelectedFoundation(f) {
-      this.selectedFoundation = f;
     },
   },
 };

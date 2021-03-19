@@ -155,7 +155,56 @@
         </div>
       </div>
     </form>
-    <div class="feedback">
+    <div class="info-card">
+      <div class="text-center font-weight-bold">Do you want to add a new foundation?</div>
+      <div class="text-center">
+        <button
+          class="action-form btn btn-info"
+          data-toggle="modal"
+          data-target="#newEditFoundationForm"
+          v-on:click="emptyFormData()"
+        >
+          New foundation
+        </button>
+      </div>
+      <div
+        class="modal fade"
+        id="newEditFoundationForm"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalLongTitle"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">New Foundation</h5>
+            </div>
+            <div class="modal-body">
+              <new-edit-foundation
+                :selectedFoundation="selectedFoundation"
+                @update-selected-foundation="updateSelectedFoundation"
+              />
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                Close
+              </button>
+              <button
+                @click="topicsToString(), newFoundationApproval(selectedFoundation)"
+                @submit.prevent
+                class="btn btn-success"
+                data-dismiss="modal"
+              >
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <modal-response :responseAction="responseAction" />
+    </div>
+    <div class="info-card">
       <div class="text-center font-weight-bold">Do you have any feedback?</div>
       <div class="text-center">
         Just visit our
@@ -172,8 +221,6 @@
 </template>
 
 <script>
-//JSON
-//import foundations from "@/data/data.json";
 import API from "@/data/api.js";
 
 //Import jQuery
@@ -185,9 +232,11 @@ import _ from "lodash";
 import FoundationsList from "./FoundationsList.vue";
 import Chart from "./Chart.vue";
 import Loading from "./Loading.vue";
+import NewEditFoundation from "./NewEditFoundation.vue";
+import ModalResponse from "./ModalResponse.vue";
 
 export default {
-  components: { Chart, FoundationsList, Loading },
+  components: { Chart, FoundationsList, Loading, NewEditFoundation, ModalResponse },
   name: "Search",
   data() {
     return {
@@ -205,6 +254,22 @@ export default {
       foundations: "",
       foundationsFiltered: "",
       loading: true, //Indicates if foundations data is fetched or still loading
+
+      //NEW FOUNDATION FORM
+      selectedFoundation: {
+        id: "",
+        name: "",
+        url: "",
+        rq1Inter: "",
+        rq1Indep: "",
+        rq1Open: "",
+        SD: "",
+        rq3rq4: "",
+        legal: "",
+        topics: [],
+        topicsString: "",
+      },
+      responseAction: "", //Shows the message of an error or success of an action
 
       //CHART DATA
       chartData: {
@@ -276,6 +341,12 @@ export default {
           });
         }
       });
+      //Loads the topics name in the selected foundations
+      this.selectedFoundation.topics = [];
+      for (var i = 0; i < self.topics.length; i++) {
+        var tempFoundation = { name: this.topics[i], selected: false };
+        this.selectedFoundation.topics.push(tempFoundation);
+      }
     },
 
     //Applies the filters
@@ -425,9 +496,51 @@ export default {
         });
       }
     },
+    //Converts the checked topics to a string value when submitting a new foundation
+    topicsToString() {
+      this.selectedFoundation.topicsString = "";
+      for (var i = 0; i < this.selectedFoundation.topics.length; i++) {
+        if (this.selectedFoundation.topics[i].checked) {
+          this.selectedFoundation.topicsString += this.selectedFoundation.topics[i].name;
+          this.selectedFoundation.topicsString += ",";
+        }
+      }
+      //Replace the last comma and if it has any white space after it
+      this.selectedFoundation.topicsString = this.selectedFoundation.topicsString.replace(
+        /,\s*$/,
+        ""
+      );
+    },
+    //Send a request to the server to create a new foundation (to approve)
+    newFoundationApproval(foundation) {
+      return API.newFoundationApproval(foundation)
+        .then((res) => this.showModalWithResponse(res.data.message))
+        .catch((err) => (console.log(err), this.showModalWithResponse(err.message)));
+    },
+    //Shows a modal with a message when user makes any change (success / error)
+    showModalWithResponse(res) {
+      this.responseAction = res; //Save the response in the variable
+      $("#modalResponse").modal("show"); //Triggers the modal "modalResponse"
+    },
+    //Passes the data from the new-edit-foundation component into the parent component
+    updateSelectedFoundation(f) {
+      this.selectedFoundation = f;
+    },
+
+    //Empties the data of the form
+    emptyFormData() {
+      for (var x in this.selectedFoundation) {
+        this.selectedFoundation[x] = "";
+      }
+      this.mapFoundations();
+    },
   },
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped></style>
+<style scoped>
+.modal-title {
+  color: #212529;
+}
+</style>

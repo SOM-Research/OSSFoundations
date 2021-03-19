@@ -36,6 +36,19 @@ async function newFoundation(foundation) {
     return res;
 }
 
+//Gets all the foundations data to approve in JSON
+async function getFoundationsApproval() {
+    const res = await fetch(url + '/foundationsToApprove/', {
+        method: 'GET',
+    });
+    return await res.json();
+}
+//Adds a new foundation to approve
+async function newFoundationApproval(foundation) {
+    const res = await axios.put(url + '/foundationsToApprove/', foundation)
+    return res;
+}
+
 //Deletes the foundation that matches with the ID passed as a parameter
 async function deleteFoundation(foundationId) {
     const token = await getTokenIfLoggedIn();
@@ -61,5 +74,12 @@ async function getTokenIfLoggedIn() {
     }
     return null;
 }
+//Makes an user "admin" passing its Firebase UID
+async function makeUserAdmin(user) {
+    if (isLoggedIn()) {
+        const res = await axios.post(url + '/makeUserAdmin/', user)
+        return res;
+    }
+}
 //EXPORTS
-export default { getFoundations, editFoundation, newFoundation, deleteFoundation };
+export default { getFoundations, editFoundation, newFoundation, deleteFoundation, newFoundationApproval, getFoundationsApproval, makeUserAdmin };

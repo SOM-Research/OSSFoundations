@@ -125,7 +125,7 @@
   text-decoration: none;  
 }
 
-.feedback {
+.info-card {
   background-color: #397C89;
   border-radius: 5px;
   padding: 15px;
@@ -134,7 +134,7 @@
 }
 
 
-.feedback a {
+.info-card a {
   color: white;
   font-weight: bold;
 }
