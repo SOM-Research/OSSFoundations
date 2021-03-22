@@ -123,12 +123,16 @@
 </template>
 
 <script>
+import topicsJson from "@/data/topics.json";
 export default {
   name: "NewEditFoundation",
-  created() {},
+  mounted() {
+    this.createTopicsInForm(); //Creates the topics in the form
+  },
   data() {
     return {
       selectedFoundationForm: this.selectedFoundation,
+
       topicSD: false, //Auxiliary variable to bind selectedFoundation.SD and selectedFoundation.topics.SD;
     };
   },
@@ -162,6 +166,13 @@ export default {
     toggleSDinCheckform(name) {
       if (name == "Software-Development") {
         this.toggleSD(!this.topicSD);
+      }
+    },
+    //Creates the topics in the form
+    createTopicsInForm() {
+      for (var i = 0; i < topicsJson.length; i++) {
+        var tempFoundation = { name: topicsJson[i].name, selected: false };
+        this.selectedFoundationForm.topics.push(tempFoundation);
       }
     },
   },

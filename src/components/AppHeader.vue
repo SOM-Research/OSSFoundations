@@ -1,6 +1,8 @@
 <template>
   <header class="row">
-    <h1 class="">Analysis of Foundations in Open Source Projects</h1>
+    <h1 class="">
+      <router-link to="/">Analysis of Foundations in Open Source Projects</router-link>
+    </h1>
     <div class="auth">
       <auth />
     </div>
@@ -42,5 +44,13 @@ h1 {
 
 .auth {
   text-align: right;
+}
+
+h1 a {
+  color: inherit;
+  text-decoration: none;
+}
+h1 a:hover {
+  filter: brightness(1.25);
 }
 </style>

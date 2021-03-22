@@ -158,13 +158,8 @@
     <div class="info-card">
       <div class="text-center font-weight-bold">Do you want to add a new foundation?</div>
       <div class="text-center">
-        <button
-          class="action-form btn btn-info"
-          data-toggle="modal"
-          data-target="#newEditFoundationForm"
-          v-on:click="emptyFormData()"
-        >
-          New foundation
+        <button class="action-form btn btn-info">
+          <router-link to="/add"> New foundation </router-link>
         </button>
       </div>
       <div
@@ -542,5 +537,8 @@ export default {
 <style scoped>
 .modal-title {
   color: #212529;
+}
+button a {
+  text-decoration: none;
 }
 </style>
