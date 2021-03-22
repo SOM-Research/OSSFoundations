@@ -9,14 +9,22 @@ const firebaseConfig = {
     appId: "1:1097494485325:web:2b2a3ee7517ff21f537f04"
   };
 
- const app = firebase.initializeApp(firebaseConfig);
- const db = app.database();
+firebase.initializeApp(firebaseConfig);
+ //const db = app.database();
  //Google auth
  var provider = new firebase.auth.GoogleAuthProvider();
- //provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
 
 
+//Gets the current user
+firebase.getCurrentUser = () => {
+  return new Promise((resolve, reject) => {
+    const unsubscribe = firebase.auth().onAuthStateChanged(user => {
+      unsubscribe();
+      resolve(user);
+    }, reject);
+  })
+};
  //Export
 
-export {db, provider};
+export {firebase, provider};
 
