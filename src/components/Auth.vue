@@ -39,21 +39,21 @@ export default {
         this.user = user;
         this.loggedIn = true;
         this.token = user.getIdToken();
+        //Prints if user is admin
+        firebase
+          .auth()
+          .currentUser.getIdTokenResult()
+          .then((idTokenResult) => {
+            if (idTokenResult.claims.admin === true) {
+              this.isAdmin = true;
+            } else {
+              this.isAdmin = false;
+            }
+          });
       } else {
         this.loggedIn = false;
         this.user = "";
       }
-      //Prints if user is admin
-      firebase
-        .auth()
-        .currentUser.getIdTokenResult()
-        .then((idTokenResult) => {
-          if (idTokenResult.claims.admin === true) {
-            this.isAdmin = true;
-          } else {
-            this.isAdmin = false;
-          }
-        });
     });
   },
   data() {
