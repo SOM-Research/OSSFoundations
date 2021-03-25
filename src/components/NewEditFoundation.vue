@@ -1,109 +1,150 @@
 <template>
   <form v-on:change="$emit('update-selected-foundation', selectedFoundationForm)">
-    <div class="form-group">
-      <label for="name">Name:</label>
-      <input class="form-control" type="text" v-model="selectedFoundationForm.name" />
+
+    <h2>Main information</h2>
+    <div class="mb-3 row">
+    <label for="name" class="col-sm-2 col-form-label">Name</label>
+    <div class="col-sm-10">
+      <input class="form-control" type="text" v-model="selectedFoundationForm.name" placeholder="Write here Foundation's name"/>
     </div>
-    <div class="form-group">
-      <label for="url">Website:</label>
-      <input class="form-control" type="text" v-model="selectedFoundationForm.url" />
     </div>
-    <div class="form-group">
-      <label for="legal">Status Form:</label>
-      <input class="form-control" type="text" :value="selectedFoundationForm.legal" />
-    </div>
-    <hr class="mt-2 mb-3" />
-    <label for="topics" class="font-weight-bold">Dimension</label>
-    <div class="form-group">
-      <label for="rq1Inter">Does it have an international scope?</label>
-      <div class="form-group">
-        <input
-          class="btn-check"
-          type="radio"
-          name="rq1Inter"
-          value="Y"
-          v-model="selectedFoundationForm.rq1Inter"
-          id="rq1InterY"
-        />
-        <label class="btn btn-secondary button-form" for="rq1InterY">Yes</label>
-        <input
-          class="btn-check"
-          type="radio"
-          name="rq1Inter"
-          value="N"
-          v-model="selectedFoundationForm.rq1Inter"
-          id="rq1InterN"
-        />
-        <label class="btn btn-secondary button-form" for="rq1InterN">No</label>
+    <div class="mb-3 row">
+      <label for="url" class="col-sm-2 col-form-label">Website</label>
+      <div class="col-sm-10">
+        <input class="form-control" type="text" v-model="selectedFoundationForm.url" placeholder="Write here the URL to the Foundation's website"/>
       </div>
     </div>
-    <label for="rq1Indep">Is it independent?</label>
-    <div class="form-group">
-      <input
-        class="btn-check"
-        type="radio"
-        name="rq1Indep"
-        value="Y"
-        v-model="selectedFoundationForm.rq1Indep"
-        id="rq1IndepY"
-      />
-      <label class="btn btn-secondary button-form" for="rq1IndepY">Yes</label>
-      <input
-        class="btn-check"
-        type="radio"
-        name="rq1Indep"
-        value="N"
-        v-model="selectedFoundationForm.rq1Indep"
-        id="rq1IndepN"
-      />
-      <label class="btn btn-secondary button-form" for="rq1IndepN">No</label>
+    <div class="mb-3 row">
+      <label for="legal" class="col-sm-2 col-form-label">Status Form</label>
+      <div class="col-sm-10">
+        <input class="form-control" type="text" :value="selectedFoundationForm.legal" placeholder="United States 501(c)(3), United States 501(c)(6)..."/>
+      </div>
     </div>
-    <label for="rq1Open">Is it transparent enough?</label>
-    <div class="form-group">
-      <input
-        class="btn-check"
-        type="radio"
-        name="rq1Open"
-        value="Y"
-        v-model="selectedFoundationForm.rq1Open"
-        id="rq1OpenY"
-      />
-      <label class="btn btn-secondary button-form" for="rq1OpenY">Yes</label>
-      <input
-        class="btn-check"
-        type="radio"
-        name="rq1Open"
-        value="N"
-        v-model="selectedFoundationForm.rq1Open"
-        id="rq1OpenN"
-      />
-      <label class="btn btn-secondary button-form" for="rq1OpenN">No</label>
+
+    <hr class="mt-2 mb-3" />
+
+    <h2>Dimensions</h2>
+    <div class="feature form-group">
+      <h4>International Scope</h4>
+      <div class="row">
+        <div class="col-sm-10">
+        This dimension studies the distribution of the foundations from a geographical point of view (i.e., whether the foundation has a international or local character). Is the foundation aimed at supporting projects world-wide?
+        </div>
+        <div class="col-sm-2">
+        <div class="form-group">
+          <input
+            class="btn-check"
+            type="radio"
+            name="rq1Inter"
+            value="Y"
+            v-model="selectedFoundationForm.rq1Inter"
+            id="rq1InterY"
+          />
+          <label class="btn btn-secondary button-form" for="rq1InterY">Yes</label>
+          <input
+            class="btn-check"
+            type="radio"
+            name="rq1Inter"
+            value="N"
+            v-model="selectedFoundationForm.rq1Inter"
+            id="rq1InterN"
+          />
+          <label class="btn btn-secondary button-form" for="rq1InterN">No</label>
+        </div>
+        </div>
+      </div>
     </div>
-    <label for="SD">Does it directly support software products?</label>
-    <div class="form-group">
-      <input
-        class="btn-check"
-        type="radio"
-        name="SD"
-        value="Y"
-        v-model="selectedFoundationForm.SD"
-        @click="toggleSD(true)"
-        id="SDY"
-      />
-      <label class="btn btn-secondary button-form" for="SDY">Yes</label>
-      <input
-        class="btn-check"
-        type="radio"
-        name="SD"
-        value="N"
-        @click="toggleSD(false)"
-        v-model="selectedFoundationForm.SD"
-        id="SDN"
-      />
-      <label class="btn btn-secondary button-form" for="SDN">No</label>
+    <div class="feature form-group">
+      <h4>Independence</h4>
+      <div class="row">
+        <div class="col-sm-10">
+        Foundations can either serve a specific project, a set of projects or provide an umbrella foundations that use it to simplify its own creation, management and legal processes. Does your foundation have free of action (i.e., it is independent)?
+        </div>
+        <div class="col-sm-2">
+          <input
+            class="btn-check"
+            type="radio"
+            name="rq1Indep"
+            value="Y"
+            v-model="selectedFoundationForm.rq1Indep"
+            id="rq1IndepY"
+          />
+          <label class="btn btn-secondary button-form" for="rq1IndepY">Yes</label>
+          <input
+            class="btn-check"
+            type="radio"
+            name="rq1Indep"
+            value="N"
+            v-model="selectedFoundationForm.rq1Indep"
+            id="rq1IndepN"
+          />
+          <label class="btn btn-secondary button-form" for="rq1IndepN">No</label>
+        </div>
+        </div>
+    </div>
+    <div class="feature form-group">
+      <h4>Transparency</h4>
+      <div class="row">
+        <div class="col-sm-10">
+        Foundations may aim to help the project on several aspects, like nurturing the community or facilitating the creation of new related projects. Are these goals clearly stated as part of the foundations' mission or website? 
+        </div>
+        <div class="col-sm-2">
+          <input
+            class="btn-check"
+            type="radio"
+            name="rq1Open"
+            value="Y"
+            v-model="selectedFoundationForm.rq1Open"
+            id="rq1OpenY"
+          />
+          <label class="btn btn-secondary button-form" for="rq1OpenY">Yes</label>
+          <input
+            class="btn-check"
+            type="radio"
+            name="rq1Open"
+            value="N"
+            v-model="selectedFoundationForm.rq1Open"
+            id="rq1OpenN"
+          />
+          <label class="btn btn-secondary button-form" for="rq1OpenN">No</label>
+          
+        </div>
+        </div>
+    </div>
+    <div class="feature form-group">
+      <h4>Software Development Aim</h4>
+      <div class="row">
+        <div class="col-sm-10">
+        Foundations may have as main goal to support the development of software projects. Other goals could include: training, certification or evangelization of open source in general. Does your foundation support the development of projects?
+        </div>
+        <div class="col-sm-2">
+          <input
+            class="btn-check"
+            type="radio"
+            name="SD"
+            value="Y"
+            v-model="selectedFoundationForm.SD"
+            @click="toggleSD(true)"
+            id="SDY"
+          />
+          <label class="btn btn-secondary button-form" for="SDY">Yes</label>
+          <input
+            class="btn-check"
+            type="radio"
+            name="SD"
+            value="N"
+            @click="toggleSD(false)"
+            v-model="selectedFoundationForm.SD"
+            id="SDN"
+          />
+          <label class="btn btn-secondary button-form" for="SDN">No</label>
+        </div>
+        </div>
     </div>
     <hr class="mt-2 mb-3" />
-    <label for="topics" class="font-weight-bold">Topics</label>
+    
+    <h2>Topics</h2>
+
     <div
       v-for="topic in selectedFoundationForm.topics"
       v-bind:key="topic.name"
@@ -119,6 +160,23 @@
       <label class="form-check-label" :for="topic.name">{{ topic.name }}</label
       ><br />
     </div>
+    
+    <hr class="mt-2 mb-3" />
+    <h2>Contact</h2>
+    <p>If possible, we would like to have your contact details just in case we need to review some information.</p>
+    <div class="mb-3 row">
+    <label for="contactName" class="col-sm-2 col-form-label">Name</label>
+    <div class="col-sm-10">
+      <input class="form-control" type="text" placeholder="Your name"/>
+    </div>
+    </div>
+    <div class="mb-3 row">
+      <label for="contactEmail" class="col-sm-2 col-form-label">Email</label>
+      <div class="col-sm-10">
+        <input class="form-control" type="email" placeholder="Your email"/>
+      </div>
+    </div>
+
   </form>
 </template>
 
@@ -208,4 +266,14 @@ label {
   background-color: #5a97a2;
   border-color: #3a656d;
 }
+.feature {
+  background-color: #5A97A2 !important;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.feature h4 {
+  font-weight: bold; 
+}
+
 </style>
