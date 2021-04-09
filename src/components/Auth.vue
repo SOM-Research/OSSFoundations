@@ -19,9 +19,6 @@
     />
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
       <button class="dropdown-item" @click="logout()">Log out</button>
-      <button class="dropdown-item" @click="makeUserAdmin(user)">
-        Make this user admin
-      </button>
     </div>
   </div>
 </template>
@@ -62,7 +59,7 @@ export default {
       //Google
       credential: "",
       token: "",
-      user: "Federica",
+      user: "",
       isAdmin: false,
       //Errors
       errorCode: "",
@@ -117,6 +114,11 @@ export default {
       return API.makeUserAdmin(userId)
         .then((res) => console.log(res))
         .catch((err) => console.log(err));
+
+      /*Button to make admin:
+      <button class="dropdown-item" @click="makeUserAdmin(user)">
+        Make this user admin
+      </button> */
     },
   },
 };

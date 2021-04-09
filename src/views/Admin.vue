@@ -196,12 +196,15 @@ export default {
         legal: "",
         topics: [],
         topicsString: "",
+        authorName: "",
+        authorMail: "",
+        status: "final",
       },
       responseAction: "", //Shows the message of an error or success of an action
     };
   },
   props: {},
-  created: function () {
+  mounted: function () {
     this.loadAllFoundations();
   },
   watch: {
@@ -237,13 +240,14 @@ export default {
     //Loads all the foundations
     loadAllFoundations() {
       this.loadFoundations();
-      this.loadFoundationsApproval();
+      //this.loadFoundationsApproval();
     },
     //Loads the foundation data
     loadFoundations() {
       //Loads the main foundations database
       this.foundations = "";
       this.loading = true;
+      console.log("loading1");
       return (
         API.getFoundations()
           .then((response) => ((this.foundations = response), (this.loading = false)))
@@ -254,12 +258,10 @@ export default {
     //Loads the approval foundations database
     loadFoundationsApproval() {
       this.foundations = "";
-      this.loading = true;
+      // this.loading = true;
       return (
         API.getFoundationsApproval()
-          .then(
-            (response) => ((this.foundationsApproval = response), (this.loading = false))
-          )
+          .then((response) => (this.foundationsApproval = response))
           //If error
           .catch((err) => console.log(err))
       );
@@ -267,7 +269,7 @@ export default {
     //Maps the JSON of the foundations data to get the listed topics
     mapFoundations: function () {
       var self = this;
-      self.foundations.map(function (foundation) {
+      this.foundations.map(function (foundation) {
         var foundationTopics = foundation.topics;
         if (foundationTopics != "") {
           var topicArray = foundationTopics.split(",");
@@ -375,6 +377,7 @@ export default {
     emptyFormData() {
       for (var x in this.selectedFoundation) {
         this.selectedFoundation[x] = "";
+        this.selectedFoundation.status = "final";
       }
       this.mapFoundations();
     },

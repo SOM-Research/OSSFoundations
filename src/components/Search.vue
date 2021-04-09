@@ -213,6 +213,7 @@
   <teleport to="#chart">
     <chart :chartData="chartData" />
   </teleport>
+  {{ foundations }}
 </template>
 
 <script>
@@ -263,6 +264,9 @@ export default {
         legal: "",
         topics: [],
         topicsString: "",
+        authorName: "",
+        authorMail: "",
+        status: "pending",
       },
       responseAction: "", //Shows the message of an error or success of an action
 
@@ -312,6 +316,7 @@ export default {
         API.getFoundations()
           .then(
             (response) => (
+              console.log(response),
               (this.foundations = response),
               (this.foundationsFiltered = response),
               (this.loading = false)

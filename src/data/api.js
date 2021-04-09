@@ -3,7 +3,7 @@ import firebase from 'firebase';
 //DEV
 var url = "http://localhost:5000"
 //var url = "https://oss-foundations-api.herokuapp.com"
-
+//var firebasedatabase = "https://oss-foundations-default-rtdb.europe-west1.firebasedatabase.app"
 //AUTH
 
 

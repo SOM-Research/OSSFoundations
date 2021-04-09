@@ -1,6 +1,7 @@
 <template>
   <div class="container">
-    <h5>Add a new foundation</h5>
+    <h1>Add a new foundation</h1>
+    <hr class="mt-2 mb-3" />
     <new-edit-foundation
       :selectedFoundation="selectedFoundation"
       @update-selected-foundation="updateSelectedFoundation"
@@ -43,4 +44,8 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+h1 {
+  color: #5a97a2;
+}
+</style>

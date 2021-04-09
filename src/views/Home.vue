@@ -4,7 +4,6 @@
     <div id="chart"></div>
   </div>
   <!-- container  first-half -->
-
   <div class="middle">
     <div class="container">
       <a
