@@ -99,6 +99,7 @@ export default {
       foundations: this.foundationsProp,
     };
   },
+  mounted() {},
 
   watch: {
     //Watches if the foundations data has been changed and updates the value
@@ -106,6 +107,7 @@ export default {
       deep: true,
       handler(value) {
         this.foundations = value;
+        this.sortBy(this.columns);
       },
     },
   },

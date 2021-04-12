@@ -20,8 +20,19 @@
       <table class="table table-hover table-fixed">
         <thead class="">
           <tr class="">
-            <th scope="col">ID</th>
-            <th scope="col" class="col-8">Foundation name</th>
+            <th
+              v-for="(column, index) in columns"
+              v-bind:key="column"
+              :class="{ 'col-8': index === 1 }"
+            >
+              <div
+                href="#"
+                v-on:click="sortPendingFoundations(column)"
+                v-bind:class="{ active: sortKey == column }"
+              >
+                {{ column[0].toUpperCase() + column.slice(1) }}
+              </div>
+            </th>
             <th scope="col" class="">Edit</th>
             <th scope="col" class="">Approve</th>
             <th scope="col" class="">Delete</th>
@@ -71,8 +82,20 @@
       <table class="table table-hover">
         <thead class="">
           <tr>
-            <th scope="col">ID</th>
-            <th scope="col" class="col-2">Foundation name</th>
+            <th
+              v-for="(column, index) in columns"
+              v-bind:key="column"
+              :class="{ 'col-8': index === 1 }"
+            >
+              <div
+                href="#"
+                v-on:click="sortFoundations(column)"
+                v-bind:class="{ active: sortKey == column }"
+              >
+                {{ column[0].toUpperCase() + column.slice(1) }}
+              </div>
+            </th>
+
             <th scope="col">Edit</th>
             <th scope="col">Delete</th>
           </tr>
@@ -170,6 +193,7 @@ import API from "@/data/api.js";
 import ModalConfirmAction from "../components/ModalConfirmAction.vue";
 import ModalResponse from "../components/ModalResponse.vue";
 import $ from "jquery";
+import _ from "lodash";
 import NewEditFoundation from "../components/NewEditFoundation.vue";
 
 export default {
@@ -203,6 +227,10 @@ export default {
         status: "final",
       },
       responseAction: "", //Shows the message of an error or success of an action
+      ///ORDERING
+      columns: ["id", "name"], // Columns of the table
+      sortKey: "", // Order
+      reverse: false, // If we have to reverse the order
     };
   },
   props: {},
@@ -217,6 +245,7 @@ export default {
         if (this.loading == false) {
           this.mapFoundations();
         }
+        this.sortFoundations("name");
       },
     },
     topicSD: {
@@ -322,17 +351,6 @@ export default {
         .catch((err) => (console.log(err), this.showModalWithResponse(err.message)));
     },
 
-    //Send a request to the server to edit a selected foundation to approve
-    editFoundationPending(id, selectedFoundation) {
-      return API.editFoundationPending(id, selectedFoundation)
-        .then(
-          (res) => (
-            this.loadAllFoundations(), this.showModalWithResponse(res.data.message)
-          )
-        )
-        .catch((err) => (console.log(err), this.showModalWithResponse(err.message)));
-    },
-
     //Fills the form with the info of the selected foundation by using its ID
     loadFormData(id, foundationsList) {
       for (var x in foundationsList) {
@@ -406,7 +424,29 @@ export default {
     updateSelectedFoundation(f) {
       this.selectedFoundation = f;
     },
+
+    //Sorts the foundations table alphabetically
+    sortFoundations: function (sortKey) {
+      this.reverse = this.sortKey == sortKey ? !this.reverse : false;
+      this.sortKey = sortKey;
+      this.foundations = _.orderBy(
+        this.foundations,
+        this.sortKey,
+        this.reverse ? "desc" : "asc"
+      );
+    },
+    //Sorts the foundations (pending) table alphabetically
+    sortPendingFoundations: function (sortKey) {
+      this.reverse = this.sortKey == sortKey ? !this.reverse : false;
+      this.sortKey = sortKey;
+      this.foundationsPending = _.orderBy(
+        this.foundationsPending,
+        this.sortKey,
+        this.reverse ? "desc" : "asc"
+      );
+    },
   },
+  computed: {},
 };
 </script>
 
