@@ -60,7 +60,15 @@
               <button
                 class="btn btn-success"
                 data-toggle="modal"
-                data-target="#modalConfirmAction"
+                data-target="#modalConfirmActionApprove"
+                @click="
+                  isNewFoundationForm = false;
+                  textModalForm =
+                    'Are you sure you want to approve the foundation' +
+                    foundation.name +
+                    ' ?';
+                  loadFormData(foundation.id, foundationsPending);
+                "
               >
                 Approve
               </button>
@@ -69,7 +77,7 @@
               <button
                 class="btn btn-danger"
                 data-toggle="modal"
-                data-target="#modalConfirmAction"
+                data-target="#modalConfirmActionDelete"
                 v-on:click="loadFormData(foundation.id, foundationsPending)"
               >
                 Delete
@@ -122,7 +130,7 @@
               <button
                 class="btn btn-danger"
                 data-toggle="modal"
-                data-target="#modalConfirmAction"
+                data-target="#modalConfirmActionDelete"
                 v-on:click="loadFormData(foundation.id, foundations)"
               >
                 Delete
@@ -134,7 +142,15 @@
     </div>
     <modal-confirm-action
       :foundation="selectedFoundation"
+      :id="'modalConfirmActionDelete'"
+      :textToShow="'Are you sure you want to delete this foundation?'"
       @confirmed-action="deleteFoundation(selectedFoundation.id)"
+    />
+    <modal-confirm-action
+      :foundation="selectedFoundation"
+      :id="'modalConfirmActionApprove'"
+      :textToShow="'Are you sure you want to approve this foundation?'"
+      @confirmed-action="approveFoundation(selectedFoundation.id, selectedFoundation)"
     />
     <modal-response :responseAction="responseAction" />
     <div
@@ -224,7 +240,7 @@ export default {
         topicsString: "",
         authorName: "",
         authorMail: "",
-        status: "final",
+        status: "",
       },
       responseAction: "", //Shows the message of an error or success of an action
       ///ORDERING
@@ -327,6 +343,11 @@ export default {
           )
         )
         .catch((err) => (console.log(err), this.showModalWithResponse(err.message)));
+    },
+    //Approve a foundation by changing its status to "final"
+    approveFoundation(id, selectedFoundation) {
+      selectedFoundation.status = "final";
+      this.editFoundation(id, selectedFoundation);
     },
     //Send a request to the server to create a new foundation
     newFoundation(foundation) {

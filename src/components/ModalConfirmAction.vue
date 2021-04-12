@@ -1,7 +1,7 @@
 <template>
   <div
     class="modal fade"
-    id="modalConfirmAction"
+    :id="id"
     tabindex="-1"
     role="dialog"
     aria-labelledby="exampleModalLabel"
@@ -10,13 +10,13 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Confirm delete</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Confirm</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body text-center">
-          <p>Are you sure do you want to delete this foundation?</p>
+          <p>{{ textToShow }}</p>
           <p class="font-weight-bold">{{ foundation.name }}</p>
         </div>
         <div class="modal-footer">
@@ -44,7 +44,7 @@ export default {
       confirmDeleteAction: false,
     };
   },
-  props: ["foundation"],
+  props: ["foundation", "textToShow", "id"],
   methods: {},
 };
 </script>
