@@ -37,8 +37,8 @@ async function newFoundation(foundation) {
 }
 
 //Gets all the foundations data to approve in JSON
-async function getFoundationsApproval() {
-    const res = await fetch(url + '/foundationsToApprove/', {
+async function getFoundationsPending() {
+    const res = await fetch(url + '/foundations/pending/', {
         method: 'GET',
     });
     return await res.json();
@@ -56,32 +56,32 @@ async function deleteFoundation(foundationId) {
 
 //NEW FOUNDATIONS TO APPROVE
 
-//Adds a new foundation to approve
-async function newFoundationApproval(foundation) {
-    const res = await axios.put(url + '/foundationsToApprove/', foundation)
-    return res;
-}
+// //Adds a new foundation to approve
+// async function newFoundationPending(foundation) {
+//     const res = await axios.put(url + '/foundationsToApprove/', foundation)
+//     return res;
+// }
 
-//Edits the foundation data that matches with the ID passed as a parameter
-async function editFoundationApproval(foundationId, foundation) {
-    const token = await getTokenIfLoggedIn();
-    const res = await axios.post(url + `/foundationsToApprove/${foundationId}`, foundation, {
-        headers:
-            { authorization: `Bearer ${token}` }
-    });
-    return res;
-}
+// //Edits the foundation data that matches with the ID passed as a parameter
+// async function editFoundationPending(foundationId, foundation) {
+//     const token = await getTokenIfLoggedIn();
+//     const res = await axios.post(url + `/foundationsToApprove/${foundationId}`, foundation, {
+//         headers:
+//             { authorization: `Bearer ${token}` }
+//     });
+//     return res;
+// }
 
-//Deletes the foundation that matches with the ID passed as a parameter
-async function deleteFoundationApproval(foundationId) {
-    const token = await getTokenIfLoggedIn();
-    console.log(token);
-    const res = await axios.delete(url + `/foundationsToApprove/${foundationId}`, {
-        headers:
-            { authorization: `Bearer ${token}` }
-    })
-    return res;
-}
+// //Deletes the foundation that matches with the ID passed as a parameter
+// async function deleteFoundationPending(foundationId) {
+//     const token = await getTokenIfLoggedIn();
+//     console.log(token);
+//     const res = await axios.delete(url + `/foundationsToApprove/${foundationId}`, {
+//         headers:
+//             { authorization: `Bearer ${token}` }
+//     })
+//     return res;
+// }
 
 //USERS
 
@@ -107,4 +107,4 @@ async function makeUserAdmin(user) {
     }
 }
 //EXPORTS
-export default { getFoundations, editFoundation, newFoundation, deleteFoundation, newFoundationApproval, getFoundationsApproval, editFoundationApproval, deleteFoundationApproval, makeUserAdmin };
+export default { getFoundations, editFoundation, newFoundation, deleteFoundation, getFoundationsPending, makeUserAdmin };

@@ -23,11 +23,12 @@
             <th scope="col">ID</th>
             <th scope="col" class="col-8">Foundation name</th>
             <th scope="col" class="">Edit</th>
+            <th scope="col" class="">Approve</th>
             <th scope="col" class="">Delete</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="foundation in foundationsApproval" v-bind:key="foundation.id">
+          <tr v-for="foundation in foundationsPending" v-bind:key="foundation.id">
             <th scope="row">{{ foundation.id }}</th>
             <td>{{ foundation.name }}</td>
             <td>
@@ -36,7 +37,7 @@
                 @click="
                   isNewFoundationForm = false;
                   textModalForm = 'Edit ' + foundation.name;
-                  loadFormData(foundation.id, foundationsApproval);
+                  loadFormData(foundation.id, foundationsPending);
                 "
                 data-toggle="modal"
                 data-target="#newEditFoundationForm"
@@ -46,13 +47,19 @@
             </td>
             <td>
               <button
+                class="btn btn-success"
+                data-toggle="modal"
+                data-target="#modalConfirmAction"
+              >
+                Approve
+              </button>
+            </td>
+            <td>
+              <button
                 class="btn btn-danger"
                 data-toggle="modal"
                 data-target="#modalConfirmAction"
-                v-on:click="
-                  loadFormData(foundation.id, foundationsApproval),
-                    (isFoundationsOrApprovalList = false)
-                "
+                v-on:click="loadFormData(foundation.id, foundationsPending)"
               >
                 Delete
               </button>
@@ -93,10 +100,7 @@
                 class="btn btn-danger"
                 data-toggle="modal"
                 data-target="#modalConfirmAction"
-                v-on:click="
-                  loadFormData(foundation.id, foundations),
-                    (isFoundationsOrApprovalList = true)
-                "
+                v-on:click="loadFormData(foundation.id, foundations)"
               >
                 Delete
               </button>
@@ -107,9 +111,7 @@
     </div>
     <modal-confirm-action
       :foundation="selectedFoundation"
-      @confirmed-action="
-        deleteFoundation(selectedFoundation.id, isFoundationsOrApprovalList)
-      "
+      @confirmed-action="deleteFoundation(selectedFoundation.id)"
     />
     <modal-response :responseAction="responseAction" />
     <div
@@ -177,8 +179,8 @@ export default {
   data() {
     return {
       foundations: "", //Current foundations in database
-      foundationsApproval: "", //Foundations pending to approval
-      isFoundationsOrApprovalList: true, //True if the main foundations database, False if the foundations approval list
+      foundationsPending: "", //Foundations pending to Pending
+      isFoundationsOrPendingList: true, //True if the main foundations database, False if the foundations Pending list
       allTopics: [],
       loading: true,
       textModalForm: "", //Displays "New" or "Edit" depending on the user actions
@@ -240,7 +242,7 @@ export default {
     //Loads all the foundations
     loadAllFoundations() {
       this.loadFoundations();
-      //this.loadFoundationsApproval();
+      this.loadFoundationsPending();
     },
     //Loads the foundation data
     loadFoundations() {
@@ -255,13 +257,13 @@ export default {
           .catch((err) => console.log(err))
       );
     },
-    //Loads the approval foundations database
-    loadFoundationsApproval() {
-      this.foundations = "";
+    //Loads the Pending foundations database
+    loadFoundationsPending() {
+      this.foundationsPending = "";
       // this.loading = true;
       return (
-        API.getFoundationsApproval()
-          .then((response) => (this.foundationsApproval = response))
+        API.getFoundationsPending()
+          .then((response) => (this.foundationsPending = response))
           //If error
           .catch((err) => console.log(err))
       );
@@ -308,31 +310,21 @@ export default {
         .catch((err) => (console.log(err), this.showModalWithResponse(err.message)));
     },
     //Send a request to the server to delete a selected foundation
-    deleteFoundation(foundationId, isFoundationsOrApprovalList) {
+    deleteFoundation(foundationId) {
       //Delete from the main foundations database
-      if (isFoundationsOrApprovalList) {
-        return API.deleteFoundation(foundationId)
-          .then(
-            (res) => (
-              this.loadAllFoundations(), this.showModalWithResponse(res.data.message)
-            )
+
+      return API.deleteFoundation(foundationId)
+        .then(
+          (res) => (
+            this.loadAllFoundations(), this.showModalWithResponse(res.data.message)
           )
-          .catch((err) => (console.log(err), this.showModalWithResponse(err.message)));
-      } else {
-        //Delete from the approval foundations database
-        return API.deleteFoundationApproval(foundationId)
-          .then(
-            (res) => (
-              this.loadAllFoundations(), this.showModalWithResponse(res.data.message)
-            )
-          )
-          .catch((err) => (console.log(err), this.showModalWithResponse(err.message)));
-      }
+        )
+        .catch((err) => (console.log(err), this.showModalWithResponse(err.message)));
     },
 
     //Send a request to the server to edit a selected foundation to approve
-    editFoundationApproval(id, selectedFoundation) {
-      return API.editFoundationApproval(id, selectedFoundation)
+    editFoundationPending(id, selectedFoundation) {
+      return API.editFoundationPending(id, selectedFoundation)
         .then(
           (res) => (
             this.loadAllFoundations(), this.showModalWithResponse(res.data.message)
