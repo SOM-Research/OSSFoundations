@@ -5,9 +5,12 @@ import router from './router'
 import './firebase'; 
 //Font Awesome
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faGoogle  } from '@fortawesome/free-brands-svg-icons'
+import { faGoogle } from '@fortawesome/free-brands-svg-icons'
+import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-library.add(faGoogle)
+library.add(faGoogle);
+library.add(faGithub);
+
 
  //Apex Charts
  import VueApexCharts from "vue3-apexcharts"

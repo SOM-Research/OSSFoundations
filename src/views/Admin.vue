@@ -33,9 +33,10 @@
                 {{ column[0].toUpperCase() + column.slice(1) }}
               </div>
             </th>
-            <th scope="col" class="">Edit</th>
-            <th scope="col" class="">Approve</th>
-            <th scope="col" class="">Delete</th>
+            <th scope="col" class=""></th>
+            <th scope="col" class=""></th>
+            <th scope="col" class=""></th>
+            <th scope="col" class=""></th>
           </tr>
         </thead>
         <tbody>
@@ -74,6 +75,12 @@
               </button>
             </td>
             <td>
+              <button class="btn btn-dark" @click="createIssue()">
+                Issue
+                <font-awesome-icon :icon="['fab', 'github']" class="d-inline ml-1" />
+              </button>
+            </td>
+            <td>
               <button
                 class="btn btn-danger"
                 data-toggle="modal"
@@ -104,8 +111,8 @@
               </div>
             </th>
 
-            <th scope="col">Edit</th>
-            <th scope="col">Delete</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
@@ -344,6 +351,12 @@ export default {
         )
         .catch((err) => (console.log(err), this.showModalWithResponse(err.message)));
     },
+    //Send a request to the server to make an issue in the Github repo
+    createIssue() {
+      return API.createIssue()
+        .then((res) => this.showModalWithResponse(res.data.message))
+        .catch((err) => (console.log(err), this.showModalWithResponse(err.message)));
+    },
     //Approve a foundation by changing its status to "final"
     approveFoundation(id, selectedFoundation) {
       selectedFoundation.status = "final";
@@ -492,6 +505,13 @@ tbody tr:hover {
   clip: rect(0, 0, 0, 0);
   pointer-events: none;
 }
+
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .button-form {
   margin-right: 10px;
 }

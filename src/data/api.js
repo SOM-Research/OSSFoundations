@@ -63,7 +63,7 @@ function isLoggedIn() {
     }
     return false;
 }
-//Returns token if the user has logged in
+//Returns Google token if the user has logged in
 async function getTokenIfLoggedIn() {
     if (isLoggedIn()) {
         return firebase.auth().currentUser.getIdToken();
@@ -77,5 +77,12 @@ async function makeUserAdmin(user) {
         return res;
     }
 }
+
+//Creates an issue in the Github repo
+async function createIssue() {
+    const res = await axios.post(url + '/createIssue/');
+    return res;
+}
+
 //EXPORTS
-export default { getFoundations, editFoundation, newFoundation, deleteFoundation, getFoundationsPending, makeUserAdmin };
+export default { getFoundations, editFoundation, newFoundation, deleteFoundation, getFoundationsPending, makeUserAdmin, createIssue };
