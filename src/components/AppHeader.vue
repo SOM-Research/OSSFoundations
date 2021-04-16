@@ -39,7 +39,7 @@ header {
 h1 {
   color: #397c89;
   font-size: 2em;
-  font-family: "Merriweather Sans", Courier, monospace;
+  font-family: "Open Sans", sans-serif;
 }
 
 .auth {

@@ -6,20 +6,32 @@
       :selectedFoundation="selectedFoundation"
       @update-selected-foundation="updateSelectedFoundation"
     />
+    <button
+      v-if="!isNewFoundationForm"
+      @click="topicsToString(), newFoundation(selectedFoundation)"
+      @submit.prevent
+      class="btn btn-success float-right"
+      data-dismiss="modal"
+    >
+      Submit
+    </button>
   </div>
+  <modal-response :responseAction="responseAction" />
 </template>
 
 <script>
 import NewEditFoundation from "@/components/NewEditFoundation.vue";
+import ModalResponse from "../components/ModalResponse.vue";
+import API from "@/data/api.js";
+import $ from "jquery";
 
 export default {
-  components: { NewEditFoundation },
+  components: { NewEditFoundation, ModalResponse },
   name: "AddFoundation",
   created() {},
   data() {
     return {
       selectedFoundation: {
-        //The fields of data to send to the form component
         id: "",
         name: "",
         url: "",
@@ -31,7 +43,11 @@ export default {
         legal: "",
         topics: [],
         topicsString: "",
+        authorName: "",
+        authorMail: "",
+        status: "pending", //In this form, the status always will be "pending"
       },
+      responseAction: "", //Shows the message of an error or success of an action
     };
   },
   props: {},
@@ -40,6 +56,32 @@ export default {
     updateSelectedFoundation(f) {
       this.selectedFoundation = f;
     },
+    //Converts the checked topics to a string value when submit
+    topicsToString() {
+      this.selectedFoundation.topicsString = "";
+      for (var i = 0; i < this.selectedFoundation.topics.length; i++) {
+        if (this.selectedFoundation.topics[i].checked) {
+          this.selectedFoundation.topicsString += this.selectedFoundation.topics[i].name;
+          this.selectedFoundation.topicsString += ",";
+        }
+      }
+      //Replace the last comma and if it has any white space after it
+      this.selectedFoundation.topicsString = this.selectedFoundation.topicsString.replace(
+        /,\s*$/,
+        ""
+      );
+    },
+    //Send a request to the server to create a new foundation
+    newFoundation(foundation) {
+      return API.newFoundation(foundation)
+        .then((res) => this.showModalWithResponse(res.data.message))
+        .catch((err) => (console.log(err), this.showModalWithResponse(err.message)));
+    },
+    //Shows a modal with a message when user makes any change (success / error)
+    showModalWithResponse(res) {
+      this.responseAction = res; //Save the response in the variable
+      $("#modalResponse").modal("show"); //Triggers the modal "modalResponse"
+    },
   },
 };
 </script>
@@ -47,5 +89,8 @@ export default {
 <style scoped>
 h1 {
   color: #5a97a2;
+}
+.btn-success {
+  margin-bottom: 30px;
 }
 </style>
