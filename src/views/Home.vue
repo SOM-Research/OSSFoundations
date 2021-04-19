@@ -2,25 +2,23 @@
   <div class="container half first-half">
     <!-- Chart container-->
     <div class="intro-web">
-      <div class="title-web col-12 col-md-10 col-lg-8 col-xl-6">
-        <h1>Analysis of Foundations in Open Source Projects</h1>
+      <div class="title-web col-12 col-md-12 col-lg-12 col-xl-12">
+        <h1>Analysis of Open Source Foundations</h1>
+      </div>
+      <div class="col-12 col-md-10 col-lg-8 col-xl-6">
         <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nemo consequatur a ab
-          tempora veniam ipsum sed facilis doloribus harum cumque provident rerum
-          accusantium ratione, inventore natus! Optio a beatae dolorum! Lorem ipsum dolor,
-          sit amet consectetur adipisicing elit. Sed, unde voluptates distinctio assumenda
-          ratione iste aspernatur, vel perspiciatis blanditiis placeat eveniet, soluta
-          omnis pariatur quae voluptatum nemo aliquid ducimus ipsam?
+          Welcome! This website collects a list of existing Software Foundations. 
         </p>
-        <a class="btn btn-dark" href="#chart">Start searching</a>
-        <hr class="solid" />
         <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quibusdam, molestias
-          provident sequi dolor corrupti cupiditate similique ab blanditiis ullam
-          adipisci, alias deleniti exercitationem tenetur earum repudiandae quo
-          reprehenderit molestiae dignissimos!
+          You will find a thorough analysis of the role of Foundations in Open Source projects. 
+          We currently have analyzed more than 100 Software Foundations but our list is always growing. 
+          Feel free to contribute those foundations that we may have missed. 
         </p>
-        <a class="btn btn-dark" href="#search-form">Our API</a>
+        <p>
+          You can search directly on our Foundation browser of access the data bia an OpenAPI-compatible API. 
+        </p>
+        <a class="btn btn-dark m-1" href="#chart">Start searching</a>
+        <a class="btn btn-dark m-1" href="#search-form">Our API</a>
       </div>
     </div>
   </div>
