@@ -1,5 +1,5 @@
 <template>
-  <div class="app-container container-xl">
+  <div class="app-container container-xl first">
     <div>
       <div class="d-flex justify-content-end">
         <button
@@ -485,6 +485,9 @@ export default {
 </script>
 
 <style scoped>
+.first {
+  margin-top: 6em;
+}
 thead {
   background-color: #397c89;
   color: white;

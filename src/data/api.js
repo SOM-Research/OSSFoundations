@@ -2,9 +2,9 @@ import axios from "axios";
 import firebase from 'firebase';
 //DEV
 var url = "http://localhost:5000"
+//PROD
 //var url = "https://oss-foundations-api.herokuapp.com"
-//var firebasedatabase = "https://oss-foundations-default-rtdb.europe-west1.firebasedatabase.app"
-//AUTH
+
 
 
 //DATA

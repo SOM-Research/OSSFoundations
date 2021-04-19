@@ -1,36 +1,85 @@
 <template>
-  <div class="container first-half">
+  <div class="container half first-half">
     <!-- Chart container-->
-    <div id="chart"></div>
+    <div class="intro-web">
+      <div class="title-web col-12 col-md-10 col-lg-8 col-xl-6">
+        <h1>Analysis of Foundations in Open Source Projects</h1>
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nemo consequatur a ab
+          tempora veniam ipsum sed facilis doloribus harum cumque provident rerum
+          accusantium ratione, inventore natus! Optio a beatae dolorum! Lorem ipsum dolor,
+          sit amet consectetur adipisicing elit. Sed, unde voluptates distinctio assumenda
+          ratione iste aspernatur, vel perspiciatis blanditiis placeat eveniet, soluta
+          omnis pariatur quae voluptatum nemo aliquid ducimus ipsam?
+        </p>
+        <a class="btn btn-dark" href="#chart">Start searching</a>
+        <hr class="solid" />
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quibusdam, molestias
+          provident sequi dolor corrupti cupiditate similique ab blanditiis ullam
+          adipisci, alias deleniti exercitationem tenetur earum repudiandae quo
+          reprehenderit molestiae dignissimos!
+        </p>
+        <a class="btn btn-dark" href="#search-form">Our API</a>
+      </div>
+    </div>
   </div>
+
   <!-- container  first-half -->
-  <div class="middle">
+  <div class="middle half" id="what-we-did">
     <div class="container">
-      <a
-        data-toggle="collapse"
-        href="#info"
-        role="button"
-        aria-expanded="false"
-        aria-controls="collapseInfo"
-      >
-        <div class="text-right">
-          Do you want to know more about the dimensions and the analysis? Click here!
-        </div>
-      </a>
-      <div class="collapse" id="info">
-        <div class="row">
-          <div class="col-6">
-            <h4>Dimensions</h4>
+      <div class="" id="info">
+        <h2 class="h1 mb-4">What we did</h2>
+        <div class="info-block">
+          <h3 class="mb-4">Analysis report</h3>
+          <div class="row">
+            <div class="col-12 col-md-4 col-xl-2">
+              <img src="@/img/papercover.jpg" alt="..." class="img-thumbnail" />
+            </div>
+            <div class="col-12 col-md-8 col-xl-10">
+              <p>
+                This webpage presents and extended version of the results of our paper
+                <span class="font-italic"
+                  >The Role of Foundations in Open Source Projects</span
+                >, published at the
+                <a
+                  href="https://www.icse2018.org/track/icse-2018-Software-Engineering-in-Society"
+                  target="_blank"
+                  >Software Engineering in Society track</a
+                >
+                of the
+                <a href="https://www.icse2018.org/" target="_blank"
+                  >International Conference on Software Engineering</a
+                >
+                in 2018. The work was awarded with the
+                <span class="font-weight-bold">best paper prize</span> of the track.
+              </p>
+              <p>
+                The study presented in the paper has been extended to cover up to
+                <span class="font-weight-bold">101 software foundations</span>. The study
+                regarding the international scope, independent and transparent foundations
+                has been extended to cover
+                <span class="font-weight-bold">all the foundations of the dataset</span>.
+                Additionally, the current results include the
+                <span class="font-weight-bold">main activities</span> targeted by the
+                foundations.
+              </p>
+              <p>
+                More info can be found
+                <a
+                  href="https://livablesoftware.com/study-open-source-foundations/"
+                  target="_blank"
+                  >here</a
+                >.
+              </p>
+            </div>
           </div>
-          <!-- col-6 -->
-          <div class="col-6">
-            <h4>Analysis report</h4>
-          </div>
-          <!-- col-6 -->
         </div>
-        <!-- row -->
-        <div class="row">
-          <div class="col-6">
+
+        <hr class="solid" />
+        <div class="info-block">
+          <h3 class="mb-4">Dimensions</h3>
+          <div>
             <li>
               <span class="font-weight-bold">International Scope</span>. This dimension
               studies the distribution of the foundations from a geographical point of
@@ -60,57 +109,14 @@
               general.
             </li>
           </div>
-          <!-- col-6 -->
-          <div class="col-2">
-            <img src="@/img/papercover.jpg" alt="..." class="img-thumbnail" />
-          </div>
-          <!-- col-2 -->
-          <div class="col-4">
-            <p>
-              This webpage presents and extended version of the results of our paper
-              <span class="font-italic"
-                >The Role of Foundations in Open Source Projects</span
-              >, published at the
-              <a
-                href="https://www.icse2018.org/track/icse-2018-Software-Engineering-in-Society"
-                target="_blank"
-                >Software Engineering in Society track</a
-              >
-              of the
-              <a href="https://www.icse2018.org/" target="_blank"
-                >International Conference on Software Engineering</a
-              >
-              in 2018. The work was awarded with the
-              <span class="font-weight-bold">best paper prize</span> of the track.
-            </p>
-            <p>
-              The study presented in the paper has been extended to cover up to
-              <span class="font-weight-bold">101 software foundations</span>. The study
-              regarding the international scope, independent and transparent foundations
-              has been extended to cover
-              <span class="font-weight-bold">all the foundations of the dataset</span>.
-              Additionally, the current results include the
-              <span class="font-weight-bold">main activities</span> targeted by the
-              foundations.
-            </p>
-            <p>
-              More info can be found
-              <a
-                href="https://livablesoftware.com/study-open-source-foundations/"
-                target="_blank"
-                >here</a
-              >.
-            </p>
-          </div>
-          <!-- col-4 -->
         </div>
-        <!-- row -->
       </div>
-      <!-- collapse -->
     </div>
-    <!-- container  -->
   </div>
   <!-- middle-->
+  <div class="container pt-5">
+    <div id="chart"></div>
+  </div>
 
   <div class="second-half">
     <div class="container">
@@ -153,5 +159,36 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped></style>
+<style scoped>
+.half {
+  display: flex;
+  align-items: center;
+}
+
+.first-half {
+  margin-top: 5em;
+}
+.intro-web {
+  background-image: url("../img/background-home.jpg");
+  background-repeat: no-repeat;
+  background-position-x: 100%;
+  background-position-y: 50%;
+  background-size: 32em;
+}
+.title-web {
+  margin-bottom: 3em;
+}
+h1 {
+  color: #397c89;
+  font-size: 3em;
+  font-family: "Open Sans", sans-serif;
+  font-weight: bold;
+  word-wrap: break-word;
+  white-space: normal;
+}
+
+.info-block {
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+</style>

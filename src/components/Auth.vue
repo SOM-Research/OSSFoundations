@@ -18,6 +18,9 @@
       :alt="user.displayName + ' picture'"
     />
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <button v-if="isAdmin" class="dropdown-item">
+        <router-link to="/admin">Admin panel</router-link>
+      </button>
       <button class="dropdown-item" @click="logout()">Log out</button>
     </div>
   </div>
@@ -126,13 +129,10 @@ export default {
 
 <style scoped>
 .user-logged-in {
-  align-items: center;
   border-radius: 10%;
   align-items: center;
-  padding: 5px 10px 5px 10px;
 }
 .user-logged-in:hover {
-  background-color: #dddddd55;
   cursor: pointer;
 }
 .user-logged-in span {
@@ -140,11 +140,16 @@ export default {
   font-weight: bold;
 }
 .user-logged-in img {
-  max-width: 50px;
+  max-width: 2em;
   border-radius: 50%;
   border: 0.5px solid #eeeeee;
 }
 .border-admin {
   border: 1px solid #af56b3 !important;
+}
+
+.dropdown-menu {
+  /* bottom: 0;
+  left: auto !important; */
 }
 </style>

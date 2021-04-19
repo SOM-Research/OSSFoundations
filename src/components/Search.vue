@@ -8,7 +8,7 @@
     <button class="btn btn-secondary btn-sm reset-btn" role="button" v-on:click="reset()">
       Reset
     </button>
-    <h2>Choose yours</h2>
+    <h2 id="search-form">Choose yours</h2>
     <form @submit.prevent v-on:change="filteredOrderedList()">
       <div class="form-question">
         <div class="form-group">
@@ -213,7 +213,6 @@
   <teleport to="#chart">
     <chart :chartData="chartData" />
   </teleport>
-  {{ foundations }}
 </template>
 
 <script>

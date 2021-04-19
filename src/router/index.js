@@ -28,9 +28,15 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes,
-  scrollBehavior() {
-  return { x: 0, y: 0 }
-}
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition;
+    }
+    if (to.hash) {
+      return { selector: to.hash };
+    }
+    return { x: 0, y: 0 };
+  },
 })
 
 // router.beforeEach(async (to, from, next) => {
@@ -65,7 +71,7 @@ router.beforeEach(async (to, from, next) => {
   //Step 1: If the route has "requires admin" but there is not a user logged in
   if (requiresAdmin && !await firebase.getCurrentUser()) {
     next('/');
-  //Step 2: If the route has "requires admin" and there is a user logged in
+    //Step 2: If the route has "requires admin" and there is a user logged in
   } else if (requiresAdmin && await firebase.getCurrentUser()) {
     //Looks if the user token has an "admin" claim
     console.log("paso 2.1");
@@ -77,9 +83,9 @@ router.beforeEach(async (to, from, next) => {
           next();
         } else {
           next('/');
-        } 
+        }
       })
-  //Step 3: If not of all above, the route is free to access
+    //Step 3: If not of all above, the route is free to access
   } else {
     console.log("paso 3");
     next();

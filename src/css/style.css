@@ -1,5 +1,10 @@
 /* http://paletton.com/#uid=33m0o0keCxA5dSU9UIMj6rXnFo5 */ 
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+html {
+  scroll-behavior: smooth;
+}
+
+
 
 .container h1 {
   margin-top: 0.5em;
@@ -12,8 +17,8 @@
 }
 
 .middle { 
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 1.5em;
+  padding-bottom: 1.5em;
   color: white;
   background-color: #397C89;
 }
@@ -26,7 +31,7 @@
 
 .middle #info {
   margin-top: 10px;
-  font-size: 14px;
+  font-size: 1em;
   margin-bottom: 10px;
 }
 

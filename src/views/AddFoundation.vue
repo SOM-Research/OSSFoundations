@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container first">
     <h1>Add a new foundation</h1>
     <hr class="mt-2 mb-3" />
     <new-edit-foundation
@@ -87,6 +87,9 @@ export default {
 </script>
 
 <style scoped>
+.first {
+  margin-top: 5em;
+}
 h1 {
   color: #5a97a2;
 }
