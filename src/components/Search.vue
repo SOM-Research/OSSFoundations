@@ -315,7 +315,6 @@ export default {
         API.getFoundations()
           .then(
             (response) => (
-              console.log(response),
               (this.foundations = response),
               (this.foundationsFiltered = response),
               (this.loading = false)

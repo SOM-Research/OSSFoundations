@@ -6,19 +6,19 @@
         <h1>Analysis of Open Source Foundations</h1>
       </div>
       <div class="col-12 col-md-10 col-lg-8 col-xl-6">
+        <p>Welcome! This website collects a list of existing Software Foundations.</p>
         <p>
-          Welcome! This website collects a list of existing Software Foundations. 
+          You will find a thorough analysis of the role of Foundations in Open Source
+          projects. We currently have analyzed more than 100 Software Foundations but our
+          list is always growing. Feel free to contribute those foundations that we may
+          have missed.
         </p>
         <p>
-          You will find a thorough analysis of the role of Foundations in Open Source projects. 
-          We currently have analyzed more than 100 Software Foundations but our list is always growing. 
-          Feel free to contribute those foundations that we may have missed. 
+          You can search directly on our Foundation browser of access the data via an
+          OpenAPI-compatible API.
         </p>
-        <p>
-          You can search directly on our Foundation browser of access the data bia an OpenAPI-compatible API. 
-        </p>
-        <a class="btn btn-dark m-1" href="#chart">Start searching</a>
-        <a class="btn btn-dark m-1" href="#search-form">Our API</a>
+        <a class="btn btn-dark m-1 mb-4" href="#chart">Start searching</a>
+        <a class="btn btn-dark m-1 mb-4" href="#search-form">Our API</a>
       </div>
     </div>
   </div>

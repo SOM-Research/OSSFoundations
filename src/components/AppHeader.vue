@@ -1,17 +1,28 @@
 <template>
   <header>
     <nav class="first-line">
+      <!-- {{ $route }} -->
       <h1 class="logo"><router-link to="/">OSSFoundations</router-link></h1>
-      <router-link
-        to="/"
-        class="item-header"
-        :class="{ featured: isCurrentRoute() == '/' }"
+      <router-link to="/" class="item-header" :class="{ featured: isCurrentRoute('/') }"
         >Home</router-link
       >
-      <a href="#what-we-did" class="item-header">What we did</a>
-      <router-link :to="{ path: '/', hash: '#search-form' }" class="item-header"
+      <a v-if="isCurrentRoute('/')" href="#what-we-did" class="item-header"
+        >What we did</a
+      >
+      <a v-if="isCurrentRoute('/')" href="#search-form" class="item-header">Search</a>
+      <router-link
+        v-if="!isCurrentRoute('/')"
+        :to="{ path: '/', hash: '#what-we-did' }"
+        class="item-header"
+        >What we did</router-link
+      >
+      <router-link
+        v-if="!isCurrentRoute('/')"
+        :to="{ path: '/', hash: '#search-form' }"
+        class="item-header"
         >Search</router-link
       >
+
       <router-link
         to="/add"
         class="item-header"
@@ -33,16 +44,20 @@ export default {
   name: "AppHeader",
   created() {},
   data() {
-    return {};
+    return {
+      actualRoute: "",
+    };
   },
   props: {},
-  mounted() {
-    this.isCurrentRoute();
-  },
+  mounted() {},
   methods: {
     //Return if an HTML tag is the current route in order to modify CSS
-    isCurrentRoute() {
-      return this.$router.currentRoute._rawValue.path;
+    isCurrentRoute(path) {
+      if (path == this.$route.path) {
+        return true;
+      } else {
+        return false;
+      }
     },
   },
 };

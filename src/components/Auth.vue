@@ -147,9 +147,4 @@ export default {
 .border-admin {
   border: 1px solid #af56b3 !important;
 }
-
-.dropdown-menu {
-  /* bottom: 0;
-  left: auto !important; */
-}
 </style>
