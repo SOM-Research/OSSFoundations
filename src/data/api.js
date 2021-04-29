@@ -38,8 +38,11 @@ async function newFoundation(foundation) {
 
 //Gets all the foundations data to approve in JSON
 async function getFoundationsPending() {
+    const token = await getTokenIfLoggedIn();
     const res = await fetch(url + '/foundations/pending/', {
         method: 'GET',
+        headers:
+            { authorization: `Bearer ${token}` }
     });
     return await res.json();
 }
@@ -79,8 +82,12 @@ async function makeUserAdmin(user) {
 }
 
 //Creates an issue in the Github repo
-async function createIssue() {
-    const res = await axios.post(url + '/createIssue/');
+async function createIssue(data) {
+    const token = await getTokenIfLoggedIn();
+    const res = await axios.post(url + '/createIssue/', data, {
+        headers:
+            { authorization: `Bearer ${token}` }
+    });
     return res;
 }
 

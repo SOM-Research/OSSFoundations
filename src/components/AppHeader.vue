@@ -3,7 +3,10 @@
     <nav class="first-line">
       <!-- {{ $route }} -->
       <h1 class="logo"><router-link to="/">OSSFoundations</router-link></h1>
-      <router-link to="/" class="item-header" :class="{ featured: isCurrentRoute('/') }"
+      <router-link
+        to="/"
+        class="item-header"
+        :class="{ 'text-dark': isCurrentRoute('/') }"
         >Home</router-link
       >
       <a v-if="isCurrentRoute('/')" href="#what-we-did" class="item-header"
@@ -26,7 +29,7 @@
       <router-link
         to="/add"
         class="item-header"
-        :class="{ featured: isCurrentRoute('/add') }"
+        :class="{ 'text-dark': isCurrentRoute('/add') }"
         >Add foundation</router-link
       >
       <div class="auth item-header">

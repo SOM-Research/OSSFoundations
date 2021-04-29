@@ -43,7 +43,6 @@ router.beforeEach(async (to, from, next) => {
       .currentUser.getIdTokenResult()
       .then((idTokenResult) => {
         if (idTokenResult.claims.admin == true) {
-          console.log("paso 2.2");
           next();
         } else {
           next('/');

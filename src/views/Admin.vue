@@ -75,7 +75,7 @@
               </button>
             </td>
             <td>
-              <button class="btn btn-dark" @click="createIssue()">
+              <button class="btn btn-dark" @click="createIssue(foundation.name)">
                 Issue
                 <font-awesome-icon :icon="['fab', 'github']" class="d-inline ml-1" />
               </button>
@@ -301,7 +301,6 @@ export default {
       //Loads the main foundations database
       this.foundations = "";
       this.loading = true;
-      console.log("loading1");
       return (
         API.getFoundations()
           .then((response) => ((this.foundations = response), (this.loading = false)))
@@ -352,8 +351,12 @@ export default {
         .catch((err) => (console.log(err), this.showModalWithResponse(err.message)));
     },
     //Send a request to the server to make an issue in the Github repo
-    createIssue() {
-      return API.createIssue()
+    createIssue(foundationName) {
+      var issue = {
+        title: "Request to add " + foundationName + " into the database",
+        body: "Pending to revise and approve/reject the request",
+      };
+      return API.createIssue(issue)
         .then((res) => this.showModalWithResponse(res.data.message))
         .catch((err) => (console.log(err), this.showModalWithResponse(err.message)));
     },
