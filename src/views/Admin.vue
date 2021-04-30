@@ -16,7 +16,7 @@
         </button>
       </div>
 
-      <h5>New foundations pending to approve</h5>
+      <h5>New foundations pending approval</h5>
       <table class="table table-hover table-fixed">
         <thead class="">
           <tr class="">

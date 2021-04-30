@@ -5,7 +5,9 @@
   >
     <h2>Main information</h2>
     <div class="mb-3 row">
-      <label for="name" class="col-sm-2 col-form-label">Name</label>
+      <label for="name" class="col-sm-2 col-form-label"
+        >Name <span class="text-danger">*</span></label
+      >
       <div class="col-sm-10">
         <input
           class="form-control"
@@ -16,7 +18,9 @@
       </div>
     </div>
     <div class="mb-3 row">
-      <label for="url" class="col-sm-2 col-form-label">Website</label>
+      <label for="url" class="col-sm-2 col-form-label"
+        >Website <span class="text-danger">*</span></label
+      >
       <div class="col-sm-10">
         <input
           class="form-control"

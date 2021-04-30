@@ -7,8 +7,7 @@
       @update-selected-foundation="updateSelectedFoundation"
     />
     <button
-      v-if="!isNewFoundationForm"
-      @click="topicsToString(), newFoundation(selectedFoundation)"
+      @click="validateFormBeforeSubmit()"
       @submit.prevent
       class="btn btn-success float-right"
       data-dismiss="modal"
@@ -81,6 +80,13 @@ export default {
     showModalWithResponse(res) {
       this.responseAction = res; //Save the response in the variable
       $("#modalResponse").modal("show"); //Triggers the modal "modalResponse"
+    },
+    validateFormBeforeSubmit() {
+      if (this.selectedFoundation.name == "" || this.selectedFoundation.url == "") {
+        this.showModalWithResponse("Fields in red are required");
+      } else {
+        this.topicsToString(), this.newFoundation(this.selectedFoundation);
+      }
     },
   },
 };
