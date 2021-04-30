@@ -25,10 +25,24 @@ const routes = [
   }
 ]
 
+
 const router = createRouter({
   history: createWebHistory(),
-  routes
+  routes,
+  //linkActiveClass: 'text-dark',
+  scrollBehavior(to) {
+    if (to.hash) {
+      return { el: to.hash }
+    }
+    // else if (savedPosition) {
+    //   return savedPosition;
+    // }
+    return { left: 0, top: 0 }
+  }
+
 })
+
+
 //Checks the routes with the meta "requiresAdmin" to only allow admins to access to restricted pages
 router.beforeEach(async (to, from, next) => {
   //Matches if the route has "requiresADmin"

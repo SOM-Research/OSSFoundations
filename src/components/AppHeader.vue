@@ -9,20 +9,14 @@
         :class="{ 'text-dark': isCurrentRoute('/') }"
         >Home</router-link
       >
-      <a v-if="isCurrentRoute('/')" href="#what-we-did" class="item-header"
+      <!-- <a v-if="isCurrentRoute('/')" href="#what-we-did" class="item-header"
         >What we did</a
       >
-      <a v-if="isCurrentRoute('/')" href="#search-form" class="item-header">Search</a>
-      <router-link
-        v-if="!isCurrentRoute('/')"
-        :to="{ path: '/', hash: '#what-we-did' }"
-        class="item-header"
+      <a v-if="isCurrentRoute('/')" href="#search-form" class="item-header">Search</a> -->
+      <router-link :to="{ path: '/', hash: '#what-we-did' }" class="item-header"
         >What we did</router-link
       >
-      <router-link
-        v-if="!isCurrentRoute('/')"
-        :to="{ path: '/', hash: '#search-form' }"
-        class="item-header"
+      <router-link :to="{ path: '/', hash: '#chart' }" class="item-header"
         >Search</router-link
       >
 
