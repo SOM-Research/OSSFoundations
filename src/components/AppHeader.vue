@@ -1,7 +1,6 @@
 <template>
   <header>
-    <nav class="first-line">
-      <!-- {{ $route }} -->
+    <nav class="first-line menu-desktop d-none d-lg-flex">
       <h1 class="logo"><router-link to="/">OSSFoundations</router-link></h1>
       <router-link
         to="/"
@@ -9,10 +8,6 @@
         :class="{ 'text-dark': isCurrentRoute('/') }"
         >Home</router-link
       >
-      <!-- <a v-if="isCurrentRoute('/')" href="#what-we-did" class="item-header"
-        >What we did</a
-      >
-      <a v-if="isCurrentRoute('/')" href="#search-form" class="item-header">Search</a> -->
       <router-link :to="{ path: '/', hash: '#what-we-did' }" class="item-header"
         >What we did</router-link
       >
@@ -28,6 +23,58 @@
       >
       <div class="auth item-header">
         <auth />
+      </div>
+    </nav>
+    <nav class="navbar nav-mobile d-lg-none row">
+      <h1 class="logo"><router-link to="/">OSSFoundations</router-link></h1>
+      <button
+        class="navbar-toggler toggler-example"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navCollapseMobile"
+        aria-controls="#navCollapseMobile"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <font-awesome-icon :icon="['fas', 'bars']" />
+      </button>
+
+      <div class="collapse navbar-collapse align-items-start" id="navCollapseMobile">
+        <ul>
+          <li>
+            <router-link
+              to="/"
+              class="item-header pb-2"
+              :class="{ 'text-dark': isCurrentRoute('/') }"
+              >Home</router-link
+            >
+          </li>
+          <li>
+            <router-link
+              :to="{ path: '/', hash: '#what-we-did' }"
+              class="item-header pb-2"
+              >What we did</router-link
+            >
+          </li>
+          <li>
+            <router-link :to="{ path: '/', hash: '#chart' }" class="item-header pb-2"
+              >Search</router-link
+            >
+          </li>
+          <li>
+            <router-link
+              to="/add"
+              class="item-header pb-2"
+              :class="{ 'text-dark': isCurrentRoute('/add') }"
+              >Add foundation</router-link
+            >
+          </li>
+          <li>
+            <div class="auth item-header pb-2">
+              <auth />
+            </div>
+          </li>
+        </ul>
       </div>
     </nav>
   </header>
@@ -82,10 +129,11 @@ header::after {
   flex-direction: row;
   justify-content: flex-end;
 }
-
-.item-header {
+.menu-desktop .item-header {
   margin-left: 1.5em;
   margin-right: 0.5em;
+}
+.item-header {
   color: #397c89;
   text-decoration: none;
   font-weight: bold;
@@ -105,12 +153,36 @@ header::after {
   margin-right: auto;
 }
 
-.logo:hover {
+.logo:hover,
+.svg-inline--fa:hover {
   filter: brightness(1.2);
 }
 
 .logo a {
   text-decoration: none;
   color: #397c89;
+}
+
+.nav-mobile {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.svg-inline--fa {
+  /* Font awersome class */
+  font-size: 1.5em;
+  color: #397c89;
+}
+
+.nav-mobile li {
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #efefef;
+  font-size: 1.1em;
+  width: 100%;
+  padding: 5px;
+}
+.nav-mobile ul {
+  list-style-type: none;
+  padding: 0 !important;
 }
 </style>

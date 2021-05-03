@@ -2,23 +2,27 @@
   <div class="container half first-half">
     <!-- Chart container-->
     <div class="intro-web">
-      <div class="title-web col-12 col-md-12 col-lg-12 col-xl-12">
-        <h1>Analysis of Open Source Foundations</h1>
-      </div>
-      <div class="col-12 col-md-10 col-lg-8 col-xl-6">
-        <p>Welcome! This website collects a list of existing Software Foundations.</p>
-        <p>
-          You will find a thorough analysis of the role of Foundations in Open Source
-          projects. We currently have analyzed more than 100 Software Foundations but our
-          list is always growing. Feel free to contribute those foundations that we may
-          have missed.
-        </p>
-        <p>
-          You can search directly on our Foundation browser of access the data via an
-          OpenAPI-compatible API.
-        </p>
-        <a class="btn btn-dark m-1 mb-4" href="#chart">Start searching</a>
-        <a class="btn btn-dark m-1 mb-4" href="#search-form">Our API</a>
+      <h1 class="title-web">Analysis of Open Source Foundations</h1>
+      <div class="row d-flex flex-row-reverse">
+        <div class="col-12 col-md-12 col-lg-5 col-xl-6">
+          <img class="w-100 mb-5" src="../img/landing-pic.png" />
+        </div>
+        <div class="col-12 col-md-12 col-lg-7 col-xl-6">
+          <p>Welcome! This website collects a list of existing Software Foundations.</p>
+          <p>
+            You will find a thorough analysis of the role of Foundations in Open Source
+            projects. We currently have analyzed more than 100 Software Foundations but
+            our list is always growing. Feel free to contribute those foundations that we
+            may have missed.
+          </p>
+
+          <p>
+            You can search directly on our Foundation browser of access the data via an
+            OpenAPI-compatible API.
+          </p>
+          <a class="btn btn-dark m-1 mb-4" href="#chart">Start searching</a>
+          <a class="btn btn-dark m-1 mb-4" href="#search-form">Our API</a>
+        </div>
       </div>
     </div>
   </div>
@@ -167,14 +171,14 @@ export default {
   margin-top: 5em;
 }
 .intro-web {
-  background-image: url("../img/background-home.jpg");
+  /* background-image: url("../img/background-home.jpg");
   background-repeat: no-repeat;
   background-position-x: 100%;
   background-position-y: 50%;
-  background-size: 32em;
+  background-size: 32em; */
 }
 .title-web {
-  margin-bottom: 3em;
+  margin-bottom: 1em;
 }
 h1 {
   color: #397c89;

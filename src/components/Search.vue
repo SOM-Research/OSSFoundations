@@ -1,10 +1,10 @@
 <template>
   <loading v-if="loading" />
-  <div class="col-6">
+  <div class="order-12 order-md-1 col-12 col-md-6">
     <h2>Selected Foundations</h2>
     <foundations-list :foundationsProp="foundationsFiltered" />
   </div>
-  <div class="col-6">
+  <div class="order-1 order-md-12 col-12 col-md-6">
     <button class="btn btn-secondary btn-sm reset-btn" role="button" v-on:click="reset()">
       Reset
     </button>

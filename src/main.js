@@ -5,11 +5,10 @@ import router from './router'
 import './firebase'; 
 //Font Awesome
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faGoogle } from '@fortawesome/free-brands-svg-icons'
-import { faGithub } from '@fortawesome/free-brands-svg-icons'
+import { faBars } from '@fortawesome/free-solid-svg-icons'
+import { faGoogle, faGithub } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-library.add(faGoogle);
-library.add(faGithub);
+library.add(faGoogle, faGithub, faBars);
 
 
  //Apex Charts
