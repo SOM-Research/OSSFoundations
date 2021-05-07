@@ -72,7 +72,7 @@ export default {
     },
     //Send a request to the server to create a new foundation
     newFoundation(foundation) {
-      return API.newFoundation(foundation)
+      return API.newFoundationPending(foundation)
         .then((res) => this.showModalWithResponse(res.data.message))
         .catch((err) => (console.log(err), this.showModalWithResponse(err.message)));
     },

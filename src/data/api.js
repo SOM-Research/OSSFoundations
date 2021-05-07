@@ -19,7 +19,7 @@ async function getFoundations() {
 //Edits the foundation data that matches with the ID passed as a parameter
 async function editFoundation(foundationId, foundation) {
     const token = await getTokenIfLoggedIn();
-    const res = await axios.post(url + `/foundations/${foundationId}`, foundation, {
+    const res = await axios.put(url + `/foundations/${foundationId}`, foundation, {
         headers:
             { authorization: `Bearer ${token}` }
     });
@@ -29,10 +29,16 @@ async function editFoundation(foundationId, foundation) {
 //Adds a new foundation
 async function newFoundation(foundation) {
     const token = await getTokenIfLoggedIn();
-    const res = await axios.put(url + '/foundations/', foundation, {
+    const res = await axios.post(url + '/foundations/', foundation, {
         headers:
             { authorization: `Bearer ${token}` }
     })
+    return res;
+}
+
+//Adds a new foundation to the pending approval list
+async function newFoundationPending(foundation) {
+    const res = await axios.post(url + '/foundations/pending', foundation)
     return res;
 }
 
@@ -92,4 +98,4 @@ async function createIssue(data) {
 }
 
 //EXPORTS
-export default { getFoundations, editFoundation, newFoundation, deleteFoundation, getFoundationsPending, makeUserAdmin, createIssue };
+export default { getFoundations, editFoundation, newFoundation, newFoundationPending,deleteFoundation, getFoundationsPending, makeUserAdmin, createIssue };
