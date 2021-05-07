@@ -1,6 +1,6 @@
 <template>
   <div class="black-screen d-flex justify-content-center">
-    <div class="spinner-border text-light" role="status">
+    <div class="spinner-border .border-info text-dark" role="status">
       <span class="sr-only">Loading...</span>
     </div>
   </div>
@@ -17,9 +17,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
 .black-screen {
-  background-color: black;
+  /* background-color: black;
   position: fixed;
   width: 100%;
   height: 100%;
@@ -30,6 +29,6 @@ export default {
   left: 0;
   right: 0;
   opacity: 0.5;
-  z-index: 6000;
+  z-index: 6000; */
 }
 </style>

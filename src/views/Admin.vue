@@ -15,7 +15,8 @@
           New foundation
         </button>
       </div>
-
+      <loading v-if="loading && !isError" />
+      <p v-if="isError" class="text-danger">{{ errorMsg }}</p>
       <h5>New foundations pending approval</h5>
       <table class="table table-hover table-fixed">
         <thead class="">
@@ -218,9 +219,10 @@ import ModalResponse from "../components/ModalResponse.vue";
 import $ from "jquery";
 import _ from "lodash";
 import NewEditFoundation from "../components/NewEditFoundation.vue";
+import Loading from "@/components/Loading.vue";
 
 export default {
-  components: { ModalConfirmAction, ModalResponse, NewEditFoundation },
+  components: { ModalConfirmAction, ModalResponse, NewEditFoundation, Loading },
   name: "Admin",
 
   data() {
@@ -230,6 +232,8 @@ export default {
       isFoundationsOrPendingList: true, //True if the main foundations database, False if the foundations Pending list
       allTopics: [],
       loading: true,
+      isError: false,
+      errorMsg: "",
       textModalForm: "", //Displays "New" or "Edit" depending on the user actions
       isNewFoundationForm: false,
       topicSD: false, //Auxiliary variable to bind the selectedFoundation's "SD" and topics.SD;
@@ -305,7 +309,9 @@ export default {
         API.getFoundations()
           .then((response) => ((this.foundations = response), (this.loading = false)))
           //If error
-          .catch((err) => console.log(err))
+          .catch(
+            (err) => (console.log(err), (this.isError = true), (this.errorMsg = err))
+          )
       );
     },
     //Loads the Pending foundations database
@@ -530,5 +536,21 @@ button {
   color: #fff;
   background-color: #5a97a2;
   border-color: #3a656d;
+}
+
+/* Spinner */
+.black-screen {
+  background-color: black;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0.5;
+  z-index: 6000;
 }
 </style>

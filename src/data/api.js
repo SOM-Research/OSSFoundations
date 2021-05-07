@@ -1,9 +1,9 @@
 import axios from "axios";
 import firebase from 'firebase';
 //DEV
-var url = "http://localhost:5000"
+//var url = "http://localhost:5000"
 //PROD
-//var url = "https://oss-foundations-api.herokuapp.com"
+var url = "https://oss-foundations-api.herokuapp.com"
 
 
 

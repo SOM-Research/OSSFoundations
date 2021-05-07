@@ -1,8 +1,9 @@
 <template>
-  <loading v-if="loading" />
   <div class="order-12 order-md-1 col-12 col-md-6">
     <h2>Selected Foundations</h2>
     <foundations-list :foundationsProp="foundationsFiltered" />
+    <loading v-if="loading && !isError" />
+    <p v-if="isError" class="text-danger">{{ errorMsg }}</p>
   </div>
   <div class="order-1 order-md-12 col-12 col-md-6">
     <button class="btn btn-secondary btn-sm reset-btn" role="button" v-on:click="reset()">
@@ -249,6 +250,8 @@ export default {
       foundations: "",
       foundationsFiltered: "",
       loading: true, //Indicates if foundations data is fetched or still loading
+      isError: false, //Indicates if there is been an error loading the data
+      errorMsg: "",
 
       //NEW FOUNDATION FORM
       selectedFoundation: {
@@ -321,7 +324,7 @@ export default {
             )
           )
           //If error
-          .catch((err) => console.log(err))
+          .catch((err) => ((this.isError = true), (this.errorMsg = err)))
       );
     },
 

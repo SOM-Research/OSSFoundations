@@ -5,7 +5,7 @@
       <h1 class="title-web">Analysis of Open Source Foundations</h1>
       <div class="row d-flex flex-row-reverse">
         <div class="col-12 col-md-12 col-lg-5 col-xl-6">
-          <img class="w-100 mb-5" src="../img/landing-pic.png" />
+          <img class="w-100 mb-5" src="../img/landing-pic.png" aria-hidden="true" />
         </div>
         <div class="col-12 col-md-12 col-lg-7 col-xl-6">
           <p>Welcome! This website collects a list of existing Software Foundations.</p>

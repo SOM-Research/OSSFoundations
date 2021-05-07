@@ -141,6 +141,7 @@ export default {
 }
 .user-logged-in img {
   max-width: 2em;
+  max-height: 2em;
   border-radius: 50%;
   border: 0.5px solid #eeeeee;
 }
