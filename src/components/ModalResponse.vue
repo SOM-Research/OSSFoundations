@@ -43,5 +43,6 @@ export default {
 <style scoped>
 .modal-body p {
   color: #212529 !important;
+  white-space: pre-line;
 }
 </style>

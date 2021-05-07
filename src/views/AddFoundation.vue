@@ -82,10 +82,29 @@ export default {
       $("#modalResponse").modal("show"); //Triggers the modal "modalResponse"
     },
     validateFormBeforeSubmit() {
-      if (this.selectedFoundation.name == "" || this.selectedFoundation.url == "") {
-        this.showModalWithResponse("Fields in red are required");
+      this.topicsToString(); // Converts the object of topics into a string
+      var textValidation = "";
+      var isError = false;
+      if (this.selectedFoundation.name == "") {
+        textValidation = textValidation.concat("The field 'Name' is required. \n");
+        isError = true;
+      }
+      if (this.selectedFoundation.url == "") {
+        textValidation = textValidation.concat("The field 'Website' is required. \n");
+        isError = true;
+      }
+      if (this.selectedFoundation.topicsString == "") {
+        textValidation = textValidation.concat(
+          "You have to select at least one topic from the list. \n"
+        );
+        isError = true;
+      }
+
+      //Shows modal if error or submit form if correct
+      if (isError) {
+        this.showModalWithResponse(textValidation);
       } else {
-        this.topicsToString(), this.newFoundation(this.selectedFoundation);
+        this.newFoundation(this.selectedFoundation);
       }
     },
   },

@@ -174,7 +174,7 @@
     <hr class="mt-2 mb-3" />
 
     <h2>Topics</h2>
-
+    <p>Select at least one topic:</p>
     <div
       v-for="topic in selectedFoundationForm.topics"
       v-bind:key="topic.name"
