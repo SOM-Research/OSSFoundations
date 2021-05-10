@@ -25,8 +25,10 @@
         <auth />
       </div>
     </nav>
-    <nav class="navbar nav-mobile d-lg-none row">
-      <h1 class="logo"><router-link to="/">OSSFoundations</router-link></h1>
+    <nav class="navbar nav-mobile d-lg-none row" aria-hidden="true">
+      <h1 class="logo h2">
+        <router-link to="/">OSSFoundations</router-link>
+      </h1>
       <button
         class="navbar-toggler toggler-example"
         type="button"
@@ -46,19 +48,23 @@
               to="/"
               class="item-header pb-2"
               :class="{ 'text-dark': isCurrentRoute('/') }"
-              >Home</router-link
+              ><font-awesome-icon :icon="['fas', 'home']" class="mr-2" />Home</router-link
             >
           </li>
           <li>
             <router-link
               :to="{ path: '/', hash: '#what-we-did' }"
               class="item-header pb-2"
-              >What we did</router-link
+              ><font-awesome-icon :icon="['fas', 'book']" class="mr-3" />What we
+              did</router-link
             >
           </li>
           <li>
             <router-link :to="{ path: '/', hash: '#chart' }" class="item-header pb-2"
-              >Search</router-link
+              ><font-awesome-icon
+                :icon="['fas', 'search']"
+                class="mr-3"
+              />Search</router-link
             >
           </li>
           <li>
@@ -66,7 +72,8 @@
               to="/add"
               class="item-header pb-2"
               :class="{ 'text-dark': isCurrentRoute('/add') }"
-              >Add foundation</router-link
+              ><font-awesome-icon :icon="['fas', 'plus']" class="mr-3" />Add
+              foundation</router-link
             >
           </li>
           <li>
@@ -118,7 +125,7 @@ header {
   left: 0;
   top: 0;
   z-index: 10000;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.97);
 }
 header::after {
   height: 1000px;
@@ -175,11 +182,11 @@ header::after {
 }
 
 .nav-mobile li {
-  border-top: 1px solid #eee;
-  border-bottom: 1px solid #efefef;
+  border-bottom: 1px solid rgb(209, 209, 209);
   font-size: 1.1em;
   width: 100%;
-  padding: 5px;
+  padding-top: 1em;
+  padding-bottom: 1em;
 }
 .nav-mobile ul {
   list-style-type: none;
