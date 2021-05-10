@@ -1,184 +1,249 @@
 <template>
-  <foundations-list :foundationsFiltered="foundationsFiltered" />
-  <div class="col-6">
-    <button
-      class="btn btn-secondary btn-sm reset-btn"
-      role="button"
-      v-on:click="reset()"
-      >Reset</button
-    >
-    <h2>Choose yours</h2>
-    <form @submit.prevent v-on:change="filteredOrderedList()">
-      <div class="form-question">
-        <div class="form-group">
-          <label for="nameFilter">Name</label>
-          <input
-            type="text"
-            v-model="search"
-            class="form-control form-control-sm"
-            id="nameFilter"
-          />
-        </div>
-      </div>
-      <!--NATURE-->
-      <div class="form-question">
-        <div class="form-group">
-          <label>
-            Regarding the nature, please select the selection criteria which applies:
-          </label>
-          <div class="form-check">
+  <div class="d-flex flex-column flex-md-row-reverse flex-wrap">
+    <div class="order-10 order-md-2 col-12 col-md-6">
+      <h2>Selected Foundations</h2>
+      <foundations-list :foundationsProp="foundationsFiltered" />
+      <loading v-if="loading && !isError" />
+      <p v-if="isError" class="text-danger">{{ errorMsg }}</p>
+    </div>
+    <div class="order-1 order-md-1 col-12 col-md-6">
+      <button
+        class="btn btn-secondary btn-sm reset-btn"
+        role="button"
+        v-on:click="reset()"
+      >
+        Reset
+      </button>
+      <h2 id="search-form">Choose yours</h2>
+      <form @submit.prevent v-on:change="filteredOrderedList()">
+        <div class="form-question">
+          <div class="form-group">
+            <label for="nameFilter">Name</label>
             <input
-              class="form-check-input"
-              type="checkbox"
-              id="natureCheck1"
-              value="Inter"
-              v-model="formNatureInter"
+              type="text"
+              v-model="search"
+              class="form-control form-control-sm"
+              id="nameFilter"
             />
-            <label class="form-check-label" for="natureCheck1"
-              ><abbr title="Select only those foundations having an international scope"
-                >International Scope<img src="@/img/info.png" /></abbr
-            ></label>
-          </div>
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              id="natureCheck2"
-              value="Indep"
-              v-model="formNatureIndep"
-            />
-            <label class="form-check-label" for="natureCheck2"
-              ><abbr
-                title="Select only foundations, that provide support to software proyects (they are not foundations of foundations)"
-                >Independent<img src="@/img/info.png" /></abbr
-            ></label>
-          </div>
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              id="natureCheck3"
-              value="Open"
-              v-model="formNatureOpen"
-            />
-            <label class="form-check-label" for="natureCheck3"
-              ><abbr
-                title="Select those foundations clearly stating their mission and goals"
-                >Transparent<img src="@/img/info.png" /></abbr
-            ></label>
           </div>
         </div>
-      </div>
-      <!--ACTIVITIES-->
-      <div class="form-question">
-        <div class="form-group">
-          <label>
-            Should the foundation aim at supporting the development of specific open
-            source projects?
-          </label>
-          <div class="btn-group btn-group-toggle" role="group" data-toggle="buttons">
+        <!--NATURE-->
+        <div class="form-question">
+          <div class="form-group">
+            <label>
+              Regarding the nature, please select the selection criteria which applies:
+            </label>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="natureCheck1"
+                value="Inter"
+                v-model="formNatureInter"
+              />
+              <label class="form-check-label" for="natureCheck1"
+                ><abbr title="Select only those foundations having an international scope"
+                  >International Scope<img src="@/img/info.png" /></abbr
+              ></label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="natureCheck2"
+                value="Indep"
+                v-model="formNatureIndep"
+              />
+              <label class="form-check-label" for="natureCheck2"
+                ><abbr
+                  title="Select only foundations, that provide support to software proyects (they are not foundations of foundations)"
+                  >Independent<img src="@/img/info.png" /></abbr
+              ></label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="natureCheck3"
+                value="Open"
+                v-model="formNatureOpen"
+              />
+              <label class="form-check-label" for="natureCheck3"
+                ><abbr
+                  title="Select those foundations clearly stating their mission and goals"
+                  >Transparent<img src="@/img/info.png" /></abbr
+              ></label>
+            </div>
+          </div>
+        </div>
+        <!--ACTIVITIES-->
+        <div class="form-question">
+          <div class="form-group">
+            <label>
+              Should the foundation aim at supporting the development of specific open
+              source projects?
+            </label>
+            <div class="btn-group btn-group-toggle" role="group" data-toggle="buttons">
+              <label
+                id="toggleSDTrue"
+                class="btn btn-sm btn-secondary form-btn"
+                v-bind:class="{ active: formSD == 'Y' }"
+              >
+                <input
+                  type="radio"
+                  name="toggleSD"
+                  value="true"
+                  v-bind:class="{ selected: formSD == 'Y' }"
+                  v-on:click="toggleSD(true)"
+                />Yes</label
+              >
+              <label
+                id="toggleSDFalse"
+                class="btn btn-sm btn-secondary form-btn"
+                v-bind:class="{ active: formSD == 'N' }"
+              >
+                <input
+                  type="radio"
+                  name="toggleSD"
+                  v-bind:class="{ selected: formSD == 'N' }"
+                  v-on:click="toggleSD(false)"
+                />No</label
+              >
+            </div>
+          </div>
+          <div class="form-group">
+            <label>
+              Filter according to the activities developed by the foundation?
+            </label>
+            <div class="btn-group btn-group-toggle" role="group" data-toggle="buttons">
+              <label
+                class="btn btn-sm btn-secondary form-btn"
+                :class="{ active: formTopics }"
+              >
+                <input
+                  type="radio"
+                  name="toggleQ1topics"
+                  value="true"
+                  :class="{ selected: formTopics }"
+                  v-on:click="toggleQ1topics(true)"
+                />Yes</label
+              >
+              <label
+                class="btn btn-sm btn-secondary form-btn"
+                :class="{ active: !formTopics }"
+              >
+                <input
+                  type="radio"
+                  name="toggleQ1topics"
+                  :class="{ selected: !formTopics }"
+                  v-on:click="toggleQ1topics(false)"
+                />No</label
+              >
+            </div>
+          </div>
+          <div
+            class="collapse collapse-topics btn-group-toggle text-center"
+            id="topics-list"
+            role="group"
+            data-toggle="buttons"
+          >
             <label
-              id="toggleSDTrue"
-              class="btn btn-sm btn-secondary form-btn"
-              v-bind:class="{ active: formSD == 'Y' }"
+              v-for="topic in topics"
+              v-bind:key="topic"
+              class="btn btn-sm btn-secondary form-btn topic"
             >
               <input
-                type="radio"
-                name="toggleSD"
-                value="true"
-                v-bind:class="{ selected: formSD == 'Y' }"
-                v-on:click="toggleSD(true)"
-              />Yes</label
-            >
-            <label
-              id="toggleSDFalse"
-              class="btn btn-sm btn-secondary form-btn"
-              v-bind:class="{ active: formSD == 'N' }"
-            >
-              <input
-                type="radio"
-                name="toggleSD"
-                v-bind:class="{ selected: formSD == 'N' }"
-                v-on:click="toggleSD(false)"
-              />No</label
+                type="checkbox"
+                name="toggleTopic"
+                :value="topic"
+                v-bind:class="{ selected: selectedTopics.indexOf(topic) > -1 }"
+                v-on:click="toggleTopic(topic)"
+              />{{ topic }}</label
             >
           </div>
         </div>
-        <div class="form-group">
-          <label> Filter according to the activities developed by the foundation? </label>
-          <div class="btn-group btn-group-toggle" role="group" data-toggle="buttons">
-            <label class="btn btn-sm btn-secondary form-btn" :class="{ active: formTopics }">
-              <input
-                type="radio"
-                name="toggleQ1topics"
-                value="true"
-                :class="{ selected: formTopics }"
-                v-on:click="toggleQ1topics(true)"
-              />Yes</label
-            >
-            <label class="btn btn-sm btn-secondary form-btn" :class="{ active: !formTopics }">
-              <input
-                type="radio"
-                name="toggleQ1topics"
-                :class="{ selected: !formTopics }"
-                v-on:click="toggleQ1topics(false)"
-              />No</label
-            >
-          </div>
+      </form>
+      <div class="info-card">
+        <div class="text-center font-weight-bold">
+          Do you want to add a new foundation?
+        </div>
+        <div class="text-center">
+          <button class="action-form btn btn-info">
+            <router-link to="/add"> New foundation </router-link>
+          </button>
         </div>
         <div
-          class="collapse collapse-topics btn-group-toggle text-center"
-          id="topics-list"
-          role="group"
-          data-toggle="buttons"
+          class="modal fade"
+          id="newEditFoundationForm"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="exampleModalLongTitle"
+          aria-hidden="true"
         >
-          <label
-            v-for="topic in topics"
-            v-bind:key="topic"  
-            class="btn btn-sm btn-secondary form-btn topic"
-          >
-            <input
-              type="checkbox"
-              name="toggleTopic"
-              :value="topic"
-              v-bind:class="{ selected: selectedTopics.indexOf(topic) > -1 }"
-              v-on:click="toggleTopic(topic)"
-            />{{ topic }}</label
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">New Foundation</h5>
+              </div>
+              <div class="modal-body">
+                <new-edit-foundation
+                  :selectedFoundation="selectedFoundation"
+                  @update-selected-foundation="updateSelectedFoundation"
+                />
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                  Close
+                </button>
+                <button
+                  @click="topicsToString(), newFoundationApproval(selectedFoundation)"
+                  @submit.prevent
+                  class="btn btn-success"
+                  data-dismiss="modal"
+                >
+                  Submit
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <modal-response :responseAction="responseAction" />
+      </div>
+      <div class="info-card">
+        <div class="text-center font-weight-bold">Do you have any feedback?</div>
+        <div class="text-center">
+          Just visit our
+          <a href="https://github.com/SOM-Research/OSSFoundations" target="_blank"
+            >GitHub Project</a
           >
         </div>
       </div>
-    </form>
-    <div class="feedback">
-      <div class="text-center font-weight-bold">Do you have any feedback?</div>
-      <div class="text-center">
-        Just visit our
-        <a href="https://github.com/SOM-Research/OSSFoundations" target="_blank"
-          >GitHub Project</a
-        >
-      </div>
     </div>
-    <!-- feedback -->
+    <div class="order-11 order-md-3 col-12 col-md-6 offset-md-6"></div>
   </div>
+
   <teleport to="#chart">
     <chart :chartData="chartData" />
   </teleport>
 </template>
 
 <script>
+import API from "@/data/api.js";
+
 //Import jQuery
 import $ from "jquery";
 
 //Import lodash
 import _ from "lodash";
 
-//JSON
-import foundations from "@/data/data.json";
-
 import FoundationsList from "./FoundationsList.vue";
 import Chart from "./Chart.vue";
+import Loading from "./Loading.vue";
+import NewEditFoundation from "./NewEditFoundation.vue";
+import ModalResponse from "./ModalResponse.vue";
 
 export default {
-  components: { Chart, FoundationsList },
+  components: { Chart, FoundationsList, Loading, NewEditFoundation, ModalResponse },
   name: "Search",
   data() {
     return {
@@ -193,8 +258,30 @@ export default {
       selectedTopics: [], // Topics selected by the user
 
       //MAIN DATA
-      foundations: foundations,
-      foundationsFiltered: foundations,
+      foundations: "",
+      foundationsFiltered: "",
+      loading: true, //Indicates if foundations data is fetched or still loading
+      isError: false, //Indicates if there is been an error loading the data
+      errorMsg: "",
+
+      //NEW FOUNDATION FORM
+      selectedFoundation: {
+        id: "",
+        name: "",
+        url: "",
+        rq1Inter: "",
+        rq1Indep: "",
+        rq1Open: "",
+        SD: "",
+        rq3rq4: "",
+        legal: "",
+        topics: [],
+        topicsString: "",
+        authorName: "",
+        authorMail: "",
+        status: "pending",
+      },
+      responseAction: "", //Shows the message of an error or success of an action
 
       //CHART DATA
       chartData: {
@@ -214,28 +301,67 @@ export default {
     };
   },
 
-  mounted: function () {
-    var self = this;
-
-    self.foundations.map(function (foundation) {
-      var foundationTopics = foundation.topics;
-      if (foundationTopics != "") {
-        var topicArray = foundationTopics.split(",");
-        topicArray.map(function (topic) {
-          if (self.topics.indexOf(topic) == -1) {
-            self.topics.push(topic);
-          }
-        });
-      }
-    });
-  },
+  beforeCreate: function () {},
 
   created: function () {
-    //Call the function to update the chart the first time and refresh variables
-    this.filteredOrderedList();
+    this.loadFoundations();
+  },
+
+  mounted: function () {},
+
+  watch: {
+    //Watches if the foundations data has been changed and updates the value
+    loading: {
+      deep: false,
+      handler() {
+        if (this.loading == false) {
+          this.filteredOrderedList();
+          this.mapFoundations();
+        }
+      },
+    },
   },
 
   methods: {
+    //Gets de foundations data from the API
+    loadFoundations() {
+      return (
+        API.getFoundations()
+          .then(
+            (response) => (
+              (this.foundations = response),
+              (this.foundationsFiltered = response),
+              (this.loading = false)
+            )
+          )
+          //If error
+          .catch((err) => ((this.isError = true), (this.errorMsg = err)))
+      );
+    },
+
+    //Maps the JSON of the foundations data to get the listed topics
+    mapFoundations: function () {
+      var self = this;
+      self.foundations.map(function (foundation) {
+        var foundationTopics = foundation.topics;
+        if (foundationTopics != "") {
+          var topicArray = foundationTopics.split(",");
+          topicArray.map(function (topic) {
+            if (self.topics.indexOf(topic) == -1) {
+              self.topics.push(topic);
+            }
+          });
+        }
+      });
+      //Loads the topics name in the selected foundations
+      this.selectedFoundation.topics = [];
+      for (var i = 0; i < self.topics.length; i++) {
+        var tempFoundation = { name: this.topics[i], selected: false };
+        this.selectedFoundation.topics.push(tempFoundation);
+      }
+    },
+
+    //Applies the filters
     filteredOrderedList: function () {
       var self = this;
 
@@ -269,7 +395,6 @@ export default {
 
       //Building the data to render in the graph
       self.updateChart();
-
     },
 
     updateChart: function () {
@@ -345,7 +470,6 @@ export default {
         //Toggle the topic Software-Development and modifies its class to check/uncheck its button
         if (topic == "Software-Development") {
           self.formSD = "N";
-
         }
       }
     },
@@ -367,13 +491,13 @@ export default {
       if (answer) {
         self.formSD = "Y";
         self.selectedTopics.push("Software-Development");
-        //Added the class "active" to the topic of Software-Development
+        //Add the class "active" to the topic of Software-Development
         $("input[name=toggleTopic][value=Software-Development]")
           .parent()
           .addClass("active");
         //If false
       } else {
-         //Removed the class "active" from the topic of Software-Development
+        //Remove the class "active" from the topic of Software-Development
         $("input[name=toggleTopic][value=Software-Development]")
           .parent()
           .removeClass("active");
@@ -384,9 +508,54 @@ export default {
         });
       }
     },
+    //Converts the checked topics to a string value when submitting a new foundation
+    topicsToString() {
+      this.selectedFoundation.topicsString = "";
+      for (var i = 0; i < this.selectedFoundation.topics.length; i++) {
+        if (this.selectedFoundation.topics[i].checked) {
+          this.selectedFoundation.topicsString += this.selectedFoundation.topics[i].name;
+          this.selectedFoundation.topicsString += ",";
+        }
+      }
+      //Replace the last comma and if it has any white space after it
+      this.selectedFoundation.topicsString = this.selectedFoundation.topicsString.replace(
+        /,\s*$/,
+        ""
+      );
+    },
+    //Send a request to the server to create a new foundation (to approve)
+    newFoundationApproval(foundation) {
+      return API.newFoundationApproval(foundation)
+        .then((res) => this.showModalWithResponse(res.data.message))
+        .catch((err) => (console.log(err), this.showModalWithResponse(err.message)));
+    },
+    //Shows a modal with a message when user makes any change (success / error)
+    showModalWithResponse(res) {
+      this.responseAction = res; //Save the response in the variable
+      $("#modalResponse").modal("show"); //Triggers the modal "modalResponse"
+    },
+    //Passes the data from the new-edit-foundation component into the parent component
+    updateSelectedFoundation(f) {
+      this.selectedFoundation = f;
+    },
+
+    //Empties the data of the form
+    emptyFormData() {
+      for (var x in this.selectedFoundation) {
+        this.selectedFoundation[x] = "";
+      }
+      this.mapFoundations();
+    },
   },
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped></style>
+<style scoped>
+.modal-title {
+  color: #212529;
+}
+button a {
+  text-decoration: none;
+}
+</style>
