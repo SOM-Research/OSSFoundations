@@ -17,11 +17,11 @@
           </p>
 
           <p>
-            You can search directly on our Foundation browser of access the data via an
-            OpenAPI-compatible API.
+            <!-- You can search directly on our Foundation browser of access the data via an
+            OpenAPI-compatible API. -->
           </p>
           <a class="btn btn-dark m-1 mb-4" href="#chart">Start searching</a>
-          <a class="btn btn-dark m-1 mb-4" href="#search-form">Our API</a>
+          <!-- <a class="btn btn-dark m-1 mb-4" href="#search-form">Our API</a> -->
         </div>
       </div>
     </div>
