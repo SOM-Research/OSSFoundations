@@ -103,8 +103,10 @@ export default {
       //Shows modal if error or submit form if correct
       if (isError) {
         this.showModalWithResponse(textValidation);
+        return false;
       } else {
         this.newFoundation(this.selectedFoundation);
+        return true;
       }
     },
   },
