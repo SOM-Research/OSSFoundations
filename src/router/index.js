@@ -27,7 +27,7 @@ const routes = [
 
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory('/OSSFoundations/'),
   routes,
   //linkActiveClass: 'text-dark',
   scrollBehavior(to) {

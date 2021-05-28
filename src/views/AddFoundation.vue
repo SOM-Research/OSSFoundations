@@ -78,6 +78,7 @@ export default {
     },
     //Shows a modal with a message when user makes any change (success / error)
     showModalWithResponse(res) {
+      this.responseAction = null;
       this.responseAction = res; //Save the response in the variable
       $("#modalResponse").modal("show"); //Triggers the modal "modalResponse"
     },
