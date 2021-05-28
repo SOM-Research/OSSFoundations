@@ -16,6 +16,33 @@
     </button>
   </div>
   <modal-response :responseAction="responseAction" />
+  <div
+    class="modal fade"
+    id="modalResponseSuccess"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="modalResponse"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-center">
+          <p>{{ responseAction }}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            <router-link to="/">OK</router-link>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -73,14 +100,20 @@ export default {
     //Send a request to the server to create a new foundation
     newFoundation(foundation) {
       return API.newFoundationPending(foundation)
-        .then((res) => this.showModalWithResponse(res.data.message))
+        .then((res) => this.showModalWithResponseSuccess(res.data.message))
         .catch((err) => (console.log(err), this.showModalWithResponse(err.message)));
     },
-    //Shows a modal with a message when user makes any change (success / error)
+    //Shows a modal with a message when user makes any change (error)
     showModalWithResponse(res) {
       this.responseAction = null;
       this.responseAction = res; //Save the response in the variable
       $("#modalResponse").modal("show"); //Triggers the modal "modalResponse"
+    },
+    //Shows a modal with a message when sends a new foundation request
+    showModalWithResponseSuccess(res) {
+      this.responseAction = null;
+      this.responseAction = res; //Save the response in the variable
+      $("#modalResponseSuccess").modal("show"); //Triggers the modal "modalResponse"
     },
     validateFormBeforeSubmit() {
       this.topicsToString(); // Converts the object of topics into a string
@@ -121,5 +154,10 @@ h1 {
 }
 .btn-success {
   margin-bottom: 30px;
+}
+
+.btn a {
+  text-decoration: none;
+  color: white;
 }
 </style>
