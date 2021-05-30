@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils';
-import AddFoundation from '@/views/AddFoundation.vue';
+import AddFoundation from '@/views/AddFoundation.vue'
 
 //Command: npm run test:unit
 describe('Testing component AddFoundation.vue', () => {
@@ -7,62 +7,62 @@ describe('Testing component AddFoundation.vue', () => {
 
   const wrapper = shallowMount(AddFoundation);
   const $ = require('jquery');
-
+  const foundation = {
+    id: "e9x8a3m5p4l4e",
+    name: "Example",
+    url: "https://example.com",
+    rq1Inter: "Y",
+    rq1Indep: "Y",
+    rq1Open: "N",
+    SD: "N",
+    rq3rq4: "N",
+    legal: "legal",
+    topics: [
+      {
+        name: "Event-organization",
+        checked: true
+      },
+      {
+        name: "Training",
+        checked: true
+      },
+      {
+        name: "Legal-support",
+        checked: false
+      },
+      {
+        name: "Community-coordination",
+        checked: true
+      },
+      {
+        name: "Project-sponsoring",
+        checked: false
+      },
+      {
+        name: "Software-Development",
+        checked: false
+      },
+      {
+        name: "OSS-promotion",
+        checked: false
+      },
+      {
+        name: "Government-involvement",
+        checked: false
+      },
+      {
+        name: "Standard-leaders",
+        checked: false
+      }
+    ],
+    topicsString: "5",
+    authorName: "John Doe",
+    authorMail: "hello@johndoe.com",
+    status: "",
+  };
   //Updated selected foundation
   it('updates the selected foundation value', () => {
-    const foundation = {
-      id: "e9x8a3m5p4l4e",
-      name: "Example",
-      url: "https://example.com",
-      rq1Inter: "Y",
-      rq1Indep: "Y",
-      rq1Open: "N",
-      SD: "N",
-      rq3rq4: "N",
-      legal: "legal",
-      topics: [
-        {
-          name: "Event-organization",
-          checked: true
-        },
-        {
-          name: "Training",
-          checked: true
-        },
-        {
-          name: "Legal-support",
-          checked: false
-        },
-        {
-          name: "Community-coordination",
-          checked: true
-        },
-        {
-          name: "Project-sponsoring",
-          checked: false
-        },
-        {
-          name: "Software-Development",
-          checked: false
-        },
-        {
-          name: "OSS-promotion",
-          checked: false
-        },
-        {
-          name: "Government-involvement",
-          checked: false
-        },
-        {
-          name: "Standard-leaders",
-          checked: false
-        }
-      ],
-      topicsString: "5",
-      authorName: "John Doe",
-      authorMail: "hello@johndoe.com",
-      status: "",
-    };
+
     wrapper.vm.updateSelectedFoundation(foundation);
     expect(wrapper.vm.selectedFoundation).toMatchObject(foundation);
 
@@ -74,21 +74,31 @@ describe('Testing component AddFoundation.vue', () => {
     expect(wrapper.vm.selectedFoundation.topicsString).toMatch('Event-organization,Training,Community-coordination');
   });
 
-  //Validates required form fields before submitting
+  //validateFormBeforeSubmit
   it('validates required form fields before submitting', () => {
     expect(wrapper.vm.validateFormBeforeSubmit()).toBeTruthy();
   });
 
+
+  //Validates required form fields before submitting
+  it('sends a new foundation to the API', () => {
+    jest.mock('axios', () => ({
+      get: Promise.resolve('OK')
+    }));
+    wrapper.vm.newFoundation(foundation);
+    expect(wrapper.vm.responseAction).not.toBe(null);
+  });
+
   //Validates required form fields before submitting
   it('shows modal with response', () => {
-    // wrapper.vm.showModalWithResponse("Test");
-    // expect(wrapper.vm.responseAction).toMatch("Test");
+    wrapper.vm.showModalWithResponse("Test");
+    expect(wrapper.vm.responseAction).toMatch("Test");
 
-    // const spy = jest.fn();
+    const spy = jest.fn();
 
-    // const wrapperModal = shallow(<ModalResponse/>);
-    // wrapperModal.find('#modalResponse').prop('onClick')();
-    // expect(spy).toHaveBeenCalled();  // Success!
+    const wrapperModal = shallow(<ModalResponse/>);
+    wrapperModal.find('#modalResponse').prop('onClick')();
+    expect(spy).toHaveBeenCalled();  // Success!
 
 
   });

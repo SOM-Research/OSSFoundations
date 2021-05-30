@@ -24,7 +24,7 @@
             <th
               v-for="(column, index) in columns"
               v-bind:key="column"
-              :class="{ 'col-8': index === 1 }"
+              :class="{ 'w-50': index === 2 }"
             >
               <div
                 href="#"
@@ -43,6 +43,7 @@
         <tbody>
           <tr v-for="foundation in foundationsPending" v-bind:key="foundation.id">
             <th scope="row">{{ foundation.id }}</th>
+            <td>{{ formatDate(foundation.creationDate) }}</td>
             <td>{{ foundation.name }}</td>
             <td>
               <button
@@ -101,7 +102,7 @@
             <th
               v-for="(column, index) in columns"
               v-bind:key="column"
-              :class="{ 'col-8': index === 1 }"
+              :class="{ 'w-50': index === 2 }"
             >
               <div
                 href="#"
@@ -119,6 +120,7 @@
         <tbody>
           <tr v-for="foundation in foundations" v-bind:key="foundation.id">
             <th scope="row">{{ foundation.id }}</th>
+            <td>{{ formatDate(foundation.creationDate) }}</td>
             <td>{{ foundation.name }}</td>
             <td>
               <button
@@ -252,10 +254,11 @@ export default {
         authorName: "",
         authorMail: "",
         status: "",
+        creationDate: "",
       },
       responseAction: "", //Shows the message of an error or success of an action
       ///ORDERING
-      columns: ["id", "name"], // Columns of the table
+      columns: ["id", "creationDate", "name"], // Columns of the table
       sortKey: "", // Order
       reverse: false, // If we have to reverse the order
     };
@@ -487,6 +490,20 @@ export default {
         this.sortKey,
         this.reverse ? "desc" : "asc"
       );
+    },
+    formatDate(time) {
+      var date_ob = new Date(time);
+      let date = date_ob.getDate();
+      let month = date_ob.getMonth() + 1;
+      let year = date_ob.getFullYear();
+
+      let hour = date_ob.getHours();
+      let minutes = date_ob.getMinutes();
+      if (minutes < 10) {
+        minutes = "0" + minutes;
+      }
+
+      return date + "/" + month + "/" + year + "-" + hour + ":" + minutes;
     },
   },
   computed: {},
