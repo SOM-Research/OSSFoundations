@@ -149,6 +149,8 @@
           </tr>
         </tbody>
       </table>
+      <h5>Users</h5>
+      <table class="table table-hover"></table>
     </div>
     <modal-confirm-action
       :foundation="selectedFoundation"
@@ -266,6 +268,7 @@ export default {
   props: {},
   mounted: function () {
     this.loadAllFoundations();
+    this.getUsers();
   },
   watch: {
     //Watches if the foundations data has been changed and updates the value
@@ -504,6 +507,14 @@ export default {
       }
 
       return date + "/" + month + "/" + year + "-" + hour + ":" + minutes;
+    },
+
+    //USERS
+
+    getUsers() {
+      return API.getUsers()
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err));
     },
   },
   computed: {},
