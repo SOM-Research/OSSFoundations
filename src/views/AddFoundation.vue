@@ -100,7 +100,7 @@ export default {
     //Send a request to the server to create a new foundation
     newFoundation(foundation) {
       return API.newFoundationPending(foundation)
-        .then((res) => this.showModalWithResponseSuccess(res.data.message))
+        .then(() => this.showModalWithResponseSuccess("Foundation added"))
         .catch((err) => (console.log(err), this.showModalWithResponse(err.message)));
     },
     //Shows a modal with a message when user makes any change (error)
