@@ -1,9 +1,9 @@
 import axios from "axios";
 import firebase from 'firebase';
 //DEV
-var url = "http://localhost:5000"
+//var url = "http://localhost:5000"
 //PROD
-//var url = "https://oss-foundations-api.herokuapp.com"
+var url = "https://oss-foundations-api.herokuapp.com"
 
 
 
@@ -81,15 +81,29 @@ async function getTokenIfLoggedIn() {
 }
 //Makes an user "admin" passing its Firebase UID
 async function makeUserAdmin(user) {
-    if (isLoggedIn()) {
-        const res = await axios.post(url + '/makeUserAdmin/', user)
-        return res;
-    }
+    // if (isLoggedIn()) {
+    //     const res = await axios.post(url + '/makeUserAdmin/', user)
+    //     return res;
+    // }
+    const token = await getTokenIfLoggedIn();
+    const res = await axios.post(url + `/makeUserAdmin/`, user, {
+        headers:
+            { authorization: `Bearer ${token}` }
+    })
+    return res;
 }
 
-//GITHUB COMMUNICATION
-//Gets a list of all users in Firebase
+async function revokeUserAdmin(user) {
+    const token = await getTokenIfLoggedIn();
+    const res = await axios.post(url + `/revokeUserAdmin/`, user, {
+        headers:
+            { authorization: `Bearer ${token}` }
+    })
+    return res;
+}
 
+
+//Gets a list of all users in Firebase
 async function getUsers() {
     const token = await getTokenIfLoggedIn();
     const res = await axios.get(url + `/users`, {
@@ -98,6 +112,8 @@ async function getUsers() {
     });
     return res;
 }
+
+//GITHUB COMMUNICATION
 //Creates an issue in the Github repo
 async function createIssue(data) {
     const token = await getTokenIfLoggedIn();
@@ -109,4 +125,4 @@ async function createIssue(data) {
 }
 
 //EXPORTS
-export default { getFoundations, editFoundation, newFoundation, newFoundationPending,deleteFoundation, getFoundationsPending, makeUserAdmin, createIssue, getUsers };
+export default { getFoundations, editFoundation, newFoundation, newFoundationPending,deleteFoundation, getFoundationsPending, makeUserAdmin, revokeUserAdmin, createIssue, getUsers };

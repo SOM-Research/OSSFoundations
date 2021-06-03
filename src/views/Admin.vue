@@ -150,7 +150,47 @@
         </tbody>
       </table>
       <h5>Users</h5>
-      <table class="table table-hover"></table>
+      <table class="table table-hover users">
+        <thead>
+          <tr>
+            <th></th>
+            <th>User</th>
+            <th>Role</th>
+            <th>Buttons</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="user in usersList" v-bind:key="user.uid">
+            <td>
+              <img :src="user.photoURL" :alt="'Picture of ' + user.displayName" />
+            </td>
+            <td>{{ user.email }}</td>
+            <td v-if="user.customClaims">
+              <span class="text-danger" v-if="user.customClaims.admin">Admin</span>
+              <span v-if="!user.customClaims.admin">N/A</span>
+            </td>
+            <td v-if="!user.customClaims">N/A</td>
+            <td v-if="!user.customClaims">
+              {{ user.uid }}
+              <button class="btn btn-success" @click="makeUserAdmin(user)">
+                Make admin
+              </button>
+            </td>
+            <td v-if="user.customClaims && user.customClaims.admin == false">
+              {{ user.uid }}
+              <button class="btn btn-success" @click="makeUserAdmin(user)">
+                Make admin
+              </button>
+            </td>
+            <td v-if="user.customClaims && user.customClaims.admin">
+              {{ user.uid }}
+              <button class="btn btn-danger" @click="revokeUserAdmin(user)">
+                Revoke admin
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
     <modal-confirm-action
       :foundation="selectedFoundation"
@@ -263,6 +303,9 @@ export default {
       columns: ["id", "creationDate", "name"], // Columns of the table
       sortKey: "", // Order
       reverse: false, // If we have to reverse the order
+
+      //USERS
+      usersList: "", //A list of users in firebase
     };
   },
   props: {},
@@ -512,9 +555,20 @@ export default {
     //USERS
 
     getUsers() {
+      this.usersList = "";
       return API.getUsers()
-        .then((res) => console.log(res))
+        .then((res) => (console.log(res), (this.usersList = res.data)))
         .catch((err) => console.log(err));
+    },
+    makeUserAdmin(user) {
+      return API.makeUserAdmin(user)
+        .then((res) => (this.getUsers(), this.showModalWithResponse(res.data.message)))
+        .catch((err) => this.showModalWithResponse(err));
+    },
+    revokeUserAdmin(user) {
+      return API.revokeUserAdmin(user)
+        .then((res) => (this.getUsers(), this.showModalWithResponse(res.data.message)))
+        .catch((err) => this.showModalWithResponse(err));
     },
   },
   computed: {},
@@ -580,5 +634,9 @@ button {
   right: 0;
   opacity: 0.5;
   z-index: 6000;
+}
+.users img {
+  max-width: 30px;
+  border-radius: 50%;
 }
 </style>
