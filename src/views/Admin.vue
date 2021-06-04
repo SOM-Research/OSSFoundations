@@ -1,5 +1,6 @@
 <template>
   <div class="app-container container-xl first">
+    <loading v-if="loadingMsg" />
     <div>
       <div class="d-flex justify-content-end">
         <button
@@ -16,6 +17,7 @@
         </button>
       </div>
       <loading v-if="loading && !isError" />
+
       <p v-if="isError" class="text-danger">{{ errorMsg }}</p>
       <h5>New foundations pending approval</h5>
       <table class="table table-hover table-fixed">
@@ -77,7 +79,7 @@
               </button>
             </td>
             <td>
-              <button class="btn btn-dark" @click="createIssue(foundation.name)">
+              <button class="btn btn-dark" @click="createIssue(foundation)">
                 Issue
                 <font-awesome-icon :icon="['fab', 'github']" class="d-inline ml-1" />
               </button>
@@ -171,19 +173,16 @@
             </td>
             <td v-if="!user.customClaims">N/A</td>
             <td v-if="!user.customClaims">
-              {{ user.uid }}
               <button class="btn btn-success" @click="makeUserAdmin(user)">
                 Make admin
               </button>
             </td>
             <td v-if="user.customClaims && user.customClaims.admin == false">
-              {{ user.uid }}
               <button class="btn btn-success" @click="makeUserAdmin(user)">
                 Make admin
               </button>
             </td>
             <td v-if="user.customClaims && user.customClaims.admin">
-              {{ user.uid }}
               <button class="btn btn-danger" @click="revokeUserAdmin(user)">
                 Revoke admin
               </button>
@@ -277,6 +276,7 @@ export default {
       allTopics: [],
       loading: true,
       isError: false,
+      loadingMsg: false,
       errorMsg: "",
       textModalForm: "", //Displays "New" or "Edit" depending on the user actions
       isNewFoundationForm: false,
@@ -397,23 +397,62 @@ export default {
     },
     //Send a request to the server to edit a selected foundation
     editFoundation(id, selectedFoundation) {
+      this.loadingMsg = true;
       return API.editFoundation(id, selectedFoundation)
         .then(
           (res) => (
-            this.loadAllFoundations(), this.showModalWithResponse(res.data.message)
+            this.loadAllFoundations(),
+            this.showModalWithResponse(res.data.message),
+            (this.loadingMsg = false)
           )
         )
-        .catch((err) => (console.log(err), this.showModalWithResponse(err.message)));
+        .catch(
+          (err) => (
+            console.log(err),
+            this.showModalWithResponse(err.message),
+            (this.loadingMsg = false)
+          )
+        );
     },
     //Send a request to the server to make an issue in the Github repo
-    createIssue(foundationName) {
+    createIssue(foundation) {
+      this.loadingMsg = true;
       var issue = {
-        title: "Request to add " + foundationName + " into the database",
-        body: "Pending to revise and approve/reject the request",
+        title: "Request to add " + foundation.name + " into the database",
+        body:
+          "Pending to revise and approve/reject the request \n ```\nName: " +
+          foundation.name +
+          "\nURL: " +
+          foundation.url +
+          "\nInternational: " +
+          foundation.rq1Inter +
+          "\nIndependent: " +
+          foundation.rq1Indep +
+          "\nOpen: " +
+          foundation.rq1Open +
+          "\nSD: " +
+          foundation.SD +
+          "\nLegal: " +
+          foundation.legal +
+          "\nTopics: " +
+          foundation.topics +
+          "\nCreation date: " +
+          this.formatDate(foundation.creationDate) +
+          "\n```",
       };
       return API.createIssue(issue)
-        .then((res) => this.showModalWithResponse(res.data.message))
-        .catch((err) => (console.log(err), this.showModalWithResponse(err.message)));
+        .then(
+          (res) => (
+            this.showModalWithResponse(res.data.message), (this.loadingMsg = false)
+          )
+        )
+        .catch(
+          (err) => (
+            console.log(err),
+            this.showModalWithResponse(err.message),
+            (this.loadingMsg = false)
+          )
+        );
     },
     //Approve a foundation by changing its status to "final"
     approveFoundation(id, selectedFoundation) {
@@ -422,25 +461,42 @@ export default {
     },
     //Send a request to the server to create a new foundation
     newFoundation(foundation) {
+      this.loadingMsg = true;
       return API.newFoundation(foundation)
         .then(
           (res) => (
-            this.loadAllFoundations(), this.showModalWithResponse(res.data.message)
+            this.loadAllFoundations(),
+            this.showModalWithResponse(res.data.message),
+            (this.loadingMsg = false)
           )
         )
-        .catch((err) => (console.log(err), this.showModalWithResponse(err.message)));
+        .catch(
+          (err) => (
+            console.log(err),
+            this.showModalWithResponse(err.message),
+            (this.loadingMsg = false)
+          )
+        );
     },
     //Send a request to the server to delete a selected foundation
     deleteFoundation(foundationId) {
       //Delete from the main foundations database
-
+      this.loadingMsg = true;
       return API.deleteFoundation(foundationId)
         .then(
           (res) => (
-            this.loadAllFoundations(), this.showModalWithResponse(res.data.message)
+            this.loadAllFoundations(),
+            this.showModalWithResponse(res.data.message),
+            (this.loadingMsg = false)
           )
         )
-        .catch((err) => (console.log(err), this.showModalWithResponse(err.message)));
+        .catch(
+          (err) => (
+            console.log(err),
+            this.showModalWithResponse(err.message),
+            (this.loadingMsg = false)
+          )
+        );
     },
 
     //Fills the form with the info of the selected foundation by using its ID
@@ -553,7 +609,6 @@ export default {
     },
 
     //USERS
-
     getUsers() {
       this.usersList = "";
       return API.getUsers()
@@ -561,13 +616,27 @@ export default {
         .catch((err) => console.log(err));
     },
     makeUserAdmin(user) {
+      this.loadingMsg = true;
       return API.makeUserAdmin(user)
-        .then((res) => (this.getUsers(), this.showModalWithResponse(res.data.message)))
+        .then(
+          (res) => (
+            this.getUsers(),
+            (this.loadingMsg = false),
+            this.showModalWithResponse(res.data.message)
+          )
+        )
         .catch((err) => this.showModalWithResponse(err));
     },
     revokeUserAdmin(user) {
+      this.loadingMsg = false;
       return API.revokeUserAdmin(user)
-        .then((res) => (this.getUsers(), this.showModalWithResponse(res.data.message)))
+        .then(
+          (res) => (
+            this.getUsers(),
+            (this.loadingMsg = false),
+            this.showModalWithResponse(res.data.message)
+          )
+        )
         .catch((err) => this.showModalWithResponse(err));
     },
   },
