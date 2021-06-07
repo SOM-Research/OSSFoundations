@@ -1,9 +1,25 @@
+import { createRouter, createWebHistory } from 'vue-router'
 import { shallowMount } from '@vue/test-utils';
 import AddFoundation from '@/views/AddFoundation.vue';
+
+
 import 'bootstrap';
+import axios from "axios";
+
+jest.mock('axios');
+// const routes = [
+//   {
+//     path: '/',
+//     name: 'Home',
+//   },
+// ];
+// const router = createRouter({
+//   routes
+// });
 
 //Command: npm run test:unit
 describe('Testing component AddFoundation.vue', () => {
+
 
 
   const wrapper = shallowMount(AddFoundation);
@@ -11,7 +27,7 @@ describe('Testing component AddFoundation.vue', () => {
 
   const foundation = {
     id: "e9x8a3m5p4l4e",
-    name: "Example",
+    name: "ExampleFoundation",
     url: "https://example.com",
     rq1Inter: "Y",
     rq1Indep: "Y",

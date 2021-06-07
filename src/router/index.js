@@ -3,6 +3,7 @@ import Home from '../views/Home.vue'
 import Admin from '../views/Admin.vue'
 import AddFoundation from '../views/AddFoundation.vue'
 import { firebase } from "@/firebase.js";
+import { trackRouter } from "vue-gtag-next";
 
 const routes = [
   {
@@ -67,5 +68,7 @@ router.beforeEach(async (to, from, next) => {
     next();
   }
 });
+
+trackRouter(router); //Tracks the router for Google Analytics
 
 export default router
