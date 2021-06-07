@@ -27,7 +27,8 @@
 </template>
 
 <script>
-import firebase from "firebase";
+import firebase from "firebase/app";
+import "firebase/auth";
 import { provider } from "../firebase";
 import API from "@/data/api.js";
 
