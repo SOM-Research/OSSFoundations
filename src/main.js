@@ -1,6 +1,7 @@
 //Imports
 import { createApp } from 'vue'
 import App from './App.vue'
+import VueGtag from "vue-gtag-next"; //Google Analytics
 import router from './router'
 import './firebase'; 
 //Font Awesome
@@ -24,6 +25,9 @@ import './css/style.css'
 //Create the Vue app
 createApp(App).use(router)
     .use(VueApexCharts)
+    .use(VueGtag, {
+        property: {id: 'UA-54150984-5'}
+    })
     .component('font-awesome-icon', FontAwesomeIcon)
     .mount('#app')
     

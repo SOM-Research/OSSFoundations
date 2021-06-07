@@ -21,6 +21,8 @@
     "octokit": "^1.0.1",
     "popper.js": "^1.16.1",
     "vue": "^3.0.11",
+    "vue-gtag": "^2.0.1",
+    "vue-gtag-next": "^1.14.0",
     "vue-router": "^4.0.3",
     "vue-template-compiler": "^2.6.12",
     "vue3-apexcharts": "^1.1.1"
