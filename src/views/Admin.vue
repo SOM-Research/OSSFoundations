@@ -162,7 +162,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="user in usersList" v-bind:key="user.uid">
+          <tr v-for="user in usersListUoc" v-bind:key="user.uid">
             <td>
               <img :src="user.photoURL" :alt="'Picture of ' + user.displayName" />
             </td>
@@ -306,6 +306,7 @@ export default {
 
       //USERS
       usersList: "", //A list of users in firebase
+      usersListLoaded: false,
     };
   },
   props: {},
@@ -612,7 +613,11 @@ export default {
     getUsers() {
       this.usersList = "";
       return API.getUsers()
-        .then((res) => (console.log(res), (this.usersList = res.data)))
+        .then(
+          (res) => (
+            console.log(res), (this.usersList = res.data), (this.usersListLoaded = true)
+          )
+        )
         .catch((err) => console.log(err));
     },
     makeUserAdmin(user) {
@@ -640,7 +645,15 @@ export default {
         .catch((err) => this.showModalWithResponse(err));
     },
   },
-  computed: {},
+  computed: {
+    //Return the users list only with UOC mails
+    usersListUoc() {
+      if (this.usersListLoaded == true) {
+        return this.usersList.filter((user) => user.email.includes("uoc"));
+      }
+      return null;
+    },
+  },
 };
 </script>
 
