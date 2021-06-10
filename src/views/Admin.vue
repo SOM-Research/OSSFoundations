@@ -512,6 +512,8 @@ export default {
           this.selectedFoundation.rq1Indep = foundationsList[x].rq1Indep;
           this.selectedFoundation.rq1Open = foundationsList[x].rq1Open;
           this.selectedFoundation.SD = foundationsList[x].SD;
+          this.selectedFoundation.authorMail = foundationsList[x].author.mail;
+          this.selectedFoundation.authorName = foundationsList[x].author.name;
           if (this.selectedFoundation.SD == "Y") {
             this.topicSD = true;
           } else {
