@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import Admin from '../views/Admin.vue'
 import AddFoundation from '../views/AddFoundation.vue'
@@ -21,14 +21,14 @@ const routes = [
   },
   {
     path: '/add',
-    name: 'Add',
+    name: 'Add Foundation',
     component: AddFoundation
   }
 ]
 
 
 const router = createRouter({
-  history: createWebHistory('/OSSFoundations/'),
+  history: createWebHashHistory('/OSSFoundations/'),
   routes,
   //linkActiveClass: 'text-dark',
   scrollBehavior(to) {
