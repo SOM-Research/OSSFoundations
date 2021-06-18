@@ -124,7 +124,7 @@ header {
   right: 0;
   left: 0;
   top: 0;
-  z-index: 10000;
+  z-index: 1;
   background-color: rgba(255, 255, 255, 0.97);
 }
 header::after {

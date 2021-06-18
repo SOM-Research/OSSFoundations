@@ -74,20 +74,64 @@
                   <td>{{ foundation.SD }}</td>
                 </tr>
               </table>
+              <div>
+                <span>Something is wrong or missing?</span>
+                <button
+                  class="btn btn-sm btn-secondary ml-1"
+                  data-toggle="modal"
+                  data-target="#modal-suggest-changes"
+                  @click="loadFormData(foundation.id, foundations)"
+                >
+                  Suggest a change
+                </button>
+              </div>
             </div>
           </div>
         </td>
       </tr>
     </tbody>
   </table>
+  <!-- Modal suggest changes -->
+  <div
+    class="modal fade"
+    id="modal-suggest-changes"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="modalSuggestChanges"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalSuggestChanges">Suggest changes</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <new-edit-foundation
+            :selectedFoundation="selectedFoundation"
+            @update-selected-foundation="updateSelectedFoundation"
+          />
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Close
+          </button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
 //Import lodash
 import _ from "lodash";
+import NewEditFoundation from "@/components/NewEditFoundation.vue";
 
 export default {
-  components: {},
+  components: { NewEditFoundation },
   name: "FoundationsList",
   props: ["foundationsProp"],
   data() {
@@ -99,6 +143,23 @@ export default {
 
       //DATA
       foundations: this.foundationsProp,
+      selectedFoundation: {
+        id: "",
+        name: "",
+        url: "",
+        rq1Inter: "",
+        rq1Indep: "",
+        rq1Open: "",
+        SD: "",
+        rq3rq4: "",
+        legal: "",
+        topics: [],
+        topicsString: "",
+        authorName: "",
+        authorMail: "",
+        status: "",
+        creationDate: "",
+      },
     };
   },
   mounted() {},
@@ -124,6 +185,35 @@ export default {
         this.reverse ? "desc" : "asc"
       );
     },
+    //Fills the form with the info of the selected foundation by using its ID
+    loadFormData(id, foundationsList) {
+      for (var x in foundationsList) {
+        if (foundationsList[x].id == id) {
+          this.selectedFoundation.id = foundationsList[x].id;
+          this.selectedFoundation.name = foundationsList[x].name;
+          this.selectedFoundation.id = foundationsList[x].id;
+          this.selectedFoundation.url = foundationsList[x].url;
+          this.selectedFoundation.rq1Inter = foundationsList[x].rq1Inter;
+          this.selectedFoundation.rq1Indep = foundationsList[x].rq1Indep;
+          this.selectedFoundation.rq1Open = foundationsList[x].rq1Open;
+          this.selectedFoundation.SD = foundationsList[x].SD;
+          // this.selectedFoundation.authorMail = foundationsList[x].author.mail;
+          // this.selectedFoundation.authorName = foundationsList[x].author.name;
+          this.selectedFoundation.rq3rq4 = foundationsList[x].rq3rq4;
+          this.selectedFoundation.legal = foundationsList[x].legal;
+          //Loads the selected topics
+          for (var i = 0; i < this.selectedFoundation.topics.length; i++) {
+            if (
+              foundationsList[x].topics.includes(this.selectedFoundation.topics[i].name)
+            ) {
+              this.selectedFoundation.topics[i].checked = true;
+            } else {
+              this.selectedFoundation.topics[i].checked = false;
+            }
+          }
+        }
+      }
+    },
   },
 };
 </script>
@@ -132,5 +222,8 @@ export default {
 <style scoped>
 .card * {
   word-break: break-all;
+}
+h5 {
+  color: #212529 !important;
 }
 </style>

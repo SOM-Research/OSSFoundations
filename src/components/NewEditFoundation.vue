@@ -280,9 +280,11 @@ export default {
 </script>
 
 <style scoped>
+h2,
 h5,
-label {
-  color: #212529;
+label,
+p {
+  color: #212529 !important;
 }
 
 .action-form {
