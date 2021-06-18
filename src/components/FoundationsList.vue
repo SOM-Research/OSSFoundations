@@ -27,6 +27,7 @@
                 .replace(/'/g, '')
                 .replace('(', '')
                 .replace(')', '')
+                .replace('#', '')
             "
             role="button"
             aria-expanded="false"
@@ -43,6 +44,7 @@
                 .replace(/'/g, '')
                 .replace('(', '')
                 .replace(')', '')
+                .replace('#', '')
             "
           >
             <div class="card card-body">
@@ -127,4 +129,8 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped></style>
+<style scoped>
+.card * {
+  word-break: break-all;
+}
+</style>

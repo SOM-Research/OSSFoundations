@@ -34,7 +34,7 @@
         <h2 class="h1 mb-4">What we did</h2>
         <div class="info-block">
           <h3 class="mb-4">Analysis report</h3>
-          <div class="row">
+          <div class="row overflow-hidden">
             <div class="col-12 col-md-4 col-xl-2">
               <img src="@/img/papercover.jpg" alt="..." class="img-thumbnail" />
             </div>
