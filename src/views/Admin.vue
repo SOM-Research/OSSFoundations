@@ -19,6 +19,77 @@
       <loading v-if="loading && !isError" />
 
       <p v-if="isError" class="text-danger">{{ errorMsg }}</p>
+      <h5>New requests to modify a foundation</h5>
+      <table class="table table-hover table-fixed">
+        <thead class="">
+          <tr class="">
+            <th
+              v-for="(column, index) in columns"
+              v-bind:key="column"
+              :class="{ 'w-50': index === 2 }"
+            >
+              <div
+                href="#"
+                v-on:click="sortPendingFoundations(column)"
+                v-bind:class="{ active: sortKey == column }"
+              >
+                {{ column[0].toUpperCase() + column.slice(1) }}
+              </div>
+            </th>
+            <th scope="col" class=""></th>
+            <th scope="col" class=""></th>
+            <th scope="col" class=""></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="foundation in foundationsStatusEdition" v-bind:key="foundation.id">
+            <th scope="row">{{ foundation.id }}</th>
+            <td>{{ formatDate(foundation.creationDate) }}</td>
+            <td>{{ foundation.name }}</td>
+            <td>
+              <button
+                class="btn btn-primary"
+                @click="
+                  isNewFoundationForm = false;
+                  textModalForm = 'Edit ' + foundation.name;
+                  loadFormData(foundation.id, foundationsStatusEdition);
+                "
+                data-toggle="modal"
+                data-target="#newEditFoundationForm"
+              >
+                Edit
+              </button>
+            </td>
+            <td>
+              <button
+                class="btn btn-success"
+                data-toggle="modal"
+                data-target="#modalConfirmActionApproveEdition"
+                @click="
+                  isNewFoundationForm = false;
+                  textModalForm =
+                    'Are you sure you want to accept the changes for the foundation' +
+                    foundation.name +
+                    ' ?';
+                  loadFormData(foundation.id, foundations);
+                "
+              >
+                Approve
+              </button>
+            </td>
+            <td>
+              <button
+                class="btn btn-danger"
+                data-toggle="modal"
+                data-target="#modalConfirmActionDelete"
+                v-on:click="loadFormData(foundation.id, foundationsPending)"
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
       <h5>New foundations pending approval</h5>
       <table class="table table-hover table-fixed">
         <thead class="">
@@ -203,6 +274,12 @@
       :textToShow="'Are you sure you want to approve this foundation?'"
       @confirmed-action="approveFoundation(selectedFoundation.id, selectedFoundation)"
     />
+    <modal-confirm-action
+      :foundation="selectedFoundation"
+      :id="'modalConfirmActionApproveEdition'"
+      :textToShow="'Are you sure you want to approve the changes for this foundation?'"
+      @confirmed-action="approveEditProposal(selectedFoundation.id, selectedFoundation)"
+    />
     <modal-response :responseAction="responseAction" />
     <div
       class="modal fade"
@@ -271,7 +348,7 @@ export default {
   data() {
     return {
       foundations: "", //Current foundations in database
-      foundationsPending: "", //Foundations pending to Pending
+      foundationsPending: "", //Foundations with status "pending"
       isFoundationsOrPendingList: true, //True if the main foundations database, False if the foundations Pending list
       allTopics: [],
       loading: true,
@@ -282,6 +359,7 @@ export default {
       isNewFoundationForm: false,
       topicSD: false, //Auxiliary variable to bind the selectedFoundation's "SD" and topics.SD;
       selectedFoundation: {
+        idLinkedFoundation: "", //In case of foundations of status "edition"
         id: "",
         name: "",
         url: "",
@@ -356,7 +434,7 @@ export default {
       this.foundations = "";
       this.loading = true;
       return (
-        API.getFoundations()
+        API.getAllFoundations()
           .then((response) => ((this.foundations = response), (this.loading = false)))
           //If error
           .catch(
@@ -374,6 +452,12 @@ export default {
           //If error
           .catch((err) => console.log(err))
       );
+    },
+    //Send a request to the server to modify a foundation
+    loadFoundationsStatusEdition() {
+      return API.getFoundationsStatusEdition()
+        .then((res) => this.showModalWithResponse(res.data.message))
+        .catch((err) => (console.log(err), this.showModalWithResponse(err.message)));
     },
     //Maps the JSON of the foundations data to get the listed topics
     mapFoundations: function () {
@@ -460,6 +544,14 @@ export default {
       selectedFoundation.status = "final";
       this.editFoundation(id, selectedFoundation);
     },
+    //Accept edit proposal of a foundation"
+    approveEditProposal(idParentFoundation, selectedFoundation) {
+      selectedFoundation.status = "final";
+      this.editFoundation(idParentFoundation, selectedFoundation);
+
+      //And deletes the foundation proposal
+      return API.deleteFoundation(selectedFoundation.id).then(this.loadAllFoundations());
+    },
     //Send a request to the server to create a new foundation
     newFoundation(foundation) {
       this.loadingMsg = true;
@@ -504,7 +596,8 @@ export default {
     loadFormData(id, foundationsList) {
       for (var x in foundationsList) {
         if (foundationsList[x].id == id) {
-          this.selectedFoundation.id = foundationsList[x].id;
+          this.selectedFoundation.idLinkedFoundation =
+            foundationsList[x].idLinkedFoundation;
           this.selectedFoundation.name = foundationsList[x].name;
           this.selectedFoundation.id = foundationsList[x].id;
           this.selectedFoundation.url = foundationsList[x].url;
@@ -652,6 +745,14 @@ export default {
     usersListUoc() {
       if (this.usersListLoaded == true) {
         return this.usersList.filter((user) => user.email.includes("uoc"));
+      }
+      return null;
+    },
+    foundationsStatusEdition() {
+      if (this.loading == false) {
+        return this.foundations.filter((foundation) =>
+          foundation.status.includes("edition")
+        );
       }
       return null;
     },

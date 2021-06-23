@@ -2,17 +2,28 @@ import axios from "axios";
 import firebase from 'firebase/app';
 import 'firebase/auth';
 //DEV
-//var url = "http://localhost:5000"
+var url = "http://localhost:5000"
 //PROD
-var url = "https://oss-foundations-api.herokuapp.com"
+//var url = "https://oss-foundations-api.herokuapp.com"
 
 
 
 //DATA
-//Gets all the foundations data in JSON
+//Gets the foundations with status "final"
 async function getFoundations() {
     const res = await fetch(url + '/foundations', {
         method: 'GET',
+    });
+    return await res.json();
+}
+
+//Gets all the foundations
+async function getAllFoundations() {
+    const token = await getTokenIfLoggedIn();
+    const res = await fetch(url + '/foundations/all/', {
+        method: 'GET',
+        headers:
+            { authorization: `Bearer ${token}` }
     });
     return await res.json();
 }
@@ -24,6 +35,12 @@ async function editFoundation(foundationId, foundation) {
         headers:
             { authorization: `Bearer ${token}` }
     });
+    return res;
+}
+
+//Sends a request to modify a foundation
+async function editFoundationProposal(foundationId, foundation) {
+    const res = await axios.put(url + `/foundations/edit/${foundationId}`, foundation);
     return res;
 }
 
@@ -126,4 +143,4 @@ async function createIssue(data) {
 }
 
 //EXPORTS
-export default { getFoundations, editFoundation, newFoundation, newFoundationPending,deleteFoundation, getFoundationsPending, makeUserAdmin, revokeUserAdmin, createIssue, getUsers };
+export default { getFoundations, editFoundation, editFoundationProposal, newFoundation, newFoundationPending, deleteFoundation, getFoundationsPending, getAllFoundations, makeUserAdmin, revokeUserAdmin, createIssue, getUsers };

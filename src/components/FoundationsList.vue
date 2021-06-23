@@ -118,20 +118,30 @@
           <button type="button" class="btn btn-secondary" data-dismiss="modal">
             Close
           </button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            @click="editionProposal(selectedFoundation.id, selectedFoundation)"
+          >
+            Send changes
+          </button>
         </div>
       </div>
     </div>
+    <modal-response :responseAction="responseAction" />
   </div>
 </template>
 
 <script>
 //Import lodash
 import _ from "lodash";
+import $ from "jquery";
 import NewEditFoundation from "@/components/NewEditFoundation.vue";
+import API from "@/data/api.js";
+import ModalResponse from "@/components/ModalResponse.vue";
 
 export default {
-  components: { NewEditFoundation },
+  components: { NewEditFoundation, ModalResponse },
   name: "FoundationsList",
   props: ["foundationsProp"],
   data() {
@@ -160,6 +170,7 @@ export default {
         status: "",
         creationDate: "",
       },
+      responseAction: "", //Shows the message of an error or success of an action
     };
   },
   mounted() {},
@@ -189,7 +200,6 @@ export default {
     loadFormData(id, foundationsList) {
       for (var x in foundationsList) {
         if (foundationsList[x].id == id) {
-          this.selectedFoundation.id = foundationsList[x].id;
           this.selectedFoundation.name = foundationsList[x].name;
           this.selectedFoundation.id = foundationsList[x].id;
           this.selectedFoundation.url = foundationsList[x].url;
@@ -213,6 +223,61 @@ export default {
           }
         }
       }
+    },
+    //Converts the checked topics to a string value when submit
+    topicsToString() {
+      this.selectedFoundation.topicsString = "";
+      for (var i = 0; i < this.selectedFoundation.topics.length; i++) {
+        if (this.selectedFoundation.topics[i].checked) {
+          this.selectedFoundation.topicsString += this.selectedFoundation.topics[i].name;
+          this.selectedFoundation.topicsString += ",";
+        }
+      }
+      //Replace the last comma and if it has any white space after it
+      this.selectedFoundation.topicsString = this.selectedFoundation.topicsString.replace(
+        /,\s*$/,
+        ""
+      );
+    },
+    validateFormBeforeSubmit() {
+      this.topicsToString(); // Converts the object of topics into a string
+      var textValidation = "";
+      var isError = false;
+      if (this.selectedFoundation.name == "") {
+        textValidation = textValidation.concat("The field 'Name' is required. \n");
+        isError = true;
+      }
+      if (this.selectedFoundation.url == "") {
+        textValidation = textValidation.concat("The field 'Website' is required. \n");
+        isError = true;
+      }
+      if (this.selectedFoundation.topicsString == "") {
+        textValidation = textValidation.concat(
+          "You have to select at least one topic from the list. \n"
+        );
+        isError = true;
+      }
+
+      //Shows modal if error or submit form if correct
+      if (isError) {
+        this.showModalWithResponse(textValidation);
+        return false;
+      } else {
+        return true;
+      }
+    },
+    //Send a request to the server to modify a foundation
+    editionProposal(id, foundation) {
+      if (this.validateFormBeforeSubmit() == true) {
+        return API.editFoundationProposal(id, foundation)
+          .then((res) => this.showModalWithResponse(res.data.message))
+          .catch((err) => (console.log(err), this.showModalWithResponse(err.message)));
+      }
+    },
+    //Shows a modal with a message when user makes any change (success / error)
+    showModalWithResponse(res) {
+      this.responseAction = res; //Save the response in the variable
+      $("#modalResponse").modal("show"); //Triggers the modal "modalResponse"
     },
   },
 };
