@@ -60,17 +60,6 @@ async function newFoundationPending(foundation) {
     return res;
 }
 
-//Gets all the foundations data to approve in JSON
-async function getFoundationsPending() {
-    const token = await getTokenIfLoggedIn();
-    const res = await fetch(url + '/foundations/pending/', {
-        method: 'GET',
-        headers:
-            { authorization: `Bearer ${token}` }
-    });
-    return await res.json();
-}
-
 //Deletes the foundation that matches with the ID passed as a parameter
 async function deleteFoundation(foundationId) {
     const token = await getTokenIfLoggedIn();
@@ -143,4 +132,4 @@ async function createIssue(data) {
 }
 
 //EXPORTS
-export default { getFoundations, editFoundation, editFoundationProposal, newFoundation, newFoundationPending, deleteFoundation, getFoundationsPending, getAllFoundations, makeUserAdmin, revokeUserAdmin, createIssue, getUsers };
+export default { getFoundations, editFoundation, editFoundationProposal, newFoundation, newFoundationPending, deleteFoundation, getAllFoundations, makeUserAdmin, revokeUserAdmin, createIssue, getUsers };

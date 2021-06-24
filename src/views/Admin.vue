@@ -19,6 +19,107 @@
       <loading v-if="loading && !isError" />
 
       <p v-if="isError" class="text-danger">{{ errorMsg }}</p>
+
+      <div class="bd-example">
+        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link active"
+              id="pills-home-tab"
+              data-bs-toggle="pill"
+              data-bs-target="#pills-home"
+              type="button"
+              role="tab"
+              aria-controls="pills-home"
+              aria-selected="true"
+            >
+              Home
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link"
+              id="pills-profile-tab"
+              data-bs-toggle="pill"
+              data-bs-target="#pills-profile"
+              type="button"
+              role="tab"
+              aria-controls="pills-profile"
+              aria-selected="false"
+            >
+              Profile
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link"
+              id="pills-contact-tab"
+              data-bs-toggle="pill"
+              data-bs-target="#pills-contact"
+              type="button"
+              role="tab"
+              aria-controls="pills-contact"
+              aria-selected="false"
+            >
+              Contact
+            </button>
+          </li>
+        </ul>
+        <div class="tab-content" id="pills-tabContent">
+          <div
+            class="tab-pane fade active show"
+            id="pills-home"
+            role="tabpanel"
+            aria-labelledby="pills-home-tab"
+          >
+            <p>
+              <strong
+                >This is some placeholder content the Home tab's associated
+                content.</strong
+              >
+              Clicking another tab will toggle the visibility of this one for
+              the next. The tab JavaScript swaps classes to control the content
+              visibility and styling. You can use it with tabs, pills, and any
+              other <code>.nav</code>-powered navigation.
+            </p>
+          </div>
+          <div
+            class="tab-pane fade"
+            id="pills-profile"
+            role="tabpanel"
+            aria-labelledby="pills-profile-tab"
+          >
+            <p>
+              <strong
+                >This is some placeholder content the Profile tab's associated
+                content.</strong
+              >
+              Clicking another tab will toggle the visibility of this one for
+              the next. The tab JavaScript swaps classes to control the content
+              visibility and styling. You can use it with tabs, pills, and any
+              other <code>.nav</code>-powered navigation.
+            </p>
+          </div>
+          <div
+            class="tab-pane fade"
+            id="pills-contact"
+            role="tabpanel"
+            aria-labelledby="pills-contact-tab"
+          >
+            <p>
+              <strong
+                >This is some placeholder content the Contact tab's associated
+                content.</strong
+              >
+              Clicking another tab will toggle the visibility of this one for
+              the next. The tab JavaScript swaps classes to control the content
+              visibility and styling. You can use it with tabs, pills, and any
+              other <code>.nav</code>-powered navigation.
+            </p>
+          </div>
+        </div>
+      </div>
+
       <h5>New requests to modify a foundation</h5>
       <table class="table table-hover table-fixed">
         <thead class="">
@@ -42,7 +143,10 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="foundation in foundationsStatusEdition" v-bind:key="foundation.id">
+          <tr
+            v-for="foundation in foundationsStatusEdition"
+            v-bind:key="foundation.id"
+          >
             <th scope="row">{{ foundation.id }}</th>
             <td>{{ formatDate(foundation.creationDate) }}</td>
             <td>{{ foundation.name }}</td>
@@ -82,7 +186,9 @@
                 class="btn btn-danger"
                 data-toggle="modal"
                 data-target="#modalConfirmActionDelete"
-                v-on:click="loadFormData(foundation.id, foundationsPending)"
+                v-on:click="
+                  loadFormData(foundation.id, foundationsStatusPending)
+                "
               >
                 Delete
               </button>
@@ -114,7 +220,10 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="foundation in foundationsPending" v-bind:key="foundation.id">
+          <tr
+            v-for="foundation in foundationsStatusPending"
+            v-bind:key="foundation.id"
+          >
             <th scope="row">{{ foundation.id }}</th>
             <td>{{ formatDate(foundation.creationDate) }}</td>
             <td>{{ foundation.name }}</td>
@@ -124,7 +233,7 @@
                 @click="
                   isNewFoundationForm = false;
                   textModalForm = 'Edit ' + foundation.name;
-                  loadFormData(foundation.id, foundationsPending);
+                  loadFormData(foundation.id, foundationsStatusPending);
                 "
                 data-toggle="modal"
                 data-target="#newEditFoundationForm"
@@ -143,7 +252,7 @@
                     'Are you sure you want to approve the foundation' +
                     foundation.name +
                     ' ?';
-                  loadFormData(foundation.id, foundationsPending);
+                  loadFormData(foundation.id, foundationsStatusPending);
                 "
               >
                 Approve
@@ -152,7 +261,10 @@
             <td>
               <button class="btn btn-dark" @click="createIssue(foundation)">
                 Issue
-                <font-awesome-icon :icon="['fab', 'github']" class="d-inline ml-1" />
+                <font-awesome-icon
+                  :icon="['fab', 'github']"
+                  class="d-inline ml-1"
+                />
               </button>
             </td>
             <td>
@@ -160,7 +272,9 @@
                 class="btn btn-danger"
                 data-toggle="modal"
                 data-target="#modalConfirmActionDelete"
-                v-on:click="loadFormData(foundation.id, foundationsPending)"
+                v-on:click="
+                  loadFormData(foundation.id, foundationsStatusPending)
+                "
               >
                 Delete
               </button>
@@ -191,7 +305,10 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="foundation in foundations" v-bind:key="foundation.id">
+          <tr
+            v-for="foundation in foundationsStatusFinal"
+            v-bind:key="foundation.id"
+          >
             <th scope="row">{{ foundation.id }}</th>
             <td>{{ formatDate(foundation.creationDate) }}</td>
             <td>{{ foundation.name }}</td>
@@ -201,7 +318,7 @@
                 @click="
                   isNewFoundationForm = false;
                   textModalForm = 'Edit ' + foundation.name;
-                  loadFormData(foundation.id, foundations);
+                  loadFormData(foundation.id, foundationsStatusFinal);
                 "
                 data-toggle="modal"
                 data-target="#newEditFoundationForm"
@@ -214,7 +331,7 @@
                 class="btn btn-danger"
                 data-toggle="modal"
                 data-target="#modalConfirmActionDelete"
-                v-on:click="loadFormData(foundation.id, foundations)"
+                v-on:click="loadFormData(foundation.id, foundationsStatusFinal)"
               >
                 Delete
               </button>
@@ -235,11 +352,16 @@
         <tbody>
           <tr v-for="user in usersListUoc" v-bind:key="user.uid">
             <td>
-              <img :src="user.photoURL" :alt="'Picture of ' + user.displayName" />
+              <img
+                :src="user.photoURL"
+                :alt="'Picture of ' + user.displayName"
+              />
             </td>
             <td>{{ user.email }}</td>
             <td v-if="user.customClaims">
-              <span class="text-danger" v-if="user.customClaims.admin">Admin</span>
+              <span class="text-danger" v-if="user.customClaims.admin"
+                >Admin</span
+              >
               <span v-if="!user.customClaims.admin">N/A</span>
             </td>
             <td v-if="!user.customClaims">N/A</td>
@@ -272,13 +394,17 @@
       :foundation="selectedFoundation"
       :id="'modalConfirmActionApprove'"
       :textToShow="'Are you sure you want to approve this foundation?'"
-      @confirmed-action="approveFoundation(selectedFoundation.id, selectedFoundation)"
+      @confirmed-action="
+        approveFoundation(selectedFoundation.id, selectedFoundation)
+      "
     />
     <modal-confirm-action
       :foundation="selectedFoundation"
       :id="'modalConfirmActionApproveEdition'"
       :textToShow="'Are you sure you want to approve the changes for this foundation?'"
-      @confirmed-action="approveEditProposal(selectedFoundation.id, selectedFoundation)"
+      @confirmed-action="
+        approveEditProposal(selectedFoundation.id, selectedFoundation)
+      "
     />
     <modal-response :responseAction="responseAction" />
     <div
@@ -292,7 +418,9 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">{{ textModalForm }}</h5>
+            <h5 class="modal-title" id="exampleModalLongTitle">
+              {{ textModalForm }}
+            </h5>
           </div>
           <div class="modal-body">
             <new-edit-foundation
@@ -301,7 +429,11 @@
             />
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
               Close
             </button>
             <button
@@ -348,8 +480,6 @@ export default {
   data() {
     return {
       foundations: "", //Current foundations in database
-      foundationsPending: "", //Foundations with status "pending"
-      isFoundationsOrPendingList: true, //True if the main foundations database, False if the foundations Pending list
       allTopics: [],
       loading: true,
       isError: false,
@@ -407,7 +537,9 @@ export default {
       deep: false,
       handler() {
         for (var i = 0; i < this.selectedFoundation.topics.length; i++) {
-          if (this.selectedFoundation.topics[i].name == "Software-Development") {
+          if (
+            this.selectedFoundation.topics[i].name == "Software-Development"
+          ) {
             break;
           }
         }
@@ -426,7 +558,6 @@ export default {
     //Loads all the foundations
     loadAllFoundations() {
       this.loadFoundations();
-      this.loadFoundationsPending();
     },
     //Loads the foundation data
     loadFoundations() {
@@ -435,29 +566,26 @@ export default {
       this.loading = true;
       return (
         API.getAllFoundations()
-          .then((response) => ((this.foundations = response), (this.loading = false)))
+          .then(
+            (response) => (
+              (this.foundations = response), (this.loading = false)
+            )
+          )
           //If error
           .catch(
-            (err) => (console.log(err), (this.isError = true), (this.errorMsg = err))
+            (err) => (
+              console.log(err), (this.isError = true), (this.errorMsg = err)
+            )
           )
-      );
-    },
-    //Loads the Pending foundations database
-    loadFoundationsPending() {
-      this.foundationsPending = "";
-      // this.loading = true;
-      return (
-        API.getFoundationsPending()
-          .then((response) => (this.foundationsPending = response))
-          //If error
-          .catch((err) => console.log(err))
       );
     },
     //Send a request to the server to modify a foundation
     loadFoundationsStatusEdition() {
       return API.getFoundationsStatusEdition()
         .then((res) => this.showModalWithResponse(res.data.message))
-        .catch((err) => (console.log(err), this.showModalWithResponse(err.message)));
+        .catch(
+          (err) => (console.log(err), this.showModalWithResponse(err.message))
+        );
     },
     //Maps the JSON of the foundations data to get the listed topics
     mapFoundations: function () {
@@ -528,7 +656,8 @@ export default {
       return API.createIssue(issue)
         .then(
           (res) => (
-            this.showModalWithResponse(res.data.message), (this.loadingMsg = false)
+            this.showModalWithResponse(res.data.message),
+            (this.loadingMsg = false)
           )
         )
         .catch(
@@ -548,9 +677,8 @@ export default {
     approveEditProposal(idParentFoundation, selectedFoundation) {
       selectedFoundation.status = "final";
       this.editFoundation(idParentFoundation, selectedFoundation);
-
       //And deletes the foundation proposal
-      return API.deleteFoundation(selectedFoundation.id).then(this.loadAllFoundations());
+      this.deleteFoundation(selectedFoundation.id);
     },
     //Send a request to the server to create a new foundation
     newFoundation(foundation) {
@@ -617,7 +745,9 @@ export default {
           //Loads the selected topics
           for (var i = 0; i < this.selectedFoundation.topics.length; i++) {
             if (
-              foundationsList[x].topics.includes(this.selectedFoundation.topics[i].name)
+              foundationsList[x].topics.includes(
+                this.selectedFoundation.topics[i].name
+              )
             ) {
               this.selectedFoundation.topics[i].checked = true;
             } else {
@@ -640,7 +770,9 @@ export default {
       this.selectedFoundation.topicsString = "";
       for (var i = 0; i < this.selectedFoundation.topics.length; i++) {
         if (this.selectedFoundation.topics[i].checked) {
-          this.selectedFoundation.topicsString += this.selectedFoundation.topics[i].name;
+          this.selectedFoundation.topicsString += this.selectedFoundation.topics[
+            i
+          ].name;
           this.selectedFoundation.topicsString += ",";
         }
       }
@@ -679,16 +811,7 @@ export default {
         this.reverse ? "desc" : "asc"
       );
     },
-    //Sorts the foundations (pending) table alphabetically
-    sortPendingFoundations: function (sortKey) {
-      this.reverse = this.sortKey == sortKey ? !this.reverse : false;
-      this.sortKey = sortKey;
-      this.foundationsPending = _.orderBy(
-        this.foundationsPending,
-        this.sortKey,
-        this.reverse ? "desc" : "asc"
-      );
-    },
+
     formatDate(time) {
       var date_ob = new Date(time);
       let date = date_ob.getDate();
@@ -710,7 +833,9 @@ export default {
       return API.getUsers()
         .then(
           (res) => (
-            console.log(res), (this.usersList = res.data), (this.usersListLoaded = true)
+            console.log(res),
+            (this.usersList = res.data),
+            (this.usersListLoaded = true)
           )
         )
         .catch((err) => console.log(err));
@@ -748,10 +873,26 @@ export default {
       }
       return null;
     },
+    foundationsStatusFinal() {
+      if (this.loading == false) {
+        return this.foundations.filter((foundation) =>
+          foundation.status.includes("final")
+        );
+      }
+      return null;
+    },
     foundationsStatusEdition() {
       if (this.loading == false) {
         return this.foundations.filter((foundation) =>
           foundation.status.includes("edition")
+        );
+      }
+      return null;
+    },
+    foundationsStatusPending() {
+      if (this.loading == false) {
+        return this.foundations.filter((foundation) =>
+          foundation.status.includes("pending")
         );
       }
       return null;
