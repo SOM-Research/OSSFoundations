@@ -285,6 +285,25 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+.card {
+  background-color: #397C89;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.card.card-body table {
+  background-color: #397C89;
+
+}
+
+.card-item {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
 .card * {
   word-break: break-all;
 }

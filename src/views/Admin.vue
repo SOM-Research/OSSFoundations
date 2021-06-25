@@ -20,325 +20,390 @@
 
       <p v-if="isError" class="text-danger">{{ errorMsg }}</p>
 
-      <div class="bd-example">
-        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-          <li class="nav-item" role="presentation">
-            <button
+      <div class="admin-tabs">
+        <ul
+          class="nav nav-pills flex-column flex-sm-row"
+          id="pills-tab"
+          role="tablist"
+        >
+          <li class="flex-sm-fill nav-item" role="presentation">
+            <a
               class="nav-link active"
-              id="pills-home-tab"
-              data-bs-toggle="pill"
-              data-bs-target="#pills-home"
-              type="button"
+              id="pills-foundations-request-tab"
+              data-toggle="pill"
+              href="#pills-foundations-request"
               role="tab"
-              aria-controls="pills-home"
+              aria-controls="pills-foundations-request"
+              aria-selected="false"
+            >
+              <div class="card">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="icon col-3 d-flex justify-content-center">
+                      <font-awesome-icon
+                        :icon="['fa', 'file-upload']"
+                        class="align-middle"
+                      />
+                    </div>
+                    <div class="col-9">
+                      <p class="text-right">Foundation requests</p>
+                      <p v-if="foundationsStatusPending" class="text-right h1">
+                        {{ foundationsStatusPending.length }}
+                      </p>
+                    </div>
+                  </div>
+                  <hr />
+                  <div v-if="foundationsStatusPending != null" class="">
+                    <span v-if="foundationsStatusPending.length > 0">
+                      Last request on
+                      {{
+                        formatDate(
+                          foundationsStatusPending.sort(
+                            (a, b) =>
+                              new Date(b.date).getTime() -
+                              new Date(a.date).getTime()
+                          )[0].creationDate
+                        )
+                      }}
+                    </span>
+                    <span v-else>No requests</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </li>
+          <li class="flex-sm-fill nav-item" role="presentation">
+            <a
+              class="nav-link"
+              id="pills-edition-request-tab"
+              data-toggle="pill"
+              href="#pills-edition-request"
+              role="tab"
+              aria-controls="pills-edition-request"
               aria-selected="true"
-            >
-              Home
-            </button>
+              ><div class="card">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="icon col-3 d-flex justify-content-center">
+                      <font-awesome-icon
+                        :icon="['fa', 'pen']"
+                        class="align-middle"
+                      />
+                    </div>
+                    <div class="col-9">
+                      <p class="text-right">Edition requests</p>
+                      <p v-if="foundations" class="text-right h1">
+                        {{ foundationsStatusEdition.length }}
+                      </p>
+                    </div>
+                  </div>
+                  <hr />
+                  <div v-if="foundationsStatusEdition != null" class="">
+                    <span v-if="foundationsStatusEdition.length > 0">
+                      Last request on
+                      {{
+                        formatDate(
+                          foundationsStatusEdition.sort(
+                            (a, b) =>
+                              new Date(b.date).getTime() -
+                              new Date(a.date).getTime()
+                          )[0].creationDate
+                        )
+                      }}
+                    </span>
+                    <span v-else>No requests</span>
+                  </div>
+                </div>
+              </div>
+            </a>
           </li>
-          <li class="nav-item" role="presentation">
-            <button
+          <li class="flex-sm-fill nav-item" role="presentation">
+            <a
               class="nav-link"
-              id="pills-profile-tab"
-              data-bs-toggle="pill"
-              data-bs-target="#pills-profile"
-              type="button"
+              id="pills-all-foundations-tab"
+              data-toggle="pill"
+              href="#pills-all-foundations"
               role="tab"
-              aria-controls="pills-profile"
+              aria-controls="pills-all-foundations"
               aria-selected="false"
             >
-              Profile
-            </button>
-          </li>
-          <li class="nav-item" role="presentation">
-            <button
-              class="nav-link"
-              id="pills-contact-tab"
-              data-bs-toggle="pill"
-              data-bs-target="#pills-contact"
-              type="button"
-              role="tab"
-              aria-controls="pills-contact"
-              aria-selected="false"
+              <div class="card">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="icon col-3 d-flex justify-content-center">
+                      <font-awesome-icon
+                        :icon="['fa', 'building']"
+                        class="align-middle"
+                      />
+                    </div>
+                    <div class="col-9">
+                      <p class="text-right">All foundations</p>
+                      <p v-if="foundationsStatusFinal" class="text-right h1">
+                        {{ foundationsStatusFinal.length }}
+                      </p>
+                    </div>
+                  </div>
+                  <hr />
+                  <div v-if="foundationsStatusFinal != null" class="">
+                    <span v-if="foundationsStatusFinal.length > 0">
+                      Updated
+                    </span>
+                    <span v-else>No requests</span>
+                  </div>
+                </div>
+              </div></a
             >
-              Contact
-            </button>
           </li>
         </ul>
         <div class="tab-content" id="pills-tabContent">
           <div
+            class="tab-pane fade"
+            id="pills-foundations-request"
+            role="tabpanel"
+            aria-labelledby="pills-foundations-request-tab"
+          >
+            <h5>New foundations pending approval</h5>
+            <table class="table table-hover table-fixed">
+              <thead class="">
+                <tr class="">
+                  <th
+                    v-for="(column, index) in columns"
+                    v-bind:key="column"
+                    :class="{ 'w-50': index === 2 }"
+                  >
+                    <div
+                      href="#"
+                      v-on:click="sortPendingFoundations(column)"
+                      v-bind:class="{ active: sortKey == column }"
+                    >
+                      {{ column[0].toUpperCase() + column.slice(1) }}
+                    </div>
+                  </th>
+                  <th scope="col" class=""></th>
+                  <th scope="col" class=""></th>
+                  <th scope="col" class=""></th>
+                  <th scope="col" class=""></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  v-for="foundation in foundationsStatusPending"
+                  v-bind:key="foundation.id"
+                >
+                  <th scope="row">{{ foundation.id }}</th>
+                  <td>{{ formatDate(foundation.creationDate) }}</td>
+                  <td>{{ foundation.name }}</td>
+                  <td>
+                    <button
+                      class="btn btn-primary"
+                      @click="
+                        isNewFoundationForm = false;
+                        textModalForm = 'Edit ' + foundation.name;
+                        loadFormData(foundation.id, foundationsStatusPending);
+                      "
+                      data-toggle="modal"
+                      data-target="#newEditFoundationForm"
+                    >
+                      Edit
+                    </button>
+                  </td>
+                  <td>
+                    <button
+                      class="btn btn-success"
+                      data-toggle="modal"
+                      data-target="#modalConfirmActionApprove"
+                      @click="
+                        isNewFoundationForm = false;
+                        textModalForm =
+                          'Are you sure you want to approve the foundation' +
+                          foundation.name +
+                          ' ?';
+                        loadFormData(foundation.id, foundationsStatusPending);
+                      "
+                    >
+                      Approve
+                    </button>
+                  </td>
+                  <td>
+                    <button
+                      class="btn btn-dark"
+                      @click="createIssue(foundation)"
+                    >
+                      Issue
+                      <font-awesome-icon
+                        :icon="['fab', 'github']"
+                        class="d-inline ml-1"
+                      />
+                    </button>
+                  </td>
+                  <td>
+                    <button
+                      class="btn btn-danger"
+                      data-toggle="modal"
+                      data-target="#modalConfirmActionDelete"
+                      v-on:click="
+                        loadFormData(foundation.id, foundationsStatusPending)
+                      "
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div
             class="tab-pane fade active show"
-            id="pills-home"
+            id="pills-edition-request"
             role="tabpanel"
-            aria-labelledby="pills-home-tab"
+            aria-labelledby="pills-edition-request-tab"
           >
-            <p>
-              <strong
-                >This is some placeholder content the Home tab's associated
-                content.</strong
-              >
-              Clicking another tab will toggle the visibility of this one for
-              the next. The tab JavaScript swaps classes to control the content
-              visibility and styling. You can use it with tabs, pills, and any
-              other <code>.nav</code>-powered navigation.
-            </p>
+            <h5>New requests to modify a foundation</h5>
+            <table class="table table-hover table-fixed">
+              <thead class="">
+                <tr class="">
+                  <th
+                    v-for="(column, index) in columns"
+                    v-bind:key="column"
+                    :class="{ 'w-50': index === 2 }"
+                  >
+                    <div
+                      href="#"
+                      v-on:click="sortPendingFoundations(column)"
+                      v-bind:class="{ active: sortKey == column }"
+                    >
+                      {{ column[0].toUpperCase() + column.slice(1) }}
+                    </div>
+                  </th>
+                  <th scope="col" class=""></th>
+                  <th scope="col" class=""></th>
+                  <th scope="col" class=""></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  v-for="foundation in foundationsStatusEdition"
+                  v-bind:key="foundation.id"
+                >
+                  <th scope="row">{{ foundation.id }}</th>
+                  <td>{{ formatDate(foundation.creationDate) }}</td>
+                  <td>{{ foundation.name }}</td>
+                  <td>
+                    <button
+                      class="btn btn-primary"
+                      @click="
+                        isNewFoundationForm = false;
+                        textModalForm = 'Edit ' + foundation.name;
+                        loadFormData(foundation.id, foundationsStatusEdition);
+                      "
+                      data-toggle="modal"
+                      data-target="#newEditFoundationForm"
+                    >
+                      Edit
+                    </button>
+                  </td>
+                  <td>
+                    <button
+                      class="btn btn-success"
+                      data-toggle="modal"
+                      data-target="#modalConfirmActionApproveEdition"
+                      @click="
+                        isNewFoundationForm = false;
+                        textModalForm =
+                          'Are you sure you want to accept the changes for the foundation' +
+                          foundation.name +
+                          ' ?';
+                        loadFormData(foundation.id, foundationsStatusEdition);
+                      "
+                    >
+                      Approve
+                    </button>
+                  </td>
+                  <td>
+                    <button
+                      class="btn btn-danger"
+                      data-toggle="modal"
+                      data-target="#modalConfirmActionDelete"
+                      v-on:click="
+                        loadFormData(foundation.id, foundationsStatusPending)
+                      "
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
           <div
             class="tab-pane fade"
-            id="pills-profile"
+            id="pills-all-foundations"
             role="tabpanel"
-            aria-labelledby="pills-profile-tab"
+            aria-labelledby="pills-all-foundations-tab"
           >
-            <p>
-              <strong
-                >This is some placeholder content the Profile tab's associated
-                content.</strong
-              >
-              Clicking another tab will toggle the visibility of this one for
-              the next. The tab JavaScript swaps classes to control the content
-              visibility and styling. You can use it with tabs, pills, and any
-              other <code>.nav</code>-powered navigation.
-            </p>
-          </div>
-          <div
-            class="tab-pane fade"
-            id="pills-contact"
-            role="tabpanel"
-            aria-labelledby="pills-contact-tab"
-          >
-            <p>
-              <strong
-                >This is some placeholder content the Contact tab's associated
-                content.</strong
-              >
-              Clicking another tab will toggle the visibility of this one for
-              the next. The tab JavaScript swaps classes to control the content
-              visibility and styling. You can use it with tabs, pills, and any
-              other <code>.nav</code>-powered navigation.
-            </p>
+            <h5>Foundations in the database</h5>
+            <table class="table table-hover">
+              <thead class="">
+                <tr>
+                  <th
+                    v-for="(column, index) in columns"
+                    v-bind:key="column"
+                    :class="{ 'w-50': index === 2 }"
+                  >
+                    <div
+                      href="#"
+                      v-on:click="sortFoundations(column)"
+                      v-bind:class="{ active: sortKey == column }"
+                    >
+                      {{ column[0].toUpperCase() + column.slice(1) }}
+                    </div>
+                  </th>
+
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  v-for="foundation in foundationsStatusFinal"
+                  v-bind:key="foundation.id"
+                >
+                  <th scope="row">{{ foundation.id }}</th>
+                  <td>{{ formatDate(foundation.creationDate) }}</td>
+                  <td>{{ foundation.name }}</td>
+                  <td>
+                    <button
+                      class="btn btn-primary"
+                      @click="
+                        isNewFoundationForm = false;
+                        textModalForm = 'Edit ' + foundation.name;
+                        loadFormData(foundation.id, foundationsStatusFinal);
+                      "
+                      data-toggle="modal"
+                      data-target="#newEditFoundationForm"
+                    >
+                      Edit
+                    </button>
+                  </td>
+                  <td>
+                    <button
+                      class="btn btn-danger"
+                      data-toggle="modal"
+                      data-target="#modalConfirmActionDelete"
+                      v-on:click="
+                        loadFormData(foundation.id, foundationsStatusFinal)
+                      "
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
 
-      <h5>New requests to modify a foundation</h5>
-      <table class="table table-hover table-fixed">
-        <thead class="">
-          <tr class="">
-            <th
-              v-for="(column, index) in columns"
-              v-bind:key="column"
-              :class="{ 'w-50': index === 2 }"
-            >
-              <div
-                href="#"
-                v-on:click="sortPendingFoundations(column)"
-                v-bind:class="{ active: sortKey == column }"
-              >
-                {{ column[0].toUpperCase() + column.slice(1) }}
-              </div>
-            </th>
-            <th scope="col" class=""></th>
-            <th scope="col" class=""></th>
-            <th scope="col" class=""></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr
-            v-for="foundation in foundationsStatusEdition"
-            v-bind:key="foundation.id"
-          >
-            <th scope="row">{{ foundation.id }}</th>
-            <td>{{ formatDate(foundation.creationDate) }}</td>
-            <td>{{ foundation.name }}</td>
-            <td>
-              <button
-                class="btn btn-primary"
-                @click="
-                  isNewFoundationForm = false;
-                  textModalForm = 'Edit ' + foundation.name;
-                  loadFormData(foundation.id, foundationsStatusEdition);
-                "
-                data-toggle="modal"
-                data-target="#newEditFoundationForm"
-              >
-                Edit
-              </button>
-            </td>
-            <td>
-              <button
-                class="btn btn-success"
-                data-toggle="modal"
-                data-target="#modalConfirmActionApproveEdition"
-                @click="
-                  isNewFoundationForm = false;
-                  textModalForm =
-                    'Are you sure you want to accept the changes for the foundation' +
-                    foundation.name +
-                    ' ?';
-                  loadFormData(foundation.id, foundations);
-                "
-              >
-                Approve
-              </button>
-            </td>
-            <td>
-              <button
-                class="btn btn-danger"
-                data-toggle="modal"
-                data-target="#modalConfirmActionDelete"
-                v-on:click="
-                  loadFormData(foundation.id, foundationsStatusPending)
-                "
-              >
-                Delete
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <h5>New foundations pending approval</h5>
-      <table class="table table-hover table-fixed">
-        <thead class="">
-          <tr class="">
-            <th
-              v-for="(column, index) in columns"
-              v-bind:key="column"
-              :class="{ 'w-50': index === 2 }"
-            >
-              <div
-                href="#"
-                v-on:click="sortPendingFoundations(column)"
-                v-bind:class="{ active: sortKey == column }"
-              >
-                {{ column[0].toUpperCase() + column.slice(1) }}
-              </div>
-            </th>
-            <th scope="col" class=""></th>
-            <th scope="col" class=""></th>
-            <th scope="col" class=""></th>
-            <th scope="col" class=""></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr
-            v-for="foundation in foundationsStatusPending"
-            v-bind:key="foundation.id"
-          >
-            <th scope="row">{{ foundation.id }}</th>
-            <td>{{ formatDate(foundation.creationDate) }}</td>
-            <td>{{ foundation.name }}</td>
-            <td>
-              <button
-                class="btn btn-primary"
-                @click="
-                  isNewFoundationForm = false;
-                  textModalForm = 'Edit ' + foundation.name;
-                  loadFormData(foundation.id, foundationsStatusPending);
-                "
-                data-toggle="modal"
-                data-target="#newEditFoundationForm"
-              >
-                Edit
-              </button>
-            </td>
-            <td>
-              <button
-                class="btn btn-success"
-                data-toggle="modal"
-                data-target="#modalConfirmActionApprove"
-                @click="
-                  isNewFoundationForm = false;
-                  textModalForm =
-                    'Are you sure you want to approve the foundation' +
-                    foundation.name +
-                    ' ?';
-                  loadFormData(foundation.id, foundationsStatusPending);
-                "
-              >
-                Approve
-              </button>
-            </td>
-            <td>
-              <button class="btn btn-dark" @click="createIssue(foundation)">
-                Issue
-                <font-awesome-icon
-                  :icon="['fab', 'github']"
-                  class="d-inline ml-1"
-                />
-              </button>
-            </td>
-            <td>
-              <button
-                class="btn btn-danger"
-                data-toggle="modal"
-                data-target="#modalConfirmActionDelete"
-                v-on:click="
-                  loadFormData(foundation.id, foundationsStatusPending)
-                "
-              >
-                Delete
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <h5>Foundations in the database</h5>
-      <table class="table table-hover">
-        <thead class="">
-          <tr>
-            <th
-              v-for="(column, index) in columns"
-              v-bind:key="column"
-              :class="{ 'w-50': index === 2 }"
-            >
-              <div
-                href="#"
-                v-on:click="sortFoundations(column)"
-                v-bind:class="{ active: sortKey == column }"
-              >
-                {{ column[0].toUpperCase() + column.slice(1) }}
-              </div>
-            </th>
-
-            <th scope="col"></th>
-            <th scope="col"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr
-            v-for="foundation in foundationsStatusFinal"
-            v-bind:key="foundation.id"
-          >
-            <th scope="row">{{ foundation.id }}</th>
-            <td>{{ formatDate(foundation.creationDate) }}</td>
-            <td>{{ foundation.name }}</td>
-            <td>
-              <button
-                class="btn btn-primary"
-                @click="
-                  isNewFoundationForm = false;
-                  textModalForm = 'Edit ' + foundation.name;
-                  loadFormData(foundation.id, foundationsStatusFinal);
-                "
-                data-toggle="modal"
-                data-target="#newEditFoundationForm"
-              >
-                Edit
-              </button>
-            </td>
-            <td>
-              <button
-                class="btn btn-danger"
-                data-toggle="modal"
-                data-target="#modalConfirmActionDelete"
-                v-on:click="loadFormData(foundation.id, foundationsStatusFinal)"
-              >
-                Delete
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
       <h5>Users</h5>
       <table class="table table-hover users">
         <thead>
@@ -403,7 +468,10 @@
       :id="'modalConfirmActionApproveEdition'"
       :textToShow="'Are you sure you want to approve the changes for this foundation?'"
       @confirmed-action="
-        approveEditProposal(selectedFoundation.id, selectedFoundation)
+        approveEditProposal(
+          selectedFoundation.idLinkedFoundation,
+          selectedFoundation
+        )
       "
     />
     <modal-response :responseAction="responseAction" />
@@ -678,6 +746,7 @@ export default {
       selectedFoundation.status = "final";
       this.editFoundation(idParentFoundation, selectedFoundation);
       //And deletes the foundation proposal
+      console.log("hola borrate");
       this.deleteFoundation(selectedFoundation.id);
     },
     //Send a request to the server to create a new foundation
@@ -770,17 +839,14 @@ export default {
       this.selectedFoundation.topicsString = "";
       for (var i = 0; i < this.selectedFoundation.topics.length; i++) {
         if (this.selectedFoundation.topics[i].checked) {
-          this.selectedFoundation.topicsString += this.selectedFoundation.topics[
-            i
-          ].name;
+          this.selectedFoundation.topicsString +=
+            this.selectedFoundation.topics[i].name;
           this.selectedFoundation.topicsString += ",";
         }
       }
       //Replace the last comma and if it has any white space after it
-      this.selectedFoundation.topicsString = this.selectedFoundation.topicsString.replace(
-        /,\s*$/,
-        ""
-      );
+      this.selectedFoundation.topicsString =
+        this.selectedFoundation.topicsString.replace(/,\s*$/, "");
     },
     //Toggles the topicSD variable to bind the selectedFoundation.SD and selectedFoundation.topics.SD
     toggleSD(answer) {
@@ -964,5 +1030,27 @@ button {
 .users img {
   max-width: 30px;
   border-radius: 50%;
+}
+
+/* Tabs */
+.admin-tabs a {
+  color: grey;
+  background-color: transparent !important;
+  -webkit-box-shadow: 1px 3px 4px 1px #d8d8d8;
+  box-shadow: 1px 3px 4px 1px #d8d8d8;
+  margin: 0 10px 0 10px;
+  padding: 0;
+}
+
+.admin-tabs a.active {
+  color: grey !important;
+  border: 3px solid #00ff8821;
+}
+.admin-tabs .icon {
+  font-size: 3em;
+}
+
+.admin-tabs .row {
+  align-items: center;
 }
 </style>

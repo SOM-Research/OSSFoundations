@@ -6,10 +6,10 @@ import router from './router'
 import './firebase'; 
 //Font Awesome
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faBars, faHome, faBook, faSearch, faPlus } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faHome, faBook, faSearch, faPlus, faPen, faFileUpload, faBuilding} from '@fortawesome/free-solid-svg-icons'
 import { faGoogle, faGithub } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-library.add(faGoogle, faGithub, faBars, faHome, faBook, faSearch, faPlus);
+library.add(faGoogle, faGithub, faBars, faHome, faBook, faSearch, faPlus, faPen, faFileUpload, faBuilding);
 
 
  //Apex Charts
