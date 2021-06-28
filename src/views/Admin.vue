@@ -21,12 +21,8 @@
       <p v-if="isError" class="text-danger">{{ errorMsg }}</p>
 
       <div class="admin-tabs">
-        <ul
-          class="nav nav-pills flex-column flex-sm-row"
-          id="pills-tab"
-          role="tablist"
-        >
-          <li class="flex-sm-fill nav-item" role="presentation">
+        <ul class="nav nav-pills row" id="pills-tab" role="tablist">
+          <li class="nav-item col-md-6 col-xl-3" role="presentation">
             <a
               class="nav-link active"
               id="pills-foundations-request-tab"
@@ -34,34 +30,36 @@
               href="#pills-foundations-request"
               role="tab"
               aria-controls="pills-foundations-request"
-              aria-selected="false"
+              aria-selected="true"
             >
               <div class="card">
                 <div class="card-body">
                   <div class="row">
-                    <div class="icon col-3 d-flex justify-content-center">
+                    <div class="col-12">
+                      <p class="pill-title text-right">Foundation requests<br /></p>
+                    </div>
+                    <div class="icon col-3 justify-content-center">
                       <font-awesome-icon
                         :icon="['fa', 'file-upload']"
-                        class="align-middle"
+                        class="align-middle text-warning"
                       />
                     </div>
-                    <div class="col-9">
-                      <p class="text-right">Foundation requests</p>
-                      <p v-if="foundationsStatusPending" class="text-right h1">
-                        {{ foundationsStatusPending.length }}
-                      </p>
-                    </div>
+                    <span
+                      v-if="foundationsStatusPending"
+                      class="text-right pill-number col-9"
+                    >
+                      {{ foundationsStatusPending.length }}
+                    </span>
                   </div>
                   <hr />
-                  <div v-if="foundationsStatusPending != null" class="">
+                  <div v-if="foundationsStatusPending != null" class="pill-detail">
                     <span v-if="foundationsStatusPending.length > 0">
-                      Last request on
+                      <font-awesome-icon :icon="['fa', 'calendar-alt']" />
                       {{
                         formatDate(
                           foundationsStatusPending.sort(
                             (a, b) =>
-                              new Date(b.date).getTime() -
-                              new Date(a.date).getTime()
+                              new Date(b.date).getTime() - new Date(a.date).getTime()
                           )[0].creationDate
                         )
                       }}
@@ -72,7 +70,7 @@
               </div>
             </a>
           </li>
-          <li class="flex-sm-fill nav-item" role="presentation">
+          <li class="nav-item col-md-6 col-xl-3" role="presentation">
             <a
               class="nav-link"
               id="pills-edition-request-tab"
@@ -80,33 +78,36 @@
               href="#pills-edition-request"
               role="tab"
               aria-controls="pills-edition-request"
-              aria-selected="true"
-              ><div class="card">
+              aria-selected="false"
+            >
+              <div class="card">
                 <div class="card-body">
                   <div class="row">
-                    <div class="icon col-3 d-flex justify-content-center">
+                    <div class="col-12">
+                      <p class="pill-title text-right">Edition requests<br /></p>
+                    </div>
+                    <div class="icon col-3 justify-content-center">
                       <font-awesome-icon
                         :icon="['fa', 'pen']"
-                        class="align-middle"
+                        class="align-middle text-danger"
                       />
                     </div>
-                    <div class="col-9">
-                      <p class="text-right">Edition requests</p>
-                      <p v-if="foundations" class="text-right h1">
-                        {{ foundationsStatusEdition.length }}
-                      </p>
-                    </div>
+                    <span
+                      v-if="foundationsStatusEdition"
+                      class="text-right pill-number col-9"
+                    >
+                      {{ foundationsStatusEdition.length }}
+                    </span>
                   </div>
                   <hr />
-                  <div v-if="foundationsStatusEdition != null" class="">
+                  <div v-if="foundationsStatusEdition != null" class="pill-detail">
                     <span v-if="foundationsStatusEdition.length > 0">
-                      Last request on
+                      <font-awesome-icon :icon="['fa', 'calendar-alt']" />
                       {{
                         formatDate(
                           foundationsStatusEdition.sort(
                             (a, b) =>
-                              new Date(b.date).getTime() -
-                              new Date(a.date).getTime()
+                              new Date(b.date).getTime() - new Date(a.date).getTime()
                           )[0].creationDate
                         )
                       }}
@@ -117,7 +118,7 @@
               </div>
             </a>
           </li>
-          <li class="flex-sm-fill nav-item" role="presentation">
+          <li class="nav-item col-md-6 col-xl-3" role="presentation">
             <a
               class="nav-link"
               id="pills-all-foundations-tab"
@@ -130,39 +131,84 @@
               <div class="card">
                 <div class="card-body">
                   <div class="row">
-                    <div class="icon col-3 d-flex justify-content-center">
+                    <div class="col-12">
+                      <p class="pill-title text-right">All foundations<br /></p>
+                    </div>
+                    <div class="icon col-3 justify-content-center">
                       <font-awesome-icon
-                        :icon="['fa', 'building']"
-                        class="align-middle"
+                        :icon="['fa', 'file-upload']"
+                        class="align-middle text-info"
                       />
                     </div>
-                    <div class="col-9">
-                      <p class="text-right">All foundations</p>
-                      <p v-if="foundationsStatusFinal" class="text-right h1">
-                        {{ foundationsStatusFinal.length }}
-                      </p>
-                    </div>
+                    <span
+                      v-if="foundationsStatusFinal"
+                      class="text-right pill-number col-9"
+                    >
+                      {{ foundationsStatusFinal.length }}
+                    </span>
                   </div>
                   <hr />
-                  <div v-if="foundationsStatusFinal != null" class="">
+                  <div v-if="foundationsStatusFinal != null" class="pill-detail">
                     <span v-if="foundationsStatusFinal.length > 0">
-                      Updated
+                      <font-awesome-icon :icon="['fa', 'calendar-alt']" />
+                      {{
+                        formatDate(
+                          foundationsStatusFinal.sort(
+                            (a, b) =>
+                              new Date(b.date).getTime() - new Date(a.date).getTime()
+                          )[0].creationDate
+                        )
+                      }}
                     </span>
-                    <span v-else>No requests</span>
+                    <span v-else>No foundations</span>
                   </div>
                 </div>
-              </div></a
+              </div>
+            </a>
+          </li>
+          <li class="nav-item col-md-6 col-xl-3" role="presentation">
+            <a
+              class="nav-link"
+              id="pills-users-tab"
+              data-toggle="pill"
+              href="#pills-users"
+              role="tab"
+              aria-controls="pills-users"
+              aria-selected="false"
             >
+              <div class="card">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-12">
+                      <p class="pill-title text-right">Users<br /></p>
+                    </div>
+                    <div class="icon col-3 justify-content-center">
+                      <font-awesome-icon
+                        :icon="['fa', 'users']"
+                        class="align-middle text-dark"
+                      />
+                    </div>
+                    <span v-if="usersListUoc" class="text-right pill-number col-9">
+                      {{ usersListUoc.length }}
+                    </span>
+                  </div>
+                  <hr />
+                  <div v-if="usersListUoc != null" class="pill-detail">
+                    <span>Updated</span>
+                  </div>
+                </div>
+              </div>
+            </a>
           </li>
         </ul>
         <div class="tab-content" id="pills-tabContent">
           <div
-            class="tab-pane fade"
+            class="tab-pane fade active show"
             id="pills-foundations-request"
             role="tabpanel"
             aria-labelledby="pills-foundations-request-tab"
           >
-            <h5>New foundations pending approval</h5>
+            <h5>Foundation requests pending approval</h5>
             <table class="table table-hover table-fixed">
               <thead class="">
                 <tr class="">
@@ -225,10 +271,7 @@
                     </button>
                   </td>
                   <td>
-                    <button
-                      class="btn btn-dark"
-                      @click="createIssue(foundation)"
-                    >
+                    <button class="btn btn-dark" @click="createIssue(foundation)">
                       Issue
                       <font-awesome-icon
                         :icon="['fab', 'github']"
@@ -241,9 +284,7 @@
                       class="btn btn-danger"
                       data-toggle="modal"
                       data-target="#modalConfirmActionDelete"
-                      v-on:click="
-                        loadFormData(foundation.id, foundationsStatusPending)
-                      "
+                      v-on:click="loadFormData(foundation.id, foundationsStatusPending)"
                     >
                       Delete
                     </button>
@@ -253,12 +294,12 @@
             </table>
           </div>
           <div
-            class="tab-pane fade active show"
+            class="tab-pane fade"
             id="pills-edition-request"
             role="tabpanel"
             aria-labelledby="pills-edition-request-tab"
           >
-            <h5>New requests to modify a foundation</h5>
+            <h5>Requests to modify a foundation</h5>
             <table class="table table-hover table-fixed">
               <thead class="">
                 <tr class="">
@@ -324,9 +365,7 @@
                       class="btn btn-danger"
                       data-toggle="modal"
                       data-target="#modalConfirmActionDelete"
-                      v-on:click="
-                        loadFormData(foundation.id, foundationsStatusPending)
-                      "
+                      v-on:click="loadFormData(foundation.id, foundationsStatusPending)"
                     >
                       Delete
                     </button>
@@ -341,7 +380,7 @@
             role="tabpanel"
             aria-labelledby="pills-all-foundations-tab"
           >
-            <h5>Foundations in the database</h5>
+            <h5>All foundations in the database</h5>
             <table class="table table-hover">
               <thead class="">
                 <tr>
@@ -390,9 +429,7 @@
                       class="btn btn-danger"
                       data-toggle="modal"
                       data-target="#modalConfirmActionDelete"
-                      v-on:click="
-                        loadFormData(foundation.id, foundationsStatusFinal)
-                      "
+                      v-on:click="loadFormData(foundation.id, foundationsStatusFinal)"
                     >
                       Delete
                     </button>
@@ -401,53 +438,54 @@
               </tbody>
             </table>
           </div>
+          <div
+            class="tab-pane fade"
+            id="pills-users"
+            role="tabpanel"
+            aria-labelledby="pills-users-tab"
+          >
+            <h5>Users</h5>
+            <table class="table table-hover users">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>User</th>
+                  <th>Role</th>
+                  <th>Buttons</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="user in usersListUoc" v-bind:key="user.uid">
+                  <td>
+                    <img :src="user.photoURL" :alt="'Picture of ' + user.displayName" />
+                  </td>
+                  <td>{{ user.email }}</td>
+                  <td v-if="user.customClaims">
+                    <span class="text-danger" v-if="user.customClaims.admin">Admin</span>
+                    <span v-if="!user.customClaims.admin">N/A</span>
+                  </td>
+                  <td v-if="!user.customClaims">N/A</td>
+                  <td v-if="!user.customClaims">
+                    <button class="btn btn-success" @click="makeUserAdmin(user)">
+                      Make admin
+                    </button>
+                  </td>
+                  <td v-if="user.customClaims && user.customClaims.admin == false">
+                    <button class="btn btn-success" @click="makeUserAdmin(user)">
+                      Make admin
+                    </button>
+                  </td>
+                  <td v-if="user.customClaims && user.customClaims.admin">
+                    <button class="btn btn-danger" @click="revokeUserAdmin(user)">
+                      Revoke admin
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
-
-      <h5>Users</h5>
-      <table class="table table-hover users">
-        <thead>
-          <tr>
-            <th></th>
-            <th>User</th>
-            <th>Role</th>
-            <th>Buttons</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="user in usersListUoc" v-bind:key="user.uid">
-            <td>
-              <img
-                :src="user.photoURL"
-                :alt="'Picture of ' + user.displayName"
-              />
-            </td>
-            <td>{{ user.email }}</td>
-            <td v-if="user.customClaims">
-              <span class="text-danger" v-if="user.customClaims.admin"
-                >Admin</span
-              >
-              <span v-if="!user.customClaims.admin">N/A</span>
-            </td>
-            <td v-if="!user.customClaims">N/A</td>
-            <td v-if="!user.customClaims">
-              <button class="btn btn-success" @click="makeUserAdmin(user)">
-                Make admin
-              </button>
-            </td>
-            <td v-if="user.customClaims && user.customClaims.admin == false">
-              <button class="btn btn-success" @click="makeUserAdmin(user)">
-                Make admin
-              </button>
-            </td>
-            <td v-if="user.customClaims && user.customClaims.admin">
-              <button class="btn btn-danger" @click="revokeUserAdmin(user)">
-                Revoke admin
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
     </div>
     <modal-confirm-action
       :foundation="selectedFoundation"
@@ -459,19 +497,14 @@
       :foundation="selectedFoundation"
       :id="'modalConfirmActionApprove'"
       :textToShow="'Are you sure you want to approve this foundation?'"
-      @confirmed-action="
-        approveFoundation(selectedFoundation.id, selectedFoundation)
-      "
+      @confirmed-action="approveFoundation(selectedFoundation.id, selectedFoundation)"
     />
     <modal-confirm-action
       :foundation="selectedFoundation"
       :id="'modalConfirmActionApproveEdition'"
       :textToShow="'Are you sure you want to approve the changes for this foundation?'"
       @confirmed-action="
-        approveEditProposal(
-          selectedFoundation.idLinkedFoundation,
-          selectedFoundation
-        )
+        approveEditProposal(selectedFoundation.idLinkedFoundation, selectedFoundation)
       "
     />
     <modal-response :responseAction="responseAction" />
@@ -497,11 +530,7 @@
             />
           </div>
           <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-dismiss="modal"
-            >
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">
               Close
             </button>
             <button
@@ -605,9 +634,7 @@ export default {
       deep: false,
       handler() {
         for (var i = 0; i < this.selectedFoundation.topics.length; i++) {
-          if (
-            this.selectedFoundation.topics[i].name == "Software-Development"
-          ) {
+          if (this.selectedFoundation.topics[i].name == "Software-Development") {
             break;
           }
         }
@@ -634,16 +661,10 @@ export default {
       this.loading = true;
       return (
         API.getAllFoundations()
-          .then(
-            (response) => (
-              (this.foundations = response), (this.loading = false)
-            )
-          )
+          .then((response) => ((this.foundations = response), (this.loading = false)))
           //If error
           .catch(
-            (err) => (
-              console.log(err), (this.isError = true), (this.errorMsg = err)
-            )
+            (err) => (console.log(err), (this.isError = true), (this.errorMsg = err))
           )
       );
     },
@@ -651,9 +672,7 @@ export default {
     loadFoundationsStatusEdition() {
       return API.getFoundationsStatusEdition()
         .then((res) => this.showModalWithResponse(res.data.message))
-        .catch(
-          (err) => (console.log(err), this.showModalWithResponse(err.message))
-        );
+        .catch((err) => (console.log(err), this.showModalWithResponse(err.message)));
     },
     //Maps the JSON of the foundations data to get the listed topics
     mapFoundations: function () {
@@ -724,8 +743,7 @@ export default {
       return API.createIssue(issue)
         .then(
           (res) => (
-            this.showModalWithResponse(res.data.message),
-            (this.loadingMsg = false)
+            this.showModalWithResponse(res.data.message), (this.loadingMsg = false)
           )
         )
         .catch(
@@ -814,9 +832,7 @@ export default {
           //Loads the selected topics
           for (var i = 0; i < this.selectedFoundation.topics.length; i++) {
             if (
-              foundationsList[x].topics.includes(
-                this.selectedFoundation.topics[i].name
-              )
+              foundationsList[x].topics.includes(this.selectedFoundation.topics[i].name)
             ) {
               this.selectedFoundation.topics[i].checked = true;
             } else {
@@ -839,14 +855,15 @@ export default {
       this.selectedFoundation.topicsString = "";
       for (var i = 0; i < this.selectedFoundation.topics.length; i++) {
         if (this.selectedFoundation.topics[i].checked) {
-          this.selectedFoundation.topicsString +=
-            this.selectedFoundation.topics[i].name;
+          this.selectedFoundation.topicsString += this.selectedFoundation.topics[i].name;
           this.selectedFoundation.topicsString += ",";
         }
       }
       //Replace the last comma and if it has any white space after it
-      this.selectedFoundation.topicsString =
-        this.selectedFoundation.topicsString.replace(/,\s*$/, "");
+      this.selectedFoundation.topicsString = this.selectedFoundation.topicsString.replace(
+        /,\s*$/,
+        ""
+      );
     },
     //Toggles the topicSD variable to bind the selectedFoundation.SD and selectedFoundation.topics.SD
     toggleSD(answer) {
@@ -899,9 +916,7 @@ export default {
       return API.getUsers()
         .then(
           (res) => (
-            console.log(res),
-            (this.usersList = res.data),
-            (this.usersListLoaded = true)
+            console.log(res), (this.usersList = res.data), (this.usersListLoaded = true)
           )
         )
         .catch((err) => console.log(err));
@@ -968,6 +983,9 @@ export default {
 </script>
 
 <style scoped>
+* {
+  font-family: "Poppins", sans-serif;
+}
 .first {
   margin-top: 6em;
 }
@@ -1033,18 +1051,32 @@ button {
 }
 
 /* Tabs */
-.admin-tabs a {
+
+#pills-tabContent h5 {
   color: grey;
+  margin-bottom: 1em;
+}
+
+.admin-tabs ul {
+  margin-top: 2px;
+  margin-bottom: 1.5em;
+}
+
+.admin-tabs li {
+  margin-bottom: 5px;
+}
+
+.admin-tabs a {
+  color: grey !important;
   background-color: transparent !important;
   -webkit-box-shadow: 1px 3px 4px 1px #d8d8d8;
   box-shadow: 1px 3px 4px 1px #d8d8d8;
-  margin: 0 10px 0 10px;
   padding: 0;
+  filter: opacity(50%);
 }
 
 .admin-tabs a.active {
-  color: grey !important;
-  border: 3px solid #00ff8821;
+  filter: opacity(100%);
 }
 .admin-tabs .icon {
   font-size: 3em;
@@ -1052,5 +1084,31 @@ button {
 
 .admin-tabs .row {
   align-items: center;
+}
+
+.admin-tabs .card {
+  border: none;
+}
+
+.admin-tabs .card-body {
+  padding: 1em;
+}
+
+.admin-tabs .pill-title {
+  font-size: 1em;
+  margin-bottom: 0;
+}
+
+.admin-tabs .pill-number {
+  font-size: 3em;
+}
+
+.admin-tabs .pill-detail {
+  font-size: 0.8em;
+}
+
+.admin-tabs hr {
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
 }
 </style>
