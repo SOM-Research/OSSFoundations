@@ -109,10 +109,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <new-edit-foundation
-            :selectedFoundation="selectedFoundation"
-            @update-selected-foundation="updateSelectedFoundation"
-          />
+          <new-edit-foundation :selectedFoundation="selectedFoundation" />
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">
@@ -269,6 +266,8 @@ export default {
     //Send a request to the server to modify a foundation
     editionProposal(id, foundation) {
       if (this.validateFormBeforeSubmit() == true) {
+        //Close the previous modal
+
         return API.editFoundationProposal(id, foundation)
           .then((res) => this.showModalWithResponse(res.data.message))
           .catch((err) => (console.log(err), this.showModalWithResponse(err.message)));
@@ -285,9 +284,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
 .card {
-  background-color: #397C89;
+  background-color: #397c89;
   border-radius: 5px;
   padding: 10px;
   margin-top: 5px;
@@ -295,8 +293,7 @@ export default {
 }
 
 .card.card-body table {
-  background-color: #397C89;
-
+  background-color: #397c89;
 }
 
 .card-item {

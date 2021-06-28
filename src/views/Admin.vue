@@ -365,7 +365,7 @@
                       class="btn btn-danger"
                       data-toggle="modal"
                       data-target="#modalConfirmActionDelete"
-                      v-on:click="loadFormData(foundation.id, foundationsStatusPending)"
+                      v-on:click="loadFormData(foundation.id, foundationsStatusEdition)"
                     >
                       Delete
                     </button>
@@ -1072,7 +1072,7 @@ button {
   -webkit-box-shadow: 1px 3px 4px 1px #d8d8d8;
   box-shadow: 1px 3px 4px 1px #d8d8d8;
   padding: 0;
-  filter: opacity(50%);
+  filter: opacity(40%);
 }
 
 .admin-tabs a.active {
