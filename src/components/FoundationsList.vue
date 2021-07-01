@@ -79,7 +79,7 @@
                 <button
                   class="btn btn-sm btn-secondary ml-1"
                   data-toggle="modal"
-                  data-target="#modal-suggest-changes"
+                  data-target="#modalSuggestChanges"
                   @click="loadFormData(foundation.id, foundations)"
                 >
                   Suggest a change
@@ -94,7 +94,7 @@
   <!-- Modal suggest changes -->
   <div
     class="modal fade"
-    id="modal-suggest-changes"
+    id="modalSuggestChanges"
     tabindex="-1"
     role="dialog"
     aria-labelledby="modalSuggestChanges"
@@ -118,6 +118,7 @@
           <button
             type="button"
             class="btn btn-primary"
+            data-dismiss="modal"
             @click="editionProposal(selectedFoundation.id, selectedFoundation)"
           >
             Send changes
@@ -125,8 +126,9 @@
         </div>
       </div>
     </div>
-    <modal-response :responseAction="responseAction" />
   </div>
+  <modal-response :responseAction="responseAction" />
+  <loading v-if="loading" />
 </template>
 
 <script>
@@ -136,9 +138,10 @@ import $ from "jquery";
 import NewEditFoundation from "@/components/NewEditFoundation.vue";
 import API from "@/data/api.js";
 import ModalResponse from "@/components/ModalResponse.vue";
+import Loading from "@/components/Loading.vue";
 
 export default {
-  components: { NewEditFoundation, ModalResponse },
+  components: { NewEditFoundation, ModalResponse, Loading },
   name: "FoundationsList",
   props: ["foundationsProp"],
   data() {
@@ -168,6 +171,7 @@ export default {
         creationDate: "",
       },
       responseAction: "", //Shows the message of an error or success of an action
+      loading: false, //Indicates if a task is loading
     };
   },
   mounted() {},
@@ -266,16 +270,28 @@ export default {
     //Send a request to the server to modify a foundation
     editionProposal(id, foundation) {
       if (this.validateFormBeforeSubmit() == true) {
+        this.loading = true;
         //Close the previous modal
-
+        $("#modalSuggestChanges").modal("hide");
         return API.editFoundationProposal(id, foundation)
-          .then((res) => this.showModalWithResponse(res.data.message))
-          .catch((err) => (console.log(err), this.showModalWithResponse(err.message)));
+          .then(
+            (res) => (
+              (this.loading = false), this.showModalWithResponse(res.data.message)
+            )
+          )
+          .catch(
+            (err) => (
+              (this.loading = false),
+              console.log(err),
+              this.showModalWithResponse(err.message)
+            )
+          );
       }
     },
     //Shows a modal with a message when user makes any change (success / error)
     showModalWithResponse(res) {
       this.responseAction = res; //Save the response in the variable
+
       $("#modalResponse").modal("show"); //Triggers the modal "modalResponse"
     },
   },
@@ -306,5 +322,21 @@ export default {
 }
 h5 {
   color: #212529 !important;
+}
+
+/* Spinner */
+.black-screen {
+  background-color: black;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0.5;
+  z-index: 6000;
 }
 </style>

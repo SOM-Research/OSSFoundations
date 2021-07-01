@@ -299,6 +299,8 @@ p {
 .button-form {
   color: white;
   margin-right: 10px;
+  width: 50px;
+  text-align: center;
 }
 
 .btn-check:active + .btn-secondary,
