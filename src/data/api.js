@@ -9,10 +9,21 @@ var url = "https://oss-foundations-api.herokuapp.com"
 
 
 //DATA
-//Gets all the foundations data in JSON
+//Gets the foundations with status "final"
 async function getFoundations() {
     const res = await fetch(url + '/foundations', {
         method: 'GET',
+    });
+    return await res.json();
+}
+
+//Gets all the foundations
+async function getAllFoundations() {
+    const token = await getTokenIfLoggedIn();
+    const res = await fetch(url + '/foundations/all/', {
+        method: 'GET',
+        headers:
+            { authorization: `Bearer ${token}` }
     });
     return await res.json();
 }
@@ -24,6 +35,12 @@ async function editFoundation(foundationId, foundation) {
         headers:
             { authorization: `Bearer ${token}` }
     });
+    return res;
+}
+
+//Sends a request to modify a foundation
+async function editFoundationProposal(foundationId, foundation) {
+    const res = await axios.put(url + `/foundations/edit/${foundationId}`, foundation);
     return res;
 }
 
@@ -41,17 +58,6 @@ async function newFoundation(foundation) {
 async function newFoundationPending(foundation) {
     const res = await axios.post(url + '/foundations/pending', foundation)
     return res;
-}
-
-//Gets all the foundations data to approve in JSON
-async function getFoundationsPending() {
-    const token = await getTokenIfLoggedIn();
-    const res = await fetch(url + '/foundations/pending/', {
-        method: 'GET',
-        headers:
-            { authorization: `Bearer ${token}` }
-    });
-    return await res.json();
 }
 
 //Deletes the foundation that matches with the ID passed as a parameter
@@ -126,4 +132,4 @@ async function createIssue(data) {
 }
 
 //EXPORTS
-export default { getFoundations, editFoundation, newFoundation, newFoundationPending,deleteFoundation, getFoundationsPending, makeUserAdmin, revokeUserAdmin, createIssue, getUsers };
+export default { getFoundations, editFoundation, editFoundationProposal, newFoundation, newFoundationPending, deleteFoundation, getAllFoundations, makeUserAdmin, revokeUserAdmin, createIssue, getUsers };

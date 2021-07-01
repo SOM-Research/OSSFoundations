@@ -280,9 +280,11 @@ export default {
 </script>
 
 <style scoped>
+h2,
 h5,
-label {
-  color: #212529;
+label,
+p {
+  color: #212529 !important;
 }
 
 .action-form {
@@ -297,6 +299,8 @@ label {
 .button-form {
   color: white;
   margin-right: 10px;
+  width: 50px;
+  text-align: center;
 }
 
 .btn-check:active + .btn-secondary,

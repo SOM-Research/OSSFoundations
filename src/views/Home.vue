@@ -20,7 +20,9 @@
             <!-- You can search directly on our Foundation browser of access the data via an
             OpenAPI-compatible API. -->
           </p>
-          <a class="btn btn-dark m-1 mb-4" href="#chart">Start searching</a>
+          <router-link :to="{ path: '/', hash: '#chart' }" class="btn btn-dark m-1 mb-4"
+            >Start searching</router-link
+          >
           <!-- <a class="btn btn-dark m-1 mb-4" href="#search-form">Our API</a> -->
         </div>
       </div>
@@ -138,7 +140,8 @@
     <div class="container">
       <p class="text-center">
         <a href="https://som-research.uoc.edu/" target="_blank">SOM Research Lab</a>.
-        Website made by <a href="http://jlcanovas.es" target="_blank">@jlcanovas</a>
+        Website made by
+        <a href="http://jlcanovas.es" target="_blank">@jlcanovas</a>
       </p>
     </div>
     <!-- container  -->
@@ -167,9 +170,9 @@ export default {
   align-items: center;
 }
 
-.first-half {
-  margin-top: 5em;
-}
+/* .first-half {
+  margin-top: 800px;
+} */
 .intro-web {
   /* background-image: url("../img/background-home.jpg");
   background-repeat: no-repeat;
@@ -183,7 +186,6 @@ export default {
 h1 {
   color: #397c89;
   font-size: 3em;
-  font-family: "Open Sans", sans-serif;
   font-weight: bold;
   word-wrap: break-word;
   white-space: normal;

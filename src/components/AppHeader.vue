@@ -119,17 +119,15 @@ header {
   -webkit-box-shadow: 0px 1px 28px -6px rgba(0, 0, 0, 0.27);
   -moz-box-shadow: 0px 1px 28px -6px rgba(0, 0, 0, 0.27);
   box-shadow: 0px 1px 28px -6px rgba(0, 0, 0, 0.27);
-  padding: 10px 10px 10px 10px;
+  padding: 20px 10px 20px 10px;
   position: fixed;
   right: 0;
   left: 0;
   top: 0;
-  z-index: 10000;
+  z-index: 1;
   background-color: rgba(255, 255, 255, 0.97);
 }
-header::after {
-  height: 1000px;
-}
+
 .first-line {
   display: flex;
   align-items: center;
@@ -143,7 +141,6 @@ header::after {
 .item-header {
   color: #397c89;
   text-decoration: none;
-  font-weight: bold;
 }
 .item-header:hover {
   color: rgb(66, 66, 66);
@@ -158,6 +155,9 @@ header::after {
 .logo {
   align-self: flex-start;
   margin-right: auto;
+  font-size: 2em;
+  vertical-align: middle;
+  margin-block-end: 0px !important;
 }
 
 .logo:hover,
