@@ -139,9 +139,11 @@ import NewEditFoundation from "@/components/NewEditFoundation.vue";
 import API from "@/data/api.js";
 import ModalResponse from "@/components/ModalResponse.vue";
 import Loading from "@/components/Loading.vue";
+import { selectedFoundation } from "@/mixins/SelectedFoundation.js";
 
 export default {
   components: { NewEditFoundation, ModalResponse, Loading },
+  mixins: [selectedFoundation],
   name: "FoundationsList",
   props: ["foundationsProp"],
   data() {
@@ -153,23 +155,6 @@ export default {
 
       //DATA
       foundations: this.foundationsProp,
-      selectedFoundation: {
-        id: "",
-        name: "",
-        url: "",
-        rq1Inter: "",
-        rq1Indep: "",
-        rq1Open: "",
-        SD: "",
-        rq3rq4: "",
-        legal: "",
-        topics: [],
-        topicsString: "",
-        authorName: "",
-        authorMail: "",
-        status: "",
-        creationDate: "",
-      },
       responseAction: "", //Shows the message of an error or success of an action
       loading: false, //Indicates if a task is loading
     };
@@ -195,49 +180,6 @@ export default {
         this.foundations,
         this.sortKey,
         this.reverse ? "desc" : "asc"
-      );
-    },
-    //Fills the form with the info of the selected foundation by using its ID
-    loadFormData(id, foundationsList) {
-      for (var x in foundationsList) {
-        if (foundationsList[x].id == id) {
-          this.selectedFoundation.name = foundationsList[x].name;
-          this.selectedFoundation.id = foundationsList[x].id;
-          this.selectedFoundation.url = foundationsList[x].url;
-          this.selectedFoundation.rq1Inter = foundationsList[x].rq1Inter;
-          this.selectedFoundation.rq1Indep = foundationsList[x].rq1Indep;
-          this.selectedFoundation.rq1Open = foundationsList[x].rq1Open;
-          this.selectedFoundation.SD = foundationsList[x].SD;
-          // this.selectedFoundation.authorMail = foundationsList[x].author.mail;
-          // this.selectedFoundation.authorName = foundationsList[x].author.name;
-          this.selectedFoundation.rq3rq4 = foundationsList[x].rq3rq4;
-          this.selectedFoundation.legal = foundationsList[x].legal;
-          //Loads the selected topics
-          for (var i = 0; i < this.selectedFoundation.topics.length; i++) {
-            if (
-              foundationsList[x].topics.includes(this.selectedFoundation.topics[i].name)
-            ) {
-              this.selectedFoundation.topics[i].checked = true;
-            } else {
-              this.selectedFoundation.topics[i].checked = false;
-            }
-          }
-        }
-      }
-    },
-    //Converts the checked topics to a string value when submit
-    topicsToString() {
-      this.selectedFoundation.topicsString = "";
-      for (var i = 0; i < this.selectedFoundation.topics.length; i++) {
-        if (this.selectedFoundation.topics[i].checked) {
-          this.selectedFoundation.topicsString += this.selectedFoundation.topics[i].name;
-          this.selectedFoundation.topicsString += ",";
-        }
-      }
-      //Replace the last comma and if it has any white space after it
-      this.selectedFoundation.topicsString = this.selectedFoundation.topicsString.replace(
-        /,\s*$/,
-        ""
       );
     },
     validateFormBeforeSubmit() {

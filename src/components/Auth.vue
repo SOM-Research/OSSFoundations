@@ -114,7 +114,6 @@ export default {
     },
     //Makes an user "admin" passing its Firebase UID
     makeUserAdmin(userId) {
-      console.log(userId);
       return API.makeUserAdmin(userId)
         .then((res) => console.log(res))
         .catch((err) => console.log(err));

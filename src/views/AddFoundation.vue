@@ -48,55 +48,22 @@
 <script>
 import NewEditFoundation from "@/components/NewEditFoundation.vue";
 import ModalResponse from "../components/ModalResponse.vue";
+import { selectedFoundation } from "@/mixins/SelectedFoundation.js";
 import API from "@/data/api.js";
 import $ from "jquery";
 
 export default {
+  mixins: [selectedFoundation],
   components: { NewEditFoundation, ModalResponse },
   name: "AddFoundation",
   created() {},
   data() {
     return {
-      selectedFoundation: {
-        id: "",
-        name: "",
-        url: "",
-        rq1Inter: "",
-        rq1Indep: "",
-        rq1Open: "",
-        SD: "",
-        rq3rq4: "",
-        legal: "",
-        topics: [],
-        topicsString: "",
-        authorName: "",
-        authorMail: "",
-        status: "pending", //In this form, the status always will be "pending"
-      },
       responseAction: "", //Shows the message of an error or success of an action
     };
   },
   props: {},
   methods: {
-    //Sends the data from the new-edit-foundation component this comopnent
-    updateSelectedFoundation(f) {
-      this.selectedFoundation = f;
-    },
-    //Converts the checked topics to a string value when submit
-    topicsToString() {
-      this.selectedFoundation.topicsString = "";
-      for (var i = 0; i < this.selectedFoundation.topics.length; i++) {
-        if (this.selectedFoundation.topics[i].checked) {
-          this.selectedFoundation.topicsString += this.selectedFoundation.topics[i].name;
-          this.selectedFoundation.topicsString += ",";
-        }
-      }
-      //Replace the last comma and if it has any white space after it
-      this.selectedFoundation.topicsString = this.selectedFoundation.topicsString.replace(
-        /,\s*$/,
-        ""
-      );
-    },
     //Send a request to the server to create a new foundation
     newFoundation(foundation) {
       return API.newFoundationPending(foundation)
