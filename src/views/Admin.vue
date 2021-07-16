@@ -57,10 +57,12 @@
                       <font-awesome-icon :icon="['fa', 'calendar-alt']" />
                       {{
                         formatDate(
-                          foundationsStatusPending.sort(
-                            (a, b) =>
-                              new Date(b.date).getTime() - new Date(a.date).getTime()
-                          )[0].creationDate
+                          Math.max.apply(
+                            Math,
+                            foundationsStatusPending.map(function (o) {
+                              return o.creationDate;
+                            })
+                          )
                         )
                       }}
                     </span>
@@ -105,10 +107,12 @@
                       <font-awesome-icon :icon="['fa', 'calendar-alt']" />
                       {{
                         formatDate(
-                          foundationsStatusEdition.sort(
-                            (a, b) =>
-                              new Date(b.date).getTime() - new Date(a.date).getTime()
-                          )[0].creationDate
+                          Math.max.apply(
+                            Math,
+                            foundationsStatusEdition.map(function (o) {
+                              return o.creationDate;
+                            })
+                          )
                         )
                       }}
                     </span>
@@ -153,10 +157,12 @@
                       <font-awesome-icon :icon="['fa', 'calendar-alt']" />
                       {{
                         formatDate(
-                          foundationsStatusFinal.sort(
-                            (a, b) =>
-                              new Date(b.date).getTime() - new Date(a.date).getTime()
-                          )[0].creationDate
+                          Math.max.apply(
+                            Math,
+                            foundationsStatusFinal.map(function (o) {
+                              return o.creationDate;
+                            })
+                          )
                         )
                       }}
                     </span>
@@ -678,7 +684,7 @@ export default {
     },
     //Send a request to the server to edit a selected foundation
     editFoundation(id, selectedFoundation) {
-      this.topicsToString();
+      //this.topicsToString();
       this.loadingMsg = true;
       return API.editFoundation(id, selectedFoundation)
         .then(
