@@ -31,10 +31,12 @@ async function getAllFoundations() {
 //Edits the foundation data that matches with the ID passed as a parameter
 async function editFoundation(foundationId, foundation) {
     const token = await getTokenIfLoggedIn();
+    console.log("TOKEN IS "+token);
     const res = await axios.put(url + `/foundations/${foundationId}`, foundation, {
         headers:
             { authorization: `Bearer ${token}` }
     });
+    console.log("TOKEN2 IS " + token);
     return res;
 }
 

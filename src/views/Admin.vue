@@ -684,7 +684,7 @@ export default {
     },
     //Send a request to the server to edit a selected foundation
     editFoundation(id, selectedFoundation) {
-      //this.topicsToString();
+      this.topicsToString();
       this.loadingMsg = true;
       return API.editFoundation(id, selectedFoundation)
         .then(
