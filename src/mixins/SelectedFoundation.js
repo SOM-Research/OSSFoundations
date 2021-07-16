@@ -12,7 +12,44 @@ export const selectedFoundation = {
                 SD: "",
                 rq3rq4: "",
                 legal: "",
-                topics: [],
+                topics: [
+                    {
+                        name: "Event-organization",
+                        checked: false
+                    },
+                    {
+                        name: "Training",
+                        checked: false
+                    },
+                    {
+                        name: "Legal-support",
+                        checked: false
+                    },
+                    {
+                        name: "Community-coordination",
+                        checked: false
+                    },
+                    {
+                        name: "Project-sponsoring",
+                        checked: false
+                    },
+                    {
+                        name: "Software-Development",
+                        checked: false
+                    },
+                    {
+                        name: "OSS-promotion",
+                        checked: false
+                    },
+                    {
+                        name: "Government-involvement",
+                        checked: false
+                    },
+                    {
+                        name: "Standard-leaders",
+                        checked: false
+                    }
+                ],
                 topicsString: "",
                 authorName: "",
                 authorMail: "",
