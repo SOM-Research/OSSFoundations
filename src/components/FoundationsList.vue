@@ -34,6 +34,11 @@
             aria-controls="collapseTable"
           >
             {{ foundation.name }}
+            <font-awesome-icon
+              v-if="foundation.dissolved"
+              :icon="['fa', 'skull']"
+              class="text-dark"
+            />
           </a>
           <div
             class="collapse collapse-foundation"
@@ -48,10 +53,20 @@
             "
           >
             <div class="card card-body">
-              <span class="card-item">Website:</span>
-              <a v-bind:href="foundation.url" target="_blank">{{ foundation.url }}</a>
-              <span class="card-item">Status Form:</span>
-              {{ foundation.legal }}
+              <div :class="{ row: foundation.dissolved }">
+                <div :class="{ 'col-9': foundation.dissolved }">
+                  <span class="card-item">Website:</span> <br />
+                  <a v-bind:href="foundation.url" target="_blank">{{ foundation.url }}</a
+                  ><br />
+                  <span class="card-item">Status Form:</span><br />
+                  <span>{{ foundation.legal }}</span>
+                </div>
+                <span v-if="foundation.dissolved" class="col-3 text-right"
+                  >Dissolved
+                  <font-awesome-icon :icon="['fa', 'skull']" class="text-white"
+                /></span>
+              </div>
+
               <table class="table table-sm">
                 <tr>
                   <th>Dimension</th>
