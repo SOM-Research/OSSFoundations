@@ -5,10 +5,10 @@
   >
     <h2>Main information</h2>
     <div class="mb-3 row">
-      <label for="name" class="col-sm-2 col-form-label"
+      <label for="name" class="col-sm-12 col-form-label"
         >Name <span class="text-danger">*</span></label
       >
-      <div class="col-sm-10">
+      <div class="col-sm-12">
         <input
           class="form-control"
           type="text"
@@ -18,10 +18,10 @@
       </div>
     </div>
     <div class="mb-3 row">
-      <label for="url" class="col-sm-2 col-form-label"
+      <label for="url" class="col-sm-12 col-form-label"
         >Website <span class="text-danger">*</span></label
       >
-      <div class="col-sm-10">
+      <div class="col-sm-12">
         <input
           class="form-control"
           type="text"
@@ -31,14 +31,39 @@
       </div>
     </div>
     <div class="mb-3 row">
-      <label for="legal" class="col-sm-2 col-form-label">Status Form</label>
-      <div class="col-sm-10">
+      <label for="legal" class="col-sm-12 col-form-label">Status Form</label>
+      <div class="col-sm-12">
         <input
           class="form-control"
           type="text"
           v-model="selectedFoundationForm.legal"
           placeholder="United States 501(c)(3), United States 501(c)(6)..."
         />
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <label for="legal" class="col-sm-12 col-form-label">Is it dissolved?</label>
+      <div class="col-sm-10">
+        <div class="form-group">
+          <input
+            class="btn-check"
+            type="radio"
+            name="dissolved"
+            value="true"
+            v-model="selectedFoundationForm.dissolved"
+            id="dissolvedY"
+          />
+          <label class="btn btn-secondary button-form" for="dissolvedY">Yes</label>
+          <input
+            class="btn-check"
+            type="radio"
+            name="dissolved"
+            value="false"
+            v-model="selectedFoundationForm.dissolved"
+            id="dissolvedN"
+          />
+          <label class="btn btn-secondary button-form" for="dissolvedN">No</label>
+        </div>
       </div>
     </div>
 
@@ -303,15 +328,19 @@ p {
   text-align: center;
 }
 
+.btn-secondary {
+  opacity: 0.4 !important;
+}
 .btn-check:active + .btn-secondary,
 .btn-check:checked + .btn-secondary,
 .btn-secondary.active,
 .btn-secondary:active,
 .show > .btn-secondary.dropdown-toggle {
-  color: #5a97a2 !important;
-  background-color: rgb(238, 238, 238);
-  border-color: white;
+  color: white !important;
+
+  opacity: 1 !important;
 }
+
 .feature {
   background-color: #5a97a2 !important;
   padding: 15px;
