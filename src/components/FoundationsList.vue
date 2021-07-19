@@ -67,26 +67,58 @@
                 /></span>
               </div>
 
-              <table class="table table-sm">
+              <table class="table table-sm dimensions">
                 <tr>
                   <th>Dimension</th>
                   <th>Result</th>
                 </tr>
                 <tr>
                   <td>Does it have an international scope?</td>
-                  <td>{{ foundation.rq1Inter }}</td>
+                  <td>
+                    <font-awesome-icon
+                      :icon="['fa', 'circle']"
+                      :class="{
+                        'text-success': foundation.rq1Inter == 'Y',
+                        'text-danger': foundation.rq1Inter == 'N',
+                      }"
+                    />
+                  </td>
                 </tr>
                 <tr>
                   <td>Is it independent?</td>
-                  <td>{{ foundation.rq1Indep }}</td>
+                  <td>
+                    <font-awesome-icon
+                      :icon="['fa', 'circle']"
+                      :class="{
+                        'text-success': foundation.rq1Indep == 'Y',
+                        'text-danger': foundation.rq1Indep == 'N',
+                      }"
+                    />
+                  </td>
                 </tr>
                 <tr>
                   <td>Is it transparent enough?</td>
-                  <td>{{ foundation.rq1Open }}</td>
+                  <td>
+                    <font-awesome-icon
+                      :icon="['fa', 'circle']"
+                      :class="{
+                        'text-success': foundation.rq1Open == 'Y',
+                        'text-danger': foundation.rq1Open == 'N',
+                      }"
+                    />
+                  </td>
                 </tr>
                 <tr>
                   <td>Does it directly support software products?</td>
-                  <td>{{ foundation.SD }}</td>
+                  <td>
+                    <font-awesome-icon
+                      :icon="['fa', 'circle']"
+                      :class="{
+                        'text-success': foundation.SD == 'Y',
+                        'text-danger': foundation.SD == 'N',
+                      }"
+                    />
+                  </td>
                 </tr>
               </table>
               <div>
@@ -295,5 +327,10 @@ h5 {
   right: 0;
   opacity: 0.5;
   z-index: 6000;
+}
+
+.dimensions .fa-circle {
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
 }
 </style>
