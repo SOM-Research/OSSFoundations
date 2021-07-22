@@ -146,7 +146,7 @@ describe('Testing component FoundationsList.vue', () => {
   //newFoundation
   it('sends an edition proposal of a foundation to the API', () => {
     
-   // wrapper.vm.selectedFoundation = foundation; //The selected foundation has to be the actual foundation so it can pass the previous validation
+    wrapper.vm.selectedFoundation = foundation; //The selected foundation has to be the actual foundation so it can pass the previous validation
     wrapper.vm.editionProposal(idFoundation, wrapper.vm.selectedFoundation);
     //console.log(foundation);
     //Checks that the funcion has been called with the arguments:

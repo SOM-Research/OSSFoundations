@@ -1,8 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { shallowMount } from '@vue/test-utils';
 import Admin from '@/views/Admin.vue';
-import firebase from 'firebase/app';
-import 'firebase/auth';
+
 
 
 import 'bootstrap';
@@ -10,13 +9,76 @@ import axios from 'axios';
 
 jest.mock('axios');
 
-jest.mock('firebase/app', () => {
+import * as firebase from 'firebase'
+
+const onAuthStateChanged = jest.fn()
+
+const getRedirectResult = jest.fn(() => {
+  return Promise.resolve({
+    user: {
+      displayName: 'redirectResultTestDisplayName',
+      email: 'redirectTest@test.com',
+      emailVerified: true
+    }
+  })
+})
+
+const sendEmailVerification = jest.fn(() => {
+  return Promise.resolve('result of sendEmailVerification')
+})
+
+const sendPasswordResetEmail = jest.fn(() => Promise.resolve())
+
+const createUserWithEmailAndPassword = jest.fn(() => {
+  return Promise.resolve('result of createUserWithEmailAndPassword')
+})
+
+const signInWithEmailAndPassword = jest.fn(() => {
+  return Promise.resolve('result of signInWithEmailAndPassword')
+})
+
+const signInWithRedirect = jest.fn(() => {
+  return Promise.resolve('result of signInWithRedirect')
+})
+
+const getIdToken = jest.fn(() => {
+  return Promise.resolve(1);
+})
+
+const initializeApp = jest
+  .spyOn(firebase, 'initializeApp')
+  .mockImplementation(() => {
+    return {
+      auth: () => {
+        return {
+          createUserWithEmailAndPassword,
+          signInWithEmailAndPassword,
+          currentUser: {
+            sendEmailVerification,
+            getIdToken,
+          },
+          signInWithRedirect
+        }
+      }
+    }
+  })
+
+jest.spyOn(firebase, 'auth').mockImplementation(() => {
   return {
-    auth: jest.fn().mockReturnThis(),
-    currentUser: { email: 'example@gmail.com', uid: 1, emailVerified: true, getIdToken: () => 1},
-    
-  };
-});
+    onAuthStateChanged,
+    currentUser: {
+      displayName: 'testDisplayName',
+      email: 'test@test.com',
+      emailVerified: true,
+      getIdToken
+    },
+    getRedirectResult,
+    sendPasswordResetEmail
+  }
+})
+
+firebase.auth.FacebookAuthProvider = jest.fn(() => { })
+firebase.auth.GoogleAuthProvider = jest.fn(() => { })
 
 //Command: npm run test:unit
 describe('Testing component Admin.vue', () => {
@@ -89,15 +151,73 @@ describe('Testing component Admin.vue', () => {
   });
 
   //Sends a request to edit a foundation
-  it('Sends a request to edit a foundation', () => {
-    wrapper.vm.editFoundation(idFoundation, wrapper.vm.selectedFoundation);
+  it('Sends successfully a request to edit a foundation', async() => {
+    await wrapper.vm.editFoundation(idFoundation, wrapper.vm.selectedFoundation);
     //Checks that the funcion has been called with the arguments:
     //1 - the correct method
     //2 - the arguments: URL and foundation
     //2 - the Bearer token (mocked on the top)
 
-    expect(axios.put).toHaveBeenCalledWith("https://oss-foundations-api.herokuapp.com/foundations/007483d644", wrapper.vm.selectedFoundation, { "headers": { "authorization": "Bearer 1" } },);
+    expect(axios.put).toHaveBeenCalledWith("https://oss-foundations-api.herokuapp.com/foundations/"+idFoundation, wrapper.vm.selectedFoundation, { "headers": { "authorization": "Bearer 1" } },);
+    // const token = await firebase.auth().currentUser.getIdToken();
+    // expect(token).toBe(1);
+  });
 
+  it('Throws error when requesting to edit a foundation for the request method', async () => {
+    await wrapper.vm.editFoundation(idFoundation, wrapper.vm.selectedFoundation);
+    //Checks that the funcion has been called with the arguments:
+    //1 - the correct method
+    //2 - the arguments
+    //2 - the Bearer token (mocked on the top)
+
+    expect(axios.post).not.toHaveBeenCalledWith("https://oss-foundations-api.herokuapp.com/foundations/"+idFoundation, wrapper.vm.selectedFoundation, { "headers": { "authorization": "Bearer 1" } },);
+    // const token = await firebase.auth().currentUser.getIdToken();
+    // expect(token).toBe(1);
+  });
+
+  //Sends a request to approve a foundation
+  it('Sends successfully a request to approve a foundation', async () => {
+    await wrapper.vm.approveFoundation(idFoundation, wrapper.vm.selectedFoundation);
+
+    //Expects to change its status to "final"
+    expect(wrapper.vm.selectedFoundation.status).toBe("final");
+    //Checks that the funcion has been called with the arguments:
+    //1 - the correct method
+    //2 - the arguments
+    //2 - the Bearer token (mocked on the top)
+    expect(axios.put).toHaveBeenCalledWith("https://oss-foundations-api.herokuapp.com/foundations/" + idFoundation, wrapper.vm.selectedFoundation, { "headers": { "authorization": "Bearer 1" } },);
+  });
+
+  it('Throws error when requesting to approve a foundation', async () => {
+    await wrapper.vm.approveFoundation(idFoundation, wrapper.vm.selectedFoundation);
+
+    //Expects to change its status to "final"
+    expect(wrapper.vm.selectedFoundation.status).not.toBe("");
+    expect(wrapper.vm.selectedFoundation.status).not.toBe("pending");
+
+  });
+  //Sends a request to create a new foundation
+  it('Sends successfully a request to create a new foundation', async () => {
+    await wrapper.vm.newFoundation(foundation);
+    //Checks that the funcion has been called with the arguments:
+    //1 - the correct method
+    //2 - the arguments
+    //2 - the Bearer token (mocked on the top)
+
+    expect(axios.post).toHaveBeenCalledWith("https://oss-foundations-api.herokuapp.com/foundations/", foundation, { "headers": { "authorization": "Bearer 1" } },);
+  });
+
+  //Sends a request to edit a foundation
+  it('Sends successfully a request to delete a foundation', async () => {
+    await wrapper.vm.deleteFoundation(idFoundation);
+    //Checks that the funcion has been called with the arguments:
+    //1 - the correct method
+    //2 - the arguments
+    //2 - the Bearer token (mocked on the top)
+
+    expect(axios.delete).toHaveBeenCalledWith("https://oss-foundations-api.herokuapp.com/foundations/"+idFoundation, { "headers": { "authorization": "Bearer 1" } },);
+    // const token = await firebase.auth().currentUser.getIdToken();
+    // expect(token).toBe(1);
   });
 
 
