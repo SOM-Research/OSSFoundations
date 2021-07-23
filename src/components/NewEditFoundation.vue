@@ -12,6 +12,7 @@
         <input
           class="form-control"
           type="text"
+          id="formName"
           v-model="selectedFoundationForm.name"
           placeholder="Write here Foundation's name"
         />
@@ -25,6 +26,7 @@
         <input
           class="form-control"
           type="text"
+          id="formUrl"
           v-model="selectedFoundationForm.url"
           placeholder="Write here the URL to the Foundation's website"
         />
@@ -36,6 +38,7 @@
         <input
           class="form-control"
           type="text"
+          id="formLegal"
           v-model="selectedFoundationForm.legal"
           placeholder="United States 501(c)(3), United States 501(c)(6)..."
         />
@@ -50,7 +53,7 @@
             type="radio"
             name="dissolved"
             value="true"
-            v-model="selectedFoundationForm.dissolved"
+            @click="selectedFoundationForm.dissolved = true"
             id="dissolvedY"
           />
           <label class="btn btn-secondary button-form" for="dissolvedY">Yes</label>
@@ -59,7 +62,7 @@
             type="radio"
             name="dissolved"
             value="false"
-            v-model="selectedFoundationForm.dissolved"
+            @click="selectedFoundationForm.dissolved = false"
             id="dissolvedN"
           />
           <label class="btn btn-secondary button-form" for="dissolvedN">No</label>
@@ -228,6 +231,7 @@
         <input
           class="form-control"
           type="text"
+          name="contactName"
           placeholder="Your name"
           v-model="selectedFoundationForm.authorName"
         />
@@ -239,6 +243,7 @@
         <input
           class="form-control"
           type="email"
+          name="contactEmail"
           placeholder="Your email"
           v-model="selectedFoundationForm.authorMail"
         />
