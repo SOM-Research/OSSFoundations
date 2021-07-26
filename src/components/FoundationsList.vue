@@ -34,6 +34,11 @@
             aria-controls="collapseTable"
           >
             {{ foundation.name }}
+            <font-awesome-icon
+              v-if="foundation.dissolved"
+              :icon="['fa', 'skull']"
+              class="text-dark"
+            />
           </a>
           <div
             class="collapse collapse-foundation"
@@ -48,30 +53,72 @@
             "
           >
             <div class="card card-body">
-              <span class="card-item">Website:</span>
-              <a v-bind:href="foundation.url" target="_blank">{{ foundation.url }}</a>
-              <span class="card-item">Status Form:</span>
-              {{ foundation.legal }}
-              <table class="table table-sm">
+              <div :class="{ row: foundation.dissolved }">
+                <div :class="{ 'col-9': foundation.dissolved }">
+                  <span class="card-item">Website:</span> <br />
+                  <a v-bind:href="foundation.url" target="_blank">{{ foundation.url }}</a
+                  ><br />
+                  <span class="card-item">Status Form:</span><br />
+                  <span>{{ foundation.legal }}</span>
+                </div>
+                <span v-if="foundation.dissolved" class="col-3 text-right"
+                  >Dissolved
+                  <font-awesome-icon :icon="['fa', 'skull']" class="text-white"
+                /></span>
+              </div>
+
+              <table class="table table-sm dimensions">
                 <tr>
                   <th>Dimension</th>
                   <th>Result</th>
                 </tr>
                 <tr>
                   <td>Does it have an international scope?</td>
-                  <td>{{ foundation.rq1Inter }}</td>
+                  <td>
+                    <font-awesome-icon
+                      :icon="['fa', 'circle']"
+                      :class="{
+                        'text-success': foundation.rq1Inter == 'Y',
+                        'text-danger': foundation.rq1Inter == 'N',
+                      }"
+                    />
+                  </td>
                 </tr>
                 <tr>
                   <td>Is it independent?</td>
-                  <td>{{ foundation.rq1Indep }}</td>
+                  <td>
+                    <font-awesome-icon
+                      :icon="['fa', 'circle']"
+                      :class="{
+                        'text-success': foundation.rq1Indep == 'Y',
+                        'text-danger': foundation.rq1Indep == 'N',
+                      }"
+                    />
+                  </td>
                 </tr>
                 <tr>
                   <td>Is it transparent enough?</td>
-                  <td>{{ foundation.rq1Open }}</td>
+                  <td>
+                    <font-awesome-icon
+                      :icon="['fa', 'circle']"
+                      :class="{
+                        'text-success': foundation.rq1Open == 'Y',
+                        'text-danger': foundation.rq1Open == 'N',
+                      }"
+                    />
+                  </td>
                 </tr>
                 <tr>
                   <td>Does it directly support software products?</td>
-                  <td>{{ foundation.SD }}</td>
+                  <td>
+                    <font-awesome-icon
+                      :icon="['fa', 'circle']"
+                      :class="{
+                        'text-success': foundation.SD == 'Y',
+                        'text-danger': foundation.SD == 'N',
+                      }"
+                    />
+                  </td>
                 </tr>
               </table>
               <div>
@@ -139,9 +186,11 @@ import NewEditFoundation from "@/components/NewEditFoundation.vue";
 import API from "@/data/api.js";
 import ModalResponse from "@/components/ModalResponse.vue";
 import Loading from "@/components/Loading.vue";
+import { selectedFoundation } from "@/mixins/SelectedFoundation.js";
 
 export default {
   components: { NewEditFoundation, ModalResponse, Loading },
+  mixins: [selectedFoundation],
   name: "FoundationsList",
   props: ["foundationsProp"],
   data() {
@@ -153,23 +202,6 @@ export default {
 
       //DATA
       foundations: this.foundationsProp,
-      selectedFoundation: {
-        id: "",
-        name: "",
-        url: "",
-        rq1Inter: "",
-        rq1Indep: "",
-        rq1Open: "",
-        SD: "",
-        rq3rq4: "",
-        legal: "",
-        topics: [],
-        topicsString: "",
-        authorName: "",
-        authorMail: "",
-        status: "",
-        creationDate: "",
-      },
       responseAction: "", //Shows the message of an error or success of an action
       loading: false, //Indicates if a task is loading
     };
@@ -195,49 +227,6 @@ export default {
         this.foundations,
         this.sortKey,
         this.reverse ? "desc" : "asc"
-      );
-    },
-    //Fills the form with the info of the selected foundation by using its ID
-    loadFormData(id, foundationsList) {
-      for (var x in foundationsList) {
-        if (foundationsList[x].id == id) {
-          this.selectedFoundation.name = foundationsList[x].name;
-          this.selectedFoundation.id = foundationsList[x].id;
-          this.selectedFoundation.url = foundationsList[x].url;
-          this.selectedFoundation.rq1Inter = foundationsList[x].rq1Inter;
-          this.selectedFoundation.rq1Indep = foundationsList[x].rq1Indep;
-          this.selectedFoundation.rq1Open = foundationsList[x].rq1Open;
-          this.selectedFoundation.SD = foundationsList[x].SD;
-          // this.selectedFoundation.authorMail = foundationsList[x].author.mail;
-          // this.selectedFoundation.authorName = foundationsList[x].author.name;
-          this.selectedFoundation.rq3rq4 = foundationsList[x].rq3rq4;
-          this.selectedFoundation.legal = foundationsList[x].legal;
-          //Loads the selected topics
-          for (var i = 0; i < this.selectedFoundation.topics.length; i++) {
-            if (
-              foundationsList[x].topics.includes(this.selectedFoundation.topics[i].name)
-            ) {
-              this.selectedFoundation.topics[i].checked = true;
-            } else {
-              this.selectedFoundation.topics[i].checked = false;
-            }
-          }
-        }
-      }
-    },
-    //Converts the checked topics to a string value when submit
-    topicsToString() {
-      this.selectedFoundation.topicsString = "";
-      for (var i = 0; i < this.selectedFoundation.topics.length; i++) {
-        if (this.selectedFoundation.topics[i].checked) {
-          this.selectedFoundation.topicsString += this.selectedFoundation.topics[i].name;
-          this.selectedFoundation.topicsString += ",";
-        }
-      }
-      //Replace the last comma and if it has any white space after it
-      this.selectedFoundation.topicsString = this.selectedFoundation.topicsString.replace(
-        /,\s*$/,
-        ""
       );
     },
     validateFormBeforeSubmit() {
@@ -338,5 +327,10 @@ h5 {
   right: 0;
   opacity: 0.5;
   z-index: 6000;
+}
+
+.dimensions .fa-circle {
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
 }
 </style>

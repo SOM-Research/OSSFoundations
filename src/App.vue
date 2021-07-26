@@ -8,6 +8,9 @@ import AppHeader from "@/components/AppHeader.vue";
 
 export default {
   name: "App",
+  metaInfo: {
+    title: "OSSFoundations",
+  },
   components: {
     AppHeader,
   },

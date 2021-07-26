@@ -5,40 +5,70 @@
   >
     <h2>Main information</h2>
     <div class="mb-3 row">
-      <label for="name" class="col-sm-2 col-form-label"
+      <label for="name" class="col-sm-12 col-form-label"
         >Name <span class="text-danger">*</span></label
       >
-      <div class="col-sm-10">
+      <div class="col-sm-12">
         <input
           class="form-control"
           type="text"
+          id="formName"
           v-model="selectedFoundationForm.name"
           placeholder="Write here Foundation's name"
         />
       </div>
     </div>
     <div class="mb-3 row">
-      <label for="url" class="col-sm-2 col-form-label"
+      <label for="url" class="col-sm-12 col-form-label"
         >Website <span class="text-danger">*</span></label
       >
-      <div class="col-sm-10">
+      <div class="col-sm-12">
         <input
           class="form-control"
           type="text"
+          id="formUrl"
           v-model="selectedFoundationForm.url"
           placeholder="Write here the URL to the Foundation's website"
         />
       </div>
     </div>
     <div class="mb-3 row">
-      <label for="legal" class="col-sm-2 col-form-label">Status Form</label>
-      <div class="col-sm-10">
+      <label for="legal" class="col-sm-12 col-form-label">Status Form</label>
+      <div class="col-sm-12">
         <input
           class="form-control"
           type="text"
+          id="formLegal"
           v-model="selectedFoundationForm.legal"
           placeholder="United States 501(c)(3), United States 501(c)(6)..."
         />
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <label for="legal" class="col-sm-12 col-form-label">Is it dissolved?</label>
+      <div class="col-sm-10">
+        <div class="form-group">
+          <input
+            class="btn-check"
+            type="radio"
+            name="dissolved"
+            v-bind:value="true"
+            v-model="selectedFoundationForm.dissolved"
+            @click="selectedFoundationForm.dissolved = true"
+            id="dissolvedY"
+          />
+          <label class="btn btn-secondary button-form" for="dissolvedY">Yes</label>
+          <input
+            class="btn-check"
+            type="radio"
+            name="dissolved"
+            v-bind:value="false"
+            v-model="selectedFoundationForm.dissolved"
+            @click="selectedFoundationForm.dissolved = false"
+            id="dissolvedN"
+          />
+          <label class="btn btn-secondary button-form" for="dissolvedN">No</label>
+        </div>
       </div>
     </div>
 
@@ -203,6 +233,7 @@
         <input
           class="form-control"
           type="text"
+          name="contactName"
           placeholder="Your name"
           v-model="selectedFoundationForm.authorName"
         />
@@ -214,6 +245,7 @@
         <input
           class="form-control"
           type="email"
+          name="contactEmail"
           placeholder="Your email"
           v-model="selectedFoundationForm.authorMail"
         />
@@ -303,15 +335,19 @@ p {
   text-align: center;
 }
 
+.btn-secondary {
+  opacity: 0.4 !important;
+}
 .btn-check:active + .btn-secondary,
 .btn-check:checked + .btn-secondary,
 .btn-secondary.active,
 .btn-secondary:active,
 .show > .btn-secondary.dropdown-toggle {
-  color: #5a97a2 !important;
-  background-color: rgb(238, 238, 238);
-  border-color: white;
+  color: white !important;
+
+  opacity: 1 !important;
 }
+
 .feature {
   background-color: #5a97a2 !important;
   padding: 15px;

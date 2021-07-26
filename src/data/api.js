@@ -34,7 +34,7 @@ async function editFoundation(foundationId, foundation) {
     const res = await axios.put(url + `/foundations/${foundationId}`, foundation, {
         headers:
             { authorization: `Bearer ${token}` }
-    });
+    })
     return res;
 }
 
@@ -82,7 +82,7 @@ function isLoggedIn() {
 //Returns Google token if the user has logged in
 async function getTokenIfLoggedIn() {
     if (isLoggedIn()) {
-        return firebase.auth().currentUser.getIdToken();
+        return await firebase.auth().currentUser.getIdToken();
     }
     return null;
 }
