@@ -52,7 +52,8 @@
             class="btn-check"
             type="radio"
             name="dissolved"
-            value="true"
+            v-bind:value="true"
+            v-model="selectedFoundationForm.dissolved"
             @click="selectedFoundationForm.dissolved = true"
             id="dissolvedY"
           />
@@ -61,7 +62,8 @@
             class="btn-check"
             type="radio"
             name="dissolved"
-            value="false"
+            v-bind:value="false"
+            v-model="selectedFoundationForm.dissolved"
             @click="selectedFoundationForm.dissolved = false"
             id="dissolvedN"
           />
