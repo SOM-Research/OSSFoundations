@@ -105,7 +105,7 @@ describe('Testing component AddFoundation.vue', () => {
     //Checks that the funcion has been called with the arguments:
     //1 - the correct method
     //2 - the arguments: URL and foundation
-    expect(axios.post).toHaveBeenCalledWith("https://oss-foundations-api.herokuapp.com/foundations/pending", foundation);
+    expect(axios.post).toHaveBeenCalledWith("https://som-research.uoc.edu/tools/ossfoundations/foundations/pending", foundation);
   });
 
   //Validates required form fields before submitting
@@ -201,7 +201,7 @@ describe('Testing component AddFoundation.vue', () => {
     //Checks that the funcion has been called with the arguments:
     //1 - the correct method
     //2 - the arguments: URL and foundation
-    expect(axios.put).not.toHaveBeenCalledWith("https://oss-foundations-api.herokuapp.com/foundations/pending", foundation);
+    expect(axios.put).not.toHaveBeenCalledWith("https://som-research.uoc.edu/tools/ossfoundations/foundations/pending", foundation);
   });
 
 
