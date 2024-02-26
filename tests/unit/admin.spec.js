@@ -158,7 +158,7 @@ describe('Testing component Admin.vue', () => {
     //2 - the arguments: URL and foundation
     //2 - the Bearer token (mocked on the top)
 
-    expect(axios.put).toHaveBeenCalledWith("https://oss-foundations-api.herokuapp.com/foundations/"+idFoundation, wrapper.vm.selectedFoundation, { "headers": { "authorization": "Bearer 1" } },);
+    expect(axios.put).toHaveBeenCalledWith("https://som-research.uoc.edu/tools/ossfoundations/foundations/"+idFoundation, wrapper.vm.selectedFoundation, { "headers": { "authorization": "Bearer 1" } },);
     // const token = await firebase.auth().currentUser.getIdToken();
     // expect(token).toBe(1);
   });
@@ -170,7 +170,7 @@ describe('Testing component Admin.vue', () => {
     //2 - the arguments
     //2 - the Bearer token (mocked on the top)
 
-    expect(axios.post).not.toHaveBeenCalledWith("https://oss-foundations-api.herokuapp.com/foundations/"+idFoundation, wrapper.vm.selectedFoundation, { "headers": { "authorization": "Bearer 1" } },);
+    expect(axios.post).not.toHaveBeenCalledWith("https://som-research.uoc.edu/tools/ossfoundations/foundations/"+idFoundation, wrapper.vm.selectedFoundation, { "headers": { "authorization": "Bearer 1" } },);
     // const token = await firebase.auth().currentUser.getIdToken();
     // expect(token).toBe(1);
   });
@@ -185,7 +185,7 @@ describe('Testing component Admin.vue', () => {
     //1 - the correct method
     //2 - the arguments
     //2 - the Bearer token (mocked on the top)
-    expect(axios.put).toHaveBeenCalledWith("https://oss-foundations-api.herokuapp.com/foundations/" + idFoundation, wrapper.vm.selectedFoundation, { "headers": { "authorization": "Bearer 1" } },);
+    expect(axios.put).toHaveBeenCalledWith("https://som-research.uoc.edu/tools/ossfoundations/foundations/" + idFoundation, wrapper.vm.selectedFoundation, { "headers": { "authorization": "Bearer 1" } },);
   });
 
   it('Throws error when requesting to approve a foundation', async () => {
@@ -204,7 +204,7 @@ describe('Testing component Admin.vue', () => {
     //2 - the arguments
     //2 - the Bearer token (mocked on the top)
 
-    expect(axios.post).toHaveBeenCalledWith("https://oss-foundations-api.herokuapp.com/foundations/", foundation, { "headers": { "authorization": "Bearer 1" } },);
+    expect(axios.post).toHaveBeenCalledWith("https://som-research.uoc.edu/tools/ossfoundations/foundations/", foundation, { "headers": { "authorization": "Bearer 1" } },);
   });
 
   //Sends a request to edit a foundation
@@ -215,7 +215,7 @@ describe('Testing component Admin.vue', () => {
     //2 - the arguments
     //2 - the Bearer token (mocked on the top)
 
-    expect(axios.delete).toHaveBeenCalledWith("https://oss-foundations-api.herokuapp.com/foundations/"+idFoundation, { "headers": { "authorization": "Bearer 1" } },);
+    expect(axios.delete).toHaveBeenCalledWith("https://som-research.uoc.edu/tools/ossfoundations/foundations/"+idFoundation, { "headers": { "authorization": "Bearer 1" } },);
     // const token = await firebase.auth().currentUser.getIdToken();
     // expect(token).toBe(1);
   });

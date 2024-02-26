@@ -152,7 +152,7 @@ describe('Testing component FoundationsList.vue', () => {
     //Checks that the funcion has been called with the arguments:
     //1 - the correct method
     //2 - the arguments: URL and foundation
-    expect(axios.put).toHaveBeenCalledWith("https://oss-foundations-api.herokuapp.com/foundations/edit/007483d644", wrapper.vm.selectedFoundation);
+    expect(axios.put).toHaveBeenCalledWith("https://som-research.uoc.edu/tools/ossfoundations/foundations/edit/007483d644", wrapper.vm.selectedFoundation);
   });
 
 })
