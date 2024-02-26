@@ -4,7 +4,7 @@ import 'firebase/auth';
 //DEV
 //var url = "http://localhost:5000"
 //PROD
-var url = "https://oss-foundations-api.herokuapp.com"
+var url = "https://som-research.uoc.edu/tools/ossfoundations"
 
 
 
